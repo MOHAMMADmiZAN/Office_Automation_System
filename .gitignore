@@ -1,0 +1,9 @@
+node_modules/
+.idea/
+.vscode
+*.lock
+*.log
+*.swp
+*.swo
+*.swn
+*-lock.json
