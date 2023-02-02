@@ -9,11 +9,12 @@ import {RouterProvider} from "react-router-dom";
 import router from "./routes";
 
 
-interface APP_PROPS {
-
-}
+ // using react query
 const queryClient = new QueryClient()
 
+
+
+// using easy-peasy rehydration  https://easy-peasy.now.sh/docs/api/store.html#rehydrate
 function WaitForStateRehydration({ children }: { children: React.ReactElement }): React.ReactElement | null {
     const isRehydrated = useStoreRehydrated()
     return isRehydrated ? children : null
@@ -21,14 +22,14 @@ function WaitForStateRehydration({ children }: { children: React.ReactElement })
 
 
 
-const App: React.FC<APP_PROPS> = (props) : JSX.Element => {
+const App: React.FC = () : JSX.Element => {
     return (
            <StoreProvider store={store}>
                <WaitForStateRehydration>
                    <QueryClientProvider client={queryClient}>
                        <CssBaseline/>
                        <RouterProvider router={router} />
-                       <ReactQueryDevtools initialIsOpen={false}/>
+                       <ReactQueryDevtools initialIsOpen={true}/>
                    </QueryClientProvider>
                </WaitForStateRehydration>
            </StoreProvider>

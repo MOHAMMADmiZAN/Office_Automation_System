@@ -45,7 +45,7 @@ type AuthThunk<T> = Thunk<Auth, T>
 export interface Auth {
     isAuth: boolean;
     AuthToken: string;
-    AuthUser: {}
+    AuthUser: object
     AuthSet: Action<Auth, authResponse>;
     AuthClear: AuthAction<void>;
     Login: AuthThunk<loginPayload>;
