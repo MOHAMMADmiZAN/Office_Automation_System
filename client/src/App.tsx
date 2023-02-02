@@ -30,6 +30,7 @@ const App: React.FC = () : JSX.Element => {
                    <QueryClientProvider client={queryClient}>
                        <CssBaseline/>
                        <RouterProvider router={router}/>
+
                        <ReactQueryDevtools initialIsOpen={false}/>
                    </QueryClientProvider>
                </WaitForStateRehydration>
