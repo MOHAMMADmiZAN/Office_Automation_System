@@ -1,4 +1,4 @@
-import {CustomTheme} from "./theme.dto";
+import {CustomTheme} from "./theme.interface";
 import {createTheme} from "@mui/material";
 
 export const createCustomTheme = (customTheme: CustomTheme)  => {

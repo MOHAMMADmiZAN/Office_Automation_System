@@ -7,7 +7,7 @@ import {ReactQueryDevtools} from "react-query/devtools";
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import {RouterProvider} from "react-router-dom";
 import router from "./routes";
-import Login from "./pages/login";
+import Login_Page from "./pages/login";
 import {theme} from "./theme/theme";
 
 
