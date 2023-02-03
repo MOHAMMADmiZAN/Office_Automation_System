@@ -4,10 +4,11 @@ import {QueryClient, QueryClientProvider} from "react-query";
 import {StoreProvider, useStoreRehydrated} from "easy-peasy";
 import store from "./store/store";
 import {ReactQueryDevtools} from "react-query/devtools";
-import {CssBaseline} from "@mui/material";
+import {CssBaseline, ThemeProvider} from "@mui/material";
 import {RouterProvider} from "react-router-dom";
 import router from "./routes";
 import Login from "./pages/login";
+import {theme} from "./theme/theme";
 
 
  // using react query
@@ -25,16 +26,18 @@ function WaitForStateRehydration({ children }: { children: React.ReactElement })
 
 const App: React.FC = () : JSX.Element => {
     return (
-           <StoreProvider store={store}>
+        <ThemeProvider theme={theme}>
+            <StoreProvider store={store}>
                <WaitForStateRehydration>
                    <QueryClientProvider client={queryClient}>
                        <CssBaseline/>
-                       <RouterProvider router={router}/>
-
+                           <RouterProvider router={router}/>
                        <ReactQueryDevtools initialIsOpen={false}/>
                    </QueryClientProvider>
                </WaitForStateRehydration>
            </StoreProvider>
+        </ThemeProvider>
+
 
 
 
