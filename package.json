@@ -1,0 +1,28 @@
+{
+  "name": "@office/core",
+  "version": "1.0.0",
+  "description": "* [Case Study](#case-study) * [Reference](#reference) * [Tools](#tools) * [Video](#video)",
+  "main": "index.js",
+  "private": true,
+  "scripts": {
+    "build": "lerna run build",
+    "test": "lerna run test",
+    "dev": "lerna run dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/MOHAMMADmiZAN/Office_Automation_System.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/MOHAMMADmiZAN/Office_Automation_System/issues"
+  },
+  "homepage": "https://github.com/MOHAMMADmiZAN/Office_Automation_System#readme",
+  "workspaces": [
+    "packages/*"
+  ],
+  "devDependencies": {
+    "lerna": "^6.4.1"
+  }
+}

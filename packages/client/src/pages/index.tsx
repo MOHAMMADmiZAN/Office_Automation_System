@@ -1,10 +1,12 @@
 import React from 'react';
+import Input from "../components/molecules/Form/Input/input";
 
 
 const Index: React.FC = (): JSX.Element => {
     return (
         <>
-            <h1>Home</h1>
+
+
 
         </>
     );
