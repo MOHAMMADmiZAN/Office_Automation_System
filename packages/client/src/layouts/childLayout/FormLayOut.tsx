@@ -1,7 +1,7 @@
 import React from 'react';
 import {Box, Grid} from "@mui/material";
-import Form_Input, {FORM_INPUT_PROPS} from "../components/molecules/Form/FormInput/Form_Input";
-import Btn from "../components/molecules/Form/Btn";
+import Form_Input, {FORM_INPUT_PROPS} from "../../components/molecules/Form/FormInput/Form_Input";
+import Btn from "../../components/molecules/Form/Btn";
 import {SubmitHandler, useForm} from "react-hook-form";
 import {yupResolver} from "@hookform/resolvers/yup/dist/yup";
 import {AnyObjectSchema} from "yup";

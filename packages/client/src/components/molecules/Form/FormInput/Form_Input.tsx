@@ -171,7 +171,7 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                                                 helperText={isValid ? '' : error?.message}
                                                 size={`small`}
                                                 fullWidth={isFullWidth}
-                                                rows={4}
+                                                rows={6}
                                                 multiline
 
 

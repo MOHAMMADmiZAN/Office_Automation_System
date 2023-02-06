@@ -1,8 +1,8 @@
 import React from 'react';
 import {FORM_INPUT_PROPS, FormInputType} from "../../../molecules/Form/FormInput/Form_Input";
 import {SubmitHandler} from "react-hook-form";
-import {signupValidation} from "../../../../utils/Validation /Validation ";
-import FormLayOut from "../../../../layouts/FormLayOut";
+import {signupValidation} from "../../../../utils/Validation /Validation";
+import FormLayOut from "../../../../layouts/childLayout/FormLayOut";
 
 
 interface RegisterInputField {
