@@ -30,7 +30,7 @@
 - Session: `Database Design, Model`. Topic: `Role, User, User Basic Info, Onboarding, Calender, User Document, Attendance, Leave Management` 
 
 #### Day3 [Feb 05 2023]
-- [The Original Tool for JavaScript Monorepos](https://lerna.js.org/)
+- [Lerna](https://lerna.js.org/) - The Original Tool for JavaScript Monorepos
 - [nx](https://nx.dev/) - Next generation build system with first class monorepo.
 - [Joi](https://www.npmjs.com/package/joi) - The most powerful schema description language and data validator for JavaScript.
 - [Yup](https://www.npmjs.com/package/yup) - Yup is a JavaScript schema builder for value parsing and validation.
