@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {Box, Grid} from "@mui/material";
 import Form_Input, {FORM_INPUT_PROPS} from "../../components/molecules/Form/FormInput/Form_Input";
 import Btn from "../../components/molecules/Form/Btn";
@@ -65,4 +65,4 @@ const FormLayOut: React.FC<FORM_LAY_OUT_PROPS> = ({defaultValues,onSubmit,valida
     );
 };
 
-export default FormLayOut;
+export default memo(FormLayOut)

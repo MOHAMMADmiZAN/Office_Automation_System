@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {memo} from 'react';
 import {CustomBtn} from "./styles/Btn.style";
 
 type BtnType = 'button' | 'submit' | 'reset'
@@ -42,4 +42,4 @@ export const Btn: React.FC<BTN_PROPS> = ({
     );
 };
 
-export default Btn;
+export default memo(Btn)
