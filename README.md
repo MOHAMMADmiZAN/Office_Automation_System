@@ -2,7 +2,6 @@
 * [Case Study](#case-study)
 * [Reference](#reference)
 * [Tools](#tools)
-* [Video](#video)
 
 ### Case Study 
 
@@ -30,6 +29,13 @@
 - Implement Github Project management feature properly
 - Session: Database Design, Model. Topic: Role, User, User Basic Info, Onboarding, Calender, User Document, Attendance, Leave Management 
 
+#### Day3 [Feb 05 2023]
+- [The Original Tool for JavaScript Monorepos](https://lerna.js.org/)
+- [nx](https://nx.dev/) - Next generation build system with first class monorepo.
+- [Joi](https://www.npmjs.com/package/joi) - The most powerful schema description language and data validator for JavaScript.
+- [Yup](https://www.npmjs.com/package/yup) - Yup is a JavaScript schema builder for value parsing and validation.
+
+
 ### Reference 
 - [Follow Design](https://github.com/MOHAMMADmiZAN/dressmart)
 - [Mui](https://mui.com/), [Mui Github](https://github.com/mui)
@@ -39,3 +45,7 @@
 - [Diagrams.net](https://www.diagrams.net/) - Using for diagrams
 - [Lucid Chart](https://www.lucidchart.com/pages/)
 
+### Project Details
+- Project link `https://github.com/MOHAMMADmiZAN/Office_Automation_System`
+- Clone the project `git clone https://github.com/MOHAMMADmiZAN/Office_Automation_System`. Then `cd project` and `npm i` or `yarn i`
+- Run the project `npm run dev` or `yarn run dev`
