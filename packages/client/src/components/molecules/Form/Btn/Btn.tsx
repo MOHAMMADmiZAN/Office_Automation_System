@@ -5,7 +5,7 @@ type BtnType = 'button' | 'submit' | 'reset'
 type BtnVariant = 'text' | 'outlined' | 'contained'
 type BtnSize = 'small' | 'medium' | 'large'
 
-interface BTN_PROPS {
+export interface BTN_PROPS {
     type?: BtnType;
     BtnText?: string;
     onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
