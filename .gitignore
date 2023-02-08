@@ -7,3 +7,5 @@ node_modules/
 *.swo
 *.swn
 *-lock.json
+packages/client/node_modules/
+packages/backend/node_modules/
