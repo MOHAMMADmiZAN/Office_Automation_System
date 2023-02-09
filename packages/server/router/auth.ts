@@ -1,4 +1,4 @@
-const Router = require('express').Router
+import { Router } from "express";
 
 import AuthController from "../controllers/AuthController";
 

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 /**
  * @description: connect to mongodb
  * @param connectionStr

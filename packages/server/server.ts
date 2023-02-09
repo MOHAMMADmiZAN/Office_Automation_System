@@ -1,27 +1,28 @@
 import connectDB from "./db";
 import router from "./router/api";
 import {ErrorWithStatus} from "./utils/error";
+import express, { NextFunction, Request, Response } from 'express';
+import http from 'http';
 
-const express = require('express');
-const http = require('http');
 
-
-const cors = require('cors');
+import cors from 'cors';
 
 const app = express();
-const morgan = require('morgan');
+import morgan from 'morgan';
 
 
 app.use([express.json(), cors(), express.urlencoded({extended: true}), express.static('public'), router, morgan('tiny')]);
 
 
-app.use((err, req, res, next) => {
-    const message = err.message ? err.message : 'Server Error Occurred';
-    const status = err.status ? err.status : 500;
-    return res.status(status).json({
-        message,
-    });
-});
+const errorHandler = (error: Error, req: Request, res: Response, next: NextFunction) => {
+    console.error(error);
+    const errorResponse = {
+        success: false,
+        message: error.message,
+    };
+    res.status(500).json(errorResponse);
+};
+
 
 
 const PORT = process.env.PORT || 5000;

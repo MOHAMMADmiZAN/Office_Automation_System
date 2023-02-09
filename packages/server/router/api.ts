@@ -1,6 +1,5 @@
 import RoleRouter from "./Role";
-
-const Router = require('express').Router
+import {Router} from "express";
 import authRouter from "./auth";
 import {ErrorWithStatus} from "../utils/error";
 

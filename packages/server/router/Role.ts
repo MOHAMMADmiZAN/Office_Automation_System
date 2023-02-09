@@ -1,6 +1,6 @@
 import RoleController from "../controllers/RoleController";
 
-const Router = require('express').Router
+import { Router } from "express";
 
 
 
