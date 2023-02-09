@@ -14,7 +14,7 @@ import morgan from 'morgan';
 app.use([express.json(), cors(), express.urlencoded({extended: true}), express.static('public'), router, morgan('tiny')]);
 
 
-const errorHandler = (error: Error, req: Request, res: Response, next: NextFunction) => {
+const errorMiddleware = (error: Error, req: Request, res: Response, next: NextFunction) => {
     console.error(error);
     const errorResponse = {
         success: false,
@@ -22,7 +22,7 @@ const errorHandler = (error: Error, req: Request, res: Response, next: NextFunct
     };
     res.status(500).json(errorResponse);
 };
-app.use(errorHandler);
+app.use(errorMiddleware);
 
 
 const PORT = process.env.PORT || 5000;
