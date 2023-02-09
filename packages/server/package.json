@@ -8,6 +8,9 @@
     "start": "node dist/server.js"
   },
   "dependencies": {
+    "-": "^0.0.1",
+    "@types/morgan": "^1.9.4",
+    "D": "^1.0.0",
     "bcrypt": "^5.1.0",
     "cors": "^2.8.5",
     "dotenv": "^16.0.3",
