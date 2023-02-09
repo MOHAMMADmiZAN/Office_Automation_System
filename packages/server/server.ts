@@ -1,5 +1,6 @@
 import connectDB from "./db";
 import router from "./router/api";
+import {ErrorWithStatus} from "./utils/error";
 
 const express = require('express');
 const http = require('http');
@@ -12,6 +13,7 @@ const morgan = require('morgan');
 
 
 app.use([express.json(), cors(), express.urlencoded({extended: true}), express.static('public'), router, morgan('tiny')]);
+
 
 app.use((err, req, res, next) => {
     const message = err.message ? err.message : 'Server Error Occurred';

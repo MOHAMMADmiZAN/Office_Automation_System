@@ -20,7 +20,7 @@ class RoleController extends RoleService implements IRoleController {
                 role
             })
         } catch (e) {
-            errorResponse(e as Error, 400);
+           throw errorResponse(e as Error, 400);
 
         }
     }
@@ -33,7 +33,7 @@ class RoleController extends RoleService implements IRoleController {
                 role
             })
         } catch (e) {
-            errorResponse(e as Error, 400);
+           throw errorResponse(e as Error, 400);
 
         }
     }
@@ -46,7 +46,7 @@ class RoleController extends RoleService implements IRoleController {
                 roles
             })
         } catch (e) {
-            errorResponse(e as Error, 400);
+          throw  errorResponse(e as Error, 400);
 
         }
     }
@@ -58,7 +58,7 @@ class RoleController extends RoleService implements IRoleController {
                 role
             })
         } catch (e) {
-            errorResponse(e as Error, 400);
+          throw  errorResponse(e as Error, 400);
 
         }
     }

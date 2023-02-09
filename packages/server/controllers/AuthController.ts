@@ -17,7 +17,7 @@ class AuthController extends AuthService implements AuthControllerInterface{
                 user: user
             })
         } catch (e ) {
-            errorResponse(e as Error, 400);
+            throw errorResponse(e as Error, 400);
         }
     }
 
@@ -29,7 +29,7 @@ class AuthController extends AuthService implements AuthControllerInterface{
                 ...token
             })
         } catch (e) {
-            errorResponse(e as Error, 400);
+           throw errorResponse(e as Error, 400);
 
         }
     }

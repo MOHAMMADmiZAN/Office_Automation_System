@@ -32,7 +32,6 @@ class AuthService extends UserService implements IAuthService {
         const user = await this.findUser("email", email);
 
         if (!user) {
-            console.log('user not found')
             throw errorHandler("Invalid credentials", 400);
         }
 
