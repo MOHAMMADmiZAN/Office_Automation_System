@@ -1,28 +1,29 @@
 import connectDB from "./db";
 import router from "./router/api";
-import {ErrorWithStatus} from "./utils/error";
 import express, { NextFunction, Request, Response } from 'express';
 import http from 'http';
-
-
 import cors from 'cors';
-
 const app = express();
 import morgan from 'morgan';
+import {ErrorWithStatus} from "./utils/error";
 
 
 app.use([express.json(), cors(), express.urlencoded({extended: true}), express.static('public'), router, morgan('tiny')]);
 
 
-const errorMiddleware = (error: Error, req: Request, res: Response, next: NextFunction) => {
-    console.error(error);
+const errorMiddleware = (err: Error, req: Request, res: Response, next: NextFunction) => {
+
+    const message = err.message ? err.message : 'Server Error Occurred';
+    const status = (err as ErrorWithStatus).status ? (err as ErrorWithStatus).status : 500;
+
     const errorResponse = {
         success: false,
-        message: error.message,
+        message: message,
     };
-    res.status(500).json(errorResponse);
+    res.status(status).json(errorResponse);
 };
 app.use(errorMiddleware);
+
 
 
 const PORT = process.env.PORT || 5000;

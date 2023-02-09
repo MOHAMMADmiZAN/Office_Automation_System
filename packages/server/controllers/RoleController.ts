@@ -20,7 +20,11 @@ class RoleController extends RoleService implements IRoleController {
                 role
             })
         } catch (e) {
-           throw errorResponse(e as Error, 400);
+            if (e instanceof Error) {
+                res.status(400).json({
+                    message: e.message
+                })
+            }
 
         }
     }
@@ -33,7 +37,11 @@ class RoleController extends RoleService implements IRoleController {
                 role
             })
         } catch (e) {
-           throw errorResponse(e as Error, 400);
+            if (e instanceof Error) {
+                res.status(400).json({
+                    message: e.message
+                })
+            }
 
         }
     }
@@ -46,7 +54,11 @@ class RoleController extends RoleService implements IRoleController {
                 roles
             })
         } catch (e) {
-          throw  errorResponse(e as Error, 400);
+            if (e instanceof Error) {
+                res.status(400).json({
+                    message: e.message
+                })
+            }
 
         }
     }
@@ -58,7 +70,11 @@ class RoleController extends RoleService implements IRoleController {
                 role
             })
         } catch (e) {
-          throw  errorResponse(e as Error, 400);
+          if (e instanceof Error) {
+              res.status(400).json({
+                  message: e.message
+              })
+          }
 
         }
     }

@@ -17,7 +17,11 @@ class AuthController extends AuthService implements AuthControllerInterface{
                 user: user
             })
         } catch (e ) {
-            throw errorResponse(e as Error, 400);
+            if (e instanceof Error) {
+                res.status(400).json({
+                    message: e.message
+                })
+            }
         }
     }
 
@@ -28,8 +32,13 @@ class AuthController extends AuthService implements AuthControllerInterface{
                 message: 'Login successful',
                 ...token
             })
-        } catch (e) {
-           throw errorResponse(e as Error, 400);
+        } catch (e ) {
+         if (e instanceof Error) {
+            res.status(400).json({
+                    message: e.message
+                })
+
+         }
 
         }
     }

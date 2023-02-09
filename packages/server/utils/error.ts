@@ -10,7 +10,7 @@ const errorHandler = (message: string = 'something went wrong', status: number =
     return err;
 };
 
-export const errorResponse = (err: Error,status:number = 400) => {
+export const errorResponse = (err: Error,status:number = 400) : Error => {
     (err as ErrorWithStatus).message = err.message;
     (err as ErrorWithStatus).status = Number(status);
 
