@@ -1,38 +1,34 @@
 import {Action, action, State, Thunk, thunk} from 'easy-peasy';
+import {AuthApi} from "../../api/Auth.api";
 
 
 export  interface AuthType  {
     Auth: typeof AuthModel
 }
 
-interface loginPayload {
+export interface loginPayload {
     email: string;
     password: string;
 }
-interface registerPayload {
-    email: string;
-    password: string;
-    username: string;
-    phone: string;
-    confirmPassword?: string;
+ export interface registerPayload extends User{
+
 }
-interface User {
-    id: string;
+interface User  {
+    _id?: string;
     firstName: string;
     lastName: string;
     email: string;
-    phone: string;
-    username: string;
-    role: string;
-    createdAt: string;
-    updatedAt: string;
+    password: string;
+    role?: string;
+    status?: string;
+    avatar?: string;
 
 
 
 }
 
 export type authResponse = {
-    jwt: string;
+    token: string;
     user: User;
 }
 
@@ -60,7 +56,7 @@ const AuthModel: Auth = {
     AuthToken: " ",
     AuthUser: {},
     AuthSet: action((state: AuthState, payload) => {
-        state.AuthToken = payload.jwt;
+        state.AuthToken = payload.token;
         state.AuthUser = payload.user;
         state.isAuth = true;
 
@@ -73,11 +69,15 @@ const AuthModel: Auth = {
 
     }),
     Login: thunk(async (actions, payload) => {
-
-
+       const data= await AuthApi.login(payload);
+        actions.AuthSet(data)
+        return !!data
 
     }),
     Register: thunk(async (actions, payload) => {
+
+        const data = await AuthApi.register(payload);
+        return !!data
 
 
     }),

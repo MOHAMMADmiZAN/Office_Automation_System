@@ -1,6 +1,7 @@
+import axios from "axios";
 
+const BackendBaseURL =  'http://localhost:5000/api/v1';
 
-class Api {
-
-}
-export default Api;
+export const PublicApiInstance = axios.create({
+    baseURL: BackendBaseURL,
+})

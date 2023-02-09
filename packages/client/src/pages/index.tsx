@@ -32,7 +32,7 @@ import Logout from '@mui/icons-material/Logout';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
-import IconTooltip from '../../src/components/molecules/IconTooltip/IconTooltip';
+
 
 
 
@@ -94,7 +94,7 @@ const Index: React.FC = (): JSX.Element => {
             </IconButton>
           </Tooltip>
           
-        <IconTooltip />
+        {/*<IconTooltip />*/}
       </Box>
       
 

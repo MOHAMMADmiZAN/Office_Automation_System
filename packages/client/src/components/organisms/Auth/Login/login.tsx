@@ -3,6 +3,9 @@ import {FORM_INPUT_PROPS, FormInputType} from "../../../molecules/Form/FormInput
 import {SubmitHandler} from "react-hook-form";
 import {loginValidation} from "../../../../utils/Validation";
 import FormLayOut from "../../../../layouts/childLayouts/FormLayOut";
+import {Actions, useStoreActions} from "easy-peasy";
+import {AuthType} from "../../../../store/models/AuthModel";
+import {Router, useNavigate} from "react-router-dom";
 
 
 interface loginInputField {
@@ -42,8 +45,14 @@ const defaultValues : LoginFromData = {
 }
 
 const Login: React.FC = (): JSX.Element => {
-    const onSubmit: SubmitHandler<LoginFromData> = (data) => {
-        console.log(data)
+
+
+    const LogIn = useStoreActions((actions: Actions<AuthType>) => actions.Auth.Login);
+    const navigate = useNavigate();
+
+    const onSubmit: SubmitHandler<LoginFromData> = async (data) => {
+        await LogIn(data) && navigate(`/`);
+
 
 
     }

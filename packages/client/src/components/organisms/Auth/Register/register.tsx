@@ -3,6 +3,9 @@ import {FORM_INPUT_PROPS, FormInputType} from "../../../molecules/Form/FormInput
 import {SubmitHandler} from "react-hook-form";
 import {signupValidation} from "../../../../utils/Validation";
 import FormLayOut from "../../../../layouts/childLayouts/FormLayOut";
+import {Actions, useStoreActions} from "easy-peasy";
+import {AuthType} from "../../../../store/models/AuthModel";
+import {useNavigate} from "react-router-dom";
 
 
 interface RegisterInputField {
@@ -76,8 +79,13 @@ const defaultValues: RegisterFromData  ={
 
 const Register: React.FC = (): JSX.Element => {
 
-    const onSubmit : SubmitHandler<RegisterFromData> = (data) => {
-        console.log(data)
+    const Register = useStoreActions((actions: Actions<AuthType>) => actions.Auth.Register);
+    const navigate = useNavigate();
+
+    const onSubmit : SubmitHandler<RegisterFromData> = async (data) => {
+
+        await Register(data) && navigate(`/login`);
+
     }
 
 
