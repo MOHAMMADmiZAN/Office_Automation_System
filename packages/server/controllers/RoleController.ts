@@ -1,11 +1,13 @@
 import RoleService from "../services/RoleService";
+import {errorResponse} from "../utils/error";
+import {Response} from "express";
 
 
 interface IRoleController {
-    createUserRole: (req, res) => Promise<void>;
-    findUserRole: (req, res) => Promise<void>;
-    findUserRoles: (req, res) => Promise<void>;
-    deleteUserRole: (req, res) => Promise<void>;
+    createUserRole: (req:Request, res:Response) => Promise<void>;
+    findUserRole: (req:Request, res:Response) => Promise<void>;
+    findUserRoles: (req:Request, res:Response) => Promise<void>;
+    deleteUserRole: (req:Request, res:Response) => Promise<void>;
 
 }
 
@@ -18,11 +20,8 @@ class RoleController extends RoleService implements IRoleController {
                 role
             })
         } catch (e) {
-            if (e instanceof Error) {
-                return res.status(400).json({
-                    message: e.message
-                })
-            }
+            errorResponse(e as Error, 400);
+
         }
     }
 
@@ -34,11 +33,8 @@ class RoleController extends RoleService implements IRoleController {
                 role
             })
         } catch (e) {
-            if (e instanceof Error) {
-                return res.status(400).json({
-                    message: e.message
-                })
-            }
+            errorResponse(e as Error, 400);
+
         }
     }
 
@@ -50,11 +46,8 @@ class RoleController extends RoleService implements IRoleController {
                 roles
             })
         } catch (e) {
-            if (e instanceof Error) {
-                return res.status(400).json({
-                    message: e.message
-                })
-            }
+            errorResponse(e as Error, 400);
+
         }
     }
     public deleteUserRole = async (req, res) => {
@@ -65,11 +58,8 @@ class RoleController extends RoleService implements IRoleController {
                 role
             })
         } catch (e) {
-            if (e instanceof Error) {
-                return res.status(400).json({
-                    message: e.message
-                })
-            }
+            errorResponse(e as Error, 400);
+
         }
     }
 }

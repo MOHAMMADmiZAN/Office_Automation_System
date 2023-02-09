@@ -8,4 +8,11 @@ const errorHandler = (message: string = 'something went wrong', status: number =
     return err;
 };
 
+export const errorResponse = (err: Error,status:number = 400) => {
+
+    (err as ErrorWithStatus).status = Number(status);
+
+    return err;
+}
+
 export default errorHandler

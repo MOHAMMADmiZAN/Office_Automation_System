@@ -1,5 +1,6 @@
 import AuthService from "../services/AuthService";
-import errorHandler from "../utils/error";
+import errorHandler, {errorResponse} from "../utils/error";
+import * as http from "http";
 
 
 interface AuthControllerInterface {
@@ -19,11 +20,8 @@ class AuthController extends AuthService implements AuthControllerInterface{
                 user: user
             })
         } catch (e ) {
-           if (e instanceof Error) {
-               res.status(400).json({
-                   message: e.message
-               })
-           }
+            errorResponse(e as Error, 400);
+
         }
     }
 
@@ -35,11 +33,7 @@ class AuthController extends AuthService implements AuthControllerInterface{
                 token
             })
         } catch (e) {
-            if (e instanceof Error) {
-                res.status(400).json({
-                    message: e.message
-                })
-            }
+            errorResponse(e as Error, 400);
         }
     }
 
