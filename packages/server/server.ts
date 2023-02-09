@@ -5,23 +5,10 @@ import http from 'http';
 import cors from 'cors';
 const app = express();
 import morgan from 'morgan';
-import {ErrorWithStatus} from "./utils/error";
+import errorMiddleware from "./middleware/ErrorMiddleware";
 
 
 app.use([express.json(), cors(), express.urlencoded({extended: true}), express.static('public'), router, morgan('tiny')]);
-
-
-const errorMiddleware = (err: Error, req: Request, res: Response, next: NextFunction) => {
-
-    const message = err.message ? err.message : 'Server Error Occurred';
-    const status = (err as ErrorWithStatus).status ? (err as ErrorWithStatus).status : 500;
-
-    const errorResponse = {
-        success: false,
-        message: message,
-    };
-    res.status(status).json(errorResponse);
-};
 app.use(errorMiddleware);
 
 
