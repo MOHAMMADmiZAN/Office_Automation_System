@@ -22,7 +22,7 @@ const errorHandler = (error: Error, req: Request, res: Response, next: NextFunct
     };
     res.status(500).json(errorResponse);
 };
-
+app.use(errorHandler);
 
 
 const PORT = process.env.PORT || 5000;
