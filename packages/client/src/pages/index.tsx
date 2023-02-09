@@ -95,22 +95,6 @@ const Index: React.FC = (): JSX.Element => {
           </Tooltip>
           
         <IconTooltip />
-
-
-
-        {/* <Tooltip title="Account settings">
-          <IconButton
-            onClick={handleClick}
-            size="small"
-            sx={{ ml: 2 }}
-            aria-controls={open ? 'account-menu' : undefined}
-            aria-haspopup="true"
-            aria-expanded={open ? 'true' : undefined}
-          >
-            <Avatar sx={{ width: 32, height: 32 }}>M</Avatar>
-          </IconButton>
-        </Tooltip> */}
-
       </Box>
       
 
