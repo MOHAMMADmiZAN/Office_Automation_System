@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const BackendBaseURL =  'http://localhost:5000/api/v1';
+const BackendBaseURL =  `${import.meta.env.VITE_REACT_APP_BACKEND_BASE_URL}`;
 
 export const PublicApiInstance = axios.create({
     baseURL: BackendBaseURL,
