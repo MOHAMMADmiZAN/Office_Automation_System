@@ -41,74 +41,24 @@ import useAuth from "../hooks/useAuth";
 
 
 const Index: React.FC = (): JSX.Element => {
-
-       const navigation = useNavigate();
-       const {isAuth} = useAuth();
-       useEffect(() => {
+    const navigation = useNavigate();
+    const {isAuth} = useAuth();
+    useEffect(() => {
         if (!isAuth) {
           navigation("/login");
         }
        },[isAuth]);
 
-
-
-
-
-      const [anchorEl, setAnchorEl] = React.useState<null | HTMLElement>(null);
-      const open = Boolean(anchorEl);
-      const handleClick = (event: React.MouseEvent<HTMLElement>) => {
-        setAnchorEl(event.currentTarget);
-      };
-      const handleClose = () => {
-        setAnchorEl(null);
-      };
-
-
-      const Item = styled(Paper)(({ theme }) => ({
-        backgroundColor: theme.palette.mode === 'dark' ? '#1A2027' : '#fff',
-        ...theme.typography.body2,
-        padding: theme.spacing(1),
-        textAlign: 'center',
-        color: theme.palette.text.secondary,
-      }));
     
 
     return (
         <>
 
-{/* <Grid container spacing={2}>
-  <Grid item xs={8}>
-    <Item>xs=4</Item>
-  </Grid>
-  <Grid item xs={4}>
-    <Item>xs=4</Item>
-  </Grid>
-
-</Grid> */}
-            
-
-      <Box sx={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center', textAlign: 'center' }}>
-        {/* <Typography sx={{ minWidth: 100 }}>Notification</Typography> */}
-        <Tooltip title="Notification">
-            <IconButton
-                onClick={handleClick}
-                size="small"
-                sx={{ ml: 2 }}
-                aria-controls={open ? 'notification-menu' : undefined}
-                aria-haspopup="true"
-                aria-expanded={open ? 'true' : undefined}
-            >
-                <Avatar sx={{ width: 32, height: 32 }}>N</Avatar>
-            </IconButton>
-          </Tooltip>
-          
-        {/*<IconTooltip />*/}
-      </Box>
-      
-
-            
         </>
-    );
+    )
+            
+
+
 };
 
 export default Index;
