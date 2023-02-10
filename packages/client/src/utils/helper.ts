@@ -4,6 +4,9 @@ interface HelperInterface {
 
 class Helper implements HelperInterface {
     getJwtToken(): string {
+        if (!localStorage.getItem('[EasyPeasyStore][0][Auth]')) {
+            return '';
+        }
         return JSON.parse(localStorage.getItem('[EasyPeasyStore][0][Auth]') as string).data.AuthToken || '';
 
     }
