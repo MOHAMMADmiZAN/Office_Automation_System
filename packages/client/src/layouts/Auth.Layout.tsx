@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {Card, CardContent, CardHeader, Container, Divider, Grid} from "@mui/material";
+import {Container, Divider, Grid} from "@mui/material";
 import {AuthLayoutBox, AuthLayOutCard, AuthLayoutCardContent, AuthLayoutCardHeader} from "./styles/Auth.Layout.Style";
 
 interface AUTH_LAYOUT_PROPS {
