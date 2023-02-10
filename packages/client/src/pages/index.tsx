@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import FormInput from "../components/molecules/Form/FormInput";
 import Btn from "../components/molecules/Form/Btn";
 import {SubmitHandler, useForm} from "react-hook-form";
@@ -32,6 +32,8 @@ import Logout from '@mui/icons-material/Logout';
 import { styled } from '@mui/material/styles';
 import Paper from '@mui/material/Paper';
 import Grid from '@mui/material/Grid';
+import {useNavigate} from "react-router-dom";
+import useAuth from "../hooks/useAuth";
 
 
 
@@ -40,8 +42,14 @@ import Grid from '@mui/material/Grid';
 
 const Index: React.FC = (): JSX.Element => {
 
+       const navigation = useNavigate();
+       const {isAuth} = useAuth();
+       useEffect(() => {
+        if (!isAuth) {
+          navigation("/login");
+        }
+       },[isAuth]);
 
-    
 
 
 
