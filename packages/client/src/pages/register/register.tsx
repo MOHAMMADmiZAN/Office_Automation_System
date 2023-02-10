@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useLayoutEffect} from 'react';
 import {FORM_INPUT_PROPS, FormInputType} from "../../components/molecules/Form/FormInput/Form_Input";
 import {SubmitHandler} from "react-hook-form";
 import {signupValidation} from "../../utils/Validation";
@@ -7,6 +7,7 @@ import {AuthType} from "../../store/models/AuthModel";
 import {useNavigate} from "react-router-dom";
 import FormLayOut from "../../components/organisms/Form/FormLayOut/FormLayOut";
 import AuthLayout from "../../layouts/Auth.Layout";
+import useAuth from "../../hooks/useAuth";
 
 
 interface RegisterInputField {
@@ -82,7 +83,11 @@ const defaultValues: RegisterFromData = {
 const Register: React.FC = (): JSX.Element => {
 
     const Register = useStoreActions((actions: Actions<AuthType>) => actions.Auth.Register);
+    const {isAuth} = useAuth();
     const navigate = useNavigate();
+    useLayoutEffect(() => {
+        isAuth && navigate(`/`);
+    }, [isAuth]);
 
     const onSubmit: SubmitHandler<RegisterFromData> = async (data) => {
 
