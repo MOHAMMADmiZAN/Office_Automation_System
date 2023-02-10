@@ -1,5 +1,4 @@
 import RoleService from "../services/RoleService";
-import {errorResponse} from "../utils/error";
 import {Response} from "express";
 
 

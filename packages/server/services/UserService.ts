@@ -2,8 +2,6 @@ import User, {IUser} from "../models/User";
 import * as bcrypt from "bcrypt";
 import * as jwt from "jsonwebtoken";
 import * as dotenv from "dotenv";
-import user from "../models/User";
-import Role from "../models/Role";
 dotenv.config();
 
 export interface IUserService {
@@ -62,7 +60,8 @@ class UserService implements IUserService {
                 status: user.status
             }
         }
-        const jwtSecret = process.env.JWT_SECRET || 'secret'
+        console.log(payload)
+        const jwtSecret = process.env.JWT_SECRET || 'SECRET'
         return jwt.sign(payload, jwtSecret, {expiresIn: '1d'});
     }
 

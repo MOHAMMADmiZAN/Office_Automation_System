@@ -1,7 +1,7 @@
 import UserService, {IUserService} from "./UserService";
 import {IUser} from "../models/User";
 import * as bcrypt from "bcrypt";
-import errorHandler, {errorResponse} from "../utils/error";
+import errorHandler from "../utils/error";
 
 
 interface ILogin{
