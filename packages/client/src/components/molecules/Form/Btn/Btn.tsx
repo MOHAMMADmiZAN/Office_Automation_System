@@ -1,9 +1,9 @@
 import React, {memo} from 'react';
 import {CustomBtn} from "./styles/Btn.style";
 
-type BtnType = 'button' | 'submit' | 'reset'
-type BtnVariant = 'text' | 'outlined' | 'contained'
-type BtnSize = 'small' | 'medium' | 'large'
+export type BtnType = 'button' | 'submit' | 'reset'
+export type BtnVariant = 'text' | 'outlined' | 'contained'
+export type BtnSize = 'small' | 'medium' | 'large'
 
 export interface BTN_PROPS {
     type?: BtnType;

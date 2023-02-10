@@ -1,5 +1,5 @@
 import AuthService from "../services/AuthService";
-import errorHandler, {errorResponse} from "../utils/error";
+import errorHandler from "../utils/error";
 import * as http from "http";
 
 

@@ -1,11 +1,13 @@
-import React from 'react';
-import {FORM_INPUT_PROPS, FormInputType} from "../../../molecules/Form/FormInput/Form_Input";
 import {SubmitHandler} from "react-hook-form";
-import {loginValidation} from "../../../../utils/Validation";
-import FormLayOut from "../../../../layouts/childLayouts/FormLayOut";
 import {Actions, useStoreActions} from "easy-peasy";
-import {AuthType} from "../../../../store/models/AuthModel";
-import {Router, useNavigate} from "react-router-dom";
+
+import {useNavigate} from "react-router-dom";
+import React from "react";
+import {FORM_INPUT_PROPS, FormInputType} from "../../components/molecules/Form/FormInput/Form_Input";
+import {AuthType} from "../../store/models/AuthModel";
+import FormLayOut from "../../components/organisms/Form/FormLayOut/FormLayOut";
+import {loginValidation} from "../../utils/Validation";
+import AuthLayout from "../../layouts/Auth.Layout";
 
 
 interface loginInputField {
@@ -39,7 +41,7 @@ interface LoginFromData {
     password: string;
 }
 
-const defaultValues : LoginFromData = {
+const defaultValues: LoginFromData = {
     email: ``,
     password: ``,
 }
@@ -54,10 +56,16 @@ const Login: React.FC = (): JSX.Element => {
         await LogIn(data) && navigate(`/`);
 
 
-
     }
     return (
-        <FormLayOut defaultValues={defaultValues} FormInputFields={loginInputFields as FORM_INPUT_PROPS[]} validationRules={loginValidation} onSubmit={onSubmit} btnText={`Login`}/>
+        <AuthLayout main={
+            <FormLayOut defaultValues={defaultValues}
+                        FormInputFields={loginInputFields as FORM_INPUT_PROPS[]}
+                        validationRules={loginValidation}
+                        onSubmit={onSubmit}
+                        btnText={`Login`}/>
+
+        } pageTitle={`Login`}/>
     );
 };
 

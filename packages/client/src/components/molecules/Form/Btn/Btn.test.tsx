@@ -1,7 +1,7 @@
 
 import { render, screen } from '@testing-library/react';
 import {describe, expect, it} from 'vitest';
-import { Btn } from './Btn';
+import { Btn,BTN_PROPS } from './Btn';
 import React from "react";
 import {fireEvent, getByText} from "@testing-library/dom";
 
@@ -9,7 +9,23 @@ import {fireEvent, getByText} from "@testing-library/dom";
 // write a test case  with it  and a description typescript
 describe('Btn', () => {
     it('renders a button', () => {
-        render(<Btn/>);
+        const btnProps: BTN_PROPS = {
+            BtnText: `Click Me`,
+            type: `button`,
+            onClick: () => jest.fn(),
+            disabled: false,
+            className: `btn`,
+            variant: `contained`,
+            size: `medium`,
+            isRounded: false,
+            btnRef: React.createRef(),
+            BtnStartIcon: <div>Start Icon</div>,
+            BtnEndIcon: <div>End Icon</div>
+
+
+
+        }
+        render(<Btn {...btnProps}/>);
         expect(screen.getByRole('button')).toBeInTheDocument();
     });
 })
