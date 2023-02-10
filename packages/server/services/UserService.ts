@@ -60,7 +60,7 @@ class UserService implements IUserService {
                 status: user.status
             }
         }
-        console.log(payload)
+
         const jwtSecret = process.env.JWT_SECRET || 'SECRET'
         return jwt.sign(payload, jwtSecret, {expiresIn: '1d'});
     }
