@@ -1,9 +1,6 @@
 import React from 'react';
 import Login from '../../components/organisms/Auth/Login';
 import AuthLayout from "../../layouts/Auth.Layout";
-
-import Box from '@mui/material/Box';
-import Toolbar from '@mui/material/Toolbar';
 import Typography from '@mui/material/Typography';
 
 
@@ -17,6 +14,7 @@ const Dashboard_Page: React.FC<DASHBOARD_PAGE_PROPS> = (props): JSX.Element => {
     return (
 
             <>
+                <h1>Dashboard</h1>
             
                     <Typography paragraph>
                         Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod
@@ -33,7 +31,7 @@ const Dashboard_Page: React.FC<DASHBOARD_PAGE_PROPS> = (props): JSX.Element => {
                         sapien faucibus et molestie ac.
                     </Typography>
                     <Typography paragraph>
-                    <h1>Dashboard Page</h1>
+                        Dashboard Page
                     </Typography>
                     
 

@@ -1,17 +1,11 @@
 import React from 'react';
+import {styled} from '@mui/material/styles';
 import { Outlet } from "react-router-dom";
 import Box from '@mui/material/Box';
-
-// import IconTooltip from '../../src/components/molecules/IconTooltip/IconTooltip';
 import MenuBar from '../../components/organisms/MenuBar/MenuBar';
-
-
 import CssBaseline from '@mui/material/CssBaseline';
 
-
-
 const drawerWidth = 240;
-
 
 const MainLyout: React.FC = (): JSX.Element => {
 
@@ -25,7 +19,7 @@ const MainLyout: React.FC = (): JSX.Element => {
                 <MenuBar />
                 <Box
                     component="main"
-                    sx={{ flexGrow: 1, p: 3, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
+                    sx={{ flexGrow: 1, p: 6, width: { sm: `calc(100% - ${drawerWidth}px)` } }}
                 >
                     <Outlet />
                 </Box>

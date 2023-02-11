@@ -48,7 +48,7 @@ const Profile_Page: React.FC<DASHBOARD_PAGE_PROPS> = (props): JSX.Element => {
                         posuere sollicitudin aliquam ultrices sagittis orci a.
                     </Typography>
                     <Typography>
-                    <h1>Profile Page</h1>
+                        Profile Page
                     </Typography>
                 </Box>
             </>

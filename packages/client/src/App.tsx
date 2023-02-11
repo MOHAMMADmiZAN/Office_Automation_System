@@ -11,9 +11,6 @@ import router from "./routes";
 import {theme} from "./theme/theme";
 
 import MainLayout from './layouts/mainlayout/MainLayout'
-import { Outlet } from "react-router-dom";
-import Login_Page from "./pages/login/Login_Page";
-import Register_Page from "./pages/register/Register_Page";
 import Dashboard from './pages/Dashboard/Dashboard_Page';
 import Email from './pages/Email/Email_Page';
 import Profile from './pages/Profile/Profile_Page';

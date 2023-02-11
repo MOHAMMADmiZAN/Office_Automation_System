@@ -48,7 +48,7 @@ const Email_Page: React.FC<DASHBOARD_PAGE_PROPS> = (props): JSX.Element => {
                         posuere sollicitudin aliquam ultrices sagittis orci a.
                     </Typography>
                     <Typography>
-                    <h1>Email Page</h1>
+                    Email Page
                     </Typography>
 
                
