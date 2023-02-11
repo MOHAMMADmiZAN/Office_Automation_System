@@ -11,6 +11,7 @@ const errorMiddleware = (err: Error, req: Request, res: Response, next: NextFunc
         message: message,
     };
     res.status(status).json(errorResponse);
+    next()
 };
 
 
