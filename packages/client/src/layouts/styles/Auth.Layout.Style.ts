@@ -10,25 +10,3 @@ export const AuthLayoutBox = styled(Box)(({theme}) => ({
 
 
 })) as typeof Box;
-
-
-
-export const AuthLayoutCardHeader = styled(CardHeader)(({theme}) => ({
-
-    '& .MuiTypography-root':{
-        fontWeight: "600",
-        fontSize: "3rem",
-        color: theme.palette.primary.main,
-    }
-
-})) as typeof CardHeader;
-
-
-export const AuthLayOutCard = styled(Card)(({theme}) => ({
-    backgroundColor: theme.palette.primary.light,
-
-})) as typeof Card;
-
-export const AuthLayoutCardContent = styled(CardContent)(({theme}) => ({
-
-})) as  typeof  CardContent;
