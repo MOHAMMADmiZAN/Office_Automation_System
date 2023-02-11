@@ -11,7 +11,7 @@ const eventController =  new EventController()
 EventRouter.get('/', eventController.eventList)
 EventRouter.get('/:id', eventController.eventDetail)
 EventRouter.post('/', eventController.eventCreate)
-EventRouter.put('/:id', eventController.updateCreate)
+EventRouter.put('/:id', eventController.eventUpdate)
 EventRouter.delete('/:id', eventController.eventDelete)
 
 

@@ -7,7 +7,7 @@ interface IEventController {
     eventDetail: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     eventList: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     eventDelete: (req: Request, res: Response, next: NextFunction) => Promise<void>;
-
+    eventUpdate: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 
 class EventController extends EventService implements IEventController {
@@ -48,7 +48,7 @@ class EventController extends EventService implements IEventController {
         }
     }
 
-    public updateCreate = async (req, res, next) => {
+    public eventUpdate = async (req, res, next) => {
         try {
             const data = await this.updateEvent(req.body, req.params.id);
             res.status(201).json({
