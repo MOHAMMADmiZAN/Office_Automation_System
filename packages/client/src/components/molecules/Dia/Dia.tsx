@@ -24,8 +24,9 @@ const Dia: React.FC<DIA_PROPS> = (props): JSX.Element => {
                         onClick={onClose}
                         sx={{
                             position: 'absolute',
-                            right: 45,
-                            top: 45,
+                            right: "15px",
+                            top: "15px",
+                            background: "radial-gradient(black, transparent)",
                             color: (theme) => theme.palette.grey[500],
                         }}
                     >

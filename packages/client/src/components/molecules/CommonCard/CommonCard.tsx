@@ -12,8 +12,12 @@ const CommonCard: React.FC<COMMON_CARD_PROPS> = ({cardTitle,CardMain}) => {
     return (
         <>
        <CommonCardLayout>
-           <CommonCardHeader title={cardTitle}/>
-           <Divider/>
+           {cardTitle && (
+              <>
+                  <CommonCardHeader title={cardTitle}/>
+                  <Divider/>
+              </>
+           )}
            <CommonCardContent>
                 {CardMain}
            </CommonCardContent>

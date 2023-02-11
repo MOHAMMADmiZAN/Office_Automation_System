@@ -3,6 +3,7 @@ import {Btn, BtnVariant} from "../../molecules/Form/Btn/Btn";
 import Dia from "../../molecules/Dia/Dia";
 import {DialogActions, DialogContent, Modal} from '@mui/material';
 import CommonCard from "../../molecules/CommonCard/CommonCard";
+import useStyles from "./styles/CustomModal.style";
 
 
 interface CUSTOM_MODAL_PROPS {
@@ -32,14 +33,16 @@ const CustomModal: React.FC<CUSTOM_MODAL_PROPS> = ({
     const handleClose = () => {
         setOpen(false);
     };
+
+    const classes = useStyles();
     return (
         <>
-            {!open&& <Btn type={`button`} BtnText={modalBtnText} size={`small`} variant={modalBtnVariant} onClick={handleClickOpen} BtnStartIcon={ModalBtnIcon}/>}
+            {!open&& <Btn  type={`button`} BtnText={modalBtnText} size={`small`} variant={modalBtnVariant} onClick={handleClickOpen} BtnStartIcon={ModalBtnIcon} className={classes.iconBtn}/>}
             {
                 open && (
                     <Dia id={modalId} onClose={handleClose}>
                         <DialogContent dividers>
-                               <CommonCard cardTitle={modalId} CardMain={modalContent}/>
+                               <CommonCard  CardMain={modalContent}/>
                         </DialogContent>
                     </Dia>
                 )
