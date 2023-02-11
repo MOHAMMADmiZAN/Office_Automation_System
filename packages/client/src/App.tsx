@@ -1,4 +1,5 @@
 import React from 'react';
+import { BrowserRouter, Navigate, Route, Routes } from "react-router-dom";
 import Index from "./pages";
 import {QueryClient, QueryClientProvider} from "react-query";
 import {StoreProvider, useStoreRehydrated} from "easy-peasy";
@@ -7,8 +8,15 @@ import {ReactQueryDevtools} from "react-query/devtools";
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import {RouterProvider} from "react-router-dom";
 import router from "./routes";
-import Login_Page from "./pages/login";
 import {theme} from "./theme/theme";
+
+import MainLayout from './layouts/mainlayout/MainLayout'
+import { Outlet } from "react-router-dom";
+import Login_Page from "./pages/login/Login_Page";
+import Register_Page from "./pages/register/Register_Page";
+import Dashboard from './pages/Dashboard/Dashboard_Page';
+import Email from './pages/Email/Email_Page';
+import Profile from './pages/Profile/Profile_Page';
 
 
  // using react query
@@ -31,7 +39,18 @@ const App: React.FC = () : JSX.Element => {
                <WaitForStateRehydration>
                    <QueryClientProvider client={queryClient}>
                        <CssBaseline/>
-                           <RouterProvider router={router}/>
+                           {/* <RouterProvider router={router}/> */}
+                           <BrowserRouter>
+                                    <Routes>
+
+                                        <Route element={<MainLayout/>} >
+                                            <Route index element={<Dashboard/>} />
+                                            <Route path="/email" element={<Email/>} />
+                                            <Route path="/profile" element={<Profile/>} />
+                                        </Route>
+
+                                </Routes>
+                            </BrowserRouter>
                        <ReactQueryDevtools initialIsOpen={false}/>
                    </QueryClientProvider>
                </WaitForStateRehydration>

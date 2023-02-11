@@ -3,7 +3,7 @@ import HeaderTopBar from "./HeaderTopBar/HeaderTopBar";
 import SideBar from "./SideBar/SideBar";
 
 
-function NavBar(): JSX.Element {
+function MenuBar(): JSX.Element {
     return (
         <>
             <HeaderTopBar />
@@ -12,4 +12,4 @@ function NavBar(): JSX.Element {
     );
 }
 
-export default NavBar;
+export default MenuBar;
