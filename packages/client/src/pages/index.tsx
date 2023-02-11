@@ -6,7 +6,6 @@ import useAuth from "../hooks/useAuth";
 
 
 
-
 const Index: React.FC = (): JSX.Element => {
     const navigation = useNavigate();
     const {isAuth} = useAuth();
@@ -18,6 +17,7 @@ const Index: React.FC = (): JSX.Element => {
 
     return (
         <>
+
 
         </>
     )
