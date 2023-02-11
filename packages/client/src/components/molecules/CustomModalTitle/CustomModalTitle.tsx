@@ -11,7 +11,7 @@ interface DIA_PROPS {
 
 }
 
-const Dia: React.FC<DIA_PROPS> = (props): JSX.Element => {
+const CustomModalTitle: React.FC<DIA_PROPS> = (props): JSX.Element => {
     const { children, onClose, ...other } = props;
 
     return (
@@ -39,4 +39,4 @@ const Dia: React.FC<DIA_PROPS> = (props): JSX.Element => {
     );
 };
 
-export default Dia;
+export default CustomModalTitle;
