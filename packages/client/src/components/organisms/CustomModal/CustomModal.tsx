@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 import {Btn, BtnVariant} from "../../molecules/Form/Btn/Btn";
 import Dia from "../../molecules/Dia/Dia";
 import {DialogActions, DialogContent, Modal} from '@mui/material';
+import CommonCard from "../../molecules/CommonCard/CommonCard";
 
 
 interface CUSTOM_MODAL_PROPS {
@@ -38,7 +39,7 @@ const CustomModal: React.FC<CUSTOM_MODAL_PROPS> = ({
                 open && (
                     <Dia id={modalId} onClose={handleClose}>
                         <DialogContent dividers>
-                               {modalContent}
+                               <CommonCard cardTitle={modalId} CardMain={modalContent}/>
                         </DialogContent>
                     </Dia>
                 )
