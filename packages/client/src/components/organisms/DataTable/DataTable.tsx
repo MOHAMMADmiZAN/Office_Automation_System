@@ -24,12 +24,13 @@ interface DataTableData {
 
 interface DATA_TABLE_PROPS {
     DataTableData: DataTableData
+    title?: string;
 
 
 }
 
 
-const DataTable: React.FC<DATA_TABLE_PROPS> = ({DataTableData}) => {
+const DataTable: React.FC<DATA_TABLE_PROPS> = ({DataTableData,title}) => {
     const [page, setPage] = useState<number>(0);
     const [rowsPerPage, setRowsPerPage] = useState<number>(DataTableData.DataTablePagination?.rowsPerPage[0] || 5);
 
@@ -45,7 +46,7 @@ const DataTable: React.FC<DATA_TABLE_PROPS> = ({DataTableData}) => {
         <Container>
             <DataTableLayout>
                 <DataTableLayoutCard>
-                    <DataTableLayoutCardHeader title={`Data Table`}/>
+                    <DataTableLayoutCardHeader title={title}/>
                     <Divider/>
                     <DataTableLayoutCardContent>
                         <DataLayoutTable aria-label={DataTableData.label}>
