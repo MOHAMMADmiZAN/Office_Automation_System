@@ -19,7 +19,6 @@ const AuthLayout: React.FC<AUTH_LAYOUT_PROPS> = ({main,pageTitle}): JSX.Element 
                     </Grid>
                 </Grid>
             </Container>
-
         </AuthLayoutBox>
 
 
