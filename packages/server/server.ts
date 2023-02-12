@@ -8,9 +8,8 @@ import morgan from 'morgan';
 import errorMiddleware from "./middleware/ErrorMiddleware";
 
 
-app.use([express.json(), cors(), express.urlencoded({extended: true}), express.static('public'), router, morgan('tiny')]);
+app.use([express.json(), cors(), express.urlencoded({ extended: true }), express.static('public'), router, morgan('tiny')]);
 app.use(errorMiddleware);
-
 
 
 const PORT = process.env.PORT || 5000;
