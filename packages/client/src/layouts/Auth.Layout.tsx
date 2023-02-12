@@ -1,6 +1,7 @@
 import React, {memo} from 'react';
 import {Container, Divider, Grid} from "@mui/material";
-import {AuthLayoutBox, AuthLayOutCard, AuthLayoutCardContent, AuthLayoutCardHeader} from "./styles/Auth.Layout.Style";
+import {AuthLayoutBox} from "./styles/Auth.Layout.Style";
+import CommonCard from "../components/molecules/CommonCard/CommonCard";
 
 interface AUTH_LAYOUT_PROPS {
     main: React.ReactNode;
@@ -14,18 +15,10 @@ const AuthLayout: React.FC<AUTH_LAYOUT_PROPS> = ({main,pageTitle}): JSX.Element 
             <Container>
                 <Grid container={true} justifyContent={`center`} alignItems={`center`} >
                     <Grid item={true} xs={12} sm={12} md={10} lg={10} xl={10}>
-                        <AuthLayOutCard>
-                            <AuthLayoutCardHeader title={pageTitle}/>
-                            <Divider/>
-                            <AuthLayoutCardContent>
-                                {main}
-                            </AuthLayoutCardContent>
-
-                        </AuthLayOutCard>
+                       <CommonCard cardTitle={pageTitle} CardMain={main}/>
                     </Grid>
                 </Grid>
             </Container>
-
         </AuthLayoutBox>
 
 
