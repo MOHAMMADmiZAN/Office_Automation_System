@@ -15,6 +15,7 @@ class AttendanceController extends AttendanceService implements IAttendanceContr
     public attendanceCreate = async (req, res, next) => {
         try {
             const data = await this.createAttendance(req.body);
+            console.log('data', data);
             res.status(201).json({
                 message: 'Attendance created successfully',
                 data

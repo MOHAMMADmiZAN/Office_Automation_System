@@ -3,18 +3,18 @@ import Event, { IEvent } from "../models/Event";
 
 
 interface IEventService {
-    createEvent(data: IEvent): Promise<any>;
+    createEvent(data: IEvent): Promise<IEvent>;
     findEvent(key: string, value: any): Promise<IEvent | null>;
     findEvents(): Promise<IEvent[]>;
-    updateEvent(data: IEvent, id: string): Promise<any>;
-    deleteEvent(id: string): Promise<any>;
+    updateEvent(data: IEvent, id: string): Promise<IEvent | null>;
+    deleteEvent(id: string): Promise<IEvent | null>;
 
 }
 
 
 class EventService implements IEventService {
 
-    createEvent(data: IEvent): Promise<any> {
+    createEvent(data: IEvent): Promise<IEvent> {
         let event = new Event({
             title: data.title,
             description: data.description,
@@ -37,7 +37,7 @@ class EventService implements IEventService {
         return Event.find().exec();
     }
 
-    async updateEvent(data: IEvent, id: string): Promise<any> {
+    async updateEvent(data: IEvent, id: string): Promise<IEvent | null> {
         let event = {
             title: data.title,
             description: data.description,
@@ -48,7 +48,7 @@ class EventService implements IEventService {
         return Event.findByIdAndUpdate(id, { ...event }, { new: true });
     }
 
-    deleteEvent(id: string): Promise<any> {
+    deleteEvent(id: string): Promise<IEvent | null> {
         return Event.findByIdAndDelete(id).exec();
     }
 

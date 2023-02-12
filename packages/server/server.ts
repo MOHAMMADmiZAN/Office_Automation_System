@@ -12,17 +12,6 @@ app.use([express.json(), cors(), express.urlencoded({ extended: true }), express
 app.use(errorMiddleware);
 
 
-app.use((err, req, res, next) => {
-    console.log('ERROR=', err);
-    const message = err.message ? err.message : 'Server Error Occurred';
-    const status = err.status ? err.status : 500;
-
-    res.status(status).json({
-        message,
-    });
-});
-
-
 const PORT = process.env.PORT || 5000;
 const DB_NAME = process.env.DB_DATABASE || "oas";
 const DB_URI = process.env.DB_URI || `mongodb+srv://admin:admin@officeautomationsystem.n6q9rvq.mongodb.net/${DB_NAME}`;
