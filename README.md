@@ -35,6 +35,26 @@
 - [Joi](https://www.npmjs.com/package/joi) - The most powerful schema description language and data validator for JavaScript.
 - [Yup](https://www.npmjs.com/package/yup) - Yup is a JavaScript schema builder for value parsing and validation.
 
+#### Day4 [Feb 06 2023]
+- Discuss about Form like `Login Register form`. How to work form globally. 
+- Discuss about `Layout, Menu` 
+
+#### Day5 [Feb 08 2023]
+- Coding Session - Discuss about Profile, Notification Component like `Profile`. How to work globally. 
+
+#### Day6 [Feb 09 2023]
+- [vitest](https://vitest.dev/) - Configure for testing. 
+- Initial Backend Discussion. Topic `Middleware, Controller, Service, Model, Router, Auth, Server, DB`
+- Coding Session - Refactor `Middleware, Controller, Service, API`
+- Configure `env` setting 
+- Discuss about Component tree for Navbar
+
+#### Day7 [Feb 10 2023]
+- Discuss about `FormLayout, Private Layout, Public Layout`
+- Session - Login page full flow life cycle
+- Disscuss about [State Lifting](https://reactjs.org/docs/lifting-state-up.html), [Sharing State](https://beta.reactjs.org/learn/sharing-state-between-components)
+- Component Tree Design  `Login, Register, Event, Employee, Role, Attendance, Leave Management`
+- Discuss about `Page, UI Component, Hooks, Reusable Component, Auth, Store`
 
 ### Reference 
 - [Follow Design](https://github.com/MOHAMMADmiZAN/dressmart)
