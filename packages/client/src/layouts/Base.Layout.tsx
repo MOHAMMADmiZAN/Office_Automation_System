@@ -9,8 +9,10 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import {Dashboard, Logout} from "@mui/icons-material";
 import {Actions, useStoreActions} from "easy-peasy";
 import {AuthType} from "../store/models/AuthModel";
-import {Outlet, useLocation, useNavigate, useParams} from "react-router-dom";
+import { useLocation, useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
+
+
 
 
 interface BASE_LAYOUT_PROPS {
@@ -41,7 +43,7 @@ const SidebarMenu: SidebarMenuItem[] = [
         isDivider: false,
         id: 'users',
 
-    }
+    },
 
 ]
 
