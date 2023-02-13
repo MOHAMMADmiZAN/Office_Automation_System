@@ -13,7 +13,8 @@ const Index: React.FC = (): JSX.Element => {
 
 
     return (
-        <BaseLayout/>
+        <>
+        </>
     )
             
 
