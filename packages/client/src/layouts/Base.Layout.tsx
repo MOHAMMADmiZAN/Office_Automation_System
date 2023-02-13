@@ -7,6 +7,8 @@ import {Container, Grid} from "@mui/material";
 import CommonCard from "../components/molecules/CommonCard/CommonCard";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import {Logout} from "@mui/icons-material";
+import {Actions, useStoreActions} from "easy-peasy";
+import {AuthType} from "../store/models/AuthModel";
 
 export interface baseComponentItem{
     id: string;
@@ -34,29 +36,32 @@ const SidebarMenu: SidebarMenuItem[] = [
         isDivider: true,
         id: 'userContact',
 
-    }
+    },
 
 ]
-const AccountMenu: AccountMenuItem[] = [
-    {
-        icon: <ManageAccountsIcon fontSize="small"/>,
-        text: "Manage Accounts",
-        onClick: () => {
-            console.log("Manage Accounts");
-        }
 
-    },
-    {
-        icon: <Logout fontSize="small"/>,
-        text: "Logout",
-        onClick: () => {
-            console.log("Logout");
-        }
-    }
-];
 
 const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = ({baseComponents}): JSX.Element => {
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
+    const {Logout:LogOutMethod} = useStoreActions((actions: Actions<AuthType>) => actions.Auth);
+    const [AccountMenu] = useState<AccountMenuItem[]>([
+        {
+            icon: <ManageAccountsIcon fontSize="small"/>,
+            text: "Manage Accounts",
+            onClick: () => {
+                console.log("Manage Accounts");
+            }
+
+        },
+        {
+            icon: <Logout fontSize="small"/>,
+            text: "Logout",
+            onClick: () => {
+                LogOutMethod();
+            }
+        }
+    ]);
+
     const handleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
         console.log(isSidebarOpen);

@@ -1,6 +1,6 @@
 import React from 'react';
 import {Box, Tab, Tabs} from "@mui/material";
-import {TabPanel} from "@mui/joy";
+import customTabStyle from "./styles/CustomTabs.style";
 
 export interface  TabItem {
     label: string;
@@ -24,7 +24,7 @@ const CustomTabs: React.FC<CUSTOM_TABS_PROPS> = ({tabs,ariaLabel}) => {
     };
 
     return (
-        <Box >
+        <Box>
             <Tabs
                 value={value}
                 onChange={handleChange}
@@ -32,6 +32,7 @@ const CustomTabs: React.FC<CUSTOM_TABS_PROPS> = ({tabs,ariaLabel}) => {
                 scrollButtons
                 allowScrollButtonsMobile
                 aria-label={ariaLabel}
+                sx={{...customTabStyle}}
             >
                 {tabs.map((tab, index) => (
                     <Tab key={index} label={tab.label} />
