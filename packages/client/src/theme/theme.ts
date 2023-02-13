@@ -110,7 +110,7 @@ const customTheme: CustomTheme = {
         MuiCard: {
             styleOverrides: {
                 root: {
-                    boxShadow: '2px 2px 3px 3px #91B7B9',
+                    boxShadow: '1px 1px 2px 2px #20846A inset',
                 }
             }
         }
