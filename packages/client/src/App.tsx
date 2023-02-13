@@ -1,5 +1,5 @@
 import React from 'react';
-import Index from "./pages";
+import Index from "./pages/home";
 import {QueryClient, QueryClientProvider} from "react-query";
 import {StoreProvider, useStoreRehydrated} from "easy-peasy";
 import store from "./store/store";

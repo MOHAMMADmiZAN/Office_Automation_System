@@ -1,5 +1,5 @@
 import {createBrowserRouter} from "react-router-dom";
-import Index from "../pages";
+import Index from "../pages/home";
 import Login_Page from "../pages/login";
 import Register_Page from "../pages/register";
 
