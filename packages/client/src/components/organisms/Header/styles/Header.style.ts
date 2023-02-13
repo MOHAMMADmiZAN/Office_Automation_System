@@ -7,7 +7,7 @@ export const HeaderBox = styled(Box)(({theme}) => ({
     zIndex: 1000,
     borderBottom: '1px solid',
     borderBottomColor: theme.palette.primary.main,
-    padding: '20px 30px',
+    padding: '20px 0',
 
     '& .MuiSvgIcon-root': {
         color: theme.palette.primary.main,
