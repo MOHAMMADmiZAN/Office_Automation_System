@@ -26,7 +26,7 @@ interface HEADER_PROPS {
 export interface AccountMenuItem {
     icon: React.ReactNode;
     text: string;
-    onClick: () => void;
+    onClick?: () => void;
     isDivider?: boolean;
     
 }

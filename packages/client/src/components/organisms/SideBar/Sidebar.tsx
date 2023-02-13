@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useEffect, useLayoutEffect} from 'react';
 import {Box, Divider, Grid, ListItem, ListItemIcon, ListItemText, MenuList} from "@mui/material";
 import {SidebarBox} from "./styles/Sidebar.style";
+import { NavLink} from "react-router-dom";
 
 
 export interface SidebarMenuItem {
@@ -13,29 +14,29 @@ export interface SidebarMenuItem {
 
 interface SIDEBAR_PROPS {
     isSidebarOpen: boolean;
-    handleActiveId: (id: string) => void;
-    ActiveId: string;
+    ActiveUrl?: string;
     sidebarMenu: SidebarMenuItem[];
 
 
 }
 
 
-const Sidebar: React.FC<SIDEBAR_PROPS> = ({isSidebarOpen, handleActiveId, ActiveId, sidebarMenu}) => {
+const Sidebar: React.FC<SIDEBAR_PROPS> = ({isSidebarOpen, ActiveUrl, sidebarMenu}) => {
+
+
     return (
         <>
 
               <SidebarBox className={isSidebarOpen ? 'open' : 'close'}>
                   <MenuList>
                       {sidebarMenu.map((item, index) => (
-                          <Box key={index} sx={{margin: '2px 0',}}>
-                              <ListItem button={true} onClick={() => handleActiveId(item.id)}
-                                        className={ActiveId === item.id ? 'Active-item' : ''}>
+                          <Box key={index} sx={{margin: '2px 0',}} className={`Nav-item`}>
+                              <NavLink  to={`/${item.id}`} className={ActiveUrl===`/${item.id}`?'Active-item':''}>
                                   <ListItemIcon>
                                       {item.icon}
                                   </ListItemIcon>
                                   <ListItemText primary={item.text}/>
-                              </ListItem>
+                              </NavLink>
                               {item.isDivider && <Divider/>}
                           </Box>
                       ))}

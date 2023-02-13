@@ -42,6 +42,33 @@ export const SidebarBox = styled(Box)(({theme}) => ({
             backgroundColor: theme.palette.primary.main,
             border: '1px solid',
             borderColor: theme.palette.primary.main,
+        },
+        '& .Nav-item': {
+            '& a': {
+                padding: '10px 20px',
+                textDecoration: 'none',
+                color: theme.palette.primary.main,
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'space-around',
+                transition: 'all 0.3s ease-in-out',
+
+            },
+            '& .MuiSvgIcon-root': {
+                color: theme.palette.primary.main,
+            },
+
+
+
+        },
+        '& .Nav-item:hover':{
+            '& a': {
+                color: '#fff !important',
+                backgroundColor: theme.palette.primary.main,
+            },
+            '& .MuiSvgIcon-root': {
+                color: '#fff',
+            }
         }
 
 
