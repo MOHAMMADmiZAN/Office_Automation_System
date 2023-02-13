@@ -27,7 +27,6 @@ const Event: React.FC<EVENT_PROPS> = () => {
     return (
         <>
             <CustomTabs tabs={tabItems} ariaLabel={'event-tab'}/>
-
         </>
     );
 };

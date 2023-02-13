@@ -9,7 +9,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import {Dashboard, Logout} from "@mui/icons-material";
 import {Actions, useStoreActions} from "easy-peasy";
 import {AuthType} from "../store/models/AuthModel";
-import { useLocation, useNavigate} from "react-router-dom";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 
@@ -91,7 +91,8 @@ const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = ({layoutChildren}): JSX.Element 
                </Grid>
                 <Grid item xs={10}>
                   <Container sx={{marginTop:'10px'}}>
-                      {layoutChildren}
+                      {/*{layoutChildren}*/}
+                      {<Outlet/>}
                   </Container>
                 </Grid>
            </Grid>

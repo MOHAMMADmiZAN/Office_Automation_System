@@ -1,6 +1,6 @@
 import React from 'react';
 import CustomTabs, {TabItem} from "../../components/molecules/CustomTabs/CustomTabs";
-import BaseLayout from "../../layouts/Base.Layout";
+
 import CommonCard from "../../components/molecules/CommonCard/CommonCard";
 
 interface EVENT_PROPS {
@@ -28,8 +28,7 @@ const tabItems: TabItem[] = [
 const Event: React.FC<EVENT_PROPS> = () => {
     return (
         <>
-           <BaseLayout layoutChildren={ <CommonCard CardMain={<CustomTabs tabs={tabItems} ariaLabel={'event-tab'}/>}/>}/>
-
+            <CommonCard CardMain={<CustomTabs tabs={tabItems} ariaLabel={'event-tab'} />}/>
         </>
     );
 };
