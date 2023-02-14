@@ -40,7 +40,7 @@ const Header: React.FC<HEADER_PROPS> = ({controlSidebar,accountMenuItems}) => {
     return (
         <HeaderBox>
             <Grid container={true} justifyContent={`space-between`}>
-                <Grid item={true} xs={4} sm={3} md={2} lg={2} xl={2} textAlign={`left`}>
+                <Grid item={true} xs={3} sm={2} md={1} lg={1} xl={1} textAlign={`left`}>
                     <IconButton onClick={controlSidebar}>
                         <MenuIcon/>
                     </IconButton>
@@ -48,7 +48,7 @@ const Header: React.FC<HEADER_PROPS> = ({controlSidebar,accountMenuItems}) => {
                         <img src={logo} alt={logo}/>
                     </IconButton>
                 </Grid>
-                <Grid item={true} xs={4} sm={3} md={2} lg={2} xl={2} textAlign={`right`}>
+                <Grid item={true} xs={3} sm={2} md={1} lg={1} xl={1} textAlign={`right`}>
                     <Tooltip title="Notification">
                         <IconButton>
                             <Badge badgeContent={0} color="error" showZero={true}>
