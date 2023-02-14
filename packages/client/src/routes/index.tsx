@@ -10,7 +10,7 @@ const routes =
         <Route path="/login" element={<Login_Page/>}/>,
         <Route path="/register" element={<Register_Page/>}/>,
         <Route path="/" element={<BaseLayout/>}>
-            <Route path="event" element={<Event/>}/>
+            <Route path="events" element={<Event/>}/>
             <Route path={"users"} element={<div>Users</div>}/>
             <Route path={"dashboard"} element={<Index/>}/>
         </Route>,

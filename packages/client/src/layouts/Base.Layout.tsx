@@ -4,19 +4,18 @@ import Sidebar, {SidebarMenuItem} from "../components/organisms/SideBar/Sidebar"
 import EventIcon from "@mui/icons-material/Event";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import {Container, Grid} from "@mui/material";
-import CommonCard from "../components/molecules/CommonCard/CommonCard";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import {Dashboard, Logout} from "@mui/icons-material";
 import {Actions, useStoreActions} from "easy-peasy";
 import {AuthType} from "../store/models/AuthModel";
-import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import {Outlet, useLocation, useMatch, useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 
 
 
 interface BASE_LAYOUT_PROPS {
-    layoutChildren?: React.ReactNode;
+
 
 
 }
@@ -33,7 +32,7 @@ const SidebarMenu: SidebarMenuItem[] = [
         text: "Events",
 
         isDivider: true,
-        id: 'event',
+        id: 'events',
 
 
     },
@@ -50,7 +49,7 @@ const SidebarMenu: SidebarMenuItem[] = [
 
 
 
-const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = ({layoutChildren}): JSX.Element => {
+const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = (): JSX.Element => {
     const navigation = useNavigate();
     const {isAuth} = useAuth();
     useLayoutEffect(() => {
@@ -78,7 +77,11 @@ const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = ({layoutChildren}): JSX.Element 
     const handleSidebar = () => {
         setIsSidebarOpen(!isSidebarOpen);
     }
-    let activeUrl = useLocation();
+    let location = useLocation();
+    let activeUrl = location.pathname === '/' ? '/dashboard' : location.pathname;
+    // useMatch hook use
+    let match = useMatch("/dashboard");
+    console.log(match);
 
 
 
@@ -86,12 +89,11 @@ const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = ({layoutChildren}): JSX.Element 
         <>
           <Header controlSidebar={handleSidebar} accountMenuItems={AccountMenu}/>
            <Grid container>
-               <Grid item xs={2} >
-                   <Sidebar isSidebarOpen={isSidebarOpen}  sidebarMenu={SidebarMenu} ActiveUrl={activeUrl.pathname}/>
+               <Grid item xs={2} md={1} >
+                   <Sidebar isSidebarOpen={isSidebarOpen}  sidebarMenu={SidebarMenu} ActiveUrl={activeUrl}/>
                </Grid>
-                <Grid item xs={10}>
-                  <Container sx={{marginTop:'10px'}}>
-                      {/*{layoutChildren}*/}
+                <Grid item xs={10} md={11}>
+                  <Container sx={{marginTop:'20px'}}>
                       {<Outlet/>}
                   </Container>
                 </Grid>
