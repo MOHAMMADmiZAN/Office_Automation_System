@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {CommonCardContent, CommonCardHeader, CommonCardLayout} from "./styles/CommonCard.style";
 import {Divider} from "@mui/material";
 
@@ -29,4 +29,4 @@ const CommonCard: React.FC<COMMON_CARD_PROPS> = ({cardTitle,CardMain}) => {
     );
 };
 
-export default CommonCard;
+export default memo(CommonCard);

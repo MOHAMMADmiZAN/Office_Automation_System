@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
 import {
     Badge,
     Divider,
@@ -87,4 +87,4 @@ const Header: React.FC<HEADER_PROPS> = ({controlSidebar,accountMenuItems}) => {
     );
 };
 
-export default Header;
+export default memo(Header);

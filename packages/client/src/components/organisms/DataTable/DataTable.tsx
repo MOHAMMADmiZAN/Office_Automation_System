@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
 import {
     DataLayoutTable,
     DataTableLayout,
@@ -84,4 +84,4 @@ const DataTable: React.FC<DATA_TABLE_PROPS> = ({DataTableData,title}) => {
     );
 };
 
-export default DataTable;
+export default memo(DataTable);

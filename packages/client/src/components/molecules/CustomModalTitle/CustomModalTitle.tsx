@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { memo } from 'react';
 import {DialogTitle, IconButton} from "@mui/material";
 
 import CloseIcon from '@mui/icons-material/Close';
@@ -39,4 +39,4 @@ const CustomModalTitle: React.FC<DIA_PROPS> = (props): JSX.Element => {
     );
 };
 
-export default CustomModalTitle;
+export default memo(CustomModalTitle);

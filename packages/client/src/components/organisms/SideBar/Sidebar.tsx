@@ -1,4 +1,4 @@
-import React, {useEffect, useLayoutEffect} from 'react';
+import React, {memo, useEffect, useLayoutEffect} from 'react';
 import {Box, Divider, Grid, ListItem, ListItemIcon, ListItemText, MenuList} from "@mui/material";
 import {SidebarBox} from "./styles/Sidebar.style";
 import { NavLink} from "react-router-dom";
@@ -49,4 +49,4 @@ const Sidebar: React.FC<SIDEBAR_PROPS> = ({isSidebarOpen, ActiveUrl, sidebarMenu
     );
 };
 
-export default Sidebar;
+export default memo(Sidebar);
