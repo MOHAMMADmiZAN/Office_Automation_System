@@ -1,4 +1,8 @@
 import React from 'react';
+import { Box, Button, Typography } from '@mui/material';
+import { purple } from '@mui/material/colors';
+
+const primary = '#161618'; 
 
 
 interface NOTFOUND_PROPS {
@@ -8,11 +12,28 @@ interface NOTFOUND_PROPS {
 
 const NotFound: React.FC<NOTFOUND_PROPS> = () => {
     return (
-        <>
-            <div>
-                <h1> Not Found</h1>
-            </div>
-        </>
+        
+            <> 
+                <Box
+                    sx={{
+                        display: 'flex',
+                        justifyContent: 'center',
+                        alignItems: 'center',
+                        flexDirection: 'column',
+                        minHeight: '100vh',
+                        backgroundColor: primary,
+                    }}
+                    >
+                    <Typography variant="h1" style={{ color: 'white'}}>
+                        404
+                    </Typography>
+                    <Typography variant="h6" style={{ color: 'white' }}>
+                        The page you’re looking for doesn’t exist.
+                    </Typography>
+                    <Button variant="contained">Back Home</Button>
+                </Box>
+            </>
+        
     );
 };
 
