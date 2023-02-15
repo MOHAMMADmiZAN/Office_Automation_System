@@ -1,20 +1,21 @@
 import React, {memo} from 'react';
-import {Control, UseFormRegister} from "react-hook-form/dist/types/form";
+import {Control} from "react-hook-form/dist/types/form";
 import {Controller} from "react-hook-form";
 import {
     Form_OutlinedInput,
     Form_Select,
     Form_TextInput,
     Form_uploadBox,
-    FromSelectLabel
+    FromSelectLabel,
 } from "./styles/FormInput.style";
 
-import {FormControl, MenuItem, TextField, Typography} from "@mui/material";
+import {Autocomplete, FormControl, MenuItem, Typography} from "@mui/material";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
-import {DatePicker} from '@mui/x-date-pickers/DatePicker';
 import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
 import {DateTimePicker} from "@mui/x-date-pickers";
+import Select from "react-select";
+import makeAnimated from 'react-select/animated';
 
 
 export type FormInputType =
@@ -36,7 +37,8 @@ export type FormInputType =
     | 'select'
     | 'checkbox'
     | 'radio'
-    | 'textarea';
+    | 'textarea'
+    | 'autocomplete'
 
 
 const FormTextInputType: FormInputType[] = ['text', 'email', 'password', 'number', 'tel']
@@ -50,8 +52,9 @@ const FormColorInputType: FormInputType[] = ['color']
 const FormRangeInputType: FormInputType[] = ['range']
 const FormUrlInputType: FormInputType[] = ['url']
 const FormSearchInputType: FormInputType[] = ['search']
+const FormAutocompleteInputType: FormInputType[] = ['autocomplete']
 
-interface selectOption {
+export interface selectOption {
     value: string;
     label: string;
 }
@@ -80,7 +83,7 @@ export interface FORM_INPUT_PROPS {
     control: Control<any>
     isFullWidth?: boolean,
     id?: string
-    selectOptions?: selectOption[],
+    selectOptions?: selectOption[]
 
 
 }
@@ -102,7 +105,7 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
 
     return (
         <>
-            <FormControl sx={{margin: '1rem 0.2rem',width: smallField ? '49%' : '100%'}}>
+            <FormControl sx={{margin: '1rem 0.2rem', width: smallField ? '49%' : '100%'}}>
                 {
                     FormTextInputType.includes(type) && (
                         <Controller render={({field, fieldState: {error}, formState: {isValid}}) => {
@@ -138,7 +141,6 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                                         required={isRequired}
                                         error={!!error?.message}
                                         size={`small`}
-                                        sx={{width: isFullWidth ? '100%' : '250px'}}
 
                                         {...field}
                                     >
@@ -188,7 +190,8 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                             return (
                                 <Form_uploadBox component="label">
                                     <input type={type} id={name} hidden={true} {...field} />
-                                    <Typography variant={`h6`} component={`h6`} sx={{textTransform: 'capitalize'}}>{label}</Typography>
+                                    <Typography variant={`h6`} component={`h6`}
+                                                sx={{textTransform: 'capitalize'}}>{label}</Typography>
                                     <CloudUploadIcon sx={{color: 'primary.main', marginLeft: '5px'}}/>
                                 </Form_uploadBox>
                             )
@@ -206,17 +209,42 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                                 render={({field, fieldState: {error}, formState: {isValid}}) => (
                                     <DateTimePicker
                                         {...field} label={label}
-                                        renderInput={(prams) => <Form_TextInput {...prams} error={!!error?.message}
-                                                                                helperText={isValid ? '' : error?.message}
-                                                                                size={`small`}
-                                                                                sx={{width: isFullWidth ? '100%' : '250px'}}
+                                        renderInput={(prams) =>
+                                            <Form_TextInput {...prams}
+                                                            error={!!error?.message}
+                                                            helperText={isValid ? '' : error?.message}
+                                                            size={`small`}
 
 
-                                        />}
+                                            />}
                                     />
                                 )}
                             />
                         </LocalizationProvider>
+                    )
+
+                }
+                {
+                    selectOptions && FormAutocompleteInputType.includes(type) && (
+                        <Controller render={({field, fieldState: {error}, formState: {isValid},}) => {
+                            const animatedComponents = makeAnimated();
+
+                            return (
+                                <Select
+                                    {...field}
+                                    isMulti
+                                    components={animatedComponents}
+                                    options={selectOptions}
+                                    placeholder={placeholder}
+                                    className={`basic-multi-select`}
+                                    classNamePrefix={`select`}
+
+
+
+                                />
+                            )
+                        }
+                        } control={control} name={name}/>
                     )
 
                 }

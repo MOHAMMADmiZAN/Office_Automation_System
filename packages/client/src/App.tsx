@@ -1,5 +1,5 @@
 import React from 'react';
-import Index from "./pages";
+import Index from "./pages/home";
 import {QueryClient, QueryClientProvider} from "react-query";
 import {StoreProvider, useStoreRehydrated} from "easy-peasy";
 import store from "./store/store";
@@ -7,7 +7,6 @@ import {ReactQueryDevtools} from "react-query/devtools";
 import {CssBaseline, ThemeProvider} from "@mui/material";
 import {RouterProvider} from "react-router-dom";
 import router from "./routes";
-import Login_Page from "./pages/login";
 import {theme} from "./theme/theme";
 
 

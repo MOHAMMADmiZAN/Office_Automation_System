@@ -110,22 +110,11 @@ const customTheme: CustomTheme = {
         MuiCard: {
             styleOverrides: {
                 root: {
-                    boxShadow: '2px 2px 3px 3px #91B7B9',
+                    boxShadow: '1px 1px 2px 2px #20846A inset',
                 }
             }
-        }
-    },
-    root: {
-        // design scroll bar
-        '&::-webkit-scrollbar': {
-            width: '0.4em',
         },
-        '&::-webkit-scrollbar-track': {
-            '-webkit-box-shadow': 'inset 0 0 6px #91B7B9',
-        },
-        '&::-webkit-scrollbar-thumb': {
-            backgroundColor: 'rgba(32,132,106,0.08)',
-        }
+
     }
 
 

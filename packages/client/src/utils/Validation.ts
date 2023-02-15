@@ -22,3 +22,12 @@ export const signupValidation = yup.object().shape({
     password: yup.string().required().min(8).max(20).matches(passwordRegex,'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character'),
     confirmPassword: passwordMatch(yup.ref('password'), 'Confirm Passwords must match with Password'),
 });
+
+export const eventValidation = yup.object().shape({
+    title: yup.string().required().min(2).max(20),
+    description: yup.string().min(2).max(1000),
+    startTime: yup.date().required('Start Time is required'),
+    endTime: yup.date().min(yup.ref('startTime')),
+
+
+});

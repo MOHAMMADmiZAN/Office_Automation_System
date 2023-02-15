@@ -13,7 +13,7 @@ export interface loginPayload {
  export interface registerPayload extends User{
 
 }
-interface User  {
+export interface User  {
     _id?: string;
     firstName: string;
     lastName: string;
@@ -41,7 +41,7 @@ type AuthThunk<T> = Thunk<Auth, T>
 export interface Auth {
     isAuth: boolean;
     AuthToken: string;
-    AuthUser: object
+    AuthUser: User;
     AuthSet: Action<Auth, authResponse>;
     AuthClear: AuthAction<void>;
     Login: AuthThunk<loginPayload>;
@@ -49,12 +49,21 @@ export interface Auth {
     Logout: AuthThunk<void>;
 
 }
-
+const AuthUserDefault: User = {
+    firstName: " ",
+    lastName: " ",
+    email: " ",
+    password: " ",
+    role: " ",
+    status: " ",
+    avatar: " ",
+    _id: " ",
+}
 
 const AuthModel: Auth = {
     isAuth: false,
     AuthToken: " ",
-    AuthUser: {},
+    AuthUser: {...AuthUserDefault},
     AuthSet: action((state: AuthState, payload) => {
         state.AuthToken = payload.token;
         state.AuthUser = payload.user;
@@ -64,7 +73,7 @@ const AuthModel: Auth = {
     }),
     AuthClear: action((state: AuthState) => {
         state.AuthToken = " ";
-        state.AuthUser = {};
+        state.AuthUser = {...AuthUserDefault};
         state.isAuth = false;
 
     }),

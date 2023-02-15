@@ -18,6 +18,7 @@ export interface BTN_PROPS {
     isRounded?: boolean;
     BtnStartIcon?: React.ReactNode;
     BtnEndIcon?: React.ReactNode;
+    styles?: React.CSSProperties;
 
 
 }
@@ -33,12 +34,14 @@ export const Btn: React.FC<BTN_PROPS> = ({
                                              isRounded,
                                              btnRef,
                                              BtnStartIcon,
-                                             BtnEndIcon
+                                             BtnEndIcon,
+                                             styles
+
 
                                          }): JSX.Element => {
     return (
         <CustomBtn type={type} onClick={onClick} variant={variant} disabled={disabled} className={className}
-                   size={size} ref={btnRef} startIcon={BtnStartIcon} endIcon={BtnEndIcon}>{BtnText}</CustomBtn>
+                   size={size} ref={btnRef} startIcon={BtnStartIcon} endIcon={BtnEndIcon} sx={{...styles}}>{BtnText}</CustomBtn>
     );
 };
 
