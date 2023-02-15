@@ -6,7 +6,8 @@ const useAuth = () => {
     return {
         user: AuthUser,
         token: AuthToken,
-        isAuth
+        isAuth,
+        userId: AuthUser._id
     }
 }
 

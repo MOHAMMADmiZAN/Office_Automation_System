@@ -23,7 +23,7 @@ const CustomModalTitle: React.FC<DIA_PROPS> = (props): JSX.Element => {
                         aria-label="close"
                         onClick={onClose}
                         sx={{
-                            position: 'absolute',
+                            position: 'fixed',
                             right: "15px",
                             top: "15px",
                             background: "radial-gradient(black, transparent)",
