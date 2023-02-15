@@ -1,5 +1,5 @@
 import {Collapse, IconButton, TableCell, TableRow} from '@mui/material';
-import React from 'react';
+import React, { memo } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
@@ -65,4 +65,4 @@ const DataTableRow: React.FC<DATA_TABLE_ROW_PROPS> = (props) => {
     );
 };
 
-export default DataTableRow;
+export default memo(DataTableRow);

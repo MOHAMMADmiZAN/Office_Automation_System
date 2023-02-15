@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {memo, useState} from 'react';
 import {Btn, BtnVariant} from "../../molecules/Form/Btn/Btn";
 import CustomModalTitle from "../../molecules/CustomModalTitle/CustomModalTitle";
 import {Box, Container, DialogContent, Tooltip} from '@mui/material';
@@ -59,4 +59,4 @@ const CustomModal: React.FC<CUSTOM_MODAL_PROPS> = ({
         </>
     )
 };
-export default CustomModal;
+export default memo(CustomModal);
