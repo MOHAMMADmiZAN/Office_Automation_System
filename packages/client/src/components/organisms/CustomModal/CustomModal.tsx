@@ -1,7 +1,7 @@
 import React, {memo, useState} from 'react';
 import {Btn, BtnVariant} from "../../molecules/Form/Btn/Btn";
 import CustomModalTitle from "../../molecules/CustomModalTitle/CustomModalTitle";
-import {DialogActions, DialogContent, Modal} from '@mui/material';
+import {Box, Container, DialogContent, Tooltip} from '@mui/material';
 import CommonCard from "../../molecules/CommonCard/CommonCard";
 import useStyles from "./styles/CustomModal.style";
 
@@ -23,7 +23,8 @@ const CustomModal: React.FC<CUSTOM_MODAL_PROPS> = ({
                                                        modalContent,
                                                        modalBtnVariant,
                                                        modalBtnText,
-                                                       ModalBtnIcon
+                                                       ModalBtnIcon,
+                                                       modalTitle
                                                    }): JSX.Element => {
     const [open, setOpen] = useState(false);
 
@@ -37,15 +38,21 @@ const CustomModal: React.FC<CUSTOM_MODAL_PROPS> = ({
     const classes = useStyles();
     return (
         <>
-            {!open&& <Btn  type={`button`} BtnText={modalBtnText} size={`small`} variant={modalBtnVariant} onClick={handleClickOpen} BtnStartIcon={ModalBtnIcon} className={classes.iconBtn}/>}
+
+                <Btn type={`button`} BtnText={modalBtnText} size={`small`} variant={modalBtnVariant}
+                     onClick={handleClickOpen} BtnStartIcon={ModalBtnIcon} styles={{margin:'20px 0' , maxWidth:'250px'}}/>
+
+
             {
                 open && (
-                    <>
-                    <CustomModalTitle id={modalId} onClose={handleClose}/>
-                        <DialogContent dividers>
-                               <CommonCard  CardMain={modalContent}/>
-                        </DialogContent>
-                    </>
+                    <Box className={classes.modalBody}>
+                        <Container>
+                            <CustomModalTitle id={modalId} onClose={handleClose}/>
+                            <DialogContent dividers>
+                                <CommonCard CardMain={modalContent} cardTitle={modalTitle}/>
+                            </DialogContent>
+                        </Container>
+                    </Box>
                 )
             }
 

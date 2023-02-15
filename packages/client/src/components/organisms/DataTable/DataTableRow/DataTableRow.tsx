@@ -3,11 +3,11 @@ import React, { memo } from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 
-type alignType = "center" | "left" | "right" | "inherit" | "justify" | undefined;
+export type alignType = "center" | "left" | "right" | "inherit" | "justify" | undefined;
 
 export interface TableCellInterface {
-    align: alignType;
-    value: string;
+    align: string;
+    value: string | React.ReactNode;
 }
 export interface CollapseComponent {
     CollapseComponentNode?: React.ReactNode
@@ -47,7 +47,7 @@ const DataTableRow: React.FC<DATA_TABLE_ROW_PROPS> = (props) => {
 
                 {row.tableCell.map((item, index) => {
                     return (
-                        <TableCell align={item.align} key={index}>{item.value}</TableCell>
+                        <TableCell align={item.align as alignType} key={index}>{item.value}</TableCell>
                     )
 
                 })}

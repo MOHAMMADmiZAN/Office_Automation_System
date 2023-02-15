@@ -13,7 +13,7 @@ import {
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import {Logout, Notifications} from "@mui/icons-material";
-import logo from "../../../../public/vite.svg";
+import logo from "../../../assets/vite.svg";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {HeaderBox} from "./styles/Header.style";
 import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
@@ -40,7 +40,7 @@ const Header: React.FC<HEADER_PROPS> = ({controlSidebar,accountMenuItems}) => {
     return (
         <HeaderBox>
             <Grid container={true} justifyContent={`space-between`}>
-                <Grid item={true} xs={3} sm={2} md={1} lg={1} xl={1} textAlign={`left`}>
+                <Grid item={true} xs={3} sm={2} md={2} lg={2} xl={2} textAlign={`left`}>
                     <IconButton onClick={controlSidebar}>
                         <MenuIcon/>
                     </IconButton>
@@ -48,7 +48,7 @@ const Header: React.FC<HEADER_PROPS> = ({controlSidebar,accountMenuItems}) => {
                         <img src={logo} alt={logo}/>
                     </IconButton>
                 </Grid>
-                <Grid item={true} xs={3} sm={2} md={1} lg={1} xl={1} textAlign={`right`}>
+                <Grid item={true} xs={3} sm={2} md={2} lg={2} xl={2} textAlign={`right`}>
                     <Tooltip title="Notification">
                         <IconButton>
                             <Badge badgeContent={0} color="error" showZero={true}>

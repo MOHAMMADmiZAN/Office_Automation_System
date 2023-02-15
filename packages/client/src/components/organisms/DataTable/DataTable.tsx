@@ -1,12 +1,9 @@
 import React, {memo, useState} from 'react';
 import {
     DataLayoutTable,
-    DataTableLayout,
-    DataTableLayoutCard,
-    DataTableLayoutCardContent,
-    DataTableLayoutCardHeader, DataTablePagination
+    DataTableLayout, DataTablePagination
 } from "./styles/DataTable.style";
-import {Container, Divider,  TableBody, TableHead} from "@mui/material";
+import {Container, TableBody, TableHead, Typography} from "@mui/material";
 import DataTableRow, {CollapseComponent, RowItem} from "./DataTableRow/DataTableRow";
 import CommonCard from "../../molecules/CommonCard/CommonCard";
 
@@ -15,7 +12,7 @@ interface PaginateType {
 
 }
 
-interface DataTableData {
+export interface DataTableData {
     label: string;
     headerRow: RowItem;
     bodyRow: RowItem[];
@@ -44,10 +41,9 @@ const DataTable: React.FC<DATA_TABLE_PROPS> = ({DataTableData,title}) => {
         setPage(0);
     };
     return (
-        <Container>
-            <DataTableLayout>
-               <CommonCard cardTitle={title} CardMain={
-                   <>
+           <>
+               {DataTableData.bodyRow.length>0 ?
+                   <DataTableLayout>
                        <DataLayoutTable aria-label={DataTableData.label}>
                            <TableHead>
                                <DataTableRow row={DataTableData.headerRow}/>
@@ -62,10 +58,12 @@ const DataTable: React.FC<DATA_TABLE_PROPS> = ({DataTableData,title}) => {
                                                CollapseComponent={DataTableData.CollapseComponent}/>
                                        )
                                    })
-
                                }
                            </TableBody>
+
+
                        </DataLayoutTable>
+
                        {
                            DataTableData.DataTablePagination &&  <DataTablePagination
                                rowsPerPageOptions={DataTableData.DataTablePagination.rowsPerPage}
@@ -77,11 +75,15 @@ const DataTable: React.FC<DATA_TABLE_PROPS> = ({DataTableData,title}) => {
                                onRowsPerPageChange={handleChangeRowsPerPage}
                            />
                        }
-                   </>
-               }/>
-            </DataTableLayout>
-        </Container>
+                   </DataTableLayout>
+                   : <Container sx={{textAlign:'center'}}>
+                       <Typography variant={`h1`} >No Data </Typography>
+                   </Container>
+
+               }
+           </>
+
     );
 };
 
-export default memo(DataTable);
+export default memo(DataTable)

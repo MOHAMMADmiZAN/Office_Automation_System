@@ -3,7 +3,7 @@ import Header, {AccountMenuItem} from "../components/organisms/Header/Header";
 import Sidebar, {SidebarMenuItem} from "../components/organisms/SideBar/Sidebar";
 import EventIcon from "@mui/icons-material/Event";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
-import {Container, Grid} from "@mui/material";
+import {Box, Container, Grid} from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import {Dashboard, Logout} from "@mui/icons-material";
 import {Actions, useStoreActions} from "easy-peasy";
@@ -79,9 +79,7 @@ const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = (): JSX.Element => {
     }
     let location = useLocation();
     let activeUrl = location.pathname === '/' ? '/dashboard' : location.pathname;
-    // useMatch hook use
-    let match = useMatch("/dashboard");
-    console.log(match);
+
 
 
 
@@ -89,13 +87,15 @@ const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = (): JSX.Element => {
         <>
           <Header controlSidebar={handleSidebar} accountMenuItems={AccountMenu}/>
            <Grid container>
-               <Grid item xs={2} md={1} >
+               <Grid item xs={2} md={2} >
                    <Sidebar isSidebarOpen={isSidebarOpen}  sidebarMenu={SidebarMenu} ActiveUrl={activeUrl}/>
                </Grid>
-                <Grid item xs={10} md={11}>
-                  <Container sx={{marginTop:'20px'}}>
-                      {<Outlet/>}
-                  </Container>
+                <Grid item xs={10} md={10}>
+
+                     <Box sx={{padding:'30px 50px'}}>
+                         {<Outlet/>}
+                     </Box>
+
                 </Grid>
            </Grid>
         </>
