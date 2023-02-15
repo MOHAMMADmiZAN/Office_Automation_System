@@ -6,6 +6,7 @@ import AttendanceRouter from "./Attendance";
 import { ErrorWithStatus } from "../utils/error";
 import UserBasicInfoRouter from "./UserBasicInfo";
 import OnboardRouter from "./Onboard";
+import LeaveRouter from "./Leave";
 
 
 const router = Router()
@@ -15,6 +16,7 @@ router.use('/api/v1/event', EventRouter)
 router.use('/api/v1/attendance', AttendanceRouter)
 router.use('/api/v1/userbasicinfo', UserBasicInfoRouter)
 router.use('/api/v1/onboard', OnboardRouter)
+router.use('/api/v1/leave', LeaveRouter)
 
 
 router.use((req, res, next) => {
