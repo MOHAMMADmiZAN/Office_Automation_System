@@ -63,9 +63,6 @@ interface TypographyFontStyle {
                     }
                 }
             }
-        },
-        root: {
-
         }
     }
 
