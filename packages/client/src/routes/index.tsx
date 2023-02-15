@@ -3,6 +3,7 @@ import Index from "../pages/home";
 import Login_Page from "../pages/login";
 import Register_Page from "../pages/register";
 import Event from "../pages/event";
+import NotFound from '../pages/not-found/notfound';
 import BaseLayout from "../layouts/Base.Layout";
 
 const routes =
@@ -14,7 +15,7 @@ const routes =
             <Route path={"users"} element={<div>Users</div>}/>
             <Route path={"dashboard"} element={<Index/>}/>
         </Route>,
-        <Route path="*" element={<div>404</div>}/>
+        <Route path="*" element={<NotFound />}/>
     ])
 
 
