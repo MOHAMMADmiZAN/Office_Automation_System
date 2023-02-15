@@ -7,7 +7,8 @@ export interface IEvent {
     startTime: string;
     endTime?: string;
     invitation?: any;
-    status?: string
+    status?: string;
+    type: string
 }
 
 const EventSchema = new Schema({
@@ -36,6 +37,9 @@ const EventSchema = new Schema({
     },
     status: {
         type: String, enum: ['PENDING', 'ACTIVE', 'REJECTED'], default: 'PENDING'
+    },
+    type: {
+        type: String, enum: ['MEETING', 'BIRTHDAY', 'FAREWELL', 'OTHER'], default: 'MEETING'
     },
     invitation: [
         {

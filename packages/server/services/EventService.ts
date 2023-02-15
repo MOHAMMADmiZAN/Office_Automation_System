@@ -22,6 +22,7 @@ class EventService implements IEventService {
             startTime: data.startTime,
             endTime: data.endTime,
             invitation: data.invitation,
+            type: data.type,
         })
         return event.save();
     }
@@ -44,6 +45,7 @@ class EventService implements IEventService {
             startTime: data.startTime,
             endTime: data.endTime,
             invitation: data.invitation,
+            type: data.type,
         }
         return Event.findByIdAndUpdate(id, { ...event }, { new: true });
     }

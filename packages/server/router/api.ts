@@ -20,7 +20,8 @@ router.use('/api/v1/attendance', AttendanceRouter)
 router.use('/api/v1/userbasicinfo', UserBasicInfoRouter)
 router.use('/api/v1/onboard', OnboardRouter)
 router.use('/api/v1/leave', LeaveRouter)
-router.use('/api/v1/user',AuthMiddleware,UserRouter)
+// router.use('/api/v1/user',AuthMiddleware,UserRouter)
+router.use('/api/v1/user',UserRouter)
 
 
 
