@@ -4,7 +4,6 @@ import {Box, Card, CardContent, CardHeader, Table, TablePagination} from "@mui/m
 export const DataTableLayout = styled(Box)(({theme}) => ({
     width: "100%",
     height: "100%",
-    padding: "120px 50px 0",
 
 
 

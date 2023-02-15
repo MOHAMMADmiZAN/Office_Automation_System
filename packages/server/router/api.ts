@@ -6,15 +6,20 @@ import AttendanceRouter from "./Attendance";
 import { ErrorWithStatus } from "../utils/error";
 import UserBasicInfoRouter from "./UserBasicInfo";
 import OnboardRouter from "./Onboard";
-
-
+import UserRouter from "./User";
+import AuthMiddleware from "../middleware/Auth";
 const router = Router()
+
+
+
+
 router.use('/api/v1/auth', authRouter)
 router.use('/api/v1/role', RoleRouter)
 router.use('/api/v1/event', EventRouter)
 router.use('/api/v1/attendance', AttendanceRouter)
 router.use('/api/v1/userbasicinfo', UserBasicInfoRouter)
 router.use('/api/v1/onboard', OnboardRouter)
+router.use('/api/v1/user',AuthMiddleware,UserRouter)
 
 
 router.use((req, res, next) => {
