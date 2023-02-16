@@ -1,5 +1,6 @@
 import EventService from "../services/EventService";
 import { NextFunction, Response } from "express";
+import { ObjectId } from 'mongodb'
 
 
 interface IEventController {
@@ -26,10 +27,10 @@ class EventController extends EventService implements IEventController {
 
     public eventDetail = async (req, res, next) => {
         try {
-            const role = await this.findEvent('_id', req.params.id);
+            const event = await this.findEvent('_id', req.params.id);
             res.status(200).json({
                 message: 'Event found successfully',
-                role
+                event
             })
         } catch (error: any) {
             next(error)
@@ -71,6 +72,40 @@ class EventController extends EventService implements IEventController {
             next(error)
         }
     }
+
+    public changeInviteStatus = async (req, res, next) => {
+        try {
+            const event = await this.findEvent('_id', req.params.id);
+            if (!event) {
+                return res.status(200).json({
+                    message: 'Event not found'
+                })
+            }
+            const { userId, status } = req.body;
+            const invitation = event.invitation.reduce((acc, cur) => {
+                const objectId = new ObjectId(userId)
+
+                if (JSON.stringify(cur._id) === JSON.stringify(objectId)) {
+                    cur.status = status;
+                }
+                acc.push(cur);
+                return acc;
+            }, [])
+            console.log('cu=', invitation)
+            const updateData = {
+                ...event,
+                invitation
+            }
+            const data = await this.updateEvent(updateData, req.params.id);
+            res.status(200).json({
+                message: 'Event invitation status has been changed successfully',
+                data
+            })
+        } catch (error: any) {
+            next(error)
+        }
+    }
+
 }
 
 export default EventController;

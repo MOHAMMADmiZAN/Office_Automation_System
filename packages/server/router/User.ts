@@ -1,21 +1,14 @@
 import {Router} from "express";
+import UserController from "../controllers/UserController";
 import UserService from "../services/UserService";
 
 
 
-
+const userController = new UserController();
 const UserRouter = Router()
 
 
-UserRouter.get('/', (req, res,next) => {
-    const userService = new UserService()
-    userService.findUsers().then(users => {
-        res.status(200).json(users)
-    }).catch(err => {
-        next(err)
-    })
-
-})
+UserRouter.get('/', userController.userList)
 
 
 
