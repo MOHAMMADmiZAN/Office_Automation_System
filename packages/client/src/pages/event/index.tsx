@@ -3,43 +3,28 @@ import CustomTabs, {TabItem} from "../../components/organisms/CustomTabs/CustomT
 
 import CommonCard from "../../components/molecules/CommonCard/CommonCard";
 import useAuth from "../../hooks/useAuth";
-import {EventApi, IEventPayload} from "../../api/Event.api";
+import {EventApi, IEventPayload, IEventPayloadWithId} from "../../api/Event.api";
 import {FORM_INPUT_PROPS, FormInputType, selectOption} from "../../components/molecules/Form/FormInput/Form_Input";
 import CustomModal from "../../components/organisms/CustomModal/CustomModal";
 import FormLayOut from "../../components/organisms/Form/FormLayOut/FormLayOut";
 import {eventValidation} from "../../utils/Validation";
 import {Add} from "@mui/icons-material";
 import {SubmitHandler} from "react-hook-form";
-import {useMutation, useQueryClient} from "react-query";
-import TodayEvent from "./UpcomingEvent/TodayEvent";
+import {useMutation, useQuery, useQueryClient} from "react-query";
+import {User} from "../../store/models/AuthModel";
+import {UserApi} from "../../api/User.api";
+import TodayEvent from "./TodayEvent/TodayEvent";
+import UpcomingEvent from "./UpComingEvent/UpcomingEvent";
+import EventHistory from "./EventHistory/EventHistory";
+import EventRequest from "./EventRequest/EventRequest";
+
 
 
 interface EVENT_PROPS {
 
 }
 
-const tabItems: TabItem[] = [
-    {
-        label: "Event on This Time",
-        component: <div>Event in this time</div>
 
-    },
-    {
-        label: "Upcoming Event",
-        component: <TodayEvent/>
-    },
-    {
-        label: "Event History",
-        component: <div>Event in history</div>
-    },
-    {
-        label: "Event Request",
-        component: <div>
-            <div>Event request</div>
-        </div>
-    },
-
-]
 
 const defaultValues = {
     author: '',
@@ -128,11 +113,13 @@ const Event: React.FC<EVENT_PROPS> = () => {
     const {userId} = useAuth();
     const {mutate, isLoading, error} = useMutation(EventApi.eventCreate, {
         onSuccess: async (data) => {
-            await queryClient.invalidateQueries('allEvent');
+            console.log(data);
+            await queryClient.invalidateQueries('allEvents');
 
         }
     })
     const queryClient = useQueryClient();
+
 
     const onSubmit: SubmitHandler<IEventPayload> = async (data) => {
 
@@ -141,6 +128,26 @@ const Event: React.FC<EVENT_PROPS> = () => {
 
 
     }
+    const tabItems: TabItem[] = [
+        {
+            label: "Event in Today",
+            component: <TodayEvent/>
+
+        },
+        {
+            label: "Upcoming Event",
+            component: <UpcomingEvent />
+        },
+        {
+            label: "Event History",
+            component: <EventHistory />
+        },
+        {
+            label: "Event Request",
+            component: <EventRequest />
+        },
+
+    ]
 
     return (
         <>

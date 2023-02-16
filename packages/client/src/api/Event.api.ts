@@ -1,4 +1,4 @@
-import {PublicApiInstance} from "./api";
+import {PrivateApiInstance, PublicApiInstance} from "./api";
 
 interface IEventApi {
     eventList: () => Promise<IEventPayloadWithId[]>;
@@ -30,7 +30,7 @@ export interface IEventPayload {
 export const EventApi : IEventApi = {
     eventList: async () => {
         try {
-            const response = await PublicApiInstance.get('/event');
+            const response = await PrivateApiInstance.get('/event');
             return response.data.data;
         } catch (e) {
             console.log(e)
@@ -38,7 +38,7 @@ export const EventApi : IEventApi = {
     },
     eventDetail: async (id: string) => {
         try {
-            const response = await PublicApiInstance.get(`/event/${id}`);
+            const response = await PrivateApiInstance.get(`/event/${id}`);
             return response.data;
         } catch (e) {
             console.log(e)
@@ -46,7 +46,7 @@ export const EventApi : IEventApi = {
     },
     eventCreate: async (payload: IEventPayload) => {
         try {
-            const response = await PublicApiInstance.post('/event', payload);
+            const response = await PrivateApiInstance.post('/event', payload);
             return response.data;
         } catch (e) {
             console.log(e)
@@ -54,7 +54,7 @@ export const EventApi : IEventApi = {
     },
     eventUpdate: async (payload: IEventPayload, id: string) => {
         try {
-            const response = await PublicApiInstance.put(`/event/${id}`, payload);
+            const response = await PrivateApiInstance.put(`/event/${id}`, payload);
             return response.data;
         } catch (e) {
             console.log(e)
@@ -62,11 +62,12 @@ export const EventApi : IEventApi = {
     },
     eventDelete: async (id: string) => {
         try {
-            const response = await PublicApiInstance.delete(`/event/${id}`);
+            const response = await PrivateApiInstance.delete(`/event/${id}`);
             return response.data;
         } catch (e) {
             console.log(e)
         }
     }
+
 
 }
