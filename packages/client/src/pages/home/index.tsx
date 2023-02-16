@@ -3,94 +3,106 @@ import {useNavigate} from "react-router-dom";
 import useAuth from "../../hooks/useAuth";
 import BaseLayout from "../../layouts/Base.Layout";
 import FormLayOut from "../../components/organisms/Form/FormLayOut/FormLayOut";
-import {InviteUsersModal} from "../event/TodayEvent/TodayEvent";
+import {InviteUsersModal} from "../event/UpcomingEvent/TodayEvent";
 import {User} from "../../store/models/AuthModel";
 import {Form_TextInput} from "../../components/molecules/Form/FormInput/styles/FormInput.style";
 import {Autocomplete, TextField} from "@mui/material";
 import {Controller, useForm} from "react-hook-form";
+import {FORM_INPUT_PROPS, FormInputType, selectOption} from "../../components/molecules/Form/FormInput/Form_Input";
+import {eventValidation} from "../../utils/Validation";
 
 
 
+
+const defaultValues = {
+    author: '',
+    title: '',
+    description: '',
+    startTime: new Date(),
+    endTime: new Date(),
+    status: '',
+    type: '',
+
+
+}
+
+export interface eventFormInputField {
+    name: string;
+    type: FormInputType;
+    placeholder: string;
+    smallField: boolean;
+    label: string;
+    id?: string;
+    selectOptions?: selectOption[];
+
+}
+
+export const eventFormFields: eventFormInputField[] = [
+    {
+        name: `title`,
+        type: `text`,
+        placeholder: `Type Your Event Title`,
+        smallField: false,
+        label: `Event Title`,
+    },
+    {
+        name: `description`,
+        type: `textarea`,
+        placeholder: `Type Your Event Description`,
+        smallField: false,
+        label: `Event Description`,
+    },
+    {
+        name: `startTime`,
+        type: `datetime-local`,
+        placeholder: `Type Your Event Start Time`,
+        smallField: true,
+        label: `Event Start Time`,
+        id: `startTime`
+
+    }, {
+        name: `endTime`,
+        type: `datetime-local`,
+        placeholder: `Type Your Event End Time`,
+        smallField: true,
+        label: `Event End Time`,
+        id: `endTime`
+
+    },
+    {
+        name: `type`,
+        type: `select`,
+        placeholder: `Select Event Type`,
+        smallField: true,
+        label: `Event Type`,
+        selectOptions: [{
+            value: `MEETING`,
+            label: `MEETING`
+        }, {
+            value: `BIRTHDAY`,
+            label: `BIRTHDAY`
+        },
+            {
+                value: `FAREWELL`,
+                label: `FAREWELL`
+            },
+            {
+                value: `OTHER`,
+                label: `OTHER`
+            }
+
+
+        ]
+    }
+
+]
 
 
 
 
 const Index: React.FC = (): JSX.Element => {
 
-    const eventData = {
-        _id: "63ec81bfe89e9cad5b187fcc",
-        author: "63e4f1dbc389950a1edb55b7",
-        title: "event today",
-        description: "now",
-        startTime: "2023-02-16T09:54:33.000Z",
-        status: "PENDING",
-        invitation: [],
-        createdAt: "2023-02-15T06:54:55.724Z",
-        updatedAt: "2023-02-15T06:54:55.724Z",
-    }
 
-    const authors = [
-        {
-            _id: "63e4eb88d2985178b2065c8e",
-            firstName: "admin",
-            lastName: "adminLast",
-            email: "admin@mail.com",
-            status: "PENDING",
-            avatar: "https://res.cloudinary.com/dxqjyqz8f/image/upload/v1621361009/avatars/default-avatar.png",
-
-        },
-        {
-            _id: "63e4f1dbc389950a1edb55b7",
-            firstName: "admin2",
-            lastName: "admin2",
-            email: "admin2@gmail.com",
-            status: "PENDING",
-            avatar: "https://res.cloudinary.com/dxqjyqz8f/image/upload/v1621361009/avatars/default-avatar.png",
-
-        },
-        {
-            _id: "63e51aaf6372baf64b04d2cb",
-            firstName: "admin4",
-            lastName: "admin4",
-            email: "admin4@gmail.com",
-            status: "PENDING",
-            avatar: "https://res.cloudinary.com/dxqjyqz8f/image/upload/v1621361009/avatars/default-avatar.png",
-
-        },
-        {
-            _id: "63e51f620b6a8528852d8cfe",
-            firstName: "Naim",
-            lastName: "Uddin",
-            email: "naim@gmail.com",
-            status: "PENDING",
-            avatar: "https://res.cloudinary.com/dxqjyqz8f/image/upload/v1621361009/avatars/default-avatar.png",
-
-        },
-        {
-            _id: "63e621b2e17ef7f0c22240d3",
-            firstName: "Robert",
-            lastName: "Viverette",
-            email: "admin12@gmail.com",
-            status: "PENDING",
-            avatar: "https://res.cloudinary.com/dxqjyqz8f/image/upload/v1621361009/avatars/default-avatar.png",
-
-        },
-        {
-            _id: "63ea5a91fff3d162b7316b55",
-            firstName: "Bipon",
-            lastName: "Biswas",
-            email: "bipon770@gmail.com",
-            status: "PENDING",
-            avatar: "https://res.cloudinary.com/dxqjyqz8f/image/upload/v1621361009/avatars/default-avatar.png",
-
-        }
-    ]
-
-    const selectOptions = [
-        {label: "Naim Uddin", value: "63e51f620b6a8528852d8cfe"},
-        {label: "Robert Viverette", value: "63e621b2e17ef7f0c22240d3"},
-        {label: "Bipon Biswas", value: "63ea5a91fff3d162b7316b55"},
-    ]
 
 
 
@@ -101,27 +113,11 @@ const Index: React.FC = (): JSX.Element => {
     };
 
     return (
-        <form onSubmit={handleSubmit(onSubmit)}>
-            <Controller
-                name="autocomplete"
-                control={control}
-                defaultValue=""
-                render={({ field }) => (
-                    <Autocomplete
-                        {...field}
-                        options={selectOptions}
-                        renderInput={(params) => (
-                            <TextField
-                                {...params}
-                                label="Autocomplete"
-                                variant="outlined"
-                            />
-                        )}
-                    />
-                )}
-            />
-            <input type="submit" />
-        </form>
+
+        <FormLayOut FormInputFields={eventFormFields as FORM_INPUT_PROPS[]}
+                    defaultValues={{...defaultValues, author: '1'}}
+                    btnText={`Add Event`}
+                    onSubmit={onSubmit} validationRules={eventValidation}/>
     )
             
 

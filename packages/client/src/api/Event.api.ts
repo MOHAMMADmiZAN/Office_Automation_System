@@ -8,15 +8,18 @@ interface IEventApi {
     eventDelete: (id: string) => Promise<IEventPayloadWithId>;
 
 }
+
+
 export interface IEventPayload {
 
     author: string;
     title: string;
     description?: string;
-    startTime: any;
-    endTime?: any;
+    startTime: Date;
+    endTime?: Date;
     invitation?: any;
     status?: string
+    type: string;
 
 }
  export interface IEventPayloadWithId extends IEventPayload {

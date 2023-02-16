@@ -30,7 +30,7 @@ export const UserApi = {
     getAllUsers: async () => {
         try {
             const response = await PrivateApiInstance.get(`/user`);
-            return response.data;
+            return response.data.data;
         } catch (e) {
             console.log(e)
         }

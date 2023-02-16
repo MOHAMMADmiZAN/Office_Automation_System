@@ -88,20 +88,19 @@ export const InviteUsersModal: React.FC<inviteUserModalProps> = ({eventData, aut
             })
         }
     ]
-    interface inviteUser{
+
+    interface inviteUser {
         userId: string;
         status: string;
     }
 
-     // defaultValuForInvitation is an array of selectOption
+    // defaultValuForInvitation is an array of selectOption
     const defaultValueForInvitation: selectOption[] = eventData.invitation.map((item: inviteUser) => {
         return {
             value: item.userId,
             label: authors.find((author) => author._id === item.userId)?.firstName + " " + authors.find((author) => author._id === item.userId)?.lastName
         }
     })
-
-
 
 
     const onSubmit: SubmitHandler<IEventPayload> = async (data) => {
@@ -115,7 +114,8 @@ export const InviteUsersModal: React.FC<inviteUserModalProps> = ({eventData, aut
     }
     return (
         <>
-            <FormLayOut defaultValues={{...eventData,invitation:defaultValueForInvitation||[]}} FormInputFields={inviteUserFormFields as FORM_INPUT_PROPS[]}
+            <FormLayOut defaultValues={{...eventData, invitation: defaultValueForInvitation || []}}
+                        FormInputFields={inviteUserFormFields as FORM_INPUT_PROPS[]}
                         validationRules={eventValidation} onSubmit={onSubmit} btnText={`Invite Users`}/>
 
         </>
@@ -144,6 +144,11 @@ const dataTableData: DataTableData = {
             {
                 align: "center",
                 value: "Event End Time",
+            },
+            {
+                align: "center",
+                value: "Event Type",
+
             },
             {
                 align: "center",
@@ -180,7 +185,7 @@ const TodayEvent: React.FC<ALL_EVENT_PROPS> = (props): JSX.Element => {
 
     const {data: authors} = useQuery<User[]>("allUser", () => UserApi.getAllUsers(), {
         onSuccess: async (data) => {
-            console.log(data);
+            console.log(`all user`, data)
         },
     });
 
@@ -219,6 +224,10 @@ const TodayEvent: React.FC<ALL_EVENT_PROPS> = (props): JSX.Element => {
                 },
                 {
                     align: "center",
+                    value: item.type,
+                },
+                {
+                    align: "center",
                     value: item.status,
                 },
                 {
@@ -237,7 +246,9 @@ const TodayEvent: React.FC<ALL_EVENT_PROPS> = (props): JSX.Element => {
                                                  ModalBtnIcon={<Edit/>}/>
                                     <Btn BtnStartIcon={<Delete color={`error`}/>}
                                          onClick={() => handleEventDelete(item._id)}/>
-                                    <CustomModal modalId={`invite-event`} modalContent={<InviteUsersModal authors={authors as User[]} eventData={item}/>}
+                                    <CustomModal modalId={`invite-event`}
+                                                 modalContent={<InviteUsersModal authors={authors as User[]}
+                                                                                 eventData={item}/>}
                                                  modalBtnText={`invite`} ModalBtnIcon={<InsertInvitation/>}/>
                                 </> :
                                 <Typography variant={`h6`} component={`h6`}> you are not Authorize</Typography>
