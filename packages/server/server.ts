@@ -6,6 +6,9 @@ import cors from 'cors';
 const app = express();
 import morgan from 'morgan';
 import errorMiddleware from "./middleware/ErrorMiddleware";
+import * as cron from 'node-cron';
+import { useCronjob } from "./utils/helper";
+
 
 
 app.use([express.json(), cors(), express.urlencoded({ extended: true }), express.static('public'), router, morgan('tiny')]);
@@ -26,3 +29,10 @@ connectDB(DB_URI).then(() => {
 }).catch(e => {
     console.log(e);
 });
+
+
+// Call cronjob
+cron.schedule("*/120 * * * * *", async () => {
+    console.log("running a task every minute");
+    useCronjob();
+})
