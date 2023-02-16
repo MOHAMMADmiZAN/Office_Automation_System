@@ -103,7 +103,6 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
             userId,
             status
         }
-        console.log('payload=', payload)
         EventApi.changeInviteStatus(id, payload);
     };
     
