@@ -160,7 +160,7 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({isBodyRowFuncDate,label,isBo
                                     <>
                                         <Btn BtnText={`Accept`} variant={`contained`}/>
                                         <Btn BtnText={`Maybe`} variant={`contained`} color={`info`}/>
-                                        <Btn BtnText={`Accept`} variant={`contained`} color={`error`}/>
+                                        <Btn BtnText={`reject`} variant={`contained`} color={`error`}/>
                                     </>
                                 )
                             }
@@ -182,8 +182,7 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({isBodyRowFuncDate,label,isBo
     return (
         <>
             {bodyRow.length > 0 ? <DataTable DataTableData={{...dataTableData, bodyRow,label}}/> :
-                <Typography variant={`h1`} component={`h1`} sx={{textAlign: 'center'}}>There is no event
-                    today</Typography>}
+                <Typography variant={`h1`} component={`h1`} sx={{textAlign: 'center'}}>No Event here </Typography>}
         </>
     );
 };
