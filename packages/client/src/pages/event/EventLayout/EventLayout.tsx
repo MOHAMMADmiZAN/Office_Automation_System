@@ -106,7 +106,8 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
         console.log('payload=', payload)
         EventApi.changeInviteStatus(id, payload);
     };
-
+    
+    
     const bodyRow: DataTableData["bodyRow"] = [];
     if (events) {
         events.map((item) => {
