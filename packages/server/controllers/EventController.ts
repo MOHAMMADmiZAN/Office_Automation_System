@@ -1,6 +1,9 @@
 import EventService from "../services/EventService";
 import { NextFunction, Response } from "express";
 import { ObjectId } from 'mongodb'
+import * as cron from 'node-cron';
+
+
 
 
 interface IEventController {

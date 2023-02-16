@@ -1,6 +1,7 @@
 import { Schema, model } from 'mongoose';
 
 export interface IEvent {
+    _id?: string;
     author: string;
     title: string;
     description?: string;
@@ -36,7 +37,7 @@ const EventSchema = new Schema({
         trim: true
     },
     status: {
-        type: String, enum: ['PENDING', 'ACTIVE', 'REJECTED'], default: 'PENDING'
+        type: String, enum: ['UPCOMING', 'RUNNING', 'FINISHED'], default: 'UPCOMING'
     },
     type: {
         type: String, enum: ['MEETING', 'BIRTHDAY', 'FAREWELL', 'OTHER'], default: 'MEETING'
