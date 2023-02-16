@@ -15,7 +15,7 @@ const router = Router()
 
 router.use('/api/v1/auth', authRouter)
 router.use('/api/v1/role',AuthMiddleware, RoleRouter)
-router.use('/api/v1/event',AuthMiddleware, EventRouter)
+router.use('/api/v1/event', EventRouter)
 router.use('/api/v1/attendance',AuthMiddleware, AttendanceRouter)
 router.use('/api/v1/userbasicinfo',AuthMiddleware, UserBasicInfoRouter)
 router.use('/api/v1/onboard',AuthMiddleware, OnboardRouter)

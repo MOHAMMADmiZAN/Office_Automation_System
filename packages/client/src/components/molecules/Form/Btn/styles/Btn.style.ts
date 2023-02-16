@@ -6,6 +6,7 @@ export const CustomBtn = styled(Button)(({theme,variant}) => ({
     borderRadius: `4px`,
     padding: '0.5rem 1rem',
     width: '100%',
+    margin: '0.5rem',
 
 
 

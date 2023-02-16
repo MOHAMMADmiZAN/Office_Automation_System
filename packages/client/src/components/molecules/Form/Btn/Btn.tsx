@@ -4,6 +4,7 @@ import {CustomBtn} from "./styles/Btn.style";
 export type BtnType = 'button' | 'submit' | 'reset'
 export type BtnVariant = 'text' | 'outlined' | 'contained'
 export type BtnSize = 'small' | 'medium' | 'large'
+export type BtnColor = "inherit" | "primary" | "secondary" | "success" | "error" | "info" | "warning" | undefined
 
 export interface BTN_PROPS {
     type?: BtnType;
@@ -19,6 +20,7 @@ export interface BTN_PROPS {
     BtnStartIcon?: React.ReactNode;
     BtnEndIcon?: React.ReactNode;
     styles?: React.CSSProperties;
+    color?: BtnColor;
 
 
 }
@@ -35,13 +37,14 @@ export const Btn: React.FC<BTN_PROPS> = ({
                                              btnRef,
                                              BtnStartIcon,
                                              BtnEndIcon,
-                                             styles
+                                             styles,
+                                             color
 
 
                                          }): JSX.Element => {
     return (
         <CustomBtn type={type} onClick={onClick} variant={variant} disabled={disabled} className={className}
-                   size={size} ref={btnRef} startIcon={BtnStartIcon} endIcon={BtnEndIcon} sx={{...styles}}>{BtnText}</CustomBtn>
+                   size={size} ref={btnRef} startIcon={BtnStartIcon} endIcon={BtnEndIcon} sx={{...styles}} color={color}>{BtnText}</CustomBtn>
     );
 };
 
