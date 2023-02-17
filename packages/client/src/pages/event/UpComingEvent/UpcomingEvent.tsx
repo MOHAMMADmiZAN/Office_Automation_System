@@ -11,7 +11,7 @@ const UpcomingEvent: React.FC<UPCOMING_EVENT_PROPS> = (): JSX.Element => {
 
     const handleRowFunc = (item:IEventPayloadWithId) => {
 
-        return moment(item.startTime).isBefore(moment()) && item.status === 'UPCOMING'
+        return moment(item.startTime).isAfter(moment()) || item.status === 'UPCOMING'
 
 
     }
