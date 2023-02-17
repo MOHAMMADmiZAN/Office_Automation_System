@@ -31,8 +31,8 @@ connectDB(DB_URI).then(() => {
 });
 
 
-// Call cronjob
-cron.schedule("*/120 * * * * *", async () => {
+// Call cronjob 120
+cron.schedule("*/60 * * * * *", async () => {
     console.log("running a task every minute");
     const eventService = new EventService();
     eventService.checkEventStatus()
