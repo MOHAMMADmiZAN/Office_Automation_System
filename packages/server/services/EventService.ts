@@ -1,6 +1,5 @@
 import Event, { IEvent } from "../models/Event";
-import * as cron from 'node-cron';
-import  moment, {Moment} from 'moment';
+import moment, { Moment } from 'moment';
 
 
 
@@ -11,7 +10,6 @@ interface IEventService {
     updateEvent(data: IEvent, id: string): Promise<IEvent | null>;
     deleteEvent(id: string): Promise<IEvent | null>;
     checkEventStatus(): Promise<void>;
-
 }
 
 
@@ -60,26 +58,17 @@ class EventService implements IEventService {
 
     async checkEventStatus(): Promise<void> {
         let events = await this.findEvents();
-            for (const event of events) {
-                let startTime : Moment = moment(event.startTime);
-                let endTime : Moment = moment(event.endTime);
-                let now : Moment = moment();
-                if (now.isSameOrAfter(startTime) && now.isSameOrBefore(endTime)) {
-                    await this.updateEvent({ ...event, status: 'RUNNING' }, event._id as string);
-                } else if (now.isSameOrAfter(endTime)) {
-                    await this.updateEvent({ ...event, status: 'FINISHED' }, event._id as string);
-                }
-
+        for (const event of events) {
+            let startTime: Moment = moment(event.startTime);
+            let endTime: Moment = moment(event.endTime);
+            let now: Moment = moment();
+            if (now.isSameOrAfter(startTime) && now.isSameOrBefore(endTime)) {
+                await this.updateEvent({ ...event, status: 'RUNNING' }, event._id as string);
+            } else if (now.isSameOrAfter(endTime)) {
+                await this.updateEvent({ ...event, status: 'FINISHED' }, event._id as string);
             }
-
-
-
-
+        }
     }
-
-
-
-
 }
 
 
