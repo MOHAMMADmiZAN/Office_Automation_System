@@ -1,6 +1,7 @@
 ## Contents
 * [Case Study](#case-study)
 * [Reference](#reference)
+* [Plugin Used](#plugin-used)
 * [Tools](#tools)
 
 ### Case Study 
@@ -60,6 +61,16 @@
 - [Follow Design](https://github.com/MOHAMMADmiZAN/dressmart)
 - [Mui](https://mui.com/), [Mui Github](https://github.com/mui)
 - [Chaldal](https://chaldal.com/)
+
+### Plugin Used
+- [Lerna](https://lerna.js.org/) - The Original Tool for JavaScript Monorepos
+- [State management](https://easy-peasy.vercel.app/docs/api/persist.html) - This helper allows you to persist your store state.
+- [React Router v6.8.0](https://reactrouter.com/en/main)
+- [React select](https://react-select.com/home#custom-styles)
+- [React toastify](https://www.npmjs.com/package/react-toastify)
+- [Sweetalert2](https://sweetalert2.github.io/#download)
+- [Yup](https://www.npmjs.com/package/yup) - Yup is a JavaScript schema builder for value parsing and validation.
+- [vitest](https://vitest.dev/) - Configure for testing.
 
 ### Tools
 - [Diagrams.net](https://www.diagrams.net/) - Using for diagrams
