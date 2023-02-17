@@ -35,5 +35,5 @@ connectDB(DB_URI).then(() => {
 cron.schedule("*/120 * * * * *", async () => {
     console.log("running a task every minute");
     const eventService = new EventService();
-    eventService.checkEventStatus()
+   await eventService.checkEventStatus()
 })

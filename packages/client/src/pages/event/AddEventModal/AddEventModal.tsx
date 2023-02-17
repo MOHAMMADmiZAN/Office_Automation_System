@@ -99,23 +99,19 @@ export const eventFormFields: eventFormInputField[] = [
 const AddEventModal: React.FC<ADD_EVENT_MODAL_PROPS> = (props): JSX.Element => {
 
     const {userId} = useAuth();
-    const {mutate, isLoading, error} = useMutation(EventApi.eventCreate, {
-        onSuccess: async (data) => {
-            console.log(data);
-            await queryClient.invalidateQueries('allEvents');
+    const {mutate: createEvent, isLoading, error} = useMutation(EventApi.eventCreate, {
+      onSuccess: async (data) => {
+          await queryClient.invalidateQueries("allEvents");
 
+      },
+        onError: (error) => {
+            console.log(error);
         }
     })
     const queryClient = useQueryClient();
 
 
-    const onSubmit: SubmitHandler<IEventPayload> = async (data) => {
-
-        // console.log(data);
-         mutate(data);
-
-
-    }
+    const onSubmit: SubmitHandler<IEventPayload> = async (data) => {await createEvent(data);}
     return (
         <>
             <CustomModal modalId={`add-event`} modalContent={
