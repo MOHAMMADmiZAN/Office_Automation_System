@@ -7,7 +7,7 @@ const app = express();
 import morgan from 'morgan';
 import errorMiddleware from "./middleware/ErrorMiddleware";
 import * as cron from 'node-cron';
-import { useCronjob } from "./utils/helper";
+import EventService from "./services/EventService";
 
 
 
@@ -34,5 +34,6 @@ connectDB(DB_URI).then(() => {
 // Call cronjob
 cron.schedule("*/120 * * * * *", async () => {
     console.log("running a task every minute");
-    useCronjob();
+    const eventService = new EventService();
+    eventService.checkEventStatus()
 })
