@@ -88,7 +88,7 @@ class EventController extends EventService implements IEventController {
             const invitation = event.invitation.reduce((acc, cur) => {
                 const objectId = new ObjectId(userId)
 
-                if (JSON.stringify(cur._id) === JSON.stringify(objectId)) {
+                if (JSON.stringify(cur.userId) === JSON.stringify(objectId)) {
                     cur.status = status;
                 }
                 acc.push(cur);

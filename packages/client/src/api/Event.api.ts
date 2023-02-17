@@ -6,7 +6,7 @@ interface IEventApi {
     eventCreate: (payload: IEventPayload) => Promise<IEventPayloadWithId>;
     eventUpdate: (payload: IEventPayload, id: string) => Promise<IEventPayloadWithId>;
     eventDelete: (id: string) => Promise<IEventPayloadWithId>;
-
+    changeInviteStatus: (id: string, payload: IChangeInvitedEventStatus) => Promise<IChangeInvitedEventStatus>;
 }
 
 
@@ -24,6 +24,11 @@ export interface IEventPayload {
 }
  export interface IEventPayloadWithId extends IEventPayload {
     _id: string;
+}
+
+export interface IChangeInvitedEventStatus {
+    userId: string,
+    status: string
 }
 
 
@@ -67,7 +72,15 @@ export const EventApi : IEventApi = {
         } catch (e) {
             console.log(e)
         }
-    }
+    },
+    changeInviteStatus: async (id: string, payload: IChangeInvitedEventStatus) => {
+        try {
+            const response = await PrivateApiInstance.put(`/event/changeInviteStatus/${id}`, payload);
+            return response.data;
+        } catch (e) {
+            console.log(e)
+        }
+    },
 
 
 }
