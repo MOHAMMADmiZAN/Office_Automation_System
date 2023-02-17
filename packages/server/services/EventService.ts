@@ -1,5 +1,5 @@
 import Event, { IEvent } from "../models/Event";
-import moment, { Moment } from 'moment';
+import moment from 'moment';
 import { dateTimeFormat } from "../utils/helper";
 
 
@@ -11,6 +11,15 @@ interface IEventService {
     updateEvent(data: IEvent, id: string): Promise<IEvent | null>;
     deleteEvent(id: string): Promise<IEvent | null>;
     checkEventStatus(): Promise<void>;
+}
+
+export interface IEventUpdate {
+    title: string;
+    description?: string;
+    startTime: string;
+    endTime: string;
+    invitation?: any;
+    status?: string;
 }
 
 
@@ -41,13 +50,15 @@ class EventService implements IEventService {
     }
 
     async updateEvent(data: IEvent, id: string): Promise<IEvent | null> {
-        let event = {
+        let event: IEventUpdate = {
             title: data.title,
             description: data.description,
             startTime: dateTimeFormat(data.startTime),
             endTime: dateTimeFormat(data.endTime),
             invitation: data.invitation,
-            type: data.type,
+        }
+        if (data.status) {
+            event.status = data.status
         }
         return Event.findByIdAndUpdate(id, { ...event }, { new: true });
     }
@@ -60,17 +71,21 @@ class EventService implements IEventService {
     async checkEventStatus(): Promise<void> {
         let events = await this.findEvents();
         for (const event of events) {
-            let startTime: Moment = moment(event.startTime);
-            let endTime: Moment = moment(event.endTime);
-            let now: Moment = moment();
-            if (now.isSameOrAfter(startTime) && now.isSameOrBefore(endTime)) {
-                await this.updateEvent({ ...event, status: 'RUNNING' }, event._id as string);
-            } else if (now.isSameOrAfter(endTime)) {
-                await this.updateEvent({ ...event, status: 'FINISHED' }, event._id as string);
+            console.log('inside checkEventStatus event=', event);
+            if (!event.startTime) return;
+
+            let startTime = moment(event.startTime).unix();
+            let endTime = moment(event.endTime).unix();
+            let nowTime = moment(new Date()).unix();
+
+            if (startTime < nowTime && nowTime < endTime) {
+                await Event.findByIdAndUpdate(event._id, { status: 'RUNNING' }, { new: true });
+                console.log('Change status RUNNING')
+            } else if (nowTime > endTime) {
+                await Event.findByIdAndUpdate(event._id, { status: 'FINISHED' }, { new: true });
+                console.log('Change status FINISHED')
             }
         }
     }
 }
-
-
 export default EventService;
