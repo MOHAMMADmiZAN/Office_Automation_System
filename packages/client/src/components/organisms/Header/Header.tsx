@@ -9,14 +9,14 @@ import {
     MenuItem,
     MenuList,
     Paper,
-    Tooltip,
+    Tooltip, Typography,
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import {Logout, Notifications} from "@mui/icons-material";
+import {Notifications} from "@mui/icons-material";
 import logo from "../../../assets/vite.svg";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {HeaderBox} from "./styles/Header.style";
-import ManageAccountsIcon from '@mui/icons-material/ManageAccounts';
+import useAuth from "../../../hooks/useAuth";
 
 interface HEADER_PROPS {
     controlSidebar: () => void;
@@ -35,6 +35,7 @@ export interface AccountMenuItem {
 
 const Header: React.FC<HEADER_PROPS> = ({controlSidebar,accountMenuItems}) => {
     const [accountMenu, setAccountMenu] = useState(false);
+    const {user} = useAuth()
     const accountToggle = () => setAccountMenu((prevOpen) => !prevOpen);
 
     return (
@@ -57,6 +58,7 @@ const Header: React.FC<HEADER_PROPS> = ({controlSidebar,accountMenuItems}) => {
                         </IconButton>
                     </Tooltip>
                     <IconButton onClick={accountToggle}>
+                        <Typography variant={`h6`} component={`h6`} color={`primary.main`}>{user.firstName}</Typography>
                         <AccountCircleIcon/>
                         {
                             accountMenu && (

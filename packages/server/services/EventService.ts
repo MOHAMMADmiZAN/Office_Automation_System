@@ -71,7 +71,6 @@ class EventService implements IEventService {
     async checkEventStatus(): Promise<void> {
         let events = await this.findEvents();
         for (const event of events) {
-            console.log('inside checkEventStatus event=', event);
             if (!event.startTime) return;
 
             let startTime = moment(event.startTime).unix();
@@ -80,10 +79,9 @@ class EventService implements IEventService {
 
             if (startTime < nowTime && nowTime < endTime) {
                 await Event.findByIdAndUpdate(event._id, { status: 'RUNNING' }, { new: true });
-                console.log('Change status RUNNING')
             } else if (nowTime > endTime) {
                 await Event.findByIdAndUpdate(event._id, { status: 'FINISHED' }, { new: true });
-                console.log('Change status FINISHED')
+
             }
         }
     }

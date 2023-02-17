@@ -1,17 +1,17 @@
 import connectDB from "./db";
 import router from "./router/api";
-import express, { NextFunction, Request, Response } from 'express';
+import express from 'express';
 import http from 'http';
 import cors from 'cors';
-const app = express();
 import morgan from 'morgan';
 import errorMiddleware from "./middleware/ErrorMiddleware";
 import * as cron from 'node-cron';
 import EventService from "./services/EventService";
 
+const app = express();
 
 
-app.use([express.json(), cors(), express.urlencoded({ extended: true }), express.static('public'), router, morgan('tiny')]);
+app.use([express.json(), cors(), express.urlencoded({extended: true}), express.static('public'), router, morgan('tiny')]);
 app.use(errorMiddleware);
 
 
@@ -33,7 +33,6 @@ connectDB(DB_URI).then(() => {
 
 // Call cronjob 120
 cron.schedule("*/60 * * * * *", async () => {
-    console.log("running a task every minute");
     const eventService = new EventService();
-   await eventService.checkEventStatus()
+    await eventService.checkEventStatus()
 })
