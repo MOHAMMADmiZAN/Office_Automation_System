@@ -106,7 +106,9 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
      })
 
     const handleEventDelete = (id: string) => {
+        console.log('evnet deleted id: ', id)
         eventDelete(id);
+        
     };
 
     const changeInviteStatus = (id: string, status: string) => {
@@ -190,6 +192,7 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
                                     </>
                                 )
                             }
+                            
 
                         </Box>
 
@@ -203,6 +206,8 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
             }
         });
     }
+
+    
 
 
     return (

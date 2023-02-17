@@ -7,6 +7,9 @@ import {eventFormFields} from "../../../../pages/event";
 import {FORM_INPUT_PROPS} from "../../../molecules/Form/FormInput/Form_Input";
 import {eventValidation} from "../../../../utils/Validation";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
  export interface EDIT_EVENT_MODAL_PROPS {
     eventData: IEventPayloadWithId;
 
@@ -23,6 +26,10 @@ const EditEventModal: React.FC<EDIT_EVENT_MODAL_PROPS> = ({eventData}): JSX.Elem
 
 
     const onSubmit: SubmitHandler<IEventPayload> = async (data) => {
+        toast("Event Updated Successfully.", {
+            position: "bottom-right",
+            autoClose: 2000,
+        });
         await editEvent(data);
 
 
@@ -35,6 +42,7 @@ const EditEventModal: React.FC<EDIT_EVENT_MODAL_PROPS> = ({eventData}): JSX.Elem
                 FormInputFields={[...eventFormFields] as FORM_INPUT_PROPS[]}
                 validationRules={eventValidation}
                 onSubmit={onSubmit} btnText={'Edit Event Details'}/>
+            <ToastContainer />
         </>
     )
 

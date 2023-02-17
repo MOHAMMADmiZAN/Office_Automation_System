@@ -17,6 +17,8 @@ import TodayEvent from "./TodayEvent/TodayEvent";
 import UpcomingEvent from "./UpComingEvent/UpcomingEvent";
 import EventHistory from "./EventHistory/EventHistory";
 import EventRequest from "./EventRequest/EventRequest";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 
 
@@ -123,6 +125,10 @@ const Event: React.FC<EVENT_PROPS> = () => {
 
     const onSubmit: SubmitHandler<IEventPayload> = async (data) => {
 
+        toast("Event Added Successfully.", {
+            position: "bottom-right",
+            autoClose: 2000,
+        });
         // console.log(data);
         await mutate(data);
 
@@ -156,12 +162,15 @@ const Event: React.FC<EVENT_PROPS> = () => {
                             defaultValues={{...defaultValues, author: userId}}
                             btnText={`Add Event`}
                             onSubmit={onSubmit} validationRules={eventValidation}/>
+                
             }
                          ModalBtnIcon={<Add/>}
                          modalTitle={`Add Event`}
                          modalBtnText={`Add Event`}
                          modalBtnVariant={`outlined`}
+                         
             />
+            <ToastContainer />
             <CommonCard CardMain={<CustomTabs tabs={tabItems} ariaLabel={'event-tab'}/>}/>
         </>
     );

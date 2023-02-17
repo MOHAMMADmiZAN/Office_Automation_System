@@ -24,5 +24,8 @@
   ],
   "devDependencies": {
     "lerna": "^6.4.1"
+  },
+  "dependencies": {
+    "react-toastify": "^9.1.1"
   }
 }
