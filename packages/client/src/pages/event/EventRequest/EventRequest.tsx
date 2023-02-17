@@ -15,7 +15,7 @@ const EventRequest: React.FC<EVENT_REQUEST_PROPS> = (props): JSX.Element => {
 
     const handleRowFunc = (item: IEventPayloadWithId) => {
 
-        return item.invitation.find((i: inviteUser) => i.userId === userId);
+        return item.invitation.find((i: inviteUser) => i.userId === userId && i.status === 'PENDING');
 
 
     }
