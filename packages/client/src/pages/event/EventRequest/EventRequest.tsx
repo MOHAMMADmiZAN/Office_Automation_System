@@ -2,7 +2,7 @@ import React from 'react';
 import EventLayout from "../EventLayout/EventLayout";
 import useAuth from "../../../hooks/useAuth";
 import {IEventPayloadWithId} from "../../../api/Event.api";
-import {inviteUser} from "../../../components/organisms/CustomModal/InviteUsersModal/InviteUsersModal";
+import {inviteUser} from "../InviteUsersModal/InviteUsersModal";
 
 interface EVENT_REQUEST_PROPS {
 

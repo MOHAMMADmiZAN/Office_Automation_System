@@ -40,7 +40,7 @@ const CustomModal: React.FC<CUSTOM_MODAL_PROPS> = ({
         <>
 
                 <Btn type={`button`} BtnText={modalBtnText} size={`small`} variant={modalBtnVariant}
-                     onClick={handleClickOpen} BtnStartIcon={ModalBtnIcon} styles={{margin:'20px 0' , maxWidth:'250px'}}/>
+                     onClick={handleClickOpen} BtnStartIcon={ModalBtnIcon} styles={{maxWidth:'250px'}}/>
 
 
             {

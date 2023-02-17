@@ -1,5 +1,5 @@
 import React from 'react';
-import EventLayout, {EVENT_LAYOUT_PROPS} from "../EventLayout/EventLayout";
+import EventLayout from "../EventLayout/EventLayout";
 import moment from "moment";
 import {IEventPayloadWithId} from "../../../api/Event.api";
 

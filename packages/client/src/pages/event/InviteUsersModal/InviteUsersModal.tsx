@@ -1,13 +1,13 @@
 import React from 'react';
-import {User} from "../../../../store/models/AuthModel";
+import {User} from "../../../store/models/AuthModel";
 import {EDIT_EVENT_MODAL_PROPS} from "../EditEventModal/EditEventModal";
 import {useMutation, useQueryClient} from "react-query";
-import {EventApi, IEventPayload} from "../../../../api/Event.api";
-import {FORM_INPUT_PROPS, selectOption} from "../../../molecules/Form/FormInput/Form_Input";
+import {EventApi, IEventPayload} from "../../../api/Event.api";
+import {FORM_INPUT_PROPS, selectOption} from "../../../components/molecules/Form/FormInput/Form_Input";
 import {SubmitHandler} from "react-hook-form";
-import FormLayOut from "../../Form/FormLayOut/FormLayOut";
-import {eventValidation} from "../../../../utils/Validation";
-import useAuth from "../../../../hooks/useAuth";
+import FormLayOut from "../../../components/organisms/Form/FormLayOut/FormLayOut";
+import {eventValidation} from "../../../utils/Validation";
+import useAuth from "../../../hooks/useAuth";
 
 interface INVITE_USERS_MODAL_PROPS  extends EDIT_EVENT_MODAL_PROPS{
     authors: User[];

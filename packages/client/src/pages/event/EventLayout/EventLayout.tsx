@@ -1,19 +1,16 @@
-import React, { memo } from 'react';
-import { EventApi, IChangeInvitedEventStatus, IEventPayloadWithId } from "../../../api/Event.api";
-import { User } from "../../../store/models/AuthModel";
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import DataTable, { DataTableData } from "../../../components/organisms/DataTable/DataTable";
+import React, {memo} from 'react';
+import {EventApi, IChangeInvitedEventStatus, IEventPayloadWithId} from "../../../api/Event.api";
+import {User} from "../../../store/models/AuthModel";
+import {useMutation, useQuery, useQueryClient} from "react-query";
+import DataTable, {DataTableData} from "../../../components/organisms/DataTable/DataTable";
 import moment from "moment/moment";
-import { Box, Typography } from "@mui/material";
+import {Box, Typography} from "@mui/material";
 import CustomModal from "../../../components/organisms/CustomModal/CustomModal";
-import { Delete, Edit, InsertInvitation } from "@mui/icons-material";
+import {Delete, Edit, InsertInvitation} from "@mui/icons-material";
 import Btn from "../../../components/molecules/Form/Btn";
-import EditEventModal from '../../../components/organisms/CustomModal/EditEventModal/EditEventModal';
-import InviteUsersModal, {
-    inviteUser
-} from "../../../components/organisms/CustomModal/InviteUsersModal/InviteUsersModal";
-import { RowItem } from "../../../components/organisms/DataTable/DataTableRow/DataTableRow";
-import { UserApi } from "../../../api/User.api";
+import EditEventModal from '../EditEventModal/EditEventModal';
+import InviteUsersModal, {inviteUser} from "../InviteUsersModal/InviteUsersModal";
+import {UserApi} from "../../../api/User.api";
 import useAuth from "../../../hooks/useAuth";
 
 export interface EVENT_LAYOUT_PROPS {

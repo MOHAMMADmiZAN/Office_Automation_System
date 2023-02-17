@@ -1,13 +1,13 @@
 import React from 'react';
-import {EventApi, IEventPayload, IEventPayloadWithId} from "../../../../api/Event.api";
+import {EventApi, IEventPayload, IEventPayloadWithId} from "../../../api/Event.api";
 import {useMutation, useQueryClient} from "react-query";
 import {SubmitHandler} from "react-hook-form";
-import FormLayOut from "../../Form/FormLayOut/FormLayOut";
-import {eventFormFields} from "../../../../pages/event";
-import {FORM_INPUT_PROPS} from "../../../molecules/Form/FormInput/Form_Input";
-import {eventValidation} from "../../../../utils/Validation";
+import FormLayOut from "../../../components/organisms/Form/FormLayOut/FormLayOut";
+import {eventFormFields} from "../AddEventModal/AddEventModal";
+import {FORM_INPUT_PROPS} from "../../../components/molecules/Form/FormInput/Form_Input";
+import {eventValidation} from "../../../utils/Validation";
 
- export interface EDIT_EVENT_MODAL_PROPS {
+export interface EDIT_EVENT_MODAL_PROPS {
     eventData: IEventPayloadWithId;
 
 }
