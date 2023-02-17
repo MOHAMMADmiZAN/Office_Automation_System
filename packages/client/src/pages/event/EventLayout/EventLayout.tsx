@@ -66,7 +66,12 @@ const dataTableData: DataTableData = {
         rowsPerPage: [5, 10, 15],
     },
 }
+  interface changeInviteStatusMutatePayload {
+        eventId: string,
+       data: IChangeInvitedEventStatus
 
+
+  }
 const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, isBodyRowFunc }): JSX.Element => {
     const queryClient = useQueryClient();
     const { userId } = useAuth();
@@ -87,23 +92,34 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
         },
     });
 
-    const { mutate } = useMutation((id: string) => EventApi.eventDelete(id), {
+    const { mutate: eventDelete } = useMutation((id: string) => EventApi.eventDelete(id), {
         onSuccess: async () => {
             await queryClient.invalidateQueries("allEvents");
+
         },
     });
+     const { mutate: changeInviteStatusMutate } = useMutation((payload:changeInviteStatusMutatePayload)=>EventApi.changeInviteStatus(payload.eventId,payload.data),{
+         onSuccess: async (data) => {
+             await queryClient.invalidateQueries("allEvents");
+             console.log(data)
+         }
+     })
 
     const handleEventDelete = (id: string) => {
-        mutate(id);
+        eventDelete(id);
     };
 
     const changeInviteStatus = (id: string, status: string) => {
         if (!userId) return;
         const payload = {
-            userId,
-            status
+            eventId: id,
+            data:{
+                userId,
+                status
+            }
         }
-        EventApi.changeInviteStatus(id, payload);
+
+        changeInviteStatusMutate(payload);
     };
     
     
