@@ -1,8 +1,7 @@
-import EventService from "../services/EventService"
+import moment from 'moment';
 
-const eventService = new EventService();
 
-export const useCronjob = () => {
-    console.log('call check event status')
-    eventService.checkEventStatus()
+export const dateTimeFormat = (dateTime: string | undefined) => {
+    if (!dateTime) return '';
+    return moment(dateTime).toISOString()
 }
