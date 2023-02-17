@@ -10,8 +10,7 @@ interface EVENT_HISTORY_PROPS {
 const EventHistory: React.FC<EVENT_HISTORY_PROPS> = (props): JSX.Element => {
 
     const handleRowFunc = (item: IEventPayloadWithId) => {
-
-        return moment(item.endTime).isAfter(moment()) && moment(item.startTime).isAfter(moment())
+        return moment(item.endTime).isBefore(moment()) || item.status === 'FINISHED'
 
     }
     return (

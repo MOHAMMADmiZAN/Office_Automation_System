@@ -15,7 +15,7 @@ const TodayEvent: React.FC<TODAY_EVENT_PROPS> = (): JSX.Element => {
 
 
     const handleRowFunc = (item:Date)=>{
-      return   moment(item).isSame(moment(), "day");
+      return  moment(item).isSame(moment(), "day");
     }
 
 
