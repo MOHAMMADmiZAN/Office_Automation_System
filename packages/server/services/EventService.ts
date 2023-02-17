@@ -1,6 +1,5 @@
 import Event, { IEvent } from "../models/Event";
 import moment, { Moment } from 'moment';
-import { dateTimeFormat } from "../utils/helper";
 
 
 
@@ -21,8 +20,8 @@ class EventService implements IEventService {
             title: data.title,
             description: data.description,
             author: data.author,
-            startTime: dateTimeFormat(data.startTime),
-            endTime: dateTimeFormat(data.endTime),
+            startTime: data.startTime,
+            endTime: data.endTime,
             invitation: data.invitation,
             type: data.type,
         })
@@ -44,8 +43,8 @@ class EventService implements IEventService {
         let event = {
             title: data.title,
             description: data.description,
-            startTime: dateTimeFormat(data.startTime),
-            endTime: dateTimeFormat(data.endTime),
+            startTime: data.startTime,
+            endTime: data.endTime,
             invitation: data.invitation,
             type: data.type,
         }
