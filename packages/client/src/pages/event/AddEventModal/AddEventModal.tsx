@@ -8,6 +8,7 @@ import useAuth from "../../../hooks/useAuth";
 import {useMutation, useQueryClient} from "react-query";
 import {EventApi, IEventPayload} from "../../../api/Event.api";
 import {SubmitHandler} from "react-hook-form";
+import {useEvent} from "../../../hooks/useEvent";
 
 interface ADD_EVENT_MODAL_PROPS {
 
@@ -99,16 +100,7 @@ export const eventFormFields: eventFormInputField[] = [
 const AddEventModal: React.FC<ADD_EVENT_MODAL_PROPS> = (props): JSX.Element => {
 
     const {userId} = useAuth();
-    const {mutate: createEvent, isLoading, error} = useMutation(EventApi.eventCreate, {
-      onSuccess: async (data) => {
-          await queryClient.invalidateQueries("allEvents");
-
-      },
-        onError: (error) => {
-            console.log(error);
-        }
-    })
-    const queryClient = useQueryClient();
+    const {createEvent}= useEvent()
 
 
     const onSubmit: SubmitHandler<IEventPayload> = async (data) => {await createEvent(data);}

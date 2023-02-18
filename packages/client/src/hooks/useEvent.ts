@@ -29,6 +29,7 @@ export const useEvent = (singleEventId?:string)=>{
 
         }
     })
+    const {mutate: createEvent} = useMutation(EventApi.eventCreate)
 
 
 
@@ -38,7 +39,8 @@ export const useEvent = (singleEventId?:string)=>{
         eventsIsLoading,
         eventDelete,
         changeInviteStatusMutate,
-        editEvent
+        editEvent,
+        createEvent
     }
 
 }
