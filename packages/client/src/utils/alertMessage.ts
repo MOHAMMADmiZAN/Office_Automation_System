@@ -17,6 +17,7 @@ export const handleErrors = (error: AxiosError) => {
         draggable: true,
         progress: undefined,
         theme: "dark",
+        toastId: "error",
     });
 
 }
@@ -30,6 +31,7 @@ export const handleErrors = (error: AxiosError) => {
         draggable: true,
         progress: undefined,
         theme: "dark",
+        toastId: "success",
     });
   }
 

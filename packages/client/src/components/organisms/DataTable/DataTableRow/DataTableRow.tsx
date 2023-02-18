@@ -16,25 +16,26 @@ export interface CollapseComponent {
 export interface RowItem {
 
     tableCell: TableCellInterface[];
+    CollapseComponent?: CollapseComponent
+
 
 
 }
 
 interface DATA_TABLE_ROW_PROPS {
     row: RowItem
-    CollapseComponent?: CollapseComponent
 
 
 }
 
 const DataTableRow: React.FC<DATA_TABLE_ROW_PROPS> = (props) => {
-    const {row, CollapseComponent} = props;
+    const {row} = props;
     const [open, setOpen] = React.useState(false);
     return (
         <>
             <TableRow sx={{'& > *': {borderBottom: 'unset'}}}>
                 {
-                    CollapseComponent && <TableCell>
+                    row.CollapseComponent && <TableCell>
                         <IconButton
                             aria-label="expand row"
                             size="small"
@@ -53,10 +54,10 @@ const DataTableRow: React.FC<DATA_TABLE_ROW_PROPS> = (props) => {
                 })}
             </TableRow>
             {
-                CollapseComponent && <TableRow>
+                row.CollapseComponent && <TableRow>
                     <TableCell style={{paddingBottom: 0, paddingTop: 0}} colSpan={6}>
                         <Collapse in={open} timeout="auto" unmountOnExit>
-                            {CollapseComponent.CollapseComponentNode}
+                            {row.CollapseComponent.CollapseComponentNode}
                         </Collapse>
                     </TableCell>
                 </TableRow>

@@ -20,7 +20,7 @@ export const signupValidation = yup.object().shape({
     lastName: yup.string().required().min(2).max(20),
     email: yup.string().email().required(),
     password: yup.string().required().min(8).max(20).matches(passwordRegex,'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character'),
-    confirmPassword: passwordMatch(yup.ref('password'), 'Confirm Passwords must match with Password'),
+    role: yup.string().required(),
 });
 
 export const eventValidation = yup.object().shape({
@@ -55,4 +55,13 @@ enum Role {
 
 export const roleValidation = yup.object().shape({
     name: yup.string().required().oneOf(Object.values(Role)),
+});
+
+export const userinfoValidation = yup.object().shape({
+    contactNumber: yup.string().required().min(11).max(15),
+    presentAddress: yup.string().required().min(2).max(100),
+    permanentAddress: yup.string().required().min(2).max(100),
+    dateOfBirth: yup.date().required(),
+    eContactNumber: yup.string().min(11).max(15),
+
 });

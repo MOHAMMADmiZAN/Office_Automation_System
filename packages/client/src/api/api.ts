@@ -14,6 +14,19 @@ export const PublicApiInstance = axios.create({
 
 })
 
+PublicApiInstance.interceptors.response.use(
+    (response) => {
+        if (response.config.method !== 'get') {
+            // Display success message for non-GET requests
+            handleSuccess(response.data.message);
+        }
+        return response
+    }
+    ,
+    (error) => {
+        handleErrors(error)
+    }
+)
 
 
 export const PrivateApiInstance = axios.create({

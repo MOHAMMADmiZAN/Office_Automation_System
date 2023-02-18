@@ -2,7 +2,7 @@ import { Schema, model } from 'mongoose';
 
 export interface IUserBasicInfo {
     user: string;
-    contact: string;
+    contactNumber: string;
     presentAddress: string;
     permanentAddress: string;
     dateOfBirth: string;
@@ -15,7 +15,7 @@ const UserBasicInfoSchema = new Schema({
         ref: 'User',
         required: true
     },
-    contact: {
+    contactNumber: {
         type: String,
         required: [true, 'Contact number field is required'],
         trim: true

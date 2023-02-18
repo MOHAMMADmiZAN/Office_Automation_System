@@ -7,8 +7,6 @@ import {roleValidation} from "../../../utils/Validation";
 import {SubmitHandler} from "react-hook-form";
 import {IRolePayload, RoleApi} from "../../../api/Role.Api";
 import {useMutation} from "react-query";
-import {AxiosError} from "axios";
-import {handleErrors} from "../../../utils/alertMessage";
 
 interface ADD_ROLE_MODAL_PROPS {
 

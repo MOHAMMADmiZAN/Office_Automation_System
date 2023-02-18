@@ -149,7 +149,7 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                                                 key={opt.label}
                                                 value={opt.value}
                                             >
-                                                {opt.value}
+                                                {opt.label}
                                             </MenuItem>
                                         ))}
                                     </Form_Select>

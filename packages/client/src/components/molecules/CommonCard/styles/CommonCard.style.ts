@@ -14,6 +14,7 @@ export const CommonCardHeader = styled(CardHeader)(({theme}) => ({
 
 export const CommonCardLayout = styled(Card)(({theme}) => ({
     backgroundColor: theme.palette.primary.light,
+    margin: "1rem 0.2rem"
 
 })) as typeof Card;
 

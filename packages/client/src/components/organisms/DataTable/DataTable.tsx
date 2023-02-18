@@ -12,11 +12,11 @@ interface PaginateType {
 
 }
 
+
 export interface DataTableData {
     label: string;
     headerRow: RowItem;
     bodyRow: RowItem[];
-    CollapseComponent?: CollapseComponent;
     DataTablePagination?: PaginateType;
 }
 
@@ -52,10 +52,7 @@ const DataTable: React.FC<DATA_TABLE_PROPS> = ({DataTableData,title}) => {
                                {
                                    DataTableData.bodyRow.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => {
                                        return (
-                                           <DataTableRow
-                                               key={index}
-                                               row={item}
-                                               CollapseComponent={DataTableData.CollapseComponent}/>
+                                           <DataTableRow key={index} row={item}/>
                                        )
                                    })
                                }
