@@ -6,20 +6,25 @@ import {handleErrors, handleSuccess} from "../utils/alertMessage";
 export interface IRolePayload {
     name: string;
 }
+
+export interface IRoleWithId extends IRolePayload {
+    _id: string;
+}
 interface IRoleApi {
-    roleList: () => Promise<IRolePayload[]>;
+    roleList: () => Promise<IRoleWithId[]>;
     roleCreate: (payload: IRolePayload) => Promise<IRolePayload>;
     roleUpdate: (payload: IRolePayload, id: string) => Promise<IRolePayload>;
     roleDelete: (id: string) => Promise<IRolePayload>;
+    roleById: (id: string) => Promise<IRoleWithId>;
 
 
 }
-const helperFunc = new Helper();
+
 
 export const RoleApi: IRoleApi = {
     roleList: async () => {
         const response = await PrivateApiInstance.get('/role');
-        return response.data.data;
+        return response.data.roles;
 
     },
     roleCreate: async (payload: IRolePayload) => {
@@ -35,5 +40,9 @@ export const RoleApi: IRoleApi = {
     roleDelete: async (id: string) => {
         const response = await PrivateApiInstance.delete(`/role/${id}`);
         return response.data;
+    },
+    roleById: async (id: string) => {
+        const response = await PrivateApiInstance.get(`/role/${id}`);
+        return response.data.data;
     }
 }

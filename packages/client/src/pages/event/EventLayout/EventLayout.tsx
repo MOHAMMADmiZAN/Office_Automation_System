@@ -12,6 +12,8 @@ import EditEventModal from '../EditEventModal/EditEventModal';
 import InviteUsersModal, {inviteUser} from "../InviteUsersModal/InviteUsersModal";
 import {UserApi} from "../../../api/User.api";
 import useAuth from "../../../hooks/useAuth";
+import {useUsers} from "../../../hooks/useUsers";
+import {useEvent} from "../../../hooks/useEvent";
 
 export interface EVENT_LAYOUT_PROPS {
     label: string;
@@ -63,44 +65,15 @@ const dataTableData: DataTableData = {
         rowsPerPage: [5, 10, 15],
     },
 }
-  interface changeInviteStatusMutatePayload {
-        eventId: string,
-       data: IChangeInvitedEventStatus
 
-
-  }
 const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, isBodyRowFunc }): JSX.Element => {
-    const queryClient = useQueryClient();
     const { userId } = useAuth();
 
-    const { data: events } = useQuery<IEventPayloadWithId[]>(
-        "allEvents",
-        () => EventApi.eventList(),
-        {
-            onSuccess: async (data) => {
-                console.log(data);
-            },
-        }
-    );
+     const {Events: events,eventDelete,changeInviteStatusMutate} = useEvent()
 
-    const { data: authors } = useQuery<User[]>("allUser", () => UserApi.getAllUsers(), {
-        onSuccess: async (data) => {
-            console.log(`all user`, data)
-        },
-    });
+    const {Users:authors} = useUsers()
 
-    const { mutate: eventDelete } = useMutation((id: string) => EventApi.eventDelete(id), {
-        onSuccess: async () => {
-            await queryClient.invalidateQueries("allEvents");
 
-        },
-    });
-     const { mutate: changeInviteStatusMutate } = useMutation((payload:changeInviteStatusMutatePayload)=>EventApi.changeInviteStatus(payload.eventId,payload.data),{
-         onSuccess: async (data) => {
-             await queryClient.invalidateQueries("allEvents");
-             console.log(data)
-         }
-     })
 
     const handleEventDelete = (id: string) => {
         eventDelete(id);

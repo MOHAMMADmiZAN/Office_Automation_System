@@ -1,13 +1,18 @@
 import {styled} from "@mui/material/styles";
-import {Box, Card, CardContent, CardHeader, Table, TablePagination} from "@mui/material";
+import {Box, Card, CardContent, CardHeader, Paper, Table, TablePagination} from "@mui/material";
 
-export const DataTableLayout = styled(Box)(({theme}) => ({
+export const DataTableLayout = styled(Paper)(({theme}) => ({
     width: "100%",
     height: "100%",
 
+    '& .MuiSvgIcon-root': {
+        color: theme.palette.primary.main,
+    },
+    backgroundColor: theme.palette.primary.light,
 
 
-})) as typeof Box;
+
+})) as typeof Paper;
 
 export const DataTableLayoutCard = styled(Card)(({theme}) => ({
     backgroundColor: theme.palette.primary.light,

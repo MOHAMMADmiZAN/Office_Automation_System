@@ -1,4 +1,5 @@
 import UserBasicInfo, { IUserBasicInfo } from "../models/UserBasicInfo";
+import errorHandler from "../utils/error";
 
 
 
@@ -8,19 +9,19 @@ interface IUserBasicInfoService {
     findUserBasicInfos(): Promise<IUserBasicInfo[]>;
     updateUserBasicInfo(data: IUserBasicInfo, id: string): Promise<IUserBasicInfo | null>;
     deleteUserBasicInfo(id: string): Promise<IUserBasicInfo | null>;
+
 }
 
 
 class UserBasicInfoService implements IUserBasicInfoService {
 
-    createUserBasicInfo(data: IUserBasicInfo): Promise<IUserBasicInfo> {
+    async createUserBasicInfo(data: IUserBasicInfo): Promise<IUserBasicInfo> {
+        const hasInfo = await this.findUserBasicInfo('user', data.user);
+        if (hasInfo) {
+            throw errorHandler('User basic info already exists Please Update it in ProperWay', 409);
+        }
         let schema = new UserBasicInfo({
-            user: data.user,
-            contact: data.contact,
-            presentAddress: data.presentAddress,
-            permanentAddress: data.permanentAddress,
-            dateOfBirth: data.dateOfBirth,
-            eContactNumber: data.eContactNumber,
+            ...data
         })
         return schema.save();
     }
@@ -38,11 +39,7 @@ class UserBasicInfoService implements IUserBasicInfoService {
 
     async updateUserBasicInfo(data: IUserBasicInfo, id: string): Promise<IUserBasicInfo | null> {
         let schema = {
-            contact: data.contact,
-            presentAddress: data.presentAddress,
-            permanentAddress: data.permanentAddress,
-            dateOfBirth: data.dateOfBirth,
-            eContactNumber: data.eContactNumber,
+            ...data
         }
         return UserBasicInfo.findByIdAndUpdate(id, { ...schema }, { new: true });
     }
@@ -50,6 +47,8 @@ class UserBasicInfoService implements IUserBasicInfoService {
     deleteUserBasicInfo(id: string): Promise<IUserBasicInfo | null> {
         return UserBasicInfo.findByIdAndDelete(id).exec();
     }
+
+
 
 }
 

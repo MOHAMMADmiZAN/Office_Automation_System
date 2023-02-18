@@ -14,8 +14,10 @@ class UserBasicInfoController extends UserBasicInfoService implements IUserBasic
 
     public userBasicInfoCreate = async (req, res, next) => {
         try {
+
             const data = await this.createUserBasicInfo(req.body);
-            console.log('data', data);
+
+
             res.status(201).json({
                 message: 'User basic info created successfully',
                 data

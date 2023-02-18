@@ -86,6 +86,7 @@ const AuthModel: Auth = {
     Register: thunk(async (actions, payload) => {
 
         const data = await AuthApi.register(payload);
+        console.log(data)
         return !!data
 
 
