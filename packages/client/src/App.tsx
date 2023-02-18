@@ -1,6 +1,6 @@
 import React from 'react';
 import Index from "./pages/home";
-import {QueryClient, QueryClientProvider} from "react-query";
+import {QueryCache, QueryClient, QueryClientProvider} from "react-query";
 import {StoreProvider, useStoreRehydrated} from "easy-peasy";
 import store from "./store/store";
 import {ReactQueryDevtools} from "react-query/devtools";
@@ -8,6 +8,8 @@ import {CssBaseline, ThemeProvider} from "@mui/material";
 import {RouterProvider} from "react-router-dom";
 import router from "./routes";
 import {theme} from "./theme/theme";
+import 'react-toastify/dist/ReactToastify.css';
+import {ToastContainer} from "react-toastify";
 
 
  // using react query
@@ -30,7 +32,8 @@ const App: React.FC = () : JSX.Element => {
                <WaitForStateRehydration>
                    <QueryClientProvider client={queryClient}>
                        <CssBaseline/>
-                           <RouterProvider router={router}/>
+
+                       <RouterProvider router={router}/>
                        <ReactQueryDevtools initialIsOpen={false}/>
                    </QueryClientProvider>
                </WaitForStateRehydration>

@@ -4,6 +4,7 @@ import CustomModalTitle from "../../molecules/CustomModalTitle/CustomModalTitle"
 import {Box, Container, DialogContent, Tooltip} from '@mui/material';
 import CommonCard from "../../molecules/CommonCard/CommonCard";
 import useStyles from "./styles/CustomModal.style";
+import {ToastContainer} from "react-toastify";
 
 
 interface CUSTOM_MODAL_PROPS {

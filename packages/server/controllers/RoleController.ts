@@ -13,6 +13,7 @@ interface IRoleController {
 class RoleController extends RoleService implements IRoleController {
     public createUserRole = async (req, res, next) => {
         try {
+
             const role = await this.createRole(req.body);
             res.status(201).json({
                 message: 'Role created successfully',

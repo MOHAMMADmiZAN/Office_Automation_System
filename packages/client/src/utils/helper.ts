@@ -1,6 +1,16 @@
+import { AxiosError } from 'axios';
 interface HelperInterface {
     getJwtToken: () => string;
 }
+interface ErrorResponse {
+    message: string;
+    name?: string;
+    stack?: string;
+    code?: string;
+    status?: number;
+}
+
+
 
 class Helper implements HelperInterface {
     getJwtToken(): string {
@@ -11,7 +21,8 @@ class Helper implements HelperInterface {
 
     }
 
-    // unix to local time moment js
+
+
 
 
 }

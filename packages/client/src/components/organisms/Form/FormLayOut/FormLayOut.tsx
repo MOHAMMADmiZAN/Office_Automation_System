@@ -5,6 +5,7 @@ import {yupResolver} from "@hookform/resolvers/yup/dist/yup";
 import {AnyObjectSchema} from "yup";
 import Form_Input, {FORM_INPUT_PROPS} from "../../../molecules/Form/FormInput/Form_Input";
 import Btn from "../../../molecules/Form/Btn";
+import {ToastContainer} from "react-toastify";
 
 
 interface defaultValueType {
@@ -31,6 +32,7 @@ const FormLayOut: React.FC<FORM_LAY_OUT_PROPS> = ({defaultValues,onSubmit,valida
         <>
             <Grid container={true} justifyContent={`center`} alignItems={`center`}>
                 <Grid item={true} xs={12} sm={12} md={10} lg={10} xl={10}>
+                    <ToastContainer />
                     <Box component={`form`} onSubmit={handleSubmit(onSubmit)} padding={`60px 0`} display={`flex`}
                          flexWrap={`wrap`} justifyContent={`space-between`}>
                         {

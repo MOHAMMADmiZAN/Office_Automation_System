@@ -1,4 +1,5 @@
 import Role, {IRole} from "../models/Role";
+import errorHandler from "../utils/error";
 
 
 
@@ -13,6 +14,12 @@ interface IRoleService {
 
 class RoleService implements IRoleService{
    async createRole(data: IRole): Promise<void> {
+
+        const hasRole = await this.findRole('name', data.name);
+        if (hasRole) {
+            throw errorHandler('Role already exists', 409)
+        }
+
         let role = new Role({
             name: data.name
         })

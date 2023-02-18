@@ -5,6 +5,7 @@ import Register_Page from "../pages/register";
 import Event from "../pages/event";
 import NotFound from '../pages/not-found/notfound';
 import BaseLayout from "../layouts/Base.Layout";
+import User from "../pages/User";
 
 const routes =
     createRoutesFromElements([
@@ -12,7 +13,7 @@ const routes =
         <Route path="/register" element={<Register_Page/>}/>,
         <Route path="/" element={<BaseLayout/>}>
             <Route path="events" element={<Event/>}/>
-            <Route path={"users"} element={<div>Users</div>}/>
+            <Route path={"users"} element={<User/>}/>
             <Route path={"dashboard"} element={<Index/>}/>
         </Route>,
         <Route path="*" element={<NotFound />}/>

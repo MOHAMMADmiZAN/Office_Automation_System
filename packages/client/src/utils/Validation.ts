@@ -31,3 +31,28 @@ export const eventValidation = yup.object().shape({
 
 
 });
+
+// roleValidation rules with enum
+
+enum Role {
+    ADMIN = 'admin',
+    MODERATOR = 'moderator',
+    USER = 'user',
+    CEO = 'ceo',
+    CTO = 'cto',
+    COO = 'coo',
+    HR = 'hr',
+    PROJECT_MANAGER = 'project_manager',
+    DEVELOPER = 'developer',
+    DESIGNER = 'designer',
+    MARKETING = 'marketing',
+    SALES = 'sales',
+    CUSTOMER_SUPPORT = 'customer_support',
+    ACCOUNTING = 'accounting',
+    SUPER_ADMIN = 'super_admin',
+
+}
+
+export const roleValidation = yup.object().shape({
+    name: yup.string().required().oneOf(Object.values(Role)),
+});
