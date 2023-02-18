@@ -5,8 +5,8 @@ import FormLayOut from "../../../components/organisms/Form/FormLayOut/FormLayOut
 import {FORM_INPUT_PROPS, FormInputType} from "../../../components/molecules/Form/FormInput/Form_Input";
 import {roleValidation} from "../../../utils/Validation";
 import {SubmitHandler} from "react-hook-form";
-import {IRolePayload, RoleApi} from "../../../api/Role.Api";
-import {useMutation} from "react-query";
+import {IRolePayload} from "../../../api/Role.Api";
+import {useRole} from "../../../hooks/useRole";
 
 interface ADD_ROLE_MODAL_PROPS {
 
@@ -39,11 +39,7 @@ const RoleFormFields: RoleFormInputField[] = [
 ]
 const AddRoleModal: React.FC<ADD_ROLE_MODAL_PROPS> = (props): JSX.Element => {
 
-    const {mutateAsync:createRole} = useMutation(RoleApi.roleCreate,{
-        onSuccess: (data) => {
-            console.log(data)
-        }
-    })
+   const {createRole} = useRole()
     const onSubmit: SubmitHandler<IRolePayload> = async (data) => {
         await createRole(data)
 

@@ -5,6 +5,9 @@ import {UserApi} from "../../../api/User.api";
 import {useUsers} from "../../../hooks/useUsers";
 import {useRole} from "../../../hooks/useRole";
 import {useUserInfo} from "../../../hooks/useUserInfo";
+import {ViewAgenda} from "@mui/icons-material";
+import Btn from "../../../components/molecules/Form/Btn";
+import {Box} from "@mui/material";
 
 interface USER_DATA_TABLE_PROPS {
 
@@ -13,10 +16,6 @@ const dataTableData:DataTableData = {
     label: 'User Data Table',
     headerRow: {
         tableCell: [
-            {
-                align: 'center',
-                value: ''
-            },
             {
                 align: 'center',
                 value: 'Name'
@@ -69,7 +68,7 @@ const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
                     },
                     {
                         align: 'center',
-                        value: "phone"
+                        value: userInfo?.contactNumber
                     },
                     {
                         align: 'center',
@@ -77,24 +76,20 @@ const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
                     },
                     {
                         align: 'center',
-                        value: "actions"
+                        value: <Btn styles={{margin:'0',width:'200px'}} BtnStartIcon={<ViewAgenda/>} BtnText={`View Full Information`} variant={`outlined`}/>
                     }
 
                 ],
-                CollapseComponent: {
-                    CollapseComponentNode: <div>{userInfo?.permanentAddress}</div>
-                }
+
             })
         })
     }
 
 
     return (
-        <>
-
-            <DataTable DataTableData={{...dataTableData,bodyRow}}/>
-
-        </>
+     <Box sx={{padding:'24px'}}>
+         <DataTable DataTableData={{...dataTableData,bodyRow}}/>
+     </Box>
     );
 };
 

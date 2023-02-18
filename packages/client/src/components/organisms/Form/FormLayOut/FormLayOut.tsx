@@ -23,16 +23,23 @@ interface FORM_LAY_OUT_PROPS {
 }
 
 const FormLayOut: React.FC<FORM_LAY_OUT_PROPS> = ({defaultValues,onSubmit,validationRules,FormInputFields,btnText}): JSX.Element => {
-    const {control, handleSubmit} = useForm<typeof defaultValues>({
+    const {control, handleSubmit,reset} = useForm<typeof defaultValues>({
         defaultValues: {...defaultValues},
         resolver: yupResolver(validationRules),
     });
+
+    const onSubmitWithReset: SubmitHandler<any> = async (data, event) => {
+        await onSubmit(data, event);
+        reset(defaultValues);
+    };
+
+
 
     return (
         <>
             <Grid container={true} justifyContent={`center`} alignItems={`center`}>
                 <Grid item={true} xs={12} sm={12} md={10} lg={10} xl={10}>
-                    <Box component={`form`} onSubmit={handleSubmit(onSubmit)} padding={`60px 0`} display={`flex`}
+                    <Box component={`form`} onSubmit={handleSubmit(onSubmitWithReset)} padding={`60px 0`} display={`flex`}
                          flexWrap={`wrap`} justifyContent={`space-between`}>
                         {
                             FormInputFields.map((inputField, index) => {
