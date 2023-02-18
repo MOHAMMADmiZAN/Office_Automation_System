@@ -29,7 +29,12 @@ export const useEvent = (singleEventId?:string)=>{
 
         }
     })
-    const {mutate: createEvent} = useMutation(EventApi.eventCreate)
+    const {mutate: createEvent} = useMutation(EventApi.eventCreate,{
+        onSuccess: async (data) => {
+            await queryClient.invalidateQueries("allEvents");
+
+        }
+    })
 
 
 

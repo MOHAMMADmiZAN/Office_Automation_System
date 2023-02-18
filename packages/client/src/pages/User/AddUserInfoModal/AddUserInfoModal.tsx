@@ -46,7 +46,7 @@ const defaultValue :userInfoFormData = {
 const AddUserInfoModal: React.FC<ADD_USER_INFO_MODAL_PROPS> = (props): JSX.Element => {
 
     const {Users} = useUsers();
-    const {createUserInfo} = useUserInfo();
+    const {createUserInfo,userBasicInfo} = useUserInfo();
 
     const userInfoFormFields : userInfoFormField[] = [
         {
@@ -92,16 +92,14 @@ const AddUserInfoModal: React.FC<ADD_USER_INFO_MODAL_PROPS> = (props): JSX.Eleme
             placeholder: ' Select User',
             smallField: true,
             label: 'User',
-            selectOptions: Users?.map((user) => {
-                return {
-                    label: user.firstName,
-                    value: user._id
-                }
-            }) as selectOption[]
+            selectOptions: Users?.filter(user => !userBasicInfo?.some(info => info.user === user._id))?.map(user => ({
+                label: user.firstName,
+                value: user._id
+            })) as selectOption[]
+
         }
     ]
     const onSubmit : SubmitHandler<userInfoFormData> = async (data) => {
-        console.log(data)
         await createUserInfo(data);
     }
 

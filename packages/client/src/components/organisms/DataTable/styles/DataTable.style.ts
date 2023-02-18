@@ -4,6 +4,8 @@ import {Box, Card, CardContent, CardHeader, Paper, Table, TablePagination} from 
 export const DataTableLayout = styled(Paper)(({theme}) => ({
     width: "100%",
     height: "100%",
+    padding: "1rem",
+
 
     '& .MuiSvgIcon-root': {
         color: theme.palette.primary.main,
@@ -12,10 +14,12 @@ export const DataTableLayout = styled(Paper)(({theme}) => ({
 
 
 
+
 })) as typeof Paper;
 
 export const DataTableLayoutCard = styled(Card)(({theme}) => ({
     backgroundColor: theme.palette.primary.light,
+
 
 
 })) as typeof Card;
@@ -73,8 +77,11 @@ export const DataTablePagination = styled(TablePagination)(({theme}) => ({
 })) as typeof TablePagination;
 
 export const DataLayoutTable = styled(Table)(({theme}) => ({
+    border: "1px solid",
+    borderColor: theme.palette.primary.main,
     '& .MuiTableHead-root': {
         backgroundColor: theme.palette.primary.light,
+
 
 
     },
