@@ -1,14 +1,15 @@
-import {Router} from "express";
+import { Router } from "express";
 import UserController from "../controllers/UserController";
-import UserService from "../services/UserService";
+import { fileUpload } from "../middleware/FileUpload";
 
 
 
-const userController = new UserController();
 const UserRouter = Router()
+const userController = new UserController();
 
 
 UserRouter.get('/', userController.userList)
+UserRouter.put('/changeAvatar/:id', fileUpload.single('image'), userController.avatarUpdate)
 
 
 
