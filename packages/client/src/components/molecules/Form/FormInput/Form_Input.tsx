@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, memo} from 'react';
+import React, {memo} from 'react';
 import {Control} from "react-hook-form/dist/types/form";
 import {Controller} from "react-hook-form";
 import {
@@ -9,7 +9,7 @@ import {
     FromSelectLabel,
 } from "./styles/FormInput.style";
 
-import {Autocomplete, FormControl, MenuItem, Typography} from "@mui/material";
+import {FormControl, MenuItem, Typography} from "@mui/material";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
@@ -63,7 +63,7 @@ function isAvatar(value: string): { borderRadius: string; width: string; height:
     if (value === "avatar") {
         return {borderRadius: "50%", width: "10rem", height: "10rem"};
     }
-    return {borderRadius: "4px", width: "10rem", height: "10rem"};
+    return {borderRadius: "4px", width: "100%", height: "2.4rem"};
 
 }
 
@@ -102,6 +102,7 @@ export interface FORM_INPUT_PROPS {
 }
 
 
+
 const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                                                    type,
                                                    name,
@@ -115,21 +116,7 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                                                    smallField
                                                }): JSX.Element => {
 
-    const [preview, setPreview] = React.useState<string|null>(null);
 
-    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-        // set file preview url
-        if (e.target.files && e.target.files[0]) {
-            const reader = new FileReader();
-            reader.onload = (e) => {
-                if (e.target?.result) {
-                    setPreview(e.target.result as string);
-                }
-            };
-            reader.readAsDataURL(e.target.files[0]);
-        }
-
-    }
 
 
     return (
@@ -218,21 +205,9 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                         <Controller render={({field, fieldState: {error}, formState: {isValid},}) => {
                             return (
                                 <Form_uploadBox component="label" sx={isAvatar(name)}>
-                                    <input type={type} id={name} hidden={true} {...field}  />
-                                    {
-                                        name !== 'avtar' && !preview && (
-                                            <>
-                                                <Typography variant={`h6`} component={`h6`}
-                                                            sx={{textTransform: 'capitalize'}}>{label}</Typography>
-                                                <CloudUploadIcon sx={{color: 'primary.main', marginLeft: '5px'}}/>
-                                            </>
-                                        )
-                                    }
-                                    {
-                                       name === 'avatar'&& preview && (
-                                           <img src={preview} alt={preview} width={`100%`} height={`100%`}/>
-                                        )
-                                    }
+                                    <input type={type} id={name} hidden={true} {...field} />
+                                    <Typography variant={`h6`} component={`h6`} sx={{textTransform: 'capitalize'}}>{label}</Typography>
+                                    <CloudUploadIcon sx={{color: 'primary.main', marginLeft: '5px'}}/>
                                 </Form_uploadBox>
                             )
                         }
