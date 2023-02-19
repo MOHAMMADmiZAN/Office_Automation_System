@@ -1,62 +1,53 @@
-import multer from 'multer';
-import cloudinary from 'cloudinary'
+import multer, { Multer } from 'multer';
+import cloudinary, { v2 as cloudinaryV2 } from 'cloudinary';
 
-const cloudinaryV2 = cloudinary.v2
-const fileUpload = multer({
+const fileUpload: Multer = multer({
     storage: multer.diskStorage({}),
     limits: {
         fileSize: 10000000 // maximum file size in bytes (10 MB)
     },
-    fileFilter: (req: any, file: any, callback: any) => {
+    fileFilter: (req, file, callback) => {
         if (!file.originalname.match(/\.(jpg|jpeg|png|gif|pdf|doc|docx|xls|xlsx)$/)) {
             return callback(new Error('Only image, pdf, doc and excel files are allowed!'))
         }
         callback(null, true)
     }
-})
-
-
-cloudinaryV2.config({
-    cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
-    api_key: process.env.CLOUDINARY_API_KEY,
-    api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
+cloudinaryV2.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
+    api_key: process.env.CLOUDINARY_API_KEY!,
+    api_secret: process.env.CLOUDINARY_API_SECRET!,
+});
 
-async function handleFileUpload(file: any): Promise<any> {
-    return new Promise((resolve: any, reject: any) => {
-        if (!file?.path) {
-            reject(new Error("File not found!"))
-        }
-        cloudinaryV2.uploader.upload(file.path, (error: any, result: any) => {
-            if (error) {
-                console.log('Error uploading file to Cloudinary: ', error);
-                reject(error)
-            }
-            // Return Cloudinary URL of uploaded file
-            console.log('file upload successfully=', result)
-            resolve(result.secure_url)
-        });
-    })
-}
+const handleFileUpload = async (file: Express.Multer.File): Promise<string> => {
+    if (!file?.path) {
+        throw new Error("File not found!");
+    }
 
-async function handleFileDelete(path: string): Promise<any> {
-    return new Promise((resolve: any, reject: any) => {
-        cloudinaryV2.uploader.destroy(path, (error: any, result: any) => {
-            if (error) {
-                console.log('Error delete file to Cloudinary: ', error);
-                reject(error)
-            }
-            // Return Cloudinary URL of uploaded file
-            console.log('file delete successfully=', result)
-            resolve(result)
-        });
-    })
-}
+    try {
+        const result = await cloudinaryV2.uploader.upload(file.path);
+        console.log('file upload successfully:', result);
+        return result.secure_url!;
+    } catch (error) {
+        console.log('Error uploading file to Cloudinary:', error);
+        throw error;
+    }
+};
 
+const handleFileDelete = async (path: string): Promise<any> => {
+    try {
+        const result = await cloudinaryV2.uploader.destroy(path);
+        console.log('file delete successfully:', result);
+        return result;
+    } catch (error) {
+        console.log('Error delete file to Cloudinary:', error);
+        throw error;
+    }
+};
 
 export {
     fileUpload,
     handleFileUpload,
     handleFileDelete
-}
+};
