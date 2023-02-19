@@ -10,14 +10,14 @@ export interface IRolePayload {
 export interface IRoleWithId extends IRolePayload {
     _id: string;
 }
+
+
 interface IRoleApi {
     roleList: () => Promise<IRoleWithId[]>;
     roleCreate: (payload: IRolePayload) => Promise<IRolePayload>;
     roleUpdate: (payload: IRolePayload, id: string) => Promise<IRolePayload>;
     roleDelete: (id: string) => Promise<IRolePayload>;
     roleById: (id: string) => Promise<IRoleWithId>;
-
-
 }
 
 

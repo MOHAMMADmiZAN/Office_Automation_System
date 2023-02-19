@@ -7,7 +7,7 @@ interface IRoleController {
     findUserRole: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     findUserRoles: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     deleteUserRole: (req: Request, res: Response, next: NextFunction) => Promise<void>;
-
+    updateUserRole: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 
 class RoleController extends RoleService implements IRoleController {
@@ -53,6 +53,18 @@ class RoleController extends RoleService implements IRoleController {
             res.status(200).json({
                 message: 'Role deleted successfully',
                 role
+            })
+        } catch (error: any) {
+            next(error)
+        }
+    }
+
+    public updateUserRole = async (req, res, next) => {
+        try {
+            const data = await this.roleUpdate(req.body, req.params.id);
+            res.status(201).json({
+                message: 'Role updated successfully',
+                data
             })
         } catch (error: any) {
             next(error)
