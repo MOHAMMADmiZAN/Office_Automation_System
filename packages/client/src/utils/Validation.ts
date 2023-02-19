@@ -21,14 +21,7 @@ export const signupValidation = yup.object().shape({
     email: yup.string().email().required(),
     password: yup.string().min(8).max(20).matches(passwordRegex,'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character').required(),
     role: yup.string().required(),
-    avatar: yup
-        .mixed()
-        .test("fileType", "Invalid file format", (value) =>
-            value && ["image/jpeg", "image/png", "image/gif"].includes(value.type)
-        )
-        .test("fileSize", "File too large", (value) =>
-            value && value.size <= 5242880
-        ),
+    avatar: yup.string(),
 });
 
 export const eventValidation = yup.object().shape({
@@ -73,3 +66,9 @@ export const userinfoValidation = yup.object().shape({
     eContactNumber: yup.string().min(11).max(15),
 
 });
+
+ export const DocumentValidation = yup.object().shape({
+    title: yup.string().required().min(2).max(20),
+    document: yup.string(),
+    user: yup.string().required(),
+ });
