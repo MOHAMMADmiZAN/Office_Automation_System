@@ -14,6 +14,9 @@ cloudinaryV2.config({
 
 async function handleFileUpload(file: any): Promise<any> {
     return new Promise((resolve: any, reject: any) => {
+        if (!file?.path) {
+            reject(new Error("File not found!"))
+        }
         cloudinaryV2.uploader.upload(file.path, (error: any, result: any) => {
             if (error) {
                 console.log('Error uploading image to Cloudinary: ', error);
@@ -26,8 +29,23 @@ async function handleFileUpload(file: any): Promise<any> {
     })
 }
 
+async function handleFileDelete(path: string): Promise<any> {
+    return new Promise((resolve: any, reject: any) => {
+        cloudinaryV2.uploader.destroy(path, (error: any, result: any) => {
+            if (error) {
+                console.log('Error delete file to Cloudinary: ', error);
+                reject(error)
+            }
+            // Return Cloudinary URL of uploaded image
+            console.log('file delete successfully=', result)
+            resolve(result)
+        });
+    })
+}
+
 
 export {
     fileUpload,
-    handleFileUpload
+    handleFileUpload,
+    handleFileDelete
 }
