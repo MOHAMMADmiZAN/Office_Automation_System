@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {ChangeEventHandler, memo} from 'react';
 import {Control} from "react-hook-form/dist/types/form";
 import {Controller} from "react-hook-form";
 import {
@@ -13,7 +13,7 @@ import {Autocomplete, FormControl, MenuItem, Typography} from "@mui/material";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
-import {DateTimePicker} from "@mui/x-date-pickers";
+import {DatePicker, DateTimePicker} from "@mui/x-date-pickers";
 import Select from "react-select";
 import makeAnimated from 'react-select/animated';
 
@@ -39,6 +39,7 @@ export type FormInputType =
     | 'radio'
     | 'textarea'
     | 'autocomplete'
+    | 'avatar'
 
 
 const FormTextInputType: FormInputType[] = ['text', 'email', 'password', 'number', 'tel']
@@ -46,13 +47,25 @@ const FormSelectInputType: FormInputType[] = ['select']
 const FormCheckboxInputType: FormInputType[] = ['checkbox']
 const FormRadioInputType: FormInputType[] = ['radio']
 const FormTextAreaInputType: FormInputType[] = ['textarea']
-const FormDateInputType: FormInputType[] = ['date', 'time', 'month', 'week', 'datetime-local']
+const FormDateInputType: FormInputType[] = ['date','datetime-local']
 const FormFileInputType: FormInputType[] = ['file']
 const FormColorInputType: FormInputType[] = ['color']
 const FormRangeInputType: FormInputType[] = ['range']
 const FormUrlInputType: FormInputType[] = ['url']
 const FormSearchInputType: FormInputType[] = ['search']
 const FormAutocompleteInputType: FormInputType[] = ['autocomplete']
+const FormAvatarInputType: FormInputType[] = ['avatar']
+
+function isDateLocal(value: string): value is "date-local" {
+    return value === "date-local";
+}
+function isAvatar(value: string): { borderRadius: string; width: string; height: string } {
+    if (value === "avatar") {
+        return {borderRadius: "50%", width: "10rem", height: "10rem"};
+    }
+    return {borderRadius: "4px", width: "10rem", height: "10rem"};
+
+}
 
 export interface selectOption {
     value: string;
@@ -101,6 +114,22 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                                                    selectOptions,
                                                    smallField
                                                }): JSX.Element => {
+
+    const [preview, setPreview] = React.useState<string|null>(null);
+
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        // set file preview url
+        if (e.target.files && e.target.files[0]) {
+            const reader = new FileReader();
+            reader.onload = (e) => {
+                if (e.target?.result) {
+                    setPreview(e.target.result as string);
+                }
+            };
+            reader.readAsDataURL(e.target.files[0]);
+        }
+
+    }
 
 
     return (
@@ -188,42 +217,68 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                     FormFileInputType.includes(type) && (
                         <Controller render={({field, fieldState: {error}, formState: {isValid},}) => {
                             return (
-                                <Form_uploadBox component="label">
-                                    <input type={type} id={name} hidden={true} {...field} />
-                                    <Typography variant={`h6`} component={`h6`}
-                                                sx={{textTransform: 'capitalize'}}>{label}</Typography>
-                                    <CloudUploadIcon sx={{color: 'primary.main', marginLeft: '5px'}}/>
+                                <Form_uploadBox component="label" sx={isAvatar(name)}>
+                                    <input type={type} id={name} hidden={true} {...field}  />
+                                    {
+                                        name !== 'avtar' && !preview && (
+                                            <>
+                                                <Typography variant={`h6`} component={`h6`}
+                                                            sx={{textTransform: 'capitalize'}}>{label}</Typography>
+                                                <CloudUploadIcon sx={{color: 'primary.main', marginLeft: '5px'}}/>
+                                            </>
+                                        )
+                                    }
+                                    {
+                                       name === 'avatar'&& preview && (
+                                           <img src={preview} alt={preview} width={`100%`} height={`100%`}/>
+                                        )
+                                    }
                                 </Form_uploadBox>
                             )
                         }
                         } control={control} name={name}/>
                     )
                 }
+
                 {
                     FormDateInputType.includes(type) && (
-
                         <LocalizationProvider dateAdapter={AdapterMoment}>
                             <Controller
                                 name={name}
                                 control={control}
-                                render={({field, fieldState: {error}, formState: {isValid}}) => (
-                                    <DateTimePicker
-                                        {...field} label={label}
-                                        renderInput={(prams) =>
-                                            <Form_TextInput {...prams}
-                                                            error={!!error?.message}
-                                                            helperText={isValid ? '' : error?.message}
-                                                            size={`small`}
-
-
-                                            />}
-                                    />
-                                )}
+                                render={({ field, fieldState: { error }, formState: { isValid } }) =>
+                                    isDateLocal(type) ? (
+                                        <DateTimePicker
+                                            {...field}
+                                            label={label}
+                                            renderInput={(params) => (
+                                                <Form_TextInput
+                                                    {...params}
+                                                    error={!!error?.message}
+                                                    helperText={isValid ? '' : error?.message}
+                                                    size={`small`}
+                                                />
+                                            )}
+                                        />
+                                    ) : (
+                                        <DatePicker
+                                            {...field}
+                                            label={label}
+                                            renderInput={(params) => (
+                                                <Form_TextInput
+                                                    {...params}
+                                                    error={!!error?.message}
+                                                    helperText={isValid ? '' : error?.message}
+                                                    size={`small`}
+                                                />
+                                            )}
+                                        />
+                                    )
+                                }
                             />
                         </LocalizationProvider>
-                    )
+                    )}
 
-                }
                 {
                     selectOptions && FormAutocompleteInputType.includes(type) && (
                         <Controller render={({field, fieldState: {error}, formState: {isValid},}) => {

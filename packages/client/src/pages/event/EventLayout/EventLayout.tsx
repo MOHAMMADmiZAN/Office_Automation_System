@@ -4,9 +4,9 @@ import {User} from "../../../store/models/AuthModel";
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import DataTable, {DataTableData} from "../../../components/organisms/DataTable/DataTable";
 import moment from "moment/moment";
-import {Box, Typography} from "@mui/material";
+import {Box, IconButton, Tooltip, Typography} from "@mui/material";
 import CustomModal from "../../../components/organisms/CustomModal/CustomModal";
-import {Delete, Edit, InsertInvitation} from "@mui/icons-material";
+import {Delete, Edit, InsertInvitation, ViewAgendaOutlined} from "@mui/icons-material";
 import Btn from "../../../components/molecules/Form/Btn";
 import EditEventModal from '../EditEventModal/EditEventModal';
 import InviteUsersModal, {inviteUser} from "../InviteUsersModal/InviteUsersModal";
@@ -28,10 +28,6 @@ const dataTableData: DataTableData = {
             {
                 align: "center",
                 value: "Event Title",
-            },
-            {
-                align: "center",
-                value: "Event Description",
             },
             {
                 align: "center",
@@ -71,7 +67,7 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
 
      const {Events: events,eventDelete,changeInviteStatusMutate} = useEvent()
 
-    const {Users:authors} = useUsers()
+    const {usersWithSuperAdmin:authors} = useUsers()
 
 
 
@@ -111,10 +107,6 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
                 },
                 {
                     align: "center",
-                    value: item.description,
-                },
-                {
-                    align: "center",
                     value: moment(item.startTime).calendar(),
                 },
                 {
@@ -137,18 +129,17 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
                     align: "center",
                     value: (
 
-                        <Box display={`flex`}>
+                        <Box display={`flex`} justifyContent={`center`}>
+                            <Tooltip title="View Full Event Details">
+                                <IconButton>
+                                    <ViewAgendaOutlined />
+                                </IconButton>
+                            </Tooltip>
                             {(author?._id === userId) &&
                                 <>
-                                    <CustomModal modalId={'edit-event'}
-                                        modalContent={<EditEventModal eventData={item} />}
-                                        ModalBtnIcon={<Edit />} />
-                                    <Btn BtnStartIcon={<Delete color={`error`} />}
-                                        onClick={() => handleEventDelete(item._id)} />
-                                    <CustomModal modalId={`invite-event`}
-                                        modalContent={<InviteUsersModal authors={authors as User[]}
-                                            eventData={item} />}
-                                        modalBtnText={`invite`} ModalBtnIcon={<InsertInvitation />} />
+                                    <CustomModal modalId={'edit-event'} modalContent={<EditEventModal eventData={item} />} ModalBtnIcon={<Edit />} />
+                                    <IconButton onClick={() => handleEventDelete(item._id)} ><Delete sx={{color:'error.main'}} /></IconButton>
+                                    <CustomModal modalId={`invite-event`} modalTitle={`invite in event`} modalContent={<InviteUsersModal authors={authors as User[]} eventData={item} />} ModalBtnIcon={<InsertInvitation />} />
                                 </>
                             }
                             {

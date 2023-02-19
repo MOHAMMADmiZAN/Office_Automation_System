@@ -1,6 +1,6 @@
 import { Router } from "express";
 import UserController from "../controllers/UserController";
-import { fileUpload } from "../middleware/FileUpload";
+import { fileUpload } from "../utils/FileUpload";
 
 
 

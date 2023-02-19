@@ -1,7 +1,7 @@
 import UserDocumentController from "../controllers/UserDocumentController";
 
 import { Router } from "express";
-import { fileUpload } from "../middleware/FileUpload";
+import { fileUpload } from "../utils/FileUpload";
 
 
 

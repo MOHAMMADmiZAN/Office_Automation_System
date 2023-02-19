@@ -1,7 +1,7 @@
 import React, {memo, useState} from 'react';
 import {Btn, BtnVariant} from "../../molecules/Form/Btn/Btn";
 import CustomModalTitle from "../../molecules/CustomModalTitle/CustomModalTitle";
-import {Box, Container, DialogContent, Tooltip} from '@mui/material';
+import {Box, Button, Container, DialogContent, IconButton, Tooltip} from '@mui/material';
 import CommonCard from "../../molecules/CommonCard/CommonCard";
 import useStyles from "./styles/CustomModal.style";
 import {ToastContainer} from "react-toastify";
@@ -40,8 +40,9 @@ const CustomModal: React.FC<CUSTOM_MODAL_PROPS> = ({
     return (
         <>
 
-                <Btn type={`button`} BtnText={modalBtnText} size={`small`} variant={modalBtnVariant}
-                     onClick={handleClickOpen} BtnStartIcon={ModalBtnIcon} styles={{maxWidth:'250px'}}/>
+                <Tooltip title={modalTitle} sx={{margin:'0.5rem'}}>
+                 <Button onClick={handleClickOpen} variant={modalBtnVariant}>{ModalBtnIcon}{modalBtnText}</Button>
+                </Tooltip>
 
 
             {

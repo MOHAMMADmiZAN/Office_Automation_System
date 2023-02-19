@@ -5,10 +5,11 @@ import {Divider} from "@mui/material";
 interface COMMON_CARD_PROPS {
     cardTitle?: string;
     CardMain?: React.ReactNode;
+    children?: React.ReactNode;
 
 }
 
-const CommonCard: React.FC<COMMON_CARD_PROPS> = ({cardTitle,CardMain}) => {
+const CommonCard: React.FC<COMMON_CARD_PROPS> = ({cardTitle,CardMain,children}) => {
     return (
         <>
        <CommonCardLayout>
@@ -20,6 +21,7 @@ const CommonCard: React.FC<COMMON_CARD_PROPS> = ({cardTitle,CardMain}) => {
            )}
            <CommonCardContent>
                 {CardMain}
+               {children}
            </CommonCardContent>
 
        </CommonCardLayout>
