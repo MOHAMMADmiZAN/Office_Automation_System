@@ -30,7 +30,7 @@ const FormLayOut: React.FC<FORM_LAY_OUT_PROPS> = ({defaultValues,onSubmit,valida
 
     const onSubmitWithReset: SubmitHandler<any> = async (data, event) => {
         await onSubmit(data, event);
-        // reset(defaultValues);
+        reset(defaultValues);
     };
 
 

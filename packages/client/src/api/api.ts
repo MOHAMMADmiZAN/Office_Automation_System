@@ -32,7 +32,8 @@ PublicApiInstance.interceptors.response.use(
 export const PrivateApiInstance = axios.create({
     baseURL: BackendBaseURL,
     headers: {
-        Authorization: `Bearer ${jwtToken}`
+        Authorization: `Bearer ${jwtToken}`,
+
     }
 })
 

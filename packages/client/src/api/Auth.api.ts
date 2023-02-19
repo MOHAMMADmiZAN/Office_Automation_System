@@ -13,7 +13,9 @@ export const AuthApi = {
     },
     register: async (payload: registerPayload) => {
         try {
-            const response = await PublicApiInstance.post('/auth/register', payload);
+            console.log(payload)
+            const headers = { 'Content-Type': 'multipart/form-data' };
+            const response = await PublicApiInstance.post('/auth/register', payload, { headers });
             return response.data;
         } catch (e) {
             console.log(e)

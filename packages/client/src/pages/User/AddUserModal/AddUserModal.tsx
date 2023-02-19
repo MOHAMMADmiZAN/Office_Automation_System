@@ -126,7 +126,7 @@ const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
             ...data,
             avatar: e?.target.avatar.files[0]
         }
-        console.log(payload)
+
 
         await Register(payload)
 

@@ -16,12 +16,19 @@ export const loginValidation = yup.object().shape({
 });
 
 export const signupValidation = yup.object().shape({
-    firstName: yup.string(),
-    lastName: yup.string(),
-    email: yup.string(),
-    password: yup.string(),
-    role: yup.string(),
-    avatar: yup.string(),
+    firstName: yup.string().min(2).max(20).required(),
+    lastName: yup.string().min(2).max(20).required(),
+    email: yup.string().email().required(),
+    password: yup.string().min(8).max(20).matches(passwordRegex,'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character').required(),
+    role: yup.string().required(),
+    avatar: yup
+        .mixed()
+        .test("fileType", "Invalid file format", (value) =>
+            value && ["image/jpeg", "image/png", "image/gif"].includes(value.type)
+        )
+        .test("fileSize", "File too large", (value) =>
+            value && value.size <= 5242880
+        ),
 });
 
 export const eventValidation = yup.object().shape({
