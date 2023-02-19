@@ -37,6 +37,7 @@ interface RegisterFromData {
     email: string;
     password: string;
     role: string;
+    avatar: Blob |Object | string;
 
 }
 
@@ -46,6 +47,10 @@ const defaultValues: RegisterFromData = {
     email: ``,
     password: ``,
     role: ``,
+    avatar: ``,
+
+
+
 }
 
 
@@ -55,6 +60,13 @@ const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
      const {Register} = useUsers();
 
     const RegisterInputFields: RegisterInputField[] = [
+        {
+          name: `avatar`,
+          type: `file`,
+            placeholder: `Upload Your Avatar`,
+            smallField: false,
+            label: `Avatar`,
+        },
         {
             name: `firstName`,
             type: `text`,
@@ -108,8 +120,17 @@ const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
 
 
 
-    const onSubmit: SubmitHandler<RegisterFromData> = async (data) => {
-        await Register(data)
+    const onSubmit: SubmitHandler<RegisterFromData> = async (data,e) => {
+
+        let payload = {
+            ...data,
+            avatar: e?.target.avatar.files[0]
+        }
+        console.log(payload)
+
+        await Register(payload)
+
+
 
     }
     return (

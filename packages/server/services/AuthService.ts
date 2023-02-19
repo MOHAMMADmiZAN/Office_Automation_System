@@ -14,8 +14,10 @@ interface IAuthService extends IUserService {
 }
 
 class AuthService extends UserService implements IAuthService {
+
     // @ts-ignore
     public register = async (data: IUser) : Promise<IUser|null> => {
+
         try {
             const user = await this.findUser("email", data.email);
             if (user) throw errorHandler('User already exists', 409);

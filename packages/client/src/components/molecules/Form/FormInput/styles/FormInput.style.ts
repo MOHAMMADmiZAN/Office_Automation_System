@@ -86,16 +86,16 @@ export const FromSelectLabel = styled(InputLabel)(({theme}) => ({
 
 })) as typeof InputLabel
 
-export const Form_uploadBox = styled(Button)(({theme}) => ({
-    width: '250px',
+export const Form_uploadBox = styled(Button)(({theme,}) => ({
     border: `1px dashed ${theme.palette.primary.main}`,
-    height: '10rem',
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
-    borderRadius: '4px',
+    overflow: 'hidden',
+
 
 
 })) as typeof Button
+
 
 

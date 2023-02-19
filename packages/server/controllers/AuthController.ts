@@ -12,6 +12,8 @@ interface AuthControllerInterface {
 class AuthController extends AuthService implements AuthControllerInterface {
     public userRegister = async (req, res, next) => {
         try {
+            console.log(req.body)
+            return
             const user = await this.register(req.body);
             res.status(201).json({
                 message: 'User created successfully',

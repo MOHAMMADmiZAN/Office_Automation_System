@@ -1,18 +1,18 @@
 import React from 'react';
 import DataTable, {DataTableData} from "../../../components/organisms/DataTable/DataTable";
-import {useQuery} from "react-query";
-import {UserApi} from "../../../api/User.api";
 import {useUsers} from "../../../hooks/useUsers";
 import {useRole} from "../../../hooks/useRole";
 import {useUserInfo} from "../../../hooks/useUserInfo";
 import {ViewAgenda} from "@mui/icons-material";
-import Btn from "../../../components/molecules/Form/Btn";
-import {Box} from "@mui/material";
+import {Box, Tooltip} from "@mui/material";
+import {NavLink} from "react-router-dom";
+import PreviewIcon from '@mui/icons-material/Preview';
 
 interface USER_DATA_TABLE_PROPS {
 
 }
-const dataTableData:DataTableData = {
+
+const dataTableData: DataTableData = {
     label: 'User Data Table',
     headerRow: {
         tableCell: [
@@ -55,7 +55,7 @@ const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
 
     if (Users) {
         Users.map((user) => {
-          const userInfo = userBasicInfo?.find((info) => info.user === user._id)
+            const userInfo = userBasicInfo?.find((info) => info.user === user._id)
             bodyRow.push({
                 tableCell: [
                     {
@@ -76,7 +76,8 @@ const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
                     },
                     {
                         align: 'center',
-                        value: <Btn styles={{margin:'0',width:'200px'}} BtnStartIcon={<ViewAgenda/>} BtnText={`View Full Information`} variant={`outlined`}/>
+                        value: <Tooltip title={`View Full User Information`}><NavLink
+                            to={`/users/${user._id}`}><PreviewIcon/></NavLink></Tooltip>
                     }
 
                 ],
@@ -87,9 +88,9 @@ const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
 
 
     return (
-     <Box sx={{padding:'24px'}}>
-         <DataTable DataTableData={{...dataTableData,bodyRow}}/>
-     </Box>
+        <Box sx={{padding: '24px'}}>
+            <DataTable DataTableData={{...dataTableData, bodyRow}}/>
+        </Box>
     );
 };
 
