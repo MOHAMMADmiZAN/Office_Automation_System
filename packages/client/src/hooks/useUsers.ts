@@ -18,6 +18,7 @@ export const useUsers = () => {
         usersError,
         usersIsLoading,
         Register,
+        usersWithSuperAdmin : users
 
     }
 

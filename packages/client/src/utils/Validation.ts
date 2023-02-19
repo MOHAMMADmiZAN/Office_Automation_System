@@ -16,11 +16,12 @@ export const loginValidation = yup.object().shape({
 });
 
 export const signupValidation = yup.object().shape({
-    firstName: yup.string().required().min(2).max(20),
-    lastName: yup.string().required().min(2).max(20),
+    firstName: yup.string().min(2).max(20).required(),
+    lastName: yup.string().min(2).max(20).required(),
     email: yup.string().email().required(),
-    password: yup.string().required().min(8).max(20).matches(passwordRegex,'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character'),
+    password: yup.string().min(8).max(20).matches(passwordRegex,'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character').required(),
     role: yup.string().required(),
+    avatar: yup.string(),
 });
 
 export const eventValidation = yup.object().shape({
@@ -65,3 +66,9 @@ export const userinfoValidation = yup.object().shape({
     eContactNumber: yup.string().min(11).max(15),
 
 });
+
+ export const DocumentValidation = yup.object().shape({
+    title: yup.string().required().min(2).max(20),
+    document: yup.string(),
+    user: yup.string().required(),
+ });
