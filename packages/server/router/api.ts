@@ -9,6 +9,7 @@ import OnboardRouter from "./Onboard";
 import LeaveRouter from "./Leave";
 import UserRouter from "./User";
 import AuthMiddleware from "../middleware/Auth";
+import UserDocumentRouter from "./UserDocument";
 const router = Router()
 
 
@@ -20,8 +21,8 @@ router.use('/api/v1/attendance', AuthMiddleware, AttendanceRouter)
 router.use('/api/v1/userbasicinfo', AuthMiddleware, UserBasicInfoRouter)
 router.use('/api/v1/onboard', AuthMiddleware, OnboardRouter)
 router.use('/api/v1/leave', AuthMiddleware, LeaveRouter)
-// router.use('/api/v1/user',AuthMiddleware,UserRouter)
 router.use('/api/v1/user', AuthMiddleware, UserRouter)
+router.use('/api/v1/user-document', AuthMiddleware, UserDocumentRouter)
 
 
 
