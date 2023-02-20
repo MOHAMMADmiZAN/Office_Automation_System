@@ -1,6 +1,5 @@
 import React from 'react';
-import Index from "./pages/home";
-import {QueryCache, QueryClient, QueryClientProvider} from "react-query";
+import {QueryClient, QueryClientProvider} from "react-query";
 import {StoreProvider, useStoreRehydrated} from "easy-peasy";
 import store from "./store/store";
 import {ReactQueryDevtools} from "react-query/devtools";
@@ -12,7 +11,7 @@ import 'react-toastify/dist/ReactToastify.css';
 import {ToastContainer} from "react-toastify";
 
 
- // using react query
+// using react query
 const queryClient = new QueryClient()
 
 

@@ -1,15 +1,16 @@
-import { Router } from "express";
+import {Router} from "express";
 import authRouter from "./auth";
 import RoleRouter from "./Role";
 import EventRouter from "./Event";
 import AttendanceRouter from "./Attendance";
-import { ErrorWithStatus } from "../utils/error";
+import {ErrorWithStatus} from "../utils/error";
 import UserBasicInfoRouter from "./UserBasicInfo";
 import OnboardRouter from "./Onboard";
 import LeaveRouter from "./Leave";
 import UserRouter from "./User";
 import AuthMiddleware from "../middleware/Auth";
 import UserDocumentRouter from "./UserDocument";
+
 const router = Router()
 
 

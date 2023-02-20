@@ -1,5 +1,5 @@
 import OnboardService from "../services/OnboardService";
-import { NextFunction, Response } from "express";
+import {NextFunction, Response} from "express";
 
 
 interface IOnboardController {

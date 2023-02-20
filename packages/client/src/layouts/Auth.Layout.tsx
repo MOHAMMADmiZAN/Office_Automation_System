@@ -1,5 +1,5 @@
 import React, {memo} from 'react';
-import {Container, Divider, Grid} from "@mui/material";
+import {Container, Grid} from "@mui/material";
 import {AuthLayoutBox} from "./styles/Auth.Layout.Style";
 import CommonCard from "../components/molecules/CommonCard/CommonCard";
 

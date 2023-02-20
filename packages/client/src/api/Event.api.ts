@@ -1,4 +1,4 @@
-import {PrivateApiInstance, PublicApiInstance} from "./api";
+import {PrivateApiInstance} from "./api";
 
 interface IEventApi {
     eventList: () => Promise<IEventPayloadWithId[]>;

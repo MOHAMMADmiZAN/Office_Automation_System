@@ -1,8 +1,7 @@
 import UserDocumentController from "../controllers/UserDocumentController";
 
-import { Router } from "express";
-import { fileUpload } from "../utils/FileUpload";
-
+import {Router} from "express";
+import {fileUpload} from "../utils/FileUpload";
 
 
 const UserDocumentRouter = Router()

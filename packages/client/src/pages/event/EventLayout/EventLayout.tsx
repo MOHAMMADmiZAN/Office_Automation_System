@@ -1,7 +1,6 @@
 import React, { memo } from 'react';
-import { EventApi, IChangeInvitedEventStatus, IEventPayloadWithId } from "../../../api/Event.api";
+import { IEventPayloadWithId } from "../../../api/Event.api";
 import { User } from "../../../store/models/AuthModel";
-import { useMutation, useQuery, useQueryClient } from "react-query";
 import DataTable, { DataTableData } from "../../../components/organisms/DataTable/DataTable";
 import moment from "moment/moment";
 import { Box, IconButton, Tooltip, Typography } from "@mui/material";
@@ -10,7 +9,6 @@ import { Delete, Edit, InsertInvitation, ViewAgendaOutlined } from "@mui/icons-m
 import Btn from "../../../components/molecules/Form/Btn";
 import EditEventModal from '../EditEventModal/EditEventModal';
 import InviteUsersModal, { inviteUser } from "../InviteUsersModal/InviteUsersModal";
-import { UserApi } from "../../../api/User.api";
 import useAuth from "../../../hooks/useAuth";
 import { useUsers } from "../../../hooks/useUsers";
 import { useEvent } from "../../../hooks/useEvent";

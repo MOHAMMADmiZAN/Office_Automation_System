@@ -2,7 +2,6 @@ import Role, { IRole } from "../models/Role";
 import errorHandler from "../utils/error";
 
 
-
 interface IRoleService {
     createRole(data: IRole): Promise<void>;
     findRole(key: string, value: any): Promise<IRole | null>;

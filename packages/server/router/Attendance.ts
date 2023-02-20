@@ -1,7 +1,6 @@
 import AttendanceController from "../controllers/AttendanceController";
 
-import { Router } from "express";
-
+import {Router} from "express";
 
 
 const EventRouter = Router()
