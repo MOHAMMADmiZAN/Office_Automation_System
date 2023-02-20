@@ -3,7 +3,6 @@ import DataTable, {DataTableData} from "../../../components/organisms/DataTable/
 import {useUsers} from "../../../hooks/useUsers";
 import {useRole} from "../../../hooks/useRole";
 import {useUserInfo} from "../../../hooks/useUserInfo";
-import {ViewAgenda} from "@mui/icons-material";
 import {Box, Tooltip} from "@mui/material";
 import {NavLink} from "react-router-dom";
 import PreviewIcon from '@mui/icons-material/Preview';

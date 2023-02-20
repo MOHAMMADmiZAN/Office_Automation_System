@@ -1,5 +1,5 @@
-import multer, { Multer } from 'multer';
-import cloudinary, { v2 as cloudinaryV2 } from 'cloudinary';
+import multer, {Multer} from 'multer';
+import {v2 as cloudinaryV2} from 'cloudinary';
 
 const fileUpload: Multer = multer({
     storage: multer.diskStorage({}),

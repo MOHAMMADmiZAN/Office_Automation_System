@@ -1,7 +1,6 @@
 import RoleController from "../controllers/RoleController";
 
-import { Router } from "express";
-
+import {Router} from "express";
 
 
 const RoleRouter = Router()

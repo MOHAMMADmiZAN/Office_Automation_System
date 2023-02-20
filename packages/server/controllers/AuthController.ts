@@ -1,7 +1,5 @@
 import AuthService from "../services/AuthService";
-import errorHandler from "../utils/error";
-import * as http from "http";
-import { NextFunction } from "express";
+import {NextFunction} from "express";
 import {handleFileUpload} from "../utils/FileUpload";
 
 

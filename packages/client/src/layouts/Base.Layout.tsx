@@ -3,15 +3,13 @@ import Header, {AccountMenuItem} from "../components/organisms/Header/Header";
 import Sidebar, {SidebarMenuItem} from "../components/organisms/SideBar/Sidebar";
 import EventIcon from "@mui/icons-material/Event";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
-import {Box, Container, Grid} from "@mui/material";
+import {Box, Grid} from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import {Dashboard, Logout} from "@mui/icons-material";
 import {Actions, useStoreActions} from "easy-peasy";
 import {AuthType} from "../store/models/AuthModel";
-import {Outlet, useLocation, useMatch, useNavigate} from "react-router-dom";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
-
-
 
 
 interface BASE_LAYOUT_PROPS {

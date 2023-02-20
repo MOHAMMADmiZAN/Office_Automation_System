@@ -1,5 +1,4 @@
-import Onboard, { IOnboard } from "../models/Onboard";
-
+import Onboard, {IOnboard} from "../models/Onboard";
 
 
 interface IOnboardService {

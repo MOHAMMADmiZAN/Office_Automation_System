@@ -1,6 +1,3 @@
-import {Response} from "express";
-
-
 export interface ErrorWithStatus extends Error {
     status: number;
 }

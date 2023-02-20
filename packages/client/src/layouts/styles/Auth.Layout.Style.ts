@@ -1,5 +1,5 @@
 import {styled} from "@mui/material/styles";
-import {Box, Card, CardContent, CardHeader} from "@mui/material";
+import {Box} from "@mui/material";
 
 export const AuthLayoutBox = styled(Box)(({theme}) => ({
     width: "100%",

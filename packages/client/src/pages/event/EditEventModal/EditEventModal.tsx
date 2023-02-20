@@ -1,6 +1,5 @@
 import React from 'react';
-import {EventApi, IEventPayload, IEventPayloadWithId} from "../../../api/Event.api";
-import {useMutation, useQueryClient} from "react-query";
+import {IEventPayload, IEventPayloadWithId} from "../../../api/Event.api";
 import {SubmitHandler} from "react-hook-form";
 import FormLayOut from "../../../components/organisms/Form/FormLayOut/FormLayOut";
 import {eventFormFields} from "../AddEventModal/AddEventModal";

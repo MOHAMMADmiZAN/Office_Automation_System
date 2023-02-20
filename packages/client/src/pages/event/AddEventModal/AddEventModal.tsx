@@ -5,8 +5,7 @@ import {eventValidation} from "../../../utils/Validation";
 import {Add} from "@mui/icons-material";
 import CustomModal from "../../../components/organisms/CustomModal/CustomModal";
 import useAuth from "../../../hooks/useAuth";
-import {useMutation, useQueryClient} from "react-query";
-import {EventApi, IEventPayload} from "../../../api/Event.api";
+import {IEventPayload} from "../../../api/Event.api";
 import {SubmitHandler} from "react-hook-form";
 import {useEvent} from "../../../hooks/useEvent";
 

@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, {memo} from 'react';
 import {CommonCardContent, CommonCardHeader, CommonCardLayout} from "./styles/CommonCard.style";
 import {Divider} from "@mui/material";
 

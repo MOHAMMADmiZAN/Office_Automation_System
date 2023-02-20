@@ -1,6 +1,5 @@
-import UserBasicInfo, { IUserBasicInfo } from "../models/UserBasicInfo";
+import UserBasicInfo, {IUserBasicInfo} from "../models/UserBasicInfo";
 import errorHandler from "../utils/error";
-
 
 
 interface IUserBasicInfoService {
