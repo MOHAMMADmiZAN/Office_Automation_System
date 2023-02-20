@@ -1,9 +1,21 @@
+import React from "react";
 import { useMutation, useQuery, useQueryClient } from "react-query";
 import { IRoleWithId, RoleApi } from "../api/Role.Api";
+import { Role as roleNames } from '../utils/Validation'
+import useAuth from "./useAuth";
+
+const userPermissions = {
+    [roleNames.SUPER_ADMIN]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
+    [roleNames.ADMIN]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
+    [roleNames.MODERATOR]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
+    [roleNames.SUPPORT]: ['userDetail'],
+    [roleNames.USER]: [],
+}
 
 
 export const useRole = (singleRoleId?: string) => {
     const queryClient = useQueryClient();
+    const { user } = useAuth()
 
     const { data: roles, error: rolesError, isLoading: rolesIsLoading } = useQuery<IRoleWithId[]>('allRoles', RoleApi.roleList)
     const { mutateAsync: createRole } = useMutation(RoleApi.roleCreate, {
@@ -21,6 +33,13 @@ export const useRole = (singleRoleId?: string) => {
         }
     })
 
+    const checkUserPermission: Function = (section: string): any => {
+        const authUserRole = roles?.filter((item) => item._id === user.role)[0]?.name
+        console.log('section and role=', section, authUserRole)
+        if (!authUserRole) return false;
+        return userPermissions[authUserRole].includes(section);
+    }
+
     // find role by id
 
     return {
@@ -29,7 +48,8 @@ export const useRole = (singleRoleId?: string) => {
         rolesIsLoading,
         superAdmin,
         createRole,
-        editRole
+        editRole,
+        checkUserPermission
     }
 
 

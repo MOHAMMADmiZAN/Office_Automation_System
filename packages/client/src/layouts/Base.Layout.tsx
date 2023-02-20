@@ -36,12 +36,6 @@ const SidebarMenu: SidebarMenuItem[] = [
         isDivider: false,
         id: 'users',
     },
-    {
-        icon: <PermContactCalendarIcon />,
-        text: "Role List",
-        isDivider: false,
-        id: 'roles',
-    },
 ]
 
 

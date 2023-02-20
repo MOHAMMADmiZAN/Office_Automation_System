@@ -1,19 +1,20 @@
-import React, {memo} from 'react';
-import {EventApi, IChangeInvitedEventStatus, IEventPayloadWithId} from "../../../api/Event.api";
-import {User} from "../../../store/models/AuthModel";
-import {useMutation, useQuery, useQueryClient} from "react-query";
-import DataTable, {DataTableData} from "../../../components/organisms/DataTable/DataTable";
+import React, { memo } from 'react';
+import { EventApi, IChangeInvitedEventStatus, IEventPayloadWithId } from "../../../api/Event.api";
+import { User } from "../../../store/models/AuthModel";
+import { useMutation, useQuery, useQueryClient } from "react-query";
+import DataTable, { DataTableData } from "../../../components/organisms/DataTable/DataTable";
 import moment from "moment/moment";
-import {Box, IconButton, Tooltip, Typography} from "@mui/material";
+import { Box, IconButton, Tooltip, Typography } from "@mui/material";
 import CustomModal from "../../../components/organisms/CustomModal/CustomModal";
-import {Delete, Edit, InsertInvitation, ViewAgendaOutlined} from "@mui/icons-material";
+import { Delete, Edit, InsertInvitation, ViewAgendaOutlined } from "@mui/icons-material";
 import Btn from "../../../components/molecules/Form/Btn";
 import EditEventModal from '../EditEventModal/EditEventModal';
-import InviteUsersModal, {inviteUser} from "../InviteUsersModal/InviteUsersModal";
-import {UserApi} from "../../../api/User.api";
+import InviteUsersModal, { inviteUser } from "../InviteUsersModal/InviteUsersModal";
+import { UserApi } from "../../../api/User.api";
 import useAuth from "../../../hooks/useAuth";
-import {useUsers} from "../../../hooks/useUsers";
-import {useEvent} from "../../../hooks/useEvent";
+import { useUsers } from "../../../hooks/useUsers";
+import { useEvent } from "../../../hooks/useEvent";
+import { useRole } from '../../../hooks/useRole';
 
 export interface EVENT_LAYOUT_PROPS {
     label: string;
@@ -64,10 +65,11 @@ const dataTableData: DataTableData = {
 
 const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, isBodyRowFunc }): JSX.Element => {
     const { userId } = useAuth();
+    const { checkUserPermission } = useRole()
 
-     const {Events: events,eventDelete,changeInviteStatusMutate} = useEvent()
+    const { Events: events, eventDelete, changeInviteStatusMutate } = useEvent()
 
-    const {usersWithSuperAdmin:authors} = useUsers()
+    const { usersWithSuperAdmin: authors } = useUsers()
 
 
 
@@ -79,7 +81,7 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
         if (!userId) return;
         const payload = {
             eventId: id,
-            data:{
+            data: {
                 userId,
                 status
             }
@@ -87,8 +89,8 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
 
         changeInviteStatusMutate(payload);
     };
-    
-    
+
+
     const bodyRow: DataTableData["bodyRow"] = [];
     if (events) {
         events.map((item) => {
@@ -135,10 +137,11 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
                                     <ViewAgendaOutlined />
                                 </IconButton>
                             </Tooltip>
-                            {(author?._id === userId) &&
+                            {/* {(author?._id === userId) && */}
+                            {checkUserPermission('manageEvent') &&
                                 <>
                                     <CustomModal modalId={'edit-event'} modalContent={<EditEventModal eventData={item} />} ModalBtnIcon={<Edit />} />
-                                    <IconButton onClick={() => handleEventDelete(item._id)} ><Delete sx={{color:'error.main'}} /></IconButton>
+                                    <IconButton onClick={() => handleEventDelete(item._id)} ><Delete sx={{ color: 'error.main' }} /></IconButton>
                                     <CustomModal modalId={`invite-event`} modalTitle={`invite in event`} modalContent={<InviteUsersModal authors={authors as User[]} eventData={item} />} ModalBtnIcon={<InsertInvitation />} />
                                 </>
                             }
