@@ -1,7 +1,6 @@
 import {PrivateApiInstance} from "./api";
 
 
-
 export const UserApi = {
     getUser: async (id: string) => {
         try {

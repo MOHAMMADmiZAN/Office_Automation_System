@@ -1,7 +1,6 @@
 import UserBasicInfoController from "../controllers/UserBasicInfoController";
 
-import { Router } from "express";
-
+import {Router} from "express";
 
 
 const UserBasicInfoRouter = Router()

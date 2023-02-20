@@ -1,7 +1,6 @@
-import { Router } from "express";
+import {Router} from "express";
 import UserController from "../controllers/UserController";
-import { fileUpload } from "../utils/FileUpload";
-
+import {fileUpload} from "../utils/FileUpload";
 
 
 const UserRouter = Router()

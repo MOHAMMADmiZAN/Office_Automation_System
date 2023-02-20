@@ -1,5 +1,5 @@
 import UserBasicInfoService from "../services/UserBasicInfoService";
-import { NextFunction, Response } from "express";
+import {NextFunction, Response} from "express";
 
 
 interface IUserBasicInfoController {

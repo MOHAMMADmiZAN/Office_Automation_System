@@ -1,7 +1,6 @@
 import LeaveController from "../controllers/LeaveController";
 
-import { Router } from "express";
-
+import {Router} from "express";
 
 
 const LeaveRouter = Router()

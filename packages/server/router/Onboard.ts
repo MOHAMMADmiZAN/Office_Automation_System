@@ -1,7 +1,6 @@
 import OnboardController from "../controllers/OnboardController";
 
-import { Router } from "express";
-
+import {Router} from "express";
 
 
 const OnboardRouter = Router()

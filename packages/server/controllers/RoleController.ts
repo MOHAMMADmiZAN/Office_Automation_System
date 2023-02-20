@@ -1,5 +1,5 @@
 import RoleService from "../services/RoleService";
-import { NextFunction, Response } from "express";
+import {NextFunction, Response} from "express";
 
 
 interface IRoleController {

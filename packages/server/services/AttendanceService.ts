@@ -1,5 +1,4 @@
-import Attendance, { IAttendance } from "../models/Attendance";
-
+import Attendance, {IAttendance} from "../models/Attendance";
 
 
 interface IAttendanceService {

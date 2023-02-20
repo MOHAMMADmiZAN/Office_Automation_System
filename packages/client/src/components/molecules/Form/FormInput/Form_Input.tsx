@@ -57,8 +57,9 @@ const FormAutocompleteInputType: FormInputType[] = ['autocomplete']
 const FormAvatarInputType: FormInputType[] = ['avatar']
 
 function isDateLocal(value: string): value is "date-local" {
-    return value === "date-local";
+    return true
 }
+
 function isAvatar(value: string): { borderRadius: string; width: string; height: string } {
     if (value === "avatar") {
         return {borderRadius: "50%", width: "10rem", height: "10rem"};

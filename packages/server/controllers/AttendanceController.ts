@@ -1,5 +1,5 @@
 import AttendanceService from "../services/AttendanceService";
-import { NextFunction, Response } from "express";
+import {NextFunction, Response} from "express";
 
 
 interface IAttendanceController {

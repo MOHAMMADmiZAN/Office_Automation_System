@@ -1,7 +1,4 @@
 import {PrivateApiInstance} from "./api";
-import Helper from "../utils/helper";
-import {AxiosError} from "axios";
-import {handleErrors, handleSuccess} from "../utils/alertMessage";
 
 export interface IRolePayload {
     name: string;
@@ -10,6 +7,7 @@ export interface IRolePayload {
 export interface IRoleWithId extends IRolePayload {
     _id: string;
 }
+
 interface IRoleApi {
     roleList: () => Promise<IRoleWithId[]>;
     roleCreate: (payload: IRolePayload) => Promise<IRolePayload>;

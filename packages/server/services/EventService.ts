@@ -1,7 +1,6 @@
-import Event, { IEvent } from "../models/Event";
+import Event, {IEvent} from "../models/Event";
 import moment from 'moment';
-import { dateTimeFormat } from "../utils/helper";
-
+import {dateTimeFormat} from "../utils/helper";
 
 
 interface IEventService {

@@ -3,7 +3,6 @@ import {UserApi} from "../api/User.api";
 import {AuthType, User} from "../store/models/AuthModel";
 import {Actions, useStoreActions} from "easy-peasy";
 import {useRole} from "./useRole";
-import UserInfo, {IUserInfoPayloadWithId} from "../api/UserInfo";
 
 
 export const useUsers = () => {

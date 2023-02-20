@@ -1,4 +1,4 @@
-import React, { memo } from 'react';
+import React, {memo} from 'react';
 import {Box, Tab, Tabs} from "@mui/material";
 import customTabStyle from "./styles/CustomTabs.style";
 

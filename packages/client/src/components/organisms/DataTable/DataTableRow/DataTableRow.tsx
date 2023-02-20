@@ -1,5 +1,5 @@
 import {Collapse, IconButton, TableCell, TableRow} from '@mui/material';
-import React, { memo } from 'react';
+import React, {memo} from 'react';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
 

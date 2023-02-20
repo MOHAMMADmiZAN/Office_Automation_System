@@ -1,11 +1,7 @@
 import React, {memo, useState} from 'react';
-import {
-    DataLayoutTable,
-    DataTableLayout, DataTablePagination
-} from "./styles/DataTable.style";
+import {DataLayoutTable, DataTableLayout, DataTablePagination} from "./styles/DataTable.style";
 import {Container, TableBody, TableHead, Typography} from "@mui/material";
-import DataTableRow, {CollapseComponent, RowItem} from "./DataTableRow/DataTableRow";
-import CommonCard from "../../molecules/CommonCard/CommonCard";
+import DataTableRow, {RowItem} from "./DataTableRow/DataTableRow";
 
 interface PaginateType {
     rowsPerPage: number[];

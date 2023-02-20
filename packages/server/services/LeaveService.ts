@@ -1,5 +1,4 @@
-import Leave, { ILeave } from "../models/Leave";
-
+import Leave, {ILeave} from "../models/Leave";
 
 
 interface ILeaveService {

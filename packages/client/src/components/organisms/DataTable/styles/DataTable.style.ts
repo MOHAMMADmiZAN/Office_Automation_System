@@ -1,5 +1,5 @@
 import {styled} from "@mui/material/styles";
-import {Box, Card, CardContent, CardHeader, Paper, Table, TablePagination} from "@mui/material";
+import {Card, CardContent, CardHeader, Paper, Table, TablePagination} from "@mui/material";
 
 export const DataTableLayout = styled(Paper)(({theme}) => ({
     width: "100%",

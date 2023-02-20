@@ -1,7 +1,7 @@
-import React, {memo, useEffect, useLayoutEffect} from 'react';
-import {Box, Divider, Grid, ListItem, ListItemIcon, ListItemText, MenuList} from "@mui/material";
+import React, {memo} from 'react';
+import {Box, Divider, ListItemIcon, ListItemText, MenuList} from "@mui/material";
 import {SidebarBox} from "./styles/Sidebar.style";
-import { NavLink} from "react-router-dom";
+import {NavLink} from "react-router-dom";
 
 
 export interface SidebarMenuItem {

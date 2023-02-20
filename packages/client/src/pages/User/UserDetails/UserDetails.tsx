@@ -1,6 +1,6 @@
 import React from 'react';
 import {useParams} from "react-router-dom";
-import {Box, Container, Grid, Typography} from "@mui/material";
+import {Container, Grid} from "@mui/material";
 import CommonCard from "../../../components/molecules/CommonCard/CommonCard";
 import {useUsers} from "../../../hooks/useUsers";
 import {useRole} from "../../../hooks/useRole";

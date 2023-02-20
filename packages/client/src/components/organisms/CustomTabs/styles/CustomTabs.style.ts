@@ -1,7 +1,4 @@
-import {makeStyles, Theme} from "@material-ui/core/styles";
-
-
- const customTabsStyle = {
+const customTabsStyle = {
     '& .MuiTabs-indicator': {
 
     },

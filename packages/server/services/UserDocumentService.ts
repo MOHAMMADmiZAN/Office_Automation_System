@@ -1,6 +1,4 @@
-import UserDocument, { IUserDocument } from "../models/UserDocument";
-import errorHandler from "../utils/error";
-
+import UserDocument, {IUserDocument} from "../models/UserDocument";
 
 
 interface IUserDocumentService {

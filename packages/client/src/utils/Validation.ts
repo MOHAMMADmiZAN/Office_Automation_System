@@ -72,3 +72,15 @@ export const userinfoValidation = yup.object().shape({
     document: yup.string(),
     user: yup.string().required(),
  });
+
+ export  const  OnBoardDataValidation  = yup.object().shape({
+
+     user: yup.string().required(),
+     joiningDate: yup.string().required(),
+     jobTitle: yup.string().required().min(2).max(20),
+     salary : yup.number().required().min(3),
+     status: yup.string().required(),
+     farewellDate: yup.string()
+
+
+ })

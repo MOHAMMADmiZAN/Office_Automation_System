@@ -9,7 +9,8 @@ import {
     MenuItem,
     MenuList,
     Paper,
-    Tooltip, Typography,
+    Tooltip,
+    Typography,
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import {Notifications} from "@mui/icons-material";

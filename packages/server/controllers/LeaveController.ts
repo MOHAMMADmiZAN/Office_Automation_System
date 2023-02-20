@@ -1,5 +1,5 @@
 import LeaveService from "../services/LeaveService";
-import { NextFunction, Response } from "express";
+import {NextFunction, Response} from "express";
 
 
 interface ILeaveController {
