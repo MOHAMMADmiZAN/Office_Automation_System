@@ -1,18 +1,19 @@
-import React, {memo} from 'react';
-import {IEventPayloadWithId} from "../../../api/Event.api";
-import {User} from "../../../store/models/AuthModel";
-import DataTable, {DataTableData} from "../../../components/organisms/DataTable/DataTable";
+import React, { memo } from 'react';
+import { IEventPayloadWithId } from "../../../api/Event.api";
+import { User } from "../../../store/models/AuthModel";
+import DataTable, { DataTableData } from "../../../components/organisms/DataTable/DataTable";
 import moment from "moment/moment";
-import {Box, IconButton, Tooltip, Typography} from "@mui/material";
+import { Box, IconButton, Tooltip, Typography, Skeleton } from "@mui/material";
 import CustomModal from "../../../components/organisms/CustomModal/CustomModal";
-import {Delete, Edit, InsertInvitation, ViewAgendaOutlined} from "@mui/icons-material";
+import { Delete, Edit, InsertInvitation, ViewAgendaOutlined } from "@mui/icons-material";
 import Btn from "../../../components/molecules/Form/Btn";
 import EditEventModal from '../EditEventModal/EditEventModal';
-import InviteUsersModal, {inviteUser} from "../InviteUsersModal/InviteUsersModal";
+import InviteUsersModal, { inviteUser } from "../InviteUsersModal/InviteUsersModal";
 import useAuth from "../../../hooks/useAuth";
-import {useUsers} from "../../../hooks/useUsers";
-import {useEvent} from "../../../hooks/useEvent";
-import {useRole} from '../../../hooks/useRole';
+import { useUsers } from "../../../hooks/useUsers";
+import { useEvent } from "../../../hooks/useEvent";
+import { useRole } from '../../../hooks/useRole';
+import CustomSkeleton from '../../../components/atoms/CustomSkeleton/CustomSkeleton';
 
 export interface EVENT_LAYOUT_PROPS {
     label: string;
@@ -65,7 +66,7 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
     const { userId } = useAuth();
     const { checkUserPermission } = useRole()
 
-    const { Events: events, eventDelete, changeInviteStatusMutate } = useEvent()
+    const { Events: events, eventDelete, changeInviteStatusMutate, eventsIsLoading } = useEvent()
 
     const { usersWithSuperAdmin: authors } = useUsers()
 
@@ -166,11 +167,11 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
         });
     }
 
-
     return (
         <>
-            {bodyRow.length > 0 ? <DataTable DataTableData={{ ...dataTableData, bodyRow, label }} /> :
-                <Typography variant={`h1`} component={`h1`} sx={{ textAlign: 'center' }}>No Event here </Typography>}
+            {eventsIsLoading ?
+                <CustomSkeleton /> : bodyRow.length > 0 ? <DataTable DataTableData={{ ...dataTableData, bodyRow, label }} /> :
+                    <Typography variant={`h1`} component={`h1`} sx={{ textAlign: 'center' }}>No Event here </Typography>}
         </>
     );
 };
