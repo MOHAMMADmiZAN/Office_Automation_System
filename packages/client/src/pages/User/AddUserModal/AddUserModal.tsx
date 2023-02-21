@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from "react";
 import CustomModal from "../../../components/organisms/CustomModal/CustomModal";
 import {Add} from "@mui/icons-material";
 import {FORM_INPUT_PROPS, FormInputType, selectOption} from "../../../components/molecules/Form/FormInput/Form_Input";
@@ -7,6 +7,7 @@ import {signupValidation} from "../../../utils/Validation";
 import FormLayOut from "../../../components/organisms/Form/FormLayOut/FormLayOut";
 import {useUsers} from "../../../hooks/useUsers";
 import {useRole} from "../../../hooks/useRole";
+
 
 interface ADD_USER_MODAL_PROPS {
 
@@ -41,11 +42,9 @@ const defaultValues: RegisterFromData = {
     email: ``,
     password: ``,
     role: ``,
-    avatar: ``,
-
-
-
+    avatar: ``
 }
+
 
 
 const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
@@ -114,6 +113,8 @@ const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
 
 
 
+
+
     const onSubmit: SubmitHandler<RegisterFromData> = async (data,e) => {
 
         let payload = {
@@ -123,10 +124,10 @@ const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
 
 
         await Register(payload)
-
-
-
     }
+
+
+
     return (
         <>
             <CustomModal modalId={'add-user'} modalContent={
@@ -139,6 +140,9 @@ const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
 
             } modalBtnVariant={`outlined`} modalBtnText={`Add User`} ModalBtnIcon={<Add/>} modalTitle={`New User Register`}/>
 
+            <div>
+            
+            </div>
         </>
     );
 };
