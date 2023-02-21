@@ -1,4 +1,4 @@
-import Role, { IRole } from "../models/Role";
+import Role, {IRole} from "../models/Role";
 import errorHandler from "../utils/error";
 
 

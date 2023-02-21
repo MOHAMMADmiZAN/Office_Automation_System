@@ -1,17 +1,28 @@
-import React from "react";
-import { useMutation, useQuery, useQueryClient } from "react-query";
-import { IRoleWithId, RoleApi } from "../api/Role.Api";
-import { Role as roleNames } from '../utils/Validation'
+import {useMutation, useQuery, useQueryClient} from "react-query";
+import {IRoleWithId, RoleApi} from "../api/Role.Api";
+import {Role as roleNames} from '../utils/Validation'
 import useAuth from "./useAuth";
+//
+// const userPermissions = {
+//     [roleNames.SUPER_ADMIN]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
+//     [roleNames.ADMIN]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
+//     [roleNames.MODERATOR]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
+//     [roleNames.SUPPORT]: ['userDetail'],
+//     [roleNames.USER]: [],
+// }
 
-const userPermissions = {
+
+type UserPermissions = {
+    [key: string]: string[];
+};
+
+const userPermissions: UserPermissions = {
     [roleNames.SUPER_ADMIN]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
     [roleNames.ADMIN]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
     [roleNames.MODERATOR]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
     [roleNames.SUPPORT]: ['userDetail'],
     [roleNames.USER]: [],
-}
-
+};
 
 export const useRole = (singleRoleId?: string) => {
     const queryClient = useQueryClient();
@@ -33,11 +44,22 @@ export const useRole = (singleRoleId?: string) => {
         }
     })
 
-    const checkUserPermission: Function = (section: string): any => {
-        const authUserRole = roles?.filter((item) => item._id === user.role)[0]?.name
-        console.log('section and role=', section, authUserRole)
+    // const checkUserPermission: Function = (section: string): any => {
+    //     const authUserRole = roles?.filter((item) => item._id === user.role)[0]?.name
+    //
+    //     console.log('section and role=', section, authUserRole)
+    //     if (!authUserRole) return false;
+    //     return userPermissions[authUserRole].includes(section);
+    // }
+
+    //  create a checkUserPermission function that takes a permission as a parameter and returns true or false
+    const checkUserPermission: Function = (permission: string): any => {
+        //  get the role of the user
+        const authUserRole = roles?.find((item) => item._id === user.role)?.name
+        //  if the user has no role, return false
         if (!authUserRole) return false;
-        return userPermissions[authUserRole].includes(section);
+        //  if the user has the role, return true if the permission is included in the userPermissions object
+        return userPermissions[authUserRole].includes(permission);
     }
 
     // find role by id

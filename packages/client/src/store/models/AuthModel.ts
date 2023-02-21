@@ -1,5 +1,6 @@
 import {Action, action, State, Thunk, thunk} from 'easy-peasy';
 import {AuthApi} from "../../api/Auth.api";
+import {useQueryClient} from "react-query";
 
 
 export  interface AuthType  {
@@ -88,6 +89,7 @@ const AuthModel: Auth = {
 
 
         const data = await AuthApi.register(payload);
+
 
         return !!data
 

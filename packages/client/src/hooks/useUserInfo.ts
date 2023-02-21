@@ -7,8 +7,8 @@ export const useUserInfo = () => {
     const {data:userBasicInfo, error:userBasicInfoError, isLoading:userBasicInfoIsLoading} = useQuery<IUserInfoPayloadWithId[]>('userBasicInfo', UserInfo.getAllUserInfo)
     const {mutateAsync: createUserInfo} = useMutation((data: IUserInfoPayload) => UserInfo.createUserInfo(data), {
         onSuccess: async (data) => {
-            console.log(data)
             await queryClient.invalidateQueries("userBasicInfo");
+            await queryClient.invalidateQueries("allUsers");
 
         }
     })

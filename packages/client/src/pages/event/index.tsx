@@ -1,12 +1,12 @@
 import React from 'react';
-import CustomTabs, { TabItem } from "../../components/organisms/CustomTabs/CustomTabs";
+import CustomTabs, {TabItem} from "../../components/organisms/CustomTabs/CustomTabs";
 import CommonCard from "../../components/molecules/CommonCard/CommonCard";
 import TodayEvent from "./TodayEvent/TodayEvent";
 import UpcomingEvent from "./UpComingEvent/UpcomingEvent";
 import EventHistory from "./EventHistory/EventHistory";
 import EventRequest from "./EventRequest/EventRequest";
 import AddEventModal from "./AddEventModal/AddEventModal";
-import { useRole } from '../../hooks/useRole';
+import {useRole} from '../../hooks/useRole';
 
 
 interface EVENT_PROPS {

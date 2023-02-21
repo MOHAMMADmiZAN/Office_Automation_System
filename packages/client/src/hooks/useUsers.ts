@@ -7,7 +7,7 @@ import {useRole} from "./useRole";
 
 export const useUsers = () => {
     const {data:users, error:usersError, isLoading:usersIsLoading} = useQuery<User[]>('allUsers', UserApi.getAllUsers)
-    const Register = useStoreActions((actions: Actions<AuthType>) => actions.Auth.Register);
+    const Register = useStoreActions((actions: Actions<AuthType>) => actions.Auth.Register)
     const {superAdmin} = useRole()
      let Users = users?.filter(user => user.role !== superAdmin?._id)
 

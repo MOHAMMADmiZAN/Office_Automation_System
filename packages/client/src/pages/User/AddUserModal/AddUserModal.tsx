@@ -7,6 +7,7 @@ import {signupValidation} from "../../../utils/Validation";
 import FormLayOut from "../../../components/organisms/Form/FormLayOut/FormLayOut";
 import {useUsers} from "../../../hooks/useUsers";
 import {useRole} from "../../../hooks/useRole";
+import {useQueryClient} from "react-query";
 
 interface ADD_USER_MODAL_PROPS {
 
@@ -50,7 +51,7 @@ const defaultValues: RegisterFromData = {
 
 const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
      const {Roles} = useRole()
-
+    const queryClient = useQueryClient();
      const {Register} = useUsers();
 
     const RegisterInputFields: RegisterInputField[] = [
@@ -120,9 +121,8 @@ const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
             ...data,
             avatar: e?.target.avatar.files[0]
         }
-
-
         await Register(payload)
+        await queryClient.invalidateQueries("allUsers");
 
 
 

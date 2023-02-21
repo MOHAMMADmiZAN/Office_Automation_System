@@ -5,7 +5,7 @@ import AddUserDocumentModal from "./AddUserDocumentModal/AddUserDocumentModal";
 import UserDataTable from "./UserDataTable/UserDataTable";
 import CommonCard from "../../components/molecules/CommonCard/CommonCard";
 import AddUserInfoModal from "./AddUserInfoModal/AddUserInfoModal";
-import { useRole } from '../../hooks/useRole';
+import {useRole} from '../../hooks/useRole';
 import AddOnBordModal from "./AddUserOnbordModal/AddOnBordModal";
 
 interface USER_PROPS {

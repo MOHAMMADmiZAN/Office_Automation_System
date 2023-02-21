@@ -1,6 +1,6 @@
-import React, { useLayoutEffect, useState } from 'react';
-import Header, { AccountMenuItem } from "../components/organisms/Header/Header";
-import Sidebar, { SidebarMenuItem } from "../components/organisms/SideBar/Sidebar";
+import React, {useLayoutEffect, useState} from 'react';
+import Header, {AccountMenuItem} from "../components/organisms/Header/Header";
+import Sidebar, {SidebarMenuItem} from "../components/organisms/SideBar/Sidebar";
 import EventIcon from "@mui/icons-material/Event";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
 import {Box, Grid} from "@mui/material";
