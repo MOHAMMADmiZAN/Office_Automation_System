@@ -1,10 +1,10 @@
 import React from 'react';
-import DataTable, {DataTableData} from "../../../components/organisms/DataTable/DataTable";
-import {useUsers} from "../../../hooks/useUsers";
-import {useRole} from "../../../hooks/useRole";
-import {useUserInfo} from "../../../hooks/useUserInfo";
-import {Box, Tooltip} from "@mui/material";
-import {NavLink} from "react-router-dom";
+import DataTable, { DataTableData } from "../../../components/organisms/DataTable/DataTable";
+import { useUsers } from "../../../hooks/useUsers";
+import { useRole } from "../../../hooks/useRole";
+import { useUserInfo } from "../../../hooks/useUserInfo";
+import { Box, Tooltip } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import PreviewIcon from '@mui/icons-material/Preview';
 
 interface USER_DATA_TABLE_PROPS {
@@ -45,9 +45,10 @@ const dataTableData: DataTableData = {
 }
 
 const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
-    const {Users} = useUsers()
-    const {Roles} = useRole()
-    const {userBasicInfo} = useUserInfo()
+    const { Users } = useUsers()
+    const { Roles, checkUserPermission } = useRole()
+    const { userBasicInfo } = useUserInfo()
+
 
 
     const bodyRow: DataTableData["bodyRow"] = [];
@@ -75,8 +76,10 @@ const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
                     },
                     {
                         align: 'center',
-                        value: <Tooltip title={`View Full User Information`}><NavLink
-                            to={`/users/${user._id}`}><PreviewIcon/></NavLink></Tooltip>
+                        value: checkUserPermission('userDetail') && <Tooltip title={`View Full User Information`}>
+                            <NavLink
+                                to={`/users/${user._id}`}><PreviewIcon /></NavLink>
+                        </Tooltip>
                     }
 
                 ],
@@ -87,8 +90,8 @@ const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
 
 
     return (
-        <Box sx={{padding: '24px'}}>
-            <DataTable DataTableData={{...dataTableData, bodyRow}}/>
+        <Box sx={{ padding: '24px' }}>
+            <DataTable DataTableData={{ ...dataTableData, bodyRow }} />
         </Box>
     );
 };

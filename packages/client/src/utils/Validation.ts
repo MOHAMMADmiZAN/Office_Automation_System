@@ -1,7 +1,7 @@
 import * as yup from 'yup';
 
 const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,20}$/;
-const passwordMatch = (ref:unknown, message:string) => yup.string().test({
+const passwordMatch = (ref: unknown, message: string) => yup.string().test({
     name: 'passwordMatch',
     exclusive: false,
     message: message || 'Passwords must match',
@@ -12,14 +12,14 @@ const passwordMatch = (ref:unknown, message:string) => yup.string().test({
 
 export const loginValidation = yup.object().shape({
     email: yup.string().email().required(),
-    password: yup.string().required().min(8).max(20).matches(passwordRegex,'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character'),
+    password: yup.string().required().min(8).max(20).matches(passwordRegex, 'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character'),
 });
 
 export const signupValidation = yup.object().shape({
     firstName: yup.string().min(2).max(20).required(),
     lastName: yup.string().min(2).max(20).required(),
     email: yup.string().email().required(),
-    password: yup.string().min(8).max(20).matches(passwordRegex,'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character').required(),
+    password: yup.string().min(8).max(20).matches(passwordRegex, 'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character').required(),
     role: yup.string().required(),
     avatar: yup.string(),
 });
@@ -35,23 +35,12 @@ export const eventValidation = yup.object().shape({
 
 // roleValidation rules with enum
 
-enum Role {
+export enum Role {
+    SUPER_ADMIN = 'super_admin',
     ADMIN = 'admin',
     MODERATOR = 'moderator',
+    SUPPORT = 'support',
     USER = 'user',
-    CEO = 'ceo',
-    CTO = 'cto',
-    COO = 'coo',
-    HR = 'hr',
-    PROJECT_MANAGER = 'project_manager',
-    DEVELOPER = 'developer',
-    DESIGNER = 'designer',
-    MARKETING = 'marketing',
-    SALES = 'sales',
-    CUSTOMER_SUPPORT = 'customer_support',
-    ACCOUNTING = 'accounting',
-    SUPER_ADMIN = 'super_admin',
-
 }
 
 export const roleValidation = yup.object().shape({
@@ -67,7 +56,7 @@ export const userinfoValidation = yup.object().shape({
 
 });
 
- export const DocumentValidation = yup.object().shape({
+export const DocumentValidation = yup.object().shape({
     title: yup.string().required().min(2).max(20),
     document: yup.string(),
     user: yup.string().required(),

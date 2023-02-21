@@ -14,8 +14,6 @@ interface IRoleApi {
     roleUpdate: (payload: IRolePayload, id: string) => Promise<IRolePayload>;
     roleDelete: (id: string) => Promise<IRolePayload>;
     roleById: (id: string) => Promise<IRoleWithId>;
-
-
 }
 
 
