@@ -2,19 +2,13 @@ import {useMutation, useQuery, useQueryClient} from "react-query";
 import {IRoleWithId, RoleApi} from "../api/Role.Api";
 import {Role as roleNames} from '../utils/Validation'
 import useAuth from "./useAuth";
-//
-// const userPermissions = {
-//     [roleNames.SUPER_ADMIN]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
-//     [roleNames.ADMIN]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
-//     [roleNames.MODERATOR]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
-//     [roleNames.SUPPORT]: ['userDetail'],
-//     [roleNames.USER]: [],
-// }
 
 
-type UserPermissions = {
+
+
+interface UserPermissions  {
     [key: string]: string[];
-};
+}
 
 const userPermissions: UserPermissions = {
     [roleNames.SUPER_ADMIN]: ['manageEvent', 'userDetail', 'manageUser', 'userDocument', 'manageRole', 'attendance'],
@@ -53,7 +47,7 @@ export const useRole = (singleRoleId?: string) => {
     // }
 
     //  create a checkUserPermission function that takes a permission as a parameter and returns true or false
-    const checkUserPermission: Function = (permission: string): any => {
+    const checkUserPermission: Function = (permission: string): boolean => {
         //  get the role of the user
         const authUserRole = roles?.find((item) => item._id === user.role)?.name
         //  if the user has no role, return false

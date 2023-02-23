@@ -1,6 +1,5 @@
 import {Action, action, State, Thunk, thunk} from 'easy-peasy';
 import {AuthApi} from "../../api/Auth.api";
-import {useQueryClient} from "react-query";
 
 
 export  interface AuthType  {

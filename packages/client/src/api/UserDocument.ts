@@ -4,6 +4,7 @@ import {PrivateApiInstance} from "./api";
 export interface IUserDocument {
     title: string;
     document: string;
+    user: string;
 }
 
 export interface IUserDocumentWithId extends IUserDocument {

@@ -5,6 +5,7 @@ export interface  IUserInfoPayload {
     presentAddress: string,
     contactNumber: string,
     user: string,
+    dateOfBirth: string,
     eContactNumber: string,
 }
 export interface IUserInfoPayloadWithId extends IUserInfoPayload {
