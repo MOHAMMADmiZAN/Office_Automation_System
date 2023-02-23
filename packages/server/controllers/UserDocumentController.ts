@@ -18,6 +18,7 @@ class UserDocumentController extends UserDocumentService implements IUserDocumen
     public userDocumentCreate = async (req, res, next) => {
         try {
             const fileUrl = await handleFileUpload(req.file)
+
             const data = await this.createUserDocument({
                 ...req.body,
                 document: fileUrl
