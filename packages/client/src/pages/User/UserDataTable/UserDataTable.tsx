@@ -1,12 +1,14 @@
 import React from 'react';
-import DataTable, {DataTableData} from "../../../components/organisms/DataTable/DataTable";
-import {useUsers} from "../../../hooks/useUsers";
-import {useRole} from "../../../hooks/useRole";
-import {useUserInfo} from "../../../hooks/useUserInfo";
-import {Box, Tooltip} from "@mui/material";
-import {NavLink} from "react-router-dom";
+import DataTable, { DataTableData } from "../../../components/organisms/DataTable/DataTable";
+import { useUsers } from "../../../hooks/useUsers";
+import { useRole } from "../../../hooks/useRole";
+import { useUserInfo } from "../../../hooks/useUserInfo";
+import { Box, Tooltip } from "@mui/material";
+import { NavLink } from "react-router-dom";
 import PreviewIcon from '@mui/icons-material/Preview';
-import {useOnBoard} from "../../../hooks/useOnBoard";
+import { useOnBoard } from "../../../hooks/useOnBoard";
+import CustomSkeleton from '../../../components/atoms/CustomSkeleton/CustomSkeleton';
+
 
 interface USER_DATA_TABLE_PROPS {
 
@@ -46,10 +48,10 @@ const dataTableData: DataTableData = {
 }
 
 const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
-    const { Users } = useUsers()
+    const { Users, usersIsLoading } = useUsers()
     const { Roles, checkUserPermission } = useRole()
-    const { userBasicInfo} = useUserInfo()
-    const {OnBoardData}= useOnBoard()
+    const { userBasicInfo } = useUserInfo()
+    const { OnBoardData } = useOnBoard()
 
 
 
@@ -74,7 +76,7 @@ const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
                     },
                     {
                         align: 'center',
-                        value: OnBoardData?.find((onBoard)=>onBoard.user=== user._id)?.jobTitle
+                        value: OnBoardData?.find((onBoard) => onBoard.user === user._id)?.jobTitle
                     },
                     {
                         align: 'center',
@@ -93,7 +95,9 @@ const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
 
     return (
         <Box sx={{ padding: '24px' }}>
-            <DataTable DataTableData={{ ...dataTableData, bodyRow }} />
+            {usersIsLoading ?
+                <CustomSkeleton /> :
+                <DataTable DataTableData={{ ...dataTableData, bodyRow }} />}
         </Box>
     );
 };
