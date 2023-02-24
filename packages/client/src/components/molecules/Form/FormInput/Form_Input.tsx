@@ -1,4 +1,4 @@
-import React, {memo} from 'react';
+import React, {memo, useState} from 'react';
 import {Control} from "react-hook-form/dist/types/form";
 import {Controller} from "react-hook-form";
 import {
@@ -9,7 +9,7 @@ import {
     FromSelectLabel,
 } from "./styles/FormInput.style";
 
-import {FormControl, MenuItem, Typography} from "@mui/material";
+import {FormControl, FormHelperText, MenuItem, Typography} from "@mui/material";
 import CloudUploadIcon from '@mui/icons-material/CloudUpload';
 import {LocalizationProvider} from '@mui/x-date-pickers/LocalizationProvider';
 import {AdapterMoment} from "@mui/x-date-pickers/AdapterMoment";
@@ -117,6 +117,17 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                                                    smallField
                                                }): JSX.Element => {
 
+      const [previewUrl, setPreview] = useState<string>('');
+      const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files?.[0];
+        const fileReader = new FileReader();
+        fileReader.onload = () => {
+          setPreview(fileReader.result as string);
+        };
+        fileReader.readAsDataURL(file as Blob);
+      }
+
+
 
 
 
@@ -201,20 +212,39 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                     )
 
                 }
-                {
-                    FormFileInputType.includes(type) && (
-                        <Controller render={({field, fieldState: {error}, formState: {isValid},}) => {
-                            return (
-                                <Form_uploadBox component="label" sx={isAvatar(name)}>
-                                    <input type={type} id={name} hidden={true} {...field} />
-                                    <Typography variant={`h6`} component={`h6`} sx={{textTransform: 'capitalize'}}>{label}</Typography>
-                                    <CloudUploadIcon sx={{color: 'primary.main', marginLeft: '5px'}}/>
-                                </Form_uploadBox>
-                            )
-                        }
-                        } control={control} name={name}/>
-                    )
-                }
+                {FormFileInputType.includes(type) && (
+                    <Controller
+                        control={control}
+                        name={name}
+                        render={({ field: { onChange, value },fieldState:{error}, formState: { isValid } }) => (
+                           <>
+                               <Form_uploadBox component="label" sx={{...isAvatar(name),borderColor:error?'error.main':'primary.main',color:error?'error.main':'primary.main'}}>
+
+                                   <input
+                                       type={type}
+                                       id={name}
+                                       hidden
+                                       onChange={(e) => {
+                                           onChange(e);
+                                           if (name === 'avatar') {
+                                               handleFileChange(e);
+                                           }
+                                       }}
+                                   />
+                                   { }
+                                   <Typography variant="h6" component="h6" sx={{ textTransform: 'capitalize' }}>
+                                       {label}
+                                   </Typography>
+                                   <CloudUploadIcon sx={{ color:error?'error.main':'primary.main', marginLeft: '5px' }} />
+                                   {value && previewUrl && <img src={previewUrl} alt="previewUrl" />}
+
+                               </Form_uploadBox>
+                               <FormHelperText error={!!error?.message} sx={{ textAlign: 'left' , padding: '5px 10px'}}>{isValid ? '' : error?.message}</FormHelperText>
+                           </>
+                        )}
+                    />
+                )}
+
 
                 {
                     FormDateInputType.includes(type) && (

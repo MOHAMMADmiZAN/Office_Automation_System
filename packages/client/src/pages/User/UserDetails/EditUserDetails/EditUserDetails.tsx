@@ -61,7 +61,7 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Eleme
     const {Roles} = useRole()
 
     const editUserDefaultValue: editUserDetails = {
-        avatar: ``,
+        avatar: '' ,
         firstName: user?.firstName || '',
         lastName: user?.lastName || '',
         email: user?.email || '',
