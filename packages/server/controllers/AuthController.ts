@@ -1,6 +1,5 @@
 import AuthService from "../services/AuthService";
-import {NextFunction} from "express";
-import {handleFileUpload} from "../utils/FileUpload";
+import { NextFunction } from "express";
 
 
 interface AuthControllerInterface {
@@ -11,8 +10,7 @@ interface AuthControllerInterface {
 class AuthController extends AuthService implements AuthControllerInterface {
     public userRegister = async (req, res, next) => {
         try {
-            const fileUrl = await handleFileUpload(req.file)
-            const user = await this.register({...req.body, avatar: fileUrl});
+            const user = await this.register({ ...req.body, avatar: `uploads/${req.file.filename}` });
             res.status(201).json({
                 message: 'User created successfully',
                 user: user
