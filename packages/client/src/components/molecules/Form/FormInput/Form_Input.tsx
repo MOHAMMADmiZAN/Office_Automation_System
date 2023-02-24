@@ -227,26 +227,25 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                            <>
 
                                <Form_uploadBox component="label" sx={{...isAvatar(name),borderColor:error?'error.main':'primary.main',color:error?'error.main':'primary.main'}}>
-                                   {typeof value === 'string' && value.length > 0 ? setPreview(value) : null }
-                                   <input
-                                       type={type}
-                                       id={name}
-                                       hidden
-                                       onChange={(e) => {
-                                           handleFileChange(e,name);
-                                       }}
-                                   />
-                                   { typeof value != 'string' && value === 0 &&(
-                                       <>
-                                           <Typography variant="h6" component="h6" sx={{ textTransform: 'capitalize' }}>
-                                               {label}
-                                           </Typography>
-                                           <CloudUploadIcon sx={{ color:error?'error.main':'primary.main', marginLeft: '5px' }} />
-                                       </>
-
-                                   )}
-
-                                   {value && previewUrl && <img src={previewUrl} alt="previewUrl"  width={`100%`} height={`100%`} style={{objectFit:"cover"}}/>}
+                                  <>
+                                      {typeof value === 'string' && value.length > 0 ? setPreview(value) : null }
+                                      <input
+                                          type={type}
+                                          id={name}
+                                          hidden
+                                          onChange={(e) => {
+                                              handleFileChange(e,name);
+                                          }}
+                                      />
+                                      {value && previewUrl ? <img src={previewUrl} alt="previewUrl"  width={`100%`} height={`100%`} style={{objectFit:"cover"}}/>:
+                                          <>
+                                              <Typography variant="h6" component="h6" sx={{ textTransform: 'capitalize' }}>
+                                                  {label}
+                                              </Typography>
+                                              <CloudUploadIcon sx={{ color:error?'error.main':'primary.main', marginLeft: '5px' }} />
+                                          </>
+                                      }
+                                  </>
 
                                </Form_uploadBox>
                                {

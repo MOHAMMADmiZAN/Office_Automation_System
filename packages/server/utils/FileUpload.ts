@@ -81,10 +81,27 @@ const handleCloudFileDelete = async (path: string): Promise<any> => {
     }
 };
 
+const handleFileUpload = async (file: Express.Multer.File): Promise<string> => {
+    if (!file?.path) {
+        throw new Error("File not found!");
+    }
+
+    try {
+        const filePath = path.join(__dirname, '..', `public/${file.filename}`);
+        console.log('file upload successfully:', filePath);
+        return filePath;
+    } catch (error) {
+        console.log('Error uploading file to Cloudinary:', error);
+        throw error;
+    }
+}
+
+
 
 export {
     fileUpload,
     handleFileDelete,
     handleCloudFileUpload,
-    handleCloudFileDelete
+    handleCloudFileDelete,
+    handleFileUpload
 };
