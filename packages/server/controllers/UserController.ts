@@ -34,6 +34,22 @@ class UserController extends UserService implements IUserController {
         }
     }
 
+    userUpdate = async (req, res, next) => {
+        try {
+             if (req.file) {
+                 console.log(req.file)
+                 req.body.avatar = await handleFileUpload(req.file);
+             }
+             const data = await this.updateUser(req.params.id, req.body);
+            res.status(200).json({
+                message: 'User successfully updated.',
+                data: data
+            })
+        } catch (error: any) {
+            next(error)
+        }
+    }
+
 }
 
 export default UserController;

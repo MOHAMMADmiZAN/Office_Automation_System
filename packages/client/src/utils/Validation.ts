@@ -73,3 +73,23 @@ export const DocumentValidation = yup.object().shape({
 
 
  })
+export const editUserValidation = yup.object().shape({
+    avatar: yup.string(),
+    firstName: yup.string().min(2).max(20).required(),
+    lastName: yup.string().min(2).max(20).required(),
+    email: yup.string().email().required(),
+    contactNumber: yup.string().required().min(11).max(15),
+    eContactNumber: yup.string().min(11).max(15),
+    presentAddress: yup.string().required(),
+    permanentAddress: yup.string().required(),
+    dateOfBirth: yup.date().required(),
+    jobTitle: yup.string().required().min(2).max(20),
+    role: yup.string().required(),
+    salary: yup.number().required().min(3),
+    joiningDate: yup.string().required(),
+    status: yup.string().required(),
+    farewellDate: yup.string(),
+
+
+
+});
