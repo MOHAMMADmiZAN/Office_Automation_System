@@ -1,6 +1,6 @@
 import UserService from "../services/UserService";
 import { NextFunction, Response } from "express";
-import { handleCloudFileUpload, handleCloudFileDelete, handleFileDelete } from "../utils/FileUpload";
+import { handleCloudFileUpload, handleCloudFileDelete } from "../utils/FileUpload";
 
 
 interface IUserController {
@@ -41,8 +41,7 @@ class UserController extends UserService implements IUserController {
             next(error)
         }
     }
-
-    userUpdate = async (req, res, next) => {
+    public userUpdate = async (req, res, next) => {
         try {
 
             const data = await this.updateUser(req.params.id, req.body);
@@ -54,7 +53,6 @@ class UserController extends UserService implements IUserController {
             next(error)
         }
     }
-
 
 
 }

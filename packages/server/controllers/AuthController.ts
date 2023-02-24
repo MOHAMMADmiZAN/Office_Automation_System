@@ -21,7 +21,6 @@ class AuthController extends AuthService implements AuthControllerInterface {
             next(error)
         }
     }
-
     public userLogin = async (req, res, next) => {
         try {
             const token = await this.login(req.body.email, req.body.password);
