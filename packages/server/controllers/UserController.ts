@@ -1,6 +1,5 @@
 import UserService from "../services/UserService";
-import {NextFunction, Response} from "express";
-import {handleFileUpload} from "../utils/FileUpload";
+import { NextFunction, Response } from "express";
 
 
 interface IUserController {
@@ -23,7 +22,7 @@ class UserController extends UserService implements IUserController {
     }
     public avatarUpdate = async (req, res, next) => {
         try {
-            const fileUrl = await handleFileUpload(req.file)
+            const fileUrl = `uploads/${req.file.filename}`
             const data = await this.updateUserAvatar(req.params.id, fileUrl);
             res.status(200).json({
                 message: 'Avatar successfully updated.',
