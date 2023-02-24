@@ -163,14 +163,7 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Eleme
             placeholder: 'Enter Job Title',
             smallField: true,
         },
-        {
-            name: 'joiningDate',
-            type: 'date',
-            label: 'Joining Date',
-            placeholder: 'Enter Joining Date',
-            smallField: true,
 
-        },
         {
             name: 'salary',
             type: 'number',
@@ -196,6 +189,7 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Eleme
                     label: status,
                 };
             }),
+            smallField: true,
         }
     ];
 
@@ -235,19 +229,13 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Eleme
             payload: {
                 ...onBoard,
                 jobTitle: data.jobTitle,
-                joiningDate: data.joiningDate,
                 salary: data.salary,
                 farewellDate: data.farewellDate,
                 status: data.status,
             }
 
         }
-           const userAvatarPayload = {
-                id: user?._id,
-                payload: {
 
-                }
-            }
 
 
         await updateUser(userPayload as unknown as IUpdateUserPayload)
