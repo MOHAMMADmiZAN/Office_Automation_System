@@ -4,8 +4,6 @@ import {Role as roleNames} from '../utils/Validation'
 import useAuth from "./useAuth";
 
 
-
-
 interface UserPermissions  {
     [key: string]: string[];
 }

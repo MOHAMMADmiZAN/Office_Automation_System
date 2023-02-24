@@ -10,7 +10,7 @@ import {
 import useRole from "../../../../hooks/useRole";
 import {SubmitHandler} from "react-hook-form";
 import {onBoardStatus} from "../../AddUserOnbordModal/AddOnBordModal";
-import useUsers, {IUpdateUserPayload} from "../../../../hooks/useUsers";
+import useUsers, {IUpdateUserAvatarPayload, IUpdateUserPayload} from "../../../../hooks/useUsers";
 import useUserInfo, {IUpdateUserInfo} from "../../../../hooks/useUserInfo";
 import useOnBoard, {IUpdateOnBoard} from "../../../../hooks/useOnBoard";
 
@@ -54,14 +54,13 @@ interface editUserFormInput {
 
 const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Element => {
     const {user, userInfo, userDocument, userRole, onBoard} = useUser(userId)
-    const {updateUser} = useUsers()
+    const {updateUser,updateUserAvatar} = useUsers()
     const {updateUserInfo} = useUserInfo()
     const {updateOnBoard} = useOnBoard()
-
     const {Roles} = useRole()
 
     const editUserDefaultValue: editUserDetails = {
-        avatar: '' ,
+        avatar: user?.avatar || '' ,
         firstName: user?.firstName || '',
         lastName: user?.lastName || '',
         email: user?.email || '',
@@ -130,6 +129,7 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Eleme
             placeholder: 'Enter Date Of Birth',
             smallField: true,
         },
+
         {
             name: 'role',
             type: 'select',
@@ -200,13 +200,14 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Eleme
     ];
 
     const onSubmit: SubmitHandler<editUserDetails> = async (data, e) => {
+        const userAvatar = e?.target.avatar.files[0]
+
 
 
         const userPayload = {
             id: user?._id,
             payload: {
                 ...user,
-                avatar: e?.target.avatar.files[0],
                 firstName: data.firstName,
                 lastName: data.lastName,
                 email: data.email,
@@ -238,6 +239,16 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Eleme
                 farewellDate: data.farewellDate,
                 status: data.status,
             }
+
+        }
+        if (userAvatar){
+            const userAvatarPayload = {
+                id: user?._id,
+                payload: {
+                    avatar: userAvatar,
+                }
+            }
+            await updateUserAvatar(userAvatarPayload  as IUpdateUserAvatarPayload)
 
         }
         await updateUser(userPayload as unknown as IUpdateUserPayload)

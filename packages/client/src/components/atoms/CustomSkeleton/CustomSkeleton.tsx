@@ -1,5 +1,5 @@
 import React from 'react';
-import { Skeleton, Typography, Avatar, Box } from "@mui/material";
+import {Avatar, Box, Skeleton, Typography} from "@mui/material";
 
 const ROW_COUNT = 10;
 

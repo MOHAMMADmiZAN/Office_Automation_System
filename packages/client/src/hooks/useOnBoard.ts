@@ -1,6 +1,5 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import {IUserOnBoardWithId, UserOnBoardApi} from "../api/UserOnBoard";
-import {IUpdateUserInfo} from "./useUserInfo";
 
 export interface IUpdateOnBoard{
     id: string;

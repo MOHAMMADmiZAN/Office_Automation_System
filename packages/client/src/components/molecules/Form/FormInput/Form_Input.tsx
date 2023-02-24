@@ -1,4 +1,4 @@
-import React, {memo, useState} from 'react';
+import React, {memo, useEffect, useState} from 'react';
 import {Control} from "react-hook-form/dist/types/form";
 import {Controller} from "react-hook-form";
 import {
@@ -97,7 +97,9 @@ export interface FORM_INPUT_PROPS {
     control: Control<any>
     isFullWidth?: boolean,
     id?: string
-    selectOptions?: selectOption[]
+    selectOptions?: selectOption[],
+    valueSet?: Function,
+
 
 
 }
@@ -114,12 +116,17 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                                                    isFullWidth,
                                                    id,
                                                    selectOptions,
-                                                   smallField
+                                                   smallField,
+                                                     valueSet,
                                                }): JSX.Element => {
 
       const [previewUrl, setPreview] = useState<string>('');
-      const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+
+      const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>,name:string) => {
         const file = e.target.files?.[0];
+         // @ts-ignore
+          valueSet(name,file)
         const fileReader = new FileReader();
         fileReader.onload = () => {
           setPreview(fileReader.result as string);
@@ -218,28 +225,33 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                         name={name}
                         render={({ field: { onChange, value },fieldState:{error}, formState: { isValid } }) => (
                            <>
-                               <Form_uploadBox component="label" sx={{...isAvatar(name),borderColor:error?'error.main':'primary.main',color:error?'error.main':'primary.main'}}>
 
+                               <Form_uploadBox component="label" sx={{...isAvatar(name),borderColor:error?'error.main':'primary.main',color:error?'error.main':'primary.main'}}>
+                                   {typeof value === 'string' && value.length > 0 ? setPreview(value) : null }
                                    <input
                                        type={type}
                                        id={name}
                                        hidden
                                        onChange={(e) => {
-                                           onChange(e);
-                                           if (name === 'avatar') {
-                                               handleFileChange(e);
-                                           }
+                                           handleFileChange(e,name);
                                        }}
                                    />
-                                   { }
-                                   <Typography variant="h6" component="h6" sx={{ textTransform: 'capitalize' }}>
-                                       {label}
-                                   </Typography>
-                                   <CloudUploadIcon sx={{ color:error?'error.main':'primary.main', marginLeft: '5px' }} />
-                                   {value && previewUrl && <img src={previewUrl} alt="previewUrl" />}
+                                   { typeof value != 'string' && value === 0 &&(
+                                       <>
+                                           <Typography variant="h6" component="h6" sx={{ textTransform: 'capitalize' }}>
+                                               {label}
+                                           </Typography>
+                                           <CloudUploadIcon sx={{ color:error?'error.main':'primary.main', marginLeft: '5px' }} />
+                                       </>
+
+                                   )}
+
+                                   {value && previewUrl && <img src={previewUrl} alt="previewUrl"  width={`100%`} height={`100%`} style={{objectFit:"cover"}}/>}
 
                                </Form_uploadBox>
-                               <FormHelperText error={!!error?.message} sx={{ textAlign: 'left' , padding: '5px 10px'}}>{isValid ? '' : error?.message}</FormHelperText>
+                               {
+                                      error && <FormHelperText error={!!error?.message} sx={{color:'error.main'}}>{error?.message}</FormHelperText>
+                               }
                            </>
                         )}
                     />

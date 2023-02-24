@@ -33,7 +33,8 @@ export const signupValidation = yup.object().shape({
         .mixed()
         .test('fileType', 'Invalid file type', (value) => {
 
-            const supportedTypes = ['image/jpeg', 'image/png', 'image/gif']; // Define the supported file types
+            const supportedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp', 'image/tiff', 'image/svg+xml', 'image/x-icon', 'image/vnd.microsoft.icon', 'image/jp2', 'image/jpx', 'image/jpm', 'image/heif', 'image/heic'];
+            // Define the supported file types
             return supportedTypes.includes(value.type); // Check if the file type is supported
         }).required(`Avatar is required`),
 });
@@ -96,9 +97,10 @@ export const DocumentValidation = yup.object().shape({
 export const editUserValidation = yup.object().shape({
     avatar: yup
         .mixed()
-        .test('fileType', 'Invalid file type', (value) => {
-            if (!value) return false; // Allows empty value
-            const supportedTypes = ['image/jpeg', 'image/png', 'image/gif']; // Define the supported file types
+        .test('type', 'Invalid file type', (value) => {
+            const supportedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp', 'image/tiff', 'image/svg+xml', 'image/x-icon', 'image/vnd.microsoft.icon', 'image/jp2', 'image/jpx', 'image/jpm', 'image/heif', 'image/heic'];
+            if (value === undefined) return true; // If th// e file is not uploaded, then return true
+            if (typeof value === 'string') return true; // If the file is already uploaded, then return true
             return supportedTypes.includes(value.type); // Check if the file type is supported
         }),
     firstName: yup.string().min(2).max(20).required(),
