@@ -208,6 +208,7 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Eleme
             id: user?._id,
             payload: {
                 ...user,
+                avatar: userAvatar || data.avatar,
                 firstName: data.firstName,
                 lastName: data.lastName,
                 email: data.email,
@@ -241,16 +242,14 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Eleme
             }
 
         }
-        if (userAvatar){
-            const userAvatarPayload = {
+           const userAvatarPayload = {
                 id: user?._id,
                 payload: {
-                    avatar: userAvatar,
+
                 }
             }
-            await updateUserAvatar(userAvatarPayload  as IUpdateUserAvatarPayload)
 
-        }
+
         await updateUser(userPayload as unknown as IUpdateUserPayload)
         await updateUserInfo(userInfoPayload as IUpdateUserInfo)
         await updateOnBoard(onBoardPayload as IUpdateOnBoard)

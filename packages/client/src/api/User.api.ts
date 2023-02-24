@@ -14,8 +14,8 @@ export const UserApi = {
     updateUser: async (id: string, payload: User) => {
         try {
             const headers = { 'Content-Type': 'multipart/form-data' };
+
             const response = await PrivateApiInstance.put(`/user/${id}`, payload,{ headers });
-            console.log(response.data)
             return response.data;
         } catch (e) {
             console.log(e)
@@ -41,6 +41,7 @@ export const UserApi = {
         try {
             const headers = { 'Content-Type': 'multipart/form-data' };
             const response = await PrivateApiInstance.put(`/user/changeAvatar/${id}`, payload,{ headers });
+            console.log(response)
             return response.data;
         } catch (e) {
             console.log(e)
