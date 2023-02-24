@@ -1,18 +1,16 @@
 import {useParams} from "react-router-dom";
 import {Box, Container, Divider, Grid, Link, Typography} from "@mui/material";
 import CommonCard from "../../../components/molecules/CommonCard/CommonCard";
-import {useUsers} from "../../../hooks/useUsers";
-import {useRole} from "../../../hooks/useRole";
-import {useUserInfo} from "../../../hooks/useUserInfo";
 
 import React from "react";
 import {headerTypography, userAvatarStyle} from "./UserDetails.style";
-import {useOnBoard} from "../../../hooks/useOnBoard";
 import moment from "moment";
-import {useDocument} from "../../../hooks/useDocument";
 import {Downloading, Edit} from "@mui/icons-material";
 import CustomModal from "../../../components/organisms/CustomModal/CustomModal";
 import {Btn} from "../../../components/molecules/Form/Btn/Btn";
+import EditUserDetails from "./EditUserDetails/EditUserDetails";
+import useUser from "../../../hooks/useUser";
+
 
 interface USER_DETAILS_PROPS {
 
@@ -20,16 +18,8 @@ interface USER_DETAILS_PROPS {
 
 const UserDetails: React.FC<USER_DETAILS_PROPS> = (props): JSX.Element => {
     const {id} = useParams();
-    const {Users} = useUsers()
-    const user = Users?.find((u) => u._id === id)
-    const {Roles} = useRole()
-    const userRole = Roles?.find((role) => role._id === user?.role)
-    const {userBasicInfo} = useUserInfo()
-    const userInfo = userBasicInfo?.find((info) => info.user === user?._id)
-    const {OnBoardData} = useOnBoard()
-    const onBoard = OnBoardData?.find((onBoard) => onBoard.user === user?._id)
-        const {userAllDocument} = useDocument()
-        const userDocument = userAllDocument?.filter((doc) => doc.user === user?._id)
+    const {user,userInfo,userDocument,userRole,onBoard} = useUser(id as string)
+
 
     let age = moment.duration(moment().diff(userInfo?.dateOfBirth));
     let ageInYears = age.years();
@@ -63,7 +53,7 @@ const UserDetails: React.FC<USER_DETAILS_PROPS> = (props): JSX.Element => {
                             </Grid>
                         </Grid>
                         <Grid item={true} xs={12} md={4}>
-                            <CustomModal modalId={"edit-user-data"} modalContent={undefined} modalBtnText={`Edit User`} ModalBtnIcon={<Edit/>} modalBtnVariant={`outlined`} modalTitle={`edit-user-data`}/>
+                            <CustomModal modalId={"edit-user-data"} modalContent={<EditUserDetails userId={id as string}/>} modalBtnText={`Edit User`} ModalBtnIcon={<Edit/>} modalBtnVariant={`outlined`} modalTitle={`edit-user-data`}/>
                             <Btn BtnStartIcon={<Downloading/>} BtnText={`Download `}  variant={`contained`}/>
                         </Grid>
                     </Grid>

@@ -1,5 +1,12 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
-import {UserOnBoardApi} from "../api/UserOnBoard";
+import {IUserOnBoardWithId, UserOnBoardApi} from "../api/UserOnBoard";
+import {IUpdateUserInfo} from "./useUserInfo";
+
+export interface IUpdateOnBoard{
+    id: string;
+    payload: IUserOnBoardWithId
+
+}
 
 
 export const useOnBoard = () => {
@@ -13,12 +20,19 @@ export const useOnBoard = () => {
 
         }
       })
+     const { mutateAsync: updateOnBoard } = useMutation((data:IUpdateOnBoard ) => UserOnBoardApi.userOnBoardUpdate(data.payload,data.id), {
+        onSuccess: async (data) => {
+            await queryClient.invalidateQueries("onboard");
+        }
+     })
 
 
     return {
         OnBoardData,
         createOnBoard,
+        updateOnBoard
     }
 
 
 }
+export default useOnBoard

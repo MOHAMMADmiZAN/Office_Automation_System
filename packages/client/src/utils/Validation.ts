@@ -19,10 +19,25 @@ export const signupValidation = yup.object().shape({
     firstName: yup.string().min(2).max(20).required(),
     lastName: yup.string().min(2).max(20).required(),
     email: yup.string().email().required(),
-    password: yup.string().min(8).max(20).matches(passwordRegex, 'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character').required(),
+    password: yup
+        .string()
+        .min(8)
+        .max(20)
+        .matches(
+            passwordRegex,
+            'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character'
+        )
+        .required(),
     role: yup.string().required(),
-    avatar: yup.string(),
+    avatar: yup
+        .mixed()
+        .test('fileType', 'Invalid file type', (value) => {
+
+            const supportedTypes = ['image/jpeg', 'image/png', 'image/gif']; // Define the supported file types
+            return supportedTypes.includes(value.type); // Check if the file type is supported
+        }).required(`Avatar is required`),
 });
+
 
 export const eventValidation = yup.object().shape({
     title: yup.string().required().min(2).max(20),
@@ -58,7 +73,12 @@ export const userinfoValidation = yup.object().shape({
 
 export const DocumentValidation = yup.object().shape({
     title: yup.string().required().min(2).max(20),
-    document: yup.string(),
+    document: yup
+        .mixed()
+        .test('fileType', 'Invalid file type', (value) => {
+            const supportedTypes = ['image/jpeg', 'image/png', 'image/gif', 'application/pdf', 'application/vnd.openxmlformats-officedocument.wordprocessingml.document']; // Define the supported file types
+            return supportedTypes.includes(value.type); // Check if the file type is supported
+        }).required(`Document is required`),
     user: yup.string().required(),
  });
 
@@ -73,3 +93,29 @@ export const DocumentValidation = yup.object().shape({
 
 
  })
+export const editUserValidation = yup.object().shape({
+    avatar: yup
+        .mixed()
+        .test('fileType', 'Invalid file type', (value) => {
+            if (!value) return false; // Allows empty value
+            const supportedTypes = ['image/jpeg', 'image/png', 'image/gif']; // Define the supported file types
+            return supportedTypes.includes(value.type); // Check if the file type is supported
+        }),
+    firstName: yup.string().min(2).max(20).required(),
+    lastName: yup.string().min(2).max(20).required(),
+    email: yup.string().email().required(),
+    contactNumber: yup.string().required().min(11).max(15),
+    eContactNumber: yup.string().min(11).max(15),
+    presentAddress: yup.string().required(),
+    permanentAddress: yup.string().required(),
+    dateOfBirth: yup.date().required(),
+    jobTitle: yup.string().required().min(2).max(20),
+    role: yup.string().required(),
+    salary: yup.number().required().min(3),
+    joiningDate: yup.string().required(),
+    status: yup.string().required(),
+    farewellDate: yup.string(),
+
+
+
+});

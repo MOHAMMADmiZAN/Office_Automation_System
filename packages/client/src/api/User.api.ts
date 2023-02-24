@@ -1,4 +1,5 @@
 import {PrivateApiInstance} from "./api";
+import {User} from "../store/models/AuthModel";
 
 
 export const UserApi = {
@@ -10,9 +11,11 @@ export const UserApi = {
             console.log(e)
         }
     },
-    updateUser: async (id: string, payload: any) => {
+    updateUser: async (id: string, payload: User) => {
         try {
-            const response = await PrivateApiInstance.put(`/user/${id}`, payload);
+            const headers = { 'Content-Type': 'multipart/form-data' };
+            const response = await PrivateApiInstance.put(`/user/${id}`, payload,{ headers });
+            console.log(response.data)
             return response.data;
         } catch (e) {
             console.log(e)
@@ -33,6 +36,8 @@ export const UserApi = {
         } catch (e) {
             console.log(e)
         }
-    }
+    },
+
+
 
 }

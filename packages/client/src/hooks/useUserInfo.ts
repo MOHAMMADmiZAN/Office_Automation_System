@@ -1,6 +1,10 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import UserInfo, {IUserInfoPayload, IUserInfoPayloadWithId} from "../api/UserInfo";
 
+ export interface IUpdateUserInfo {
+    id: string;
+    payload: IUserInfoPayload
+}
 
 export const useUserInfo = () => {
     const queryClient = useQueryClient();
@@ -12,12 +16,21 @@ export const useUserInfo = () => {
 
         }
     })
+    const { mutateAsync: updateUserInfo } = useMutation((data:IUpdateUserInfo ) => UserInfo.updateUserInfo(data.id,data.payload), {
+        onSuccess: async (data) => {
+            await queryClient.invalidateQueries("userBasicInfo");
+            await queryClient.invalidateQueries("allUsers");
+        }
+    })
 
     return {
         userBasicInfo,
         userBasicInfoError,
         userBasicInfoIsLoading,
-        createUserInfo
+        createUserInfo,
+        updateUserInfo
     }
 
 }
+
+export default useUserInfo

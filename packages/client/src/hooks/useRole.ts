@@ -70,3 +70,5 @@ export const useRole = (singleRoleId?: string) => {
 
 
 }
+
+export default useRole

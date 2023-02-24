@@ -49,5 +49,5 @@ export const useEvent = (singleEventId?:string)=>{
     }
 
 }
-
+export default useEvent
 
