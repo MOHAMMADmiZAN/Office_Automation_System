@@ -8,6 +8,7 @@ import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import {Dashboard, Logout} from "@mui/icons-material";
 import {Actions, useStoreActions} from "easy-peasy";
 import {AuthType} from "../store/models/AuthModel";
+import EnergySavingsLeafIcon from '@mui/icons-material/EnergySavingsLeaf';
 import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
@@ -31,9 +32,15 @@ const SidebarMenu: SidebarMenuItem[] = [
     {
         icon: <PermContactCalendarIcon />,
         text: "Users List",
-        isDivider: false,
+        isDivider: true,
         id: 'users',
     },
+    {
+        icon: <EnergySavingsLeafIcon />,
+        text: "Attendance System",
+        isDivider: false,
+        id: 'attendance',
+    }
 ]
 
 
