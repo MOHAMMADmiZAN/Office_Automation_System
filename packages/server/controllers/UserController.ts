@@ -26,9 +26,13 @@ class UserController extends UserService implements IUserController {
         try {
             // Check and delete previous file;
             const userInfo = await this.findUser('_id', req.params.id);
+            console.log(userInfo)
             if (userInfo?.avatar) {
                 await handleCloudFileDelete(userInfo.avatar);
             }
+            console.log(req.file)
+            console.log(req.body)
+            return
 
             const fileUrl = await handleCloudFileUpload(req.file)
             const data = await this.updateUserAvatar(req.params.id, fileUrl);
@@ -43,6 +47,17 @@ class UserController extends UserService implements IUserController {
     }
     public userUpdate = async (req, res, next) => {
         try {
+
+            if (req.file) {
+                // Check and delete previous file;
+                const userInfo = await this.findUser('_id', req.params.id);
+                if (userInfo?.avatar) {
+                    await handleCloudFileDelete(userInfo.avatar);
+                }
+                const fileUrl = await handleCloudFileUpload(req.file)
+                req.body.avatar = fileUrl;
+            }
+
 
             const data = await this.updateUser(req.params.id, req.body);
             res.status(200).json({
