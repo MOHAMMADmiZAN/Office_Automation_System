@@ -1,4 +1,4 @@
-import { model, Schema } from 'mongoose';
+import {model, Schema} from 'mongoose';
 
 export interface IOnboard {
     user: string;
@@ -30,7 +30,7 @@ const OnboardSchema = new Schema({
         required: [true, 'Salary field is required']
     },
     status: {
-        type: String, enum: ['Current', 'Former'], default: 'Current'
+        type: String, enum: [ 'Active', 'Inactive', 'On Leave', 'Fired', 'Resigned'], default: 'Active'
     },
     farewellDate: {
         type: String,
