@@ -1,6 +1,13 @@
 import multer, { Multer } from 'multer';
 import path from 'path';
 import fs from 'fs';
+import { v2 as cloudinaryV2 } from 'cloudinary';
+
+cloudinaryV2.config({
+    cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
+    api_key: process.env.CLOUDINARY_API_KEY!,
+    api_secret: process.env.CLOUDINARY_API_SECRET!,
+});
 
 
 const fileUpload: Multer = multer({
@@ -25,7 +32,7 @@ const fileUpload: Multer = multer({
 
 
 const handleFileDelete = async (filename: string): Promise<any> => {
-    const filePath = path.join(__dirname, `public/${filename}`);
+    const filePath = path.join(__dirname, '..', `public/${filename}`);
 
     return new Promise((resolve: any, reject: any) => {
         fs.unlink(filePath, (err) => {
@@ -41,8 +48,43 @@ const handleFileDelete = async (filename: string): Promise<any> => {
 };
 
 
+const handleCloudFileUpload = async (file: Express.Multer.File): Promise<string> => {
+    if (!file?.path) {
+        throw new Error("File not found!");
+    }
+
+    try {
+        const result = await cloudinaryV2.uploader.upload(file.path);
+        console.log('file upload successfully:', result);
+
+        // Delete file from local storage
+        handleFileDelete(file.path.slice(7))
+
+        return result.secure_url!;
+    } catch (error) {
+        console.log('Error uploading file to Cloudinary:', error);
+        throw error;
+    }
+};
+
+const handleCloudFileDelete = async (path: string): Promise<any> => {
+    try {
+        const arr = path.split('/');
+        path = arr[arr.length - 1].split('.')[0];
+
+        const result = await cloudinaryV2.uploader.destroy(path);
+        console.log('file delete successfully:', result);
+        return result;
+    } catch (error) {
+        console.log('Error delete file to Cloudinary:', error);
+        throw error;
+    }
+};
+
 
 export {
     fileUpload,
     handleFileDelete,
+    handleCloudFileUpload,
+    handleCloudFileDelete
 };
