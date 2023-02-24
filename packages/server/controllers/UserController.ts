@@ -6,6 +6,7 @@ import { handleCloudFileUpload, handleCloudFileDelete, handleFileDelete } from "
 interface IUserController {
     userList: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     avatarUpdate: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    userUpdate: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 
 class UserController extends UserService implements IUserController {

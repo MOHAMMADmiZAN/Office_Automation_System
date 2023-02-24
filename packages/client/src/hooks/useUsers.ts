@@ -4,9 +4,16 @@ import {AuthType, User} from "../store/models/AuthModel";
 import {Actions, useStoreActions} from "easy-peasy";
 import {useRole} from "./useRole";
 
- export interface IUpdateUserPayload {
+export interface IUpdateUserPayload {
     id: string,
      payload: User
+ }
+
+ export interface IUpdateUserAvatarPayload {
+    id: string,
+        payload: {
+        avatar: Blob
+        }
  }
 
 export const useUsers = () => {
@@ -21,6 +28,11 @@ export const useUsers = () => {
             await queryClient.invalidateQueries("allUsers");
         }
     })
+     const { mutateAsync: updateUserAvatar} = useMutation( (data:IUpdateUserAvatarPayload)=> UserApi.updateUserAvatar(data.id,data.payload.avatar),{
+        onSuccess: async (data) => {
+            await queryClient.invalidateQueries("allUsers");
+        }
+     })
 
 
     return {
@@ -29,7 +41,8 @@ export const useUsers = () => {
         usersIsLoading,
         Register,
         usersWithSuperAdmin : users,
-        updateUser
+        updateUser,
+        updateUserAvatar
 
     }
 

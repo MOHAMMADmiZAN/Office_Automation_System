@@ -1,7 +1,7 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
 import UserInfo, {IUserInfoPayload, IUserInfoPayloadWithId} from "../api/UserInfo";
 
- export interface IUpdateUserInfo {
+export interface IUpdateUserInfo {
     id: string;
     payload: IUserInfoPayload
 }
