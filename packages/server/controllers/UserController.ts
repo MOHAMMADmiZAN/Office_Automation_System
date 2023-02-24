@@ -1,6 +1,6 @@
 import UserService from "../services/UserService";
 import { NextFunction, Response } from "express";
-import { handleCloudFileUpload, handleCloudFileDelete, handleFileDelete } from "../utils/FileUpload";
+import { handleCloudFileUpload, handleCloudFileDelete } from "../utils/FileUpload";
 
 
 interface IUserController {
@@ -40,30 +40,19 @@ class UserController extends UserService implements IUserController {
             next(error)
         }
     }
-
-    userUpdate = async (req, res, next) => {
+    public userUpdate = async (req, res, next) => {
         try {
             if (req.file) {
+                // Check and delete previous file;
+                const userInfo = await this.findUser('_id', req.params.id);
+                if (userInfo?.avatar) {
+                    await handleCloudFileDelete(userInfo.avatar);
+                }
+
                 console.log(req.file)
                 req.body.avatar = await handleCloudFileUpload(req.file);
             }
             const data = await this.updateUser(req.params.id, req.body);
-            res.status(200).json({
-                message: 'User successfully updated.',
-                data: data
-            })
-        } catch (error: any) {
-            next(error)
-        }
-    }
-
-    userUpdate = async (req, res, next) => {
-        try {
-             if (req.file) {
-                 console.log(req.file)
-                 req.body.avatar = await handleFileUpload(req.file);
-             }
-             const data = await this.updateUser(req.params.id, req.body);
             res.status(200).json({
                 message: 'User successfully updated.',
                 data: data
