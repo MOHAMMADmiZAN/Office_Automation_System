@@ -1,6 +1,6 @@
 import UserDocumentService from "../services/UserDocumentService";
-import { NextFunction, Response } from "express";
-import { handleFileDelete } from "../utils/FileUpload";
+import {NextFunction, Response} from "express";
+import {handleFileDelete, handleFileUpload} from "../utils/FileUpload";
 
 
 interface IUserDocumentController {
@@ -17,13 +17,15 @@ class UserDocumentController extends UserDocumentService implements IUserDocumen
 
     public userDocumentCreate = async (req, res, next) => {
         try {
+            const fileUrl = await handleFileUpload(req.file)
+
             const data = await this.createUserDocument({
                 ...req.body,
-                document: `uploads/${req.file.filename}`
+                document: fileUrl
             });
             res.status(201).json({
                 message: 'User document created successfully',
-                data: data
+                data
             })
         } catch (error: any) {
             next(error)
@@ -81,8 +83,12 @@ class UserDocumentController extends UserDocumentService implements IUserDocumen
     public userDocumentDelete = async (req, res, next) => {
         try {
             const data = await this.deleteUserDocument(req.params.id);
+
+            // // Delete file form cloudinary 
             if (data?.document) {
-                await handleFileDelete(data.document);
+                const arr = data.document.split('/');
+                let publicId = arr[arr.length - 1].split('.')[0]
+                await handleFileDelete(publicId);
             }
             res.status(200).json({
                 message: 'User document deleted successfully',
