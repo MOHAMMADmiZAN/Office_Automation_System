@@ -8,7 +8,8 @@ const userController = new UserController();
 
 
 UserRouter.get('/', userController.userList)
-UserRouter.put('/changeAvatar/:id', fileUpload.single('image'), userController.avatarUpdate)
+UserRouter.put('/changeAvatar/:id', fileUpload.single('avatar'), userController.avatarUpdate)
+UserRouter.put('/:id', fileUpload.single('avatar') ,userController.userUpdate)
 
 
 

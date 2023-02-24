@@ -39,7 +39,7 @@ interface onBordFormField {
 
 }
 
-const onBoardStatus : string[] = [ 'Active', 'Inactive', 'On Leave', 'Fired', 'Resigned']
+export const onBoardStatus : string[] = [ 'Active', 'Inactive', 'On Leave', 'Fired', 'Resigned']
 
 const AddOnBordModal: React.FC<ADD_ON_BORD_MODAL_PROPS> = (props): JSX.Element => {
 
