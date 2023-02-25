@@ -6,33 +6,37 @@ import {useRole} from "./useRole";
 
 export interface IUpdateUserPayload {
     id: string,
-     payload: User
- }
+    payload: User
+}
 
- export interface IUpdateUserAvatarPayload {
+export interface IUpdateUserAvatarPayload {
     id: string,
-        payload: {
+    payload: {
         avatar: Blob
-        }
- }
+    }
+}
 
 export const useUsers = () => {
-     const queryClient = useQueryClient();
-    const {data:users, error:usersError, isLoading:usersIsLoading} = useQuery<User[]>('allUsers', UserApi.getAllUsers)
+    const queryClient = useQueryClient();
+    const {
+        data: users,
+        error: usersError,
+        isLoading: usersIsLoading
+    } = useQuery<User[]>('allUsers', UserApi.getAllUsers)
     const Register = useStoreActions((actions: Actions<AuthType>) => actions.Auth.Register)
     const {superAdmin} = useRole()
-     let Users = users?.filter(user => user.role !== superAdmin?._id)
+    let Users = users?.filter(user => user.role !== superAdmin?._id)
 
-    const { mutateAsync: updateUser} = useMutation( (data:IUpdateUserPayload)=> UserApi.updateUser(data.id,data.payload),{
+    const {mutateAsync: updateUser} = useMutation((data: IUpdateUserPayload) => UserApi.updateUser(data.id, data.payload), {
         onSuccess: async (data) => {
             await queryClient.invalidateQueries("allUsers");
         }
     })
-     const { mutateAsync: updateUserAvatar} = useMutation( (data:IUpdateUserAvatarPayload)=> UserApi.updateUserAvatar(data.id,data.payload.avatar),{
+    const {mutateAsync: updateUserAvatar} = useMutation((data: IUpdateUserAvatarPayload) => UserApi.updateUserAvatar(data.id, data.payload.avatar), {
         onSuccess: async (data) => {
             await queryClient.invalidateQueries("allUsers");
         }
-     })
+    })
 
 
     return {
@@ -40,7 +44,7 @@ export const useUsers = () => {
         usersError,
         usersIsLoading,
         Register,
-        usersWithSuperAdmin : users,
+        usersWithSuperAdmin: users,
         updateUser,
         updateUserAvatar
 

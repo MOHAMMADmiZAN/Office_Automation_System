@@ -27,22 +27,21 @@ const Sidebar: React.FC<SIDEBAR_PROPS> = ({isSidebarOpen, ActiveUrl, sidebarMenu
     return (
         <>
 
-              <SidebarBox className={isSidebarOpen ? 'open' : 'close'}>
-                  <MenuList>
-                      {sidebarMenu.map((item, index) => (
-                          <Box key={index} sx={{margin: '2px 0',}} className={`Nav-item`}>
-                              <NavLink  to={`/${item.id}`} className={ActiveUrl===`/${item.id}`?'Active-item':''}>
-                                  <ListItemIcon>
-                                      {item.icon}
-                                  </ListItemIcon>
-                                  <ListItemText primary={item.text}/>
-                              </NavLink>
-                              {item.isDivider && <Divider/>}
-                          </Box>
-                      ))}
-                  </MenuList>
-              </SidebarBox>
-
+            <SidebarBox className={isSidebarOpen ? 'open' : 'close'}>
+                <MenuList>
+                    {sidebarMenu.map((item, index) => (
+                        <Box key={index} sx={{margin: '2px 0',}} className={`Nav-item`}>
+                            <NavLink to={`/${item.id}`} className={ActiveUrl === `/${item.id}` ? 'Active-item' : ''}>
+                                <ListItemIcon>
+                                    {item.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={item.text}/>
+                            </NavLink>
+                            {item.isDivider && <Divider/>}
+                        </Box>
+                    ))}
+                </MenuList>
+            </SidebarBox>
 
 
         </>

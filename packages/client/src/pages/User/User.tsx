@@ -13,18 +13,18 @@ interface USER_PROPS {
 }
 
 const User: React.FC<USER_PROPS> = (props): JSX.Element => {
-    const { checkUserPermission } = useRole()
+    const {checkUserPermission} = useRole()
 
     return (
         <>
-            {checkUserPermission('manageRole') && <AddRoleModal />}
+            {checkUserPermission('manageRole') && <AddRoleModal/>}
             {checkUserPermission('manageUser') && <>
-                <AddUserModal />
-                <AddUserInfoModal />
-                <AddUserDocumentModal />
-                <AddOnBordModal />
+                <AddUserModal/>
+                <AddUserInfoModal/>
+                <AddUserDocumentModal/>
+                <AddOnBordModal/>
             </>}
-            <CommonCard CardMain={<UserDataTable />} cardTitle={`Users list`} />
+            <CommonCard CardMain={<UserDataTable/>} cardTitle={`Users list`}/>
         </>
     );
 };

@@ -14,5 +14,4 @@ OnboardRouter.put('/:id', onboardController.onboardUpdate)
 OnboardRouter.delete('/:id', onboardController.onboardDelete)
 
 
-
 export default OnboardRouter

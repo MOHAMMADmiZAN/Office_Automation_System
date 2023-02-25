@@ -1,7 +1,7 @@
-import multer, { Multer } from 'multer';
+import multer, {Multer} from 'multer';
 import path from 'path';
 import fs from 'fs';
-import { v2 as cloudinaryV2 } from 'cloudinary';
+import {v2 as cloudinaryV2} from 'cloudinary';
 
 cloudinaryV2.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME!,
@@ -95,7 +95,6 @@ const handleFileUpload = async (file: Express.Multer.File): Promise<string> => {
         throw error;
     }
 }
-
 
 
 export {

@@ -10,7 +10,7 @@ import {
 import useRole from "../../../../hooks/useRole";
 import {SubmitHandler} from "react-hook-form";
 import {onBoardStatus} from "../../AddUserOnbordModal/AddOnBordModal";
-import useUsers, {IUpdateUserAvatarPayload, IUpdateUserPayload} from "../../../../hooks/useUsers";
+import useUsers, {IUpdateUserPayload} from "../../../../hooks/useUsers";
 import useUserInfo, {IUpdateUserInfo} from "../../../../hooks/useUserInfo";
 import useOnBoard, {IUpdateOnBoard} from "../../../../hooks/useOnBoard";
 
@@ -54,13 +54,13 @@ interface editUserFormInput {
 
 const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Element => {
     const {user, userInfo, userDocument, userRole, onBoard} = useUser(userId)
-    const {updateUser,updateUserAvatar} = useUsers()
+    const {updateUser, updateUserAvatar} = useUsers()
     const {updateUserInfo} = useUserInfo()
     const {updateOnBoard} = useOnBoard()
     const {Roles} = useRole()
 
     const editUserDefaultValue: editUserDetails = {
-        avatar: user?.avatar || '' ,
+        avatar: user?.avatar || '',
         firstName: user?.firstName || '',
         lastName: user?.lastName || '',
         email: user?.email || '',
@@ -197,7 +197,6 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Eleme
         const userAvatar = e?.target.avatar.files[0]
 
 
-
         const userPayload = {
             id: user?._id,
             payload: {
@@ -235,7 +234,6 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Eleme
             }
 
         }
-
 
 
         await updateUser(userPayload as unknown as IUpdateUserPayload)

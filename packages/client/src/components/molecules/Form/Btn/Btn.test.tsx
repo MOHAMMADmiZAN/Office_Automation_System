@@ -21,7 +21,6 @@ describe('Btn', () => {
             BtnEndIcon: <div>End Icon</div>
 
 
-
         }
         render(<Btn {...btnProps}/>);
         expect(screen.getByRole('button')).toBeInTheDocument();

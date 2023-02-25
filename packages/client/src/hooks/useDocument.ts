@@ -2,30 +2,26 @@ import {useMutation, useQuery, useQueryClient} from "react-query";
 import {IUserDocument, UserDocumentApi} from "../api/UserDocument";
 
 
-export const useDocument = ()=>{
+export const useDocument = () => {
 
     const queryClient = useQueryClient();
 
-    const {data:userAllDocument} = useQuery('document',UserDocumentApi.userDocumentList)
+    const {data: userAllDocument} = useQuery('document', UserDocumentApi.userDocumentList)
 
-     const {mutateAsync:createDocument} = useMutation((payload: IUserDocument)=>UserDocumentApi.userDocumentCreate(payload),{
-            onSuccess: async (data) => {
-                await queryClient.invalidateQueries("document");
-                console.log(data)
+    const {mutateAsync: createDocument} = useMutation((payload: IUserDocument) => UserDocumentApi.userDocumentCreate(payload), {
+        onSuccess: async (data) => {
+            await queryClient.invalidateQueries("document");
+            console.log(data)
 
-            }
-     })
+        }
+    })
 
 
- return {
+    return {
         userAllDocument,
         createDocument
- }
+    }
 
 
-
-
-
-
- }
- export default useDocument
+}
+export default useDocument

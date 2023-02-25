@@ -21,6 +21,7 @@ export interface EVENT_LAYOUT_PROPS {
     isBodyRowFunc?: (item: IEventPayloadWithId) => boolean;
 
 }
+
 const dataTableData: DataTableData = {
     label: "Event List",
     headerRow: {
@@ -62,14 +63,13 @@ const dataTableData: DataTableData = {
     },
 }
 
-const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, isBodyRowFunc }): JSX.Element => {
-    const { userId } = useAuth();
-    const { checkUserPermission } = useRole()
+const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({isBodyRowFuncDate, label, isBodyRowFunc}): JSX.Element => {
+    const {userId} = useAuth();
+    const {checkUserPermission} = useRole()
 
-    const { Events: events, eventDelete, changeInviteStatusMutate, eventsIsLoading } = useEvent()
+    const {Events: events, eventDelete, changeInviteStatusMutate, eventsIsLoading} = useEvent()
 
-    const { usersWithSuperAdmin: authors } = useUsers()
-
+    const {usersWithSuperAdmin: authors} = useUsers()
 
 
     const handleEventDelete = (id: string) => {
@@ -133,23 +133,32 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
                         <Box display={`flex`} justifyContent={`center`}>
                             <Tooltip title="View Full Event Details">
                                 <IconButton>
-                                    <ViewAgendaOutlined />
+                                    <ViewAgendaOutlined/>
                                 </IconButton>
                             </Tooltip>
                             {/* {(author?._id === userId) && */}
                             {checkUserPermission('manageEvent') &&
                                 <>
-                                    <CustomModal modalId={'edit-event'} modalContent={<EditEventModal eventData={item} />} ModalBtnIcon={<Edit />} />
-                                    <IconButton onClick={() => handleEventDelete(item._id)} ><Delete sx={{ color: 'error.main' }} /></IconButton>
-                                    <CustomModal modalId={`invite-event`} modalTitle={`invite in event`} modalContent={<InviteUsersModal authors={authors as User[]} eventData={item} />} ModalBtnIcon={<InsertInvitation />} />
+                                    <CustomModal modalId={'edit-event'}
+                                                 modalContent={<EditEventModal eventData={item}/>}
+                                                 ModalBtnIcon={<Edit/>}/>
+                                    <IconButton onClick={() => handleEventDelete(item._id)}><Delete
+                                        sx={{color: 'error.main'}}/></IconButton>
+                                    <CustomModal modalId={`invite-event`} modalTitle={`invite in event`}
+                                                 modalContent={<InviteUsersModal authors={authors as User[]}
+                                                                                 eventData={item}/>}
+                                                 ModalBtnIcon={<InsertInvitation/>}/>
                                 </>
                             }
                             {
                                 item.invitation.find((item: inviteUser) => item.userId === userId && item.status === 'PENDING') && (
                                     <>
-                                        <Btn BtnText={`Accept`} variant={`contained`} onClick={() => changeInviteStatus(item._id, 'YES')} />
-                                        <Btn BtnText={`Maybe`} variant={`contained`} color={`info`} onClick={() => changeInviteStatus(item._id, 'MAYBE')} />
-                                        <Btn BtnText={`reject`} variant={`contained`} color={`error`} onClick={() => changeInviteStatus(item._id, 'NO')} />
+                                        <Btn BtnText={`Accept`} variant={`contained`}
+                                             onClick={() => changeInviteStatus(item._id, 'YES')}/>
+                                        <Btn BtnText={`Maybe`} variant={`contained`} color={`info`}
+                                             onClick={() => changeInviteStatus(item._id, 'MAYBE')}/>
+                                        <Btn BtnText={`reject`} variant={`contained`} color={`error`}
+                                             onClick={() => changeInviteStatus(item._id, 'NO')}/>
                                     </>
                                 )
                             }
@@ -162,7 +171,7 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
 
             if (isTrue) {
 
-                bodyRow.push({ tableCell });
+                bodyRow.push({tableCell});
             }
         });
     }
@@ -170,8 +179,9 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({ isBodyRowFuncDate, label, i
     return (
         <>
             {eventsIsLoading ?
-                <CustomSkeleton /> : bodyRow.length > 0 ? <DataTable DataTableData={{ ...dataTableData, bodyRow, label }} /> :
-                    <Typography variant={`h1`} component={`h1`} sx={{ textAlign: 'center' }}>No Event here </Typography>}
+                <CustomSkeleton/> : bodyRow.length > 0 ?
+                    <DataTable DataTableData={{...dataTableData, bodyRow, label}}/> :
+                    <Typography variant={`h1`} component={`h1`} sx={{textAlign: 'center'}}>No Event here </Typography>}
         </>
     );
 };

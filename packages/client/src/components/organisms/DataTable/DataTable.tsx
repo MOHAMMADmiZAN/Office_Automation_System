@@ -24,7 +24,7 @@ interface DATA_TABLE_PROPS {
 }
 
 
-const DataTable: React.FC<DATA_TABLE_PROPS> = ({DataTableData,title}) => {
+const DataTable: React.FC<DATA_TABLE_PROPS> = ({DataTableData, title}) => {
     const [page, setPage] = useState<number>(0);
     const [rowsPerPage, setRowsPerPage] = useState<number>(DataTableData.DataTablePagination?.rowsPerPage[0] || 5);
 
@@ -37,44 +37,44 @@ const DataTable: React.FC<DATA_TABLE_PROPS> = ({DataTableData,title}) => {
         setPage(0);
     };
     return (
-           <>
-               {DataTableData.bodyRow.length>0 ?
-                   <DataTableLayout>
-                       <DataLayoutTable aria-label={DataTableData.label}>
-                           <TableHead>
-                               <DataTableRow row={DataTableData.headerRow}/>
-                           </TableHead>
-                           <TableBody>
-                               {
-                                   DataTableData.bodyRow.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => {
-                                       return (
-                                           <DataTableRow key={index} row={item}/>
-                                       )
-                                   })
-                               }
-                           </TableBody>
+        <>
+            {DataTableData.bodyRow.length > 0 ?
+                <DataTableLayout>
+                    <DataLayoutTable aria-label={DataTableData.label}>
+                        <TableHead>
+                            <DataTableRow row={DataTableData.headerRow}/>
+                        </TableHead>
+                        <TableBody>
+                            {
+                                DataTableData.bodyRow.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => {
+                                    return (
+                                        <DataTableRow key={index} row={item}/>
+                                    )
+                                })
+                            }
+                        </TableBody>
 
 
-                       </DataLayoutTable>
+                    </DataLayoutTable>
 
-                       {
-                           DataTableData.DataTablePagination &&  <DataTablePagination
-                               rowsPerPageOptions={DataTableData.DataTablePagination.rowsPerPage}
-                               component="div"
-                               count={DataTableData.bodyRow.length}
-                               rowsPerPage={rowsPerPage}
-                               page={page}
-                               onPageChange={handleChangePage}
-                               onRowsPerPageChange={handleChangeRowsPerPage}
-                           />
-                       }
-                   </DataTableLayout>
-                   : <Container sx={{textAlign:'center'}}>
-                       <Typography variant={`h1`} >No Data </Typography>
-                   </Container>
+                    {
+                        DataTableData.DataTablePagination && <DataTablePagination
+                            rowsPerPageOptions={DataTableData.DataTablePagination.rowsPerPage}
+                            component="div"
+                            count={DataTableData.bodyRow.length}
+                            rowsPerPage={rowsPerPage}
+                            page={page}
+                            onPageChange={handleChangePage}
+                            onRowsPerPageChange={handleChangeRowsPerPage}
+                        />
+                    }
+                </DataTableLayout>
+                : <Container sx={{textAlign: 'center'}}>
+                    <Typography variant={`h1`}>No Data </Typography>
+                </Container>
 
-               }
-           </>
+            }
+        </>
 
     );
 };

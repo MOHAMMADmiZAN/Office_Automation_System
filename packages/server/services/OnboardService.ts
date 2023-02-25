@@ -3,9 +3,13 @@ import Onboard, {IOnboard} from "../models/Onboard";
 
 interface IOnboardService {
     createOnboard(data: IOnboard): Promise<IOnboard>;
+
     findOnboard(key: string, value: any): Promise<IOnboard | null>;
+
     findOnboards(): Promise<IOnboard[]>;
+
     updateOnboard(data: IOnboard, id: string): Promise<IOnboard | null>;
+
     deleteOnboard(id: string): Promise<IOnboard | null>;
 }
 
@@ -28,7 +32,7 @@ class OnboardService implements IOnboardService {
         if (key === '_id') {
             return Onboard.findById(value).exec()
         }
-        return Onboard.findOne({ [key]: value }).exec();
+        return Onboard.findOne({[key]: value}).exec();
     }
 
     findOnboards(): Promise<IOnboard[]> {
@@ -43,7 +47,7 @@ class OnboardService implements IOnboardService {
             status: data.status,
             farewellDate: data.farewellDate,
         }
-        return Onboard.findByIdAndUpdate(id, { ...schema }, { new: true });
+        return Onboard.findByIdAndUpdate(id, {...schema}, {new: true});
     }
 
     deleteOnboard(id: string): Promise<IOnboard | null> {

@@ -37,10 +37,11 @@ const UserSchema = new Schema({
         type: Schema.Types.ObjectId, ref: 'Role',
     },
     avatar: {
-        type: String, default: 'https://res.cloudinary.com/dxqjyqz8f/image/upload/v1621361009/avatars/default-avatar.png'
+        type: String,
+        default: 'https://res.cloudinary.com/dxqjyqz8f/image/upload/v1621361009/avatars/default-avatar.png'
     }
 
-}, { timestamps: true });
+}, {timestamps: true});
 
 const User = model<IUser>('User', UserSchema);
 export default User;

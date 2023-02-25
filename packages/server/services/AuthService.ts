@@ -4,29 +4,31 @@ import * as bcrypt from "bcrypt";
 import errorHandler from "../utils/error";
 
 
-interface ILogin{
+interface ILogin {
     token: string;
     user: IUser;
 }
+
 interface IAuthService extends IUserService {
-    register(data: IUser): Promise<IUser|null>;
+    register(data: IUser): Promise<IUser | null>;
+
     login(email: string, password: string): Promise<ILogin>;
 }
 
 class AuthService extends UserService implements IAuthService {
 
     // @ts-ignore
-    public register = async (data: IUser) : Promise<IUser|null> => {
+    public register = async (data: IUser): Promise<IUser | null> => {
 
         try {
             const user = await this.findUser("email", data.email);
             if (user) throw errorHandler('User already exists', 409);
 
-            return  this.createUser(data)
+            return this.createUser(data)
 
-        }catch (e) {
+        } catch (e) {
             if (e instanceof Error) {
-               throw errorHandler(e.message, 400)
+                throw errorHandler(e.message, 400)
             }
         }
 
@@ -45,7 +47,7 @@ class AuthService extends UserService implements IAuthService {
         if (!match) {
             throw errorHandler("Invalid credentials", 400);
         }
-        return  {
+        return {
             token: this.tokenGenerator(user),
             user
 

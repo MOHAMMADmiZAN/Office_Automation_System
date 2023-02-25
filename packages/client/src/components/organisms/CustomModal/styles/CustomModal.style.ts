@@ -17,11 +17,9 @@ const useStyles = makeStyles((theme: Theme) => ({
 
     },
     textBtn: {
-       padding: '10px 20px',
+        padding: '10px 20px',
     }
 }));
-
-
 
 
 export default useStyles;

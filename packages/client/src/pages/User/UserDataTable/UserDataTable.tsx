@@ -48,11 +48,10 @@ const dataTableData: DataTableData = {
 }
 
 const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
-    const { Users, usersIsLoading } = useUsers()
-    const { Roles, checkUserPermission } = useRole()
-    const { userBasicInfo } = useUserInfo()
-    const { OnBoardData } = useOnBoard()
-
+    const {Users, usersIsLoading} = useUsers()
+    const {Roles, checkUserPermission} = useRole()
+    const {userBasicInfo} = useUserInfo()
+    const {OnBoardData} = useOnBoard()
 
 
     const bodyRow: DataTableData["bodyRow"] = [];
@@ -82,7 +81,7 @@ const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
                         align: 'center',
                         value: checkUserPermission('userDetail') && <Tooltip title={`View Full User Information`}>
                             <NavLink
-                                to={`/users/${user._id}`}><PreviewIcon /></NavLink>
+                                to={`/users/${user._id}`}><PreviewIcon/></NavLink>
                         </Tooltip>
                     }
 
@@ -94,10 +93,10 @@ const UserDataTable: React.FC<USER_DATA_TABLE_PROPS> = (props): JSX.Element => {
 
 
     return (
-        <Box sx={{ padding: '24px' }}>
+        <Box sx={{padding: '24px'}}>
             {usersIsLoading ?
-                <CustomSkeleton /> :
-                <DataTable DataTableData={{ ...dataTableData, bodyRow }} />}
+                <CustomSkeleton/> :
+                <DataTable DataTableData={{...dataTableData, bodyRow}}/>}
         </Box>
     );
 };

@@ -44,7 +44,8 @@ export const Btn: React.FC<BTN_PROPS> = ({
                                          }): JSX.Element => {
     return (
         <CustomBtn type={type} onClick={onClick} variant={variant} disabled={disabled} className={className}
-                   size={size} ref={btnRef} startIcon={BtnStartIcon} endIcon={BtnEndIcon} sx={{...styles}} color={color}>{BtnText}</CustomBtn>
+                   size={size} ref={btnRef} startIcon={BtnStartIcon} endIcon={BtnEndIcon} sx={{...styles}}
+                   color={color}>{BtnText}</CustomBtn>
     );
 };
 

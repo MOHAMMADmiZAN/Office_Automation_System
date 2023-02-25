@@ -3,9 +3,13 @@ import Leave, {ILeave} from "../models/Leave";
 
 interface ILeaveService {
     createLeave(data: ILeave): Promise<ILeave>;
+
     findLeave(key: string, value: any): Promise<ILeave | null>;
+
     findLeaves(): Promise<ILeave[]>;
+
     updateLeave(data: ILeave, id: string): Promise<ILeave | null>;
+
     deleteLeave(id: string): Promise<ILeave | null>;
 }
 
@@ -28,7 +32,7 @@ class LeaveService implements ILeaveService {
         if (key === '_id') {
             return Leave.findById(value).exec()
         }
-        return Leave.findOne({ [key]: value }).exec();
+        return Leave.findOne({[key]: value}).exec();
     }
 
     findLeaves(): Promise<ILeave[]> {
@@ -44,7 +48,7 @@ class LeaveService implements ILeaveService {
             userNote: data.userNote,
             managerNote: data.managerNote,
         }
-        return Leave.findByIdAndUpdate(id, { ...schema }, { new: true });
+        return Leave.findByIdAndUpdate(id, {...schema}, {new: true});
     }
 
     deleteLeave(id: string): Promise<ILeave | null> {

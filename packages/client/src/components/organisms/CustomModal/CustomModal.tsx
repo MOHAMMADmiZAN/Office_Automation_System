@@ -39,9 +39,9 @@ const CustomModal: React.FC<CUSTOM_MODAL_PROPS> = ({
     return (
         <>
 
-                <Tooltip title={modalTitle} sx={{margin:'0.5rem'}}>
-                 <Button onClick={handleClickOpen} variant={modalBtnVariant}>{ModalBtnIcon}{modalBtnText}</Button>
-                </Tooltip>
+            <Tooltip title={modalTitle} sx={{margin: '0.5rem'}}>
+                <Button onClick={handleClickOpen} variant={modalBtnVariant}>{ModalBtnIcon}{modalBtnText}</Button>
+            </Tooltip>
 
 
             {

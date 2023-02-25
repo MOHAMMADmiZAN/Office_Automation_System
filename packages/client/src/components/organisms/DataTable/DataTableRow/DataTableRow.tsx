@@ -9,6 +9,7 @@ export interface TableCellInterface {
     align: string;
     value: string | React.ReactNode;
 }
+
 export interface CollapseComponent {
     CollapseComponentNode?: React.ReactNode
 }
@@ -17,7 +18,6 @@ export interface RowItem {
 
     tableCell: TableCellInterface[];
     CollapseComponent?: CollapseComponent
-
 
 
 }

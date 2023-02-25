@@ -35,7 +35,6 @@ interface documentFormField {
 }
 
 
-
 const AddUserDocumentModal: React.FC<ADD_USER_DOCUMENT_MODAL_PROPS> = (props): JSX.Element => {
     const {userAllDocument, createDocument} = useDocument()
     const {Users} = useUsers()
@@ -87,7 +86,8 @@ const AddUserDocumentModal: React.FC<ADD_USER_DOCUMENT_MODAL_PROPS> = (props): J
     return (
         <>
             <CustomModal modalId={'add-Document'} modalContent={
-                <FormLayOut defaultValues={defaultValues} FormInputFields={documentFormFields as FORM_INPUT_PROPS[]} validationRules={DocumentValidation}
+                <FormLayOut defaultValues={defaultValues} FormInputFields={documentFormFields as FORM_INPUT_PROPS[]}
+                            validationRules={DocumentValidation}
                             onSubmit={onSubmit} btnText={'Submit Document'}/>
             } modalTitle={`add-document`} ModalBtnIcon={<Add/>} modalBtnText={`Add Document`}
                          modalBtnVariant={`outlined`}/>

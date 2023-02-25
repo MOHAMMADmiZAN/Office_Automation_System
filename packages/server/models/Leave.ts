@@ -42,7 +42,7 @@ const LeaveSchema = new Schema({
     status: {
         type: String, enum: ['PENDING', 'ACCEPT', 'REJECT'], default: 'PENDING'
     },
-}, { timestamps: true });
+}, {timestamps: true});
 
 const Leave = model<ILeave>('Leave', LeaveSchema);
 export default Leave;

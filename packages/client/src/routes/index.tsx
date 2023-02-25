@@ -14,15 +14,12 @@ const routes =
         <Route path="/" element={<BaseLayout/>}>
             <Route path="events" element={<Event/>}/>
             <Route path={"users"} element={<User/>}/>
-            <Route path={'users/:id'} element={<UserDetails/>} />
+            <Route path={'users/:id'} element={<UserDetails/>}/>
             <Route path={"dashboard"} element={<Index/>}/>
             <Route path={`attendance`} element={<Attendance/>}/>
         </Route>,
-        <Route path="*" element={<NotFound />}/>
+        <Route path="*" element={<NotFound/>}/>
     ])
-
-
-
 
 
 const router = createBrowserRouter(routes)

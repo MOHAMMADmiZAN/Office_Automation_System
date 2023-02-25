@@ -1,6 +1,6 @@
 import UserService from "../services/UserService";
-import { NextFunction, Response } from "express";
-import { handleCloudFileUpload, handleCloudFileDelete } from "../utils/FileUpload";
+import {NextFunction, Response} from "express";
+import {handleCloudFileDelete, handleCloudFileUpload} from "../utils/FileUpload";
 
 
 interface IUserController {

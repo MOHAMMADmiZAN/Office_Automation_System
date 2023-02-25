@@ -1,4 +1,4 @@
-import React, {memo, useEffect, useState} from 'react';
+import React, {memo, useState} from 'react';
 import {Control} from "react-hook-form/dist/types/form";
 import {Controller} from "react-hook-form";
 import {
@@ -47,7 +47,7 @@ const FormSelectInputType: FormInputType[] = ['select']
 const FormCheckboxInputType: FormInputType[] = ['checkbox']
 const FormRadioInputType: FormInputType[] = ['radio']
 const FormTextAreaInputType: FormInputType[] = ['textarea']
-const FormDateInputType: FormInputType[] = ['date','datetime-local']
+const FormDateInputType: FormInputType[] = ['date', 'datetime-local']
 const FormFileInputType: FormInputType[] = ['file']
 const FormColorInputType: FormInputType[] = ['color']
 const FormRangeInputType: FormInputType[] = ['range']
@@ -101,9 +101,7 @@ export interface FORM_INPUT_PROPS {
     valueSet?: Function,
 
 
-
 }
-
 
 
 const FormInput: React.FC<FORM_INPUT_PROPS> = ({
@@ -117,25 +115,22 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                                                    id,
                                                    selectOptions,
                                                    smallField,
-                                                     valueSet,
+                                                   valueSet,
                                                }): JSX.Element => {
 
-      const [previewUrl, setPreview] = useState<string>('');
+    const [previewUrl, setPreview] = useState<string>('');
 
 
-      const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>,name:string) => {
+    const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>, name: string) => {
         const file = e.target.files?.[0];
-         // @ts-ignore
-          valueSet(name,file)
+        // @ts-ignore
+        valueSet(name, file)
         const fileReader = new FileReader();
         fileReader.onload = () => {
-          setPreview(fileReader.result as string);
+            setPreview(fileReader.result as string);
         };
         fileReader.readAsDataURL(file as Blob);
-      }
-
-
-
+    }
 
 
     return (
@@ -223,35 +218,46 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                     <Controller
                         control={control}
                         name={name}
-                        render={({ field: { onChange, value },fieldState:{error}, formState: { isValid } }) => (
-                           <>
+                        render={({field: {onChange, value}, fieldState: {error}, formState: {isValid}}) => (
+                            <>
 
-                               <Form_uploadBox component="label" sx={{...isAvatar(name),borderColor:error?'error.main':'primary.main',color:error?'error.main':'primary.main'}}>
-                                  <>
-                                      {typeof value === 'string' && value.length > 0 ? setPreview(value) : null }
-                                      <input
-                                          type={type}
-                                          id={name}
-                                          hidden
-                                          onChange={(e) => {
-                                              handleFileChange(e,name);
-                                          }}
-                                      />
-                                      {value && previewUrl ? <img src={previewUrl} alt="previewUrl"  width={`100%`} height={`100%`} style={{objectFit:"cover"}}/>:
-                                          <>
-                                              <Typography variant="h6" component="h6" sx={{ textTransform: 'capitalize' }}>
-                                                  {label}
-                                              </Typography>
-                                              <CloudUploadIcon sx={{ color:error?'error.main':'primary.main', marginLeft: '5px' }} />
-                                          </>
-                                      }
-                                  </>
+                                <Form_uploadBox component="label" sx={{
+                                    ...isAvatar(name),
+                                    borderColor: error ? 'error.main' : 'primary.main',
+                                    color: error ? 'error.main' : 'primary.main'
+                                }}>
+                                    <>
+                                        {typeof value === 'string' && value.length > 0 ? setPreview(value) : null}
+                                        <input
+                                            type={type}
+                                            id={name}
+                                            hidden
+                                            onChange={(e) => {
+                                                handleFileChange(e, name);
+                                            }}
+                                        />
+                                        {value && previewUrl ?
+                                            <img src={previewUrl} alt="previewUrl" width={`100%`} height={`100%`}
+                                                 style={{objectFit: "cover"}}/> :
+                                            <>
+                                                <Typography variant="h6" component="h6"
+                                                            sx={{textTransform: 'capitalize'}}>
+                                                    {label}
+                                                </Typography>
+                                                <CloudUploadIcon sx={{
+                                                    color: error ? 'error.main' : 'primary.main',
+                                                    marginLeft: '5px'
+                                                }}/>
+                                            </>
+                                        }
+                                    </>
 
-                               </Form_uploadBox>
-                               {
-                                      error && <FormHelperText error={!!error?.message} sx={{color:'error.main'}}>{error?.message}</FormHelperText>
-                               }
-                           </>
+                                </Form_uploadBox>
+                                {
+                                    error && <FormHelperText error={!!error?.message}
+                                                             sx={{color: 'error.main'}}>{error?.message}</FormHelperText>
+                                }
+                            </>
                         )}
                     />
                 )}
@@ -263,7 +269,7 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                             <Controller
                                 name={name}
                                 control={control}
-                                render={({ field, fieldState: { error }, formState: { isValid } }) =>
+                                render={({field, fieldState: {error}, formState: {isValid}}) =>
                                     isDateLocal(type) ? (
                                         <DateTimePicker
                                             {...field}
@@ -310,7 +316,6 @@ const FormInput: React.FC<FORM_INPUT_PROPS> = ({
                                     placeholder={placeholder}
                                     className={`basic-multi-select`}
                                     classNamePrefix={`select`}
-
 
 
                                 />

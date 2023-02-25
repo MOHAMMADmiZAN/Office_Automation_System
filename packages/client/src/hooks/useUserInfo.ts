@@ -8,7 +8,11 @@ export interface IUpdateUserInfo {
 
 export const useUserInfo = () => {
     const queryClient = useQueryClient();
-    const {data:userBasicInfo, error:userBasicInfoError, isLoading:userBasicInfoIsLoading} = useQuery<IUserInfoPayloadWithId[]>('userBasicInfo', UserInfo.getAllUserInfo)
+    const {
+        data: userBasicInfo,
+        error: userBasicInfoError,
+        isLoading: userBasicInfoIsLoading
+    } = useQuery<IUserInfoPayloadWithId[]>('userBasicInfo', UserInfo.getAllUserInfo)
     const {mutateAsync: createUserInfo} = useMutation((data: IUserInfoPayload) => UserInfo.createUserInfo(data), {
         onSuccess: async (data) => {
             await queryClient.invalidateQueries("userBasicInfo");
@@ -16,7 +20,7 @@ export const useUserInfo = () => {
 
         }
     })
-    const { mutateAsync: updateUserInfo } = useMutation((data:IUpdateUserInfo ) => UserInfo.updateUserInfo(data.id,data.payload), {
+    const {mutateAsync: updateUserInfo} = useMutation((data: IUpdateUserInfo) => UserInfo.updateUserInfo(data.id, data.payload), {
         onSuccess: async (data) => {
             await queryClient.invalidateQueries("userBasicInfo");
             await queryClient.invalidateQueries("allUsers");

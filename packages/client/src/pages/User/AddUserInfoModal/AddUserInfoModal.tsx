@@ -12,6 +12,7 @@ import {useUserInfo} from "../../../hooks/useUserInfo";
 interface ADD_USER_INFO_MODAL_PROPS {
 
 }
+
 interface userInfoFormData {
     user: string,
     contactNumber: string,
@@ -21,7 +22,7 @@ interface userInfoFormData {
     eContactNumber: string
 }
 
-const defaultValue :userInfoFormData = {
+const defaultValue: userInfoFormData = {
     user: '',
     contactNumber: '',
     presentAddress: '',
@@ -31,24 +32,24 @@ const defaultValue :userInfoFormData = {
 
 
 }
- interface userInfoFormField {
+
+interface userInfoFormField {
     name: string;
-     type: FormInputType;
-     placeholder: string;
-     smallField: boolean;
-     label: string;
-     selectOptions?: selectOption[];
+    type: FormInputType;
+    placeholder: string;
+    smallField: boolean;
+    label: string;
+    selectOptions?: selectOption[];
 
- }
-
+}
 
 
 const AddUserInfoModal: React.FC<ADD_USER_INFO_MODAL_PROPS> = (props): JSX.Element => {
 
     const {Users} = useUsers();
-    const {createUserInfo,userBasicInfo} = useUserInfo();
+    const {createUserInfo, userBasicInfo} = useUserInfo();
 
-    const userInfoFormFields : userInfoFormField[] = [
+    const userInfoFormFields: userInfoFormField[] = [
         {
             name: 'permanentAddress',
             type: 'text',
@@ -99,16 +100,18 @@ const AddUserInfoModal: React.FC<ADD_USER_INFO_MODAL_PROPS> = (props): JSX.Eleme
 
         }
     ]
-    const onSubmit : SubmitHandler<userInfoFormData> = async (data) => {
+    const onSubmit: SubmitHandler<userInfoFormData> = async (data) => {
         await createUserInfo(data);
     }
 
     return (
         <>
             <CustomModal modalId={'add-user-info'} modalContent={
-                <FormLayOut defaultValues={{...defaultValue}} FormInputFields={userInfoFormFields as FORM_INPUT_PROPS[]} validationRules={userinfoValidation}
+                <FormLayOut defaultValues={{...defaultValue}} FormInputFields={userInfoFormFields as FORM_INPUT_PROPS[]}
+                            validationRules={userinfoValidation}
                             onSubmit={onSubmit} btnText={'Submit'}/>
-            } modalBtnVariant={`outlined`} ModalBtnIcon={<Add/>} modalBtnText={`Add-user-info`} modalTitle={`Add -user-information`}/>
+            } modalBtnVariant={`outlined`} ModalBtnIcon={<Add/>} modalBtnText={`Add-user-info`}
+                         modalTitle={`Add -user-information`}/>
 
         </>
     );

@@ -15,36 +15,29 @@ import {ToastContainer} from "react-toastify";
 const queryClient = new QueryClient()
 
 
-
 // using easy-peasy rehydration  reference https://easy-peasy.now.sh/docs/api/store.html#rehydrate
-function WaitForStateRehydration({ children }: { children: React.ReactElement }): React.ReactElement | null {
+function WaitForStateRehydration({children}: { children: React.ReactElement }): React.ReactElement | null {
     const isRehydrated = useStoreRehydrated()
     return isRehydrated ? children : null
 }
 
 
-
-const App: React.FC = () : JSX.Element => {
+const App: React.FC = (): JSX.Element => {
     return (
         <ThemeProvider theme={theme}>
             <StoreProvider store={store}>
-               <WaitForStateRehydration>
-                   <QueryClientProvider client={queryClient}>
-                       <CssBaseline/>
-                       <ToastContainer style={{zIndex:9999}} />
+                <WaitForStateRehydration>
+                    <QueryClientProvider client={queryClient}>
+                        <CssBaseline/>
+                        <ToastContainer style={{zIndex: 9999}}/>
 
-                       <RouterProvider router={router}/>
-                       <ReactQueryDevtools initialIsOpen={false}/>
-                   </QueryClientProvider>
-               </WaitForStateRehydration>
-           </StoreProvider>
+                        <RouterProvider router={router}/>
+                        <ReactQueryDevtools initialIsOpen={false}/>
+                    </QueryClientProvider>
+                </WaitForStateRehydration>
+            </StoreProvider>
         </ThemeProvider>
 
-
-
-
-
-            
 
     );
 };

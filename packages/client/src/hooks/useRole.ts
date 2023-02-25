@@ -4,7 +4,7 @@ import {Role as roleNames} from '../utils/Validation'
 import useAuth from "./useAuth";
 
 
-interface UserPermissions  {
+interface UserPermissions {
     [key: string]: string[];
 }
 
@@ -18,10 +18,14 @@ const userPermissions: UserPermissions = {
 
 export const useRole = (singleRoleId?: string) => {
     const queryClient = useQueryClient();
-    const { user } = useAuth()
+    const {user} = useAuth()
 
-    const { data: roles, error: rolesError, isLoading: rolesIsLoading } = useQuery<IRoleWithId[]>('allRoles', RoleApi.roleList)
-    const { mutateAsync: createRole } = useMutation(RoleApi.roleCreate, {
+    const {
+        data: roles,
+        error: rolesError,
+        isLoading: rolesIsLoading
+    } = useQuery<IRoleWithId[]>('allRoles', RoleApi.roleList)
+    const {mutateAsync: createRole} = useMutation(RoleApi.roleCreate, {
         onSuccess: (data) => {
             console.log(data)
         }
@@ -30,7 +34,7 @@ export const useRole = (singleRoleId?: string) => {
     let Roles = roles?.filter(role => role.name !== 'super_admin')
     let superAdmin = roles?.find(role => role.name === 'super_admin')
 
-    const { mutateAsync: editRole } = useMutation((data: IRoleWithId) => RoleApi.roleUpdate(data, singleRoleId as string), {
+    const {mutateAsync: editRole} = useMutation((data: IRoleWithId) => RoleApi.roleUpdate(data, singleRoleId as string), {
         onSuccess: async (data) => {
             await queryClient.invalidateQueries("allRoles");
         }

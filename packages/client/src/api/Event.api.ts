@@ -22,7 +22,8 @@ export interface IEventPayload {
     type: string;
 
 }
- export interface IEventPayloadWithId extends IEventPayload {
+
+export interface IEventPayloadWithId extends IEventPayload {
     _id: string;
 }
 
@@ -32,7 +33,7 @@ export interface IChangeInvitedEventStatus {
 }
 
 
-export const EventApi : IEventApi = {
+export const EventApi: IEventApi = {
     eventList: async () => {
         try {
             const response = await PrivateApiInstance.get('/event');

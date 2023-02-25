@@ -14,32 +14,32 @@ interface EVENT_PROPS {
 
 
 const Event: React.FC<EVENT_PROPS> = () => {
-    const { checkUserPermission } = useRole()
+    const {checkUserPermission} = useRole()
 
     const tabItems: TabItem[] = [
         {
             label: "Event in Today",
-            component: <TodayEvent />
+            component: <TodayEvent/>
         },
         {
             label: "Upcoming Event",
-            component: <UpcomingEvent />
+            component: <UpcomingEvent/>
         },
         {
             label: "Event History",
-            component: <EventHistory />
+            component: <EventHistory/>
         },
         {
             label: "Event Request",
-            component: <EventRequest />
+            component: <EventRequest/>
         },
 
     ]
 
     return (
         <>
-            {checkUserPermission('manageEvent') && <AddEventModal />}
-            <CommonCard CardMain={<CustomTabs tabs={tabItems} ariaLabel={'event-tab'} />} />
+            {checkUserPermission('manageEvent') && <AddEventModal/>}
+            <CommonCard CardMain={<CustomTabs tabs={tabItems} ariaLabel={'event-tab'}/>}/>
         </>
     );
 };

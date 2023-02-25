@@ -5,10 +5,15 @@ import {dateTimeFormat} from "../utils/helper";
 
 interface IEventService {
     createEvent(data: IEvent): Promise<IEvent>;
+
     findEvent(key: string, value: any): Promise<IEvent | null>;
+
     findEvents(): Promise<IEvent[]>;
+
     updateEvent(data: IEvent, id: string): Promise<IEvent | null>;
+
     deleteEvent(id: string): Promise<IEvent | null>;
+
     checkEventStatus(): Promise<void>;
 }
 
@@ -41,7 +46,7 @@ class EventService implements IEventService {
         if (key === '_id') {
             return Event.findById(value).exec()
         }
-        return Event.findOne({ [key]: value }).exec();
+        return Event.findOne({[key]: value}).exec();
     }
 
     findEvents(): Promise<IEvent[]> {
@@ -59,7 +64,7 @@ class EventService implements IEventService {
         if (data.status) {
             event.status = data.status
         }
-        return Event.findByIdAndUpdate(id, { ...event }, { new: true });
+        return Event.findByIdAndUpdate(id, {...event}, {new: true});
     }
 
     deleteEvent(id: string): Promise<IEvent | null> {
@@ -77,12 +82,13 @@ class EventService implements IEventService {
             let nowTime = moment(new Date()).unix();
 
             if (startTime < nowTime && nowTime < endTime) {
-                await Event.findByIdAndUpdate(event._id, { status: 'RUNNING' }, { new: true });
+                await Event.findByIdAndUpdate(event._id, {status: 'RUNNING'}, {new: true});
             } else if (nowTime > endTime) {
-                await Event.findByIdAndUpdate(event._id, { status: 'FINISHED' }, { new: true });
+                await Event.findByIdAndUpdate(event._id, {status: 'FINISHED'}, {new: true});
 
             }
         }
     }
 }
+
 export default EventService;

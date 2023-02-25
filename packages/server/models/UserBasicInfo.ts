@@ -39,7 +39,7 @@ const UserBasicInfoSchema = new Schema({
         type: String,
         trim: true
     }
-}, { timestamps: true });
+}, {timestamps: true});
 
 const UserBasicInfo = model<IUserBasicInfo>('UserBasicInfo', UserBasicInfoSchema);
 export default UserBasicInfo;

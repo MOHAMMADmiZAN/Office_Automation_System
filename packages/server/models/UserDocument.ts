@@ -22,7 +22,7 @@ const UserDocumentSchema = new Schema({
         required: [true, 'Document field is required'],
         trim: true
     },
-}, { timestamps: true });
+}, {timestamps: true});
 
 const UserDocument = model<IUserDocument>('UserDocument', UserDocumentSchema);
 export default UserDocument;

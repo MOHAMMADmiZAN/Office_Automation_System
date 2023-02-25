@@ -13,13 +13,10 @@ export const DataTableLayout = styled(Paper)(({theme}) => ({
     backgroundColor: theme.palette.primary.light,
 
 
-
-
 })) as typeof Paper;
 
 export const DataTableLayoutCard = styled(Card)(({theme}) => ({
     backgroundColor: theme.palette.primary.light,
-
 
 
 })) as typeof Card;
@@ -81,7 +78,6 @@ export const DataLayoutTable = styled(Table)(({theme}) => ({
     borderColor: theme.palette.primary.main,
     '& .MuiTableHead-root': {
         backgroundColor: theme.palette.primary.light,
-
 
 
     },

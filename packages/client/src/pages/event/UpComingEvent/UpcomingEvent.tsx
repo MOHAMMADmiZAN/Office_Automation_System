@@ -9,7 +9,7 @@ interface UPCOMING_EVENT_PROPS {
 
 const UpcomingEvent: React.FC<UPCOMING_EVENT_PROPS> = (): JSX.Element => {
 
-    const handleRowFunc = (item:IEventPayloadWithId) => {
+    const handleRowFunc = (item: IEventPayloadWithId) => {
 
         return moment(item.startTime).isAfter(moment()) && item.status === 'UPCOMING'
 
@@ -17,7 +17,7 @@ const UpcomingEvent: React.FC<UPCOMING_EVENT_PROPS> = (): JSX.Element => {
     }
     return (
         <>
-            <EventLayout  isBodyRowFunc={handleRowFunc} label={`event-list`}/>
+            <EventLayout isBodyRowFunc={handleRowFunc} label={`event-list`}/>
 
         </>
     );

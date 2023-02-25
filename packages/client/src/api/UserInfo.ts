@@ -1,6 +1,6 @@
 import {PrivateApiInstance} from "./api";
 
-export interface  IUserInfoPayload {
+export interface IUserInfoPayload {
     permanentAddress: string,
     presentAddress: string,
     contactNumber: string,
@@ -8,6 +8,7 @@ export interface  IUserInfoPayload {
     dateOfBirth: string,
     eContactNumber: string,
 }
+
 export interface IUserInfoPayloadWithId extends IUserInfoPayload {
     _id: string
 
@@ -21,7 +22,7 @@ interface IUserInfo {
     createUserInfo: (payload: IUserInfoPayload) => Promise<IUserInfoPayloadWithId>,
 }
 
-const UserInfo :IUserInfo = {
+const UserInfo: IUserInfo = {
     getAllUserInfo: async () => {
         const response = await PrivateApiInstance.get('/userbasicinfo')
 

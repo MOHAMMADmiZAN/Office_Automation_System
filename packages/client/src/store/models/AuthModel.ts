@@ -2,7 +2,7 @@ import {Action, action, State, Thunk, thunk} from 'easy-peasy';
 import {AuthApi} from "../../api/Auth.api";
 
 
-export  interface AuthType  {
+export interface AuthType {
     Auth: typeof AuthModel
 }
 
@@ -10,10 +10,12 @@ export interface loginPayload {
     email: string;
     password: string;
 }
- export interface registerPayload extends User{
+
+export interface registerPayload extends User {
 
 }
-export interface User  {
+
+export interface User {
     _id?: string;
     firstName: string;
     lastName: string;
@@ -22,7 +24,6 @@ export interface User  {
     role?: string;
     status?: string;
     avatar?: string;
-
 
 
 }
@@ -49,6 +50,7 @@ export interface Auth {
     Logout: AuthThunk<void>;
 
 }
+
 const AuthUserDefault: User = {
     firstName: " ",
     lastName: " ",
@@ -78,7 +80,7 @@ const AuthModel: Auth = {
 
     }),
     Login: thunk(async (actions, payload) => {
-       const data= await AuthApi.login(payload);
+        const data = await AuthApi.login(payload);
         actions.AuthSet(data)
         return !!data
 

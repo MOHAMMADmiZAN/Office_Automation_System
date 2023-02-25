@@ -34,7 +34,6 @@ class AuthController extends AuthService implements AuthControllerInterface {
     }
 
 
-
 }
 
 export default AuthController;

@@ -11,6 +11,7 @@ import {OnBoardDataValidation} from "../../../utils/Validation";
 interface ADD_ON_BORD_MODAL_PROPS {
 
 }
+
 interface IAddOnBoardData {
     user: string;
     joiningDate: string;
@@ -20,6 +21,7 @@ interface IAddOnBoardData {
     farewellDate?: string;
 
 }
+
 const defaultAddOnBoardData: IAddOnBoardData = {
     user: '',
     joiningDate: '',
@@ -28,6 +30,7 @@ const defaultAddOnBoardData: IAddOnBoardData = {
     status: '',
     farewellDate: ''
 }
+
 interface onBordFormField {
     name: string;
     type: FormInputType;
@@ -39,12 +42,12 @@ interface onBordFormField {
 
 }
 
-export const onBoardStatus : string[] = [ 'Active', 'Inactive', 'On Leave', 'Fired', 'Resigned']
+export const onBoardStatus: string[] = ['Active', 'Inactive', 'On Leave', 'Fired', 'Resigned']
 
 const AddOnBordModal: React.FC<ADD_ON_BORD_MODAL_PROPS> = (props): JSX.Element => {
 
-     const {Users} = useUsers();
-     const {OnBoardData,createOnBoard} = useOnBoard()
+    const {Users} = useUsers();
+    const {OnBoardData, createOnBoard} = useOnBoard()
 
     const onBordFormFields: onBordFormField[] = [
         {
@@ -79,7 +82,7 @@ const AddOnBordModal: React.FC<ADD_ON_BORD_MODAL_PROPS> = (props): JSX.Element =
                     value: status,
                     label: status
                 }
-            } )
+            })
         },
         {
             name: 'user',
@@ -87,8 +90,8 @@ const AddOnBordModal: React.FC<ADD_ON_BORD_MODAL_PROPS> = (props): JSX.Element =
             placeholder: ' select User',
             smallField: true,
             label: 'User',
-            selectOptions: Users?.filter(user=>!OnBoardData?.some(data=> data.user === user._id)).map(user=>({
-                label: user.firstName + ''+ user.lastName,
+            selectOptions: Users?.filter(user => !OnBoardData?.some(data => data.user === user._id)).map(user => ({
+                label: user.firstName + '' + user.lastName,
                 value: user._id
             })) as selectOption[]
 
@@ -96,16 +99,18 @@ const AddOnBordModal: React.FC<ADD_ON_BORD_MODAL_PROPS> = (props): JSX.Element =
 
     ]
 
-     const onSubmit: SubmitHandler<IAddOnBoardData> = async (data) => {
-         await createOnBoard(data)
+    const onSubmit: SubmitHandler<IAddOnBoardData> = async (data) => {
+        await createOnBoard(data)
 
-     }
+    }
 
     return (
         <>
-          <CustomModal modalId={'Add-OnBoard-Data'} modalContent={
-              <FormLayOut defaultValues={defaultAddOnBoardData} btnText={`Submit`} onSubmit={onSubmit} validationRules={OnBoardDataValidation} FormInputFields={onBordFormFields as FORM_INPUT_PROPS[]}/>
-          } modalBtnVariant={`outlined`} ModalBtnIcon={<Add/>} modalBtnText={`Add-OnBoard-Data`}/>
+            <CustomModal modalId={'Add-OnBoard-Data'} modalContent={
+                <FormLayOut defaultValues={defaultAddOnBoardData} btnText={`Submit`} onSubmit={onSubmit}
+                            validationRules={OnBoardDataValidation}
+                            FormInputFields={onBordFormFields as FORM_INPUT_PROPS[]}/>
+            } modalBtnVariant={`outlined`} ModalBtnIcon={<Add/>} modalBtnText={`Add-OnBoard-Data`}/>
 
         </>
     );
