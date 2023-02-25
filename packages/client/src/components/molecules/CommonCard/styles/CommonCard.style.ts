@@ -3,7 +3,7 @@ import {Card, CardContent, CardHeader} from "@mui/material";
 
 export const CommonCardHeader = styled(CardHeader)(({theme}) => ({
 
-    '& .MuiTypography-root':{
+    '& .MuiTypography-root': {
         fontWeight: "600",
         fontSize: "3rem",
         color: theme.palette.primary.main,
@@ -18,6 +18,4 @@ export const CommonCardLayout = styled(Card)(({theme}) => ({
 
 })) as typeof Card;
 
-export const CommonCardContent = styled(CardContent)(({theme}) => ({
-
-})) as  typeof  CardContent;
+export const CommonCardContent = styled(CardContent)(({theme}) => ({})) as typeof CardContent;

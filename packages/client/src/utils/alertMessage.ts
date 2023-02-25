@@ -5,6 +5,7 @@ interface errorData {
     message: string;
     success: boolean;
 }
+
 export const handleErrors = (error: AxiosError) => {
     const {message} = error.response?.data as errorData
     console.log(message)
@@ -21,7 +22,7 @@ export const handleErrors = (error: AxiosError) => {
     });
 
 }
- export const handleSuccess = (message: string) => {
+export const handleSuccess = (message: string) => {
     toast.success(message, {
         position: "top-right",
         autoClose: 5000,
@@ -33,7 +34,7 @@ export const handleErrors = (error: AxiosError) => {
         theme: "dark",
         toastId: "success",
     });
-  }
+}
 
 
 

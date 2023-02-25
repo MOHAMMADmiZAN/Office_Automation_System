@@ -13,6 +13,7 @@ interface ADD_EVENT_MODAL_PROPS {
 
 
 }
+
 const defaultValues = {
     author: '',
     title: '',
@@ -99,10 +100,12 @@ export const eventFormFields: eventFormInputField[] = [
 const AddEventModal: React.FC<ADD_EVENT_MODAL_PROPS> = (props): JSX.Element => {
 
     const {userId} = useAuth();
-    const {createEvent}= useEvent()
+    const {createEvent} = useEvent()
 
 
-    const onSubmit: SubmitHandler<IEventPayload> = async (data) => {await createEvent(data);}
+    const onSubmit: SubmitHandler<IEventPayload> = async (data) => {
+        await createEvent(data);
+    }
     return (
         <>
             <CustomModal modalId={`add-event`} modalContent={

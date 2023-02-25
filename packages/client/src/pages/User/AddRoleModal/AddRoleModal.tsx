@@ -13,11 +13,11 @@ interface ADD_ROLE_MODAL_PROPS {
 }
 
 
-
 const defaultValues = {
     name: '',
 }
- interface RoleFormInputField {
+
+interface RoleFormInputField {
     name: string;
     type: FormInputType;
     placeholder: string;
@@ -25,7 +25,7 @@ const defaultValues = {
     label: string;
     id?: string;
 
- }
+}
 
 const RoleFormFields: RoleFormInputField[] = [
     {
@@ -39,7 +39,7 @@ const RoleFormFields: RoleFormInputField[] = [
 ]
 const AddRoleModal: React.FC<ADD_ROLE_MODAL_PROPS> = (props): JSX.Element => {
 
-   const {createRole} = useRole()
+    const {createRole} = useRole()
     const onSubmit: SubmitHandler<IRolePayload> = async (data) => {
         await createRole(data)
 
@@ -49,7 +49,8 @@ const AddRoleModal: React.FC<ADD_ROLE_MODAL_PROPS> = (props): JSX.Element => {
     return (
         <>
             <CustomModal modalId={'add-role'} modalContent={
-                <FormLayOut defaultValues={defaultValues} FormInputFields={RoleFormFields as FORM_INPUT_PROPS[]} validationRules={roleValidation} onSubmit={onSubmit} btnText={'Submit'}/>
+                <FormLayOut defaultValues={defaultValues} FormInputFields={RoleFormFields as FORM_INPUT_PROPS[]}
+                            validationRules={roleValidation} onSubmit={onSubmit} btnText={'Submit'}/>
             } ModalBtnIcon={<Add/>} modalTitle={`Add-Role`} modalBtnText={`Add Role`} modalBtnVariant={`outlined`}/>
 
         </>

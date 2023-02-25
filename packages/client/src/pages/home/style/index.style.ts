@@ -1,5 +1,2 @@
-const indexPageStyle = {
-
-
-}
+const indexPageStyle = {}
 export default indexPageStyle;

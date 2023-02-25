@@ -25,14 +25,13 @@ interface RegisterInputField {
 }
 
 
-
 interface RegisterFromData {
     firstName: string;
     lastName: string;
     email: string;
     password: string;
     role: string;
-    avatar: Blob |Object | string;
+    avatar: Blob | Object | string;
 
 }
 
@@ -45,19 +44,18 @@ const defaultValues: RegisterFromData = {
     avatar: ``,
 
 
-
 }
 
 
 const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
-     const {Roles} = useRole()
+    const {Roles} = useRole()
     const queryClient = useQueryClient();
-     const {Register} = useUsers();
+    const {Register} = useUsers();
 
     const RegisterInputFields: RegisterInputField[] = [
         {
-          name: `avatar`,
-          type: `file`,
+            name: `avatar`,
+            type: `file`,
             placeholder: `Upload Your Avatar`,
             smallField: false,
             label: `Avatar`,
@@ -100,7 +98,7 @@ const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
             placeholder: `Select Your Role`,
             smallField: true,
             label: `Role`,
-            selectOptions: Roles?.filter((r)=>r.name!=='super_admin').map((role) => {
+            selectOptions: Roles?.filter((r) => r.name !== 'super_admin').map((role) => {
                 return {
                     label: role.name,
                     value: role._id
@@ -112,10 +110,7 @@ const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
     ];
 
 
-
-
-
-    const onSubmit: SubmitHandler<RegisterFromData> = async (data,e) => {
+    const onSubmit: SubmitHandler<RegisterFromData> = async (data, e) => {
 
         let payload = {
             ...data,
@@ -124,7 +119,6 @@ const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
 
         await Register(payload)
         await queryClient.invalidateQueries("allUsers");
-
 
 
     }
@@ -138,7 +132,8 @@ const AddUserModal: React.FC<ADD_USER_MODAL_PROPS> = (props): JSX.Element => {
                     onSubmit={onSubmit}
                     btnText={`Register`}/>
 
-            } modalBtnVariant={`outlined`} modalBtnText={`Add User`} ModalBtnIcon={<Add/>} modalTitle={`New User Register`}/>
+            } modalBtnVariant={`outlined`} modalBtnText={`Add User`} ModalBtnIcon={<Add/>}
+                         modalTitle={`New User Register`}/>
 
         </>
     );

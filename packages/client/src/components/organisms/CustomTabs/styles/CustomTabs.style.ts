@@ -1,7 +1,5 @@
 const customTabsStyle = {
-    '& .MuiTabs-indicator': {
-
-    },
+    '& .MuiTabs-indicator': {},
     '& .MuiTabs-flexContainer': {
         justifyContent: 'space-between',
 

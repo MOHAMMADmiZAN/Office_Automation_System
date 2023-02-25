@@ -3,20 +3,23 @@ import Attendance, {IAttendance} from "../models/Attendance";
 
 interface IAttendanceService {
     createAttendance(data: IAttendance): Promise<IAttendance>;
+
     findAttendance(key: string, value: any): Promise<IAttendance | null>;
+
     findAttendances(): Promise<IAttendance[]>;
-    updateAttendance(data: IAttendance, id: string): Promise<IAttendance|null>;
-    deleteAttendance(id: string): Promise<IAttendance|null>;
+
+    updateAttendance(data: IAttendance, id: string): Promise<IAttendance | null>;
+
+    deleteAttendance(id: string): Promise<IAttendance | null>;
+
+    findAttendanceByUser(id: string): Promise<IAttendance[]>;
 }
 
 
 class AttendanceService implements IAttendanceService {
 
     createAttendance(data: IAttendance): Promise<IAttendance> {
-        let schema = new Attendance({
-            user: data.user,
-            checkIn: data.checkIn,
-        })
+        let schema = new Attendance({...data})
         return schema.save();
     }
 
@@ -24,7 +27,7 @@ class AttendanceService implements IAttendanceService {
         if (key === '_id') {
             return Attendance.findById(value).exec()
         }
-        return Attendance.findOne({ [key]: value }).exec();
+        return Attendance.findOne({[key]: value}).exec();
     }
 
     findAttendances(): Promise<IAttendance[]> {
@@ -32,15 +35,16 @@ class AttendanceService implements IAttendanceService {
     }
 
     async updateAttendance(data: IAttendance, id: string): Promise<IAttendance | null> {
-        let schema = {
-            checkOut: data.checkOut,
-            comment: data.comment,
-        }
-        return Attendance.findByIdAndUpdate(id, { ...schema }, { new: true });
+
+        return Attendance.findByIdAndUpdate(id, {...data}, {new: true});
     }
 
-    deleteAttendance(id: string): Promise<IAttendance|null> {
+    deleteAttendance(id: string): Promise<IAttendance | null> {
         return Attendance.findByIdAndDelete(id).exec();
+    }
+
+    findAttendanceByUser(id: string): Promise<IAttendance[]> {
+        return Attendance.find({user: id}).exec();
     }
 
 }

@@ -14,5 +14,4 @@ LeaveRouter.put('/:id', leaveController.leaveUpdate)
 LeaveRouter.delete('/:id', leaveController.leaveDelete)
 
 
-
 export default LeaveRouter

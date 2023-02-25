@@ -19,7 +19,7 @@ async function AuthMiddleware(req, res, next) {
     try {
         let token = req.headers.authorization;
         if (!token) {
-            return  res.status(401).json({
+            return res.status(401).json({
                 message: "Unauthorized"
             })
         }

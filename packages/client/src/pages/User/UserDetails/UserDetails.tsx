@@ -18,14 +18,15 @@ interface USER_DETAILS_PROPS {
 
 const UserDetails: React.FC<USER_DETAILS_PROPS> = (props): JSX.Element => {
     const {id} = useParams();
-    const {user,userInfo,userDocument,userRole,onBoard} = useUser(id as string)
+    const {user, userInfo, userDocument, userRole, onBoard} = useUser(id as string)
+
+    const backEndUrl = `${import.meta.env.VITE_REACT_APP_BACKEND_BASE_URL}/`
 
 
     let age = moment.duration(moment().diff(userInfo?.dateOfBirth));
     let ageInYears = age.years();
     let ageInMonths = age.months();
     let ageInDays = age.days();
-
 
 
     return (
@@ -48,13 +49,17 @@ const UserDetails: React.FC<USER_DETAILS_PROPS> = (props): JSX.Element => {
                                     <Typography variant={`subtitle1`}> Designation : {onBoard?.jobTitle}</Typography>
                                 </Grid>
                                 <Grid item={true} xs={12} md={4}>
-                                    <Typography variant={`subtitle2`}> Age : {`${ageInYears} Years ${ageInMonths} Months ${ageInDays} Days`}</Typography>
+                                    <Typography variant={`subtitle2`}> Age
+                                        : {`${ageInYears} Years ${ageInMonths} Months ${ageInDays} Days`}</Typography>
                                 </Grid>
                             </Grid>
                         </Grid>
                         <Grid item={true} xs={12} md={4}>
-                            <CustomModal modalId={"edit-user-data"} modalContent={<EditUserDetails userId={id as string}/>} modalBtnText={`Edit User`} ModalBtnIcon={<Edit/>} modalBtnVariant={`outlined`} modalTitle={`edit-user-data`}/>
-                            <Btn BtnStartIcon={<Downloading/>} BtnText={`Download `}  variant={`contained`}/>
+                            <CustomModal modalId={"edit-user-data"}
+                                         modalContent={<EditUserDetails userId={id as string}/>}
+                                         modalBtnText={`Edit User`} ModalBtnIcon={<Edit/>} modalBtnVariant={`outlined`}
+                                         modalTitle={`edit-user-data`}/>
+                            <Btn BtnStartIcon={<Downloading/>} BtnText={`Download `} variant={`contained`}/>
                         </Grid>
                     </Grid>
                     <Divider/>
@@ -84,7 +89,8 @@ const UserDetails: React.FC<USER_DETAILS_PROPS> = (props): JSX.Element => {
                             <Typography variant={`h3`} sx={{...headerTypography}}>On Boarding Data</Typography>
                         </Grid>
                         <Grid item={true} xs={12} md={8} my={`5px`}>
-                            <Typography variant={`h5`}> Joining Date: {moment(onBoard?.joiningDate).calendar()}</Typography>
+                            <Typography variant={`h5`}> Joining
+                                Date: {moment(onBoard?.joiningDate).calendar()}</Typography>
                         </Grid>
                         <Grid item={true} xs={12} md={6} my={`5px`}>
                             <Typography variant={`h5`}> Salary : ${onBoard?.salary}</Typography>
@@ -95,12 +101,14 @@ const UserDetails: React.FC<USER_DETAILS_PROPS> = (props): JSX.Element => {
                     </Grid>
                     <Grid container={true} justifyContent={`space-between`} alignItems={`center`}>
                         <Grid item={true} xs={12} md={8}>
-                            <Typography variant={`h3`} sx={{...headerTypography}}>  Documents</Typography>
+                            <Typography variant={`h3`} sx={{...headerTypography}}> Documents</Typography>
                         </Grid>
                         {
-                            userDocument?.map((doc,i) => (
+                            userDocument?.map((doc, i) => (
                                 <Grid item={true} xs={12} md={8} my={`5px`} key={i}>
-                                    <Typography variant={`h5`}> Document Title: <Link href={doc?.document} >{doc?.title} <Downloading/></Link></Typography>
+                                    <Typography variant={`h5`}> Document Title: <Link
+                                        href={`${backEndUrl + doc?.document}`} download={true}>{doc?.title}
+                                        <Downloading/></Link></Typography>
                                 </Grid>
                             ))
 

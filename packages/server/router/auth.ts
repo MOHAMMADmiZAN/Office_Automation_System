@@ -7,7 +7,7 @@ const authController = new AuthController()
 
 const authRouter = Router()
 authRouter.post('/login', authController.userLogin)
-authRouter.post('/register',fileUpload.single('avatar'), authController.userRegister)
+authRouter.post('/register', fileUpload.single('avatar'), authController.userRegister)
 
 export default authRouter
 

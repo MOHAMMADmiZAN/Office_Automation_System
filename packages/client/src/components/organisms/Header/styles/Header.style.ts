@@ -11,7 +11,7 @@ export const HeaderBox = styled(Box)(({theme}) => ({
 
     '& .MuiSvgIcon-root': {
         color: theme.palette.primary.main,
-       margin: '0 15px'
+        margin: '0 15px'
     },
     '& .MuiBadge-root .MuiSvgIcon-root': {
         margin: '0'

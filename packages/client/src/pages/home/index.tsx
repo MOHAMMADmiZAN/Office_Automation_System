@@ -8,7 +8,6 @@ const Index: React.FC = (): JSX.Element => {
         <>
         </>
     )
-            
 
 
 };

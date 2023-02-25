@@ -10,9 +10,9 @@ import LeaveRouter from "./Leave";
 import UserRouter from "./User";
 import AuthMiddleware from "../middleware/Auth";
 import UserDocumentRouter from "./UserDocument";
+import AdminAttendanceRouter from "./AdminAttendance";
 
 const router = Router()
-
 
 
 router.use('/api/v1/auth', authRouter)
@@ -24,7 +24,7 @@ router.use('/api/v1/onboard', AuthMiddleware, OnboardRouter)
 router.use('/api/v1/leave', AuthMiddleware, LeaveRouter)
 router.use('/api/v1/user', AuthMiddleware, UserRouter)
 router.use('/api/v1/user-document', AuthMiddleware, UserDocumentRouter)
-
+router.use('/api/v1/admin-attendance', AuthMiddleware, AdminAttendanceRouter)
 
 
 router.use((req, res, next) => {

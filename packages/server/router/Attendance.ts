@@ -3,16 +3,16 @@ import AttendanceController from "../controllers/AttendanceController";
 import {Router} from "express";
 
 
-const EventRouter = Router()
+const AttendanceRouter = Router()
 
 const attendanceController = new AttendanceController()
 
-EventRouter.get('/', attendanceController.attendanceList)
-EventRouter.get('/:id', attendanceController.attendanceDetail)
-EventRouter.post('/', attendanceController.attendanceCreate)
-EventRouter.put('/:id', attendanceController.attendanceUpdate)
-EventRouter.delete('/:id', attendanceController.attendanceDelete)
+AttendanceRouter.get('/', attendanceController.attendanceList)
+AttendanceRouter.get('/:id', attendanceController.attendanceDetail)
+AttendanceRouter.post('/', attendanceController.attendanceCreate)
+AttendanceRouter.put('/:id', attendanceController.attendanceUpdate)
+AttendanceRouter.delete('/:id', attendanceController.attendanceDelete)
+AttendanceRouter.get('/user/:id', attendanceController.attendanceFindByUser)
 
 
-
-export default EventRouter
+export default AttendanceRouter

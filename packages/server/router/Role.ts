@@ -14,5 +14,4 @@ RoleRouter.delete('/:id', roleController.deleteUserRole)
 RoleRouter.put('/:id', roleController.updateUserRole)
 
 
-
-export default RoleRouter
+export default RoleRouter;

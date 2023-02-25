@@ -3,10 +3,15 @@ import UserDocument, {IUserDocument} from "../models/UserDocument";
 
 interface IUserDocumentService {
     createUserDocument(data: IUserDocument): Promise<IUserDocument>;
+
     findUserDocument(key: string, value: any): Promise<IUserDocument | null>;
+
     findUserDocuments(): Promise<IUserDocument[]>;
+
     findUserDocumentsByUser(userId: string): Promise<IUserDocument[]>;
+
     updateUserDocument(data: IUserDocument, id: string): Promise<IUserDocument | null>;
+
     deleteUserDocument(id: string): Promise<IUserDocument | null>;
 }
 
@@ -24,7 +29,7 @@ class UserDocumentService implements IUserDocumentService {
         if (key === '_id') {
             return UserDocument.findById(value).exec()
         }
-        return UserDocument.findOne({ [key]: value }).exec();
+        return UserDocument.findOne({[key]: value}).exec();
     }
 
     findUserDocuments(): Promise<IUserDocument[]> {
@@ -32,14 +37,14 @@ class UserDocumentService implements IUserDocumentService {
     }
 
     findUserDocumentsByUser(userId: string): Promise<IUserDocument[]> {
-        return UserDocument.find({ user: userId }).exec();
+        return UserDocument.find({user: userId}).exec();
     }
 
     async updateUserDocument(data: IUserDocument, id: string): Promise<IUserDocument | null> {
         let schema = {
             ...data
         }
-        return UserDocument.findByIdAndUpdate(id, { ...schema }, { new: true });
+        return UserDocument.findByIdAndUpdate(id, {...schema}, {new: true});
     }
 
     deleteUserDocument(id: string): Promise<IUserDocument | null> {

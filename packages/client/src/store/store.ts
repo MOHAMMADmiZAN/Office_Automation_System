@@ -1,7 +1,7 @@
 import {createStore, persist} from "easy-peasy";
 import AuthModel from "./models/AuthModel";
 
-export  interface StoreModel {
+export interface StoreModel {
     Auth: typeof AuthModel
 
 

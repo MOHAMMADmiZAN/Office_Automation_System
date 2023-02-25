@@ -22,7 +22,7 @@ const EventRequest: React.FC<EVENT_REQUEST_PROPS> = (props): JSX.Element => {
     return (
         <>
 
-            <EventLayout  isBodyRowFunc={handleRowFunc} label={`event-list`}/>
+            <EventLayout isBodyRowFunc={handleRowFunc} label={`event-list`}/>
 
         </>
     );

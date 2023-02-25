@@ -1,7 +1,7 @@
 import axios from "axios";
 import {handleErrors, handleSuccess} from "../utils/alertMessage";
 
-const BackendBaseURL = `${import.meta.env.VITE_REACT_APP_BACKEND_BASE_URL}`;
+const BackendBaseURL = `${import.meta.env.VITE_REACT_APP_BACKEND_BASE_URL}/api/v1`;
 
 
 export const PublicApiInstance = axios.create({

@@ -59,9 +59,8 @@ export const SidebarBox = styled(Box)(({theme}) => ({
             },
 
 
-
         },
-        '& .Nav-item:hover':{
+        '& .Nav-item:hover': {
             '& a': {
                 color: '#fff !important',
                 backgroundColor: theme.palette.primary.main,

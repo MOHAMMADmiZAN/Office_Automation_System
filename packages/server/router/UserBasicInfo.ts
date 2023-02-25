@@ -14,5 +14,4 @@ UserBasicInfoRouter.put('/:id', userBasicInfoController.userBasicInfoUpdate)
 UserBasicInfoRouter.delete('/:id', userBasicInfoController.userBasicInfoDelete)
 
 
-
 export default UserBasicInfoRouter

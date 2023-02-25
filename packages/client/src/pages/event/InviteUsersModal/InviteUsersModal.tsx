@@ -9,7 +9,7 @@ import FormLayOut from "../../../components/organisms/Form/FormLayOut/FormLayOut
 import {eventValidation} from "../../../utils/Validation";
 import useAuth from "../../../hooks/useAuth";
 
-interface INVITE_USERS_MODAL_PROPS  extends EDIT_EVENT_MODAL_PROPS{
+interface INVITE_USERS_MODAL_PROPS extends EDIT_EVENT_MODAL_PROPS {
     authors: User[];
 }
 
@@ -18,7 +18,7 @@ export interface inviteUser {
     status: string;
 }
 
-const InviteUsersModal: React.FC<INVITE_USERS_MODAL_PROPS> = ({eventData,authors}): JSX.Element => {
+const InviteUsersModal: React.FC<INVITE_USERS_MODAL_PROPS> = ({eventData, authors}): JSX.Element => {
     const {userId} = useAuth();
     const {mutateAsync: inviteUser} = useMutation((data: IEventPayload) => EventApi.eventUpdate(data, eventData._id), {
         onSuccess: async (data) => {
@@ -36,7 +36,7 @@ const InviteUsersModal: React.FC<INVITE_USERS_MODAL_PROPS> = ({eventData,authors
             smallField: false,
             label: "Invite Users",
             id: "invitation",
-            selectOptions: authors.filter((author)=> author._id!==userId).map((author) => {
+            selectOptions: authors.filter((author) => author._id !== userId).map((author) => {
                 return {
                     value: author._id,
                     label: author.firstName + " " + author.lastName
@@ -44,7 +44,6 @@ const InviteUsersModal: React.FC<INVITE_USERS_MODAL_PROPS> = ({eventData,authors
             })
         }
     ]
-
 
 
     // defaultValuForInvitation is an array of selectOption

@@ -30,13 +30,13 @@ const OnboardSchema = new Schema({
         required: [true, 'Salary field is required']
     },
     status: {
-        type: String, enum: [ 'Active', 'Inactive', 'On Leave', 'Fired', 'Resigned'], default: 'Active'
+        type: String, enum: ['Active', 'Inactive', 'On Leave', 'Fired', 'Resigned'], default: 'Active'
     },
     farewellDate: {
         type: String,
         trim: true
     },
-}, { timestamps: true });
+}, {timestamps: true});
 
 const Onboard = model<IOnboard>('Onboard', OnboardSchema);
 export default Onboard;

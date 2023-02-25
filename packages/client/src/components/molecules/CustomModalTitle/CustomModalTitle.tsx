@@ -12,11 +12,11 @@ interface DIA_PROPS {
 }
 
 const CustomModalTitle: React.FC<DIA_PROPS> = (props): JSX.Element => {
-    const { children, onClose, ...other } = props;
+    const {children, onClose, ...other} = props;
 
     return (
         <>
-            <DialogTitle sx={{ m: 0, p: 2 }} {...other}>
+            <DialogTitle sx={{m: 0, p: 2}} {...other}>
                 {children}
                 {onClose ? (
                     <IconButton
@@ -30,11 +30,11 @@ const CustomModalTitle: React.FC<DIA_PROPS> = (props): JSX.Element => {
                             color: (theme) => theme.palette.grey[500],
                         }}
                     >
-                        <CloseIcon color={`error`} />
+                        <CloseIcon color={`error`}/>
                     </IconButton>
                 ) : null}
             </DialogTitle>
-            
+
         </>
     );
 };

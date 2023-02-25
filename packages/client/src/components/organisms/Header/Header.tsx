@@ -24,17 +24,17 @@ interface HEADER_PROPS {
     accountMenuItems: AccountMenuItem[];
 
 }
+
 export interface AccountMenuItem {
     icon: React.ReactNode;
     text: string;
     onClick?: () => void;
     isDivider?: boolean;
-    
+
 }
 
 
-
-const Header: React.FC<HEADER_PROPS> = ({controlSidebar,accountMenuItems}) => {
+const Header: React.FC<HEADER_PROPS> = ({controlSidebar, accountMenuItems}) => {
     const [accountMenu, setAccountMenu] = useState(false);
     const {user} = useAuth()
     const accountToggle = () => setAccountMenu((prevOpen) => !prevOpen);
@@ -54,7 +54,7 @@ const Header: React.FC<HEADER_PROPS> = ({controlSidebar,accountMenuItems}) => {
                     <Tooltip title="Notification">
                         <IconButton>
                             <Badge badgeContent={0} color="error" showZero={true}>
-                                <Notifications color="action" sx={{margin:'0'}}/>
+                                <Notifications color="action" sx={{margin: '0'}}/>
                             </Badge>
                         </IconButton>
                     </Tooltip>
@@ -63,7 +63,7 @@ const Header: React.FC<HEADER_PROPS> = ({controlSidebar,accountMenuItems}) => {
                         <AccountCircleIcon/>
                         {
                             accountMenu && (
-                                <Paper sx={{position:'fixed', right:'15px',top:'60px'}}>
+                                <Paper sx={{position: 'fixed', right: '15px', top: '60px'}}>
                                     <MenuList>
                                         {
                                             accountMenuItems.map((item, index) => {

@@ -4,9 +4,13 @@ import errorHandler from "../utils/error";
 
 interface IUserBasicInfoService {
     createUserBasicInfo(data: IUserBasicInfo): Promise<IUserBasicInfo>;
+
     findUserBasicInfo(key: string, value: any): Promise<IUserBasicInfo | null>;
+
     findUserBasicInfos(): Promise<IUserBasicInfo[]>;
+
     updateUserBasicInfo(data: IUserBasicInfo, id: string): Promise<IUserBasicInfo | null>;
+
     deleteUserBasicInfo(id: string): Promise<IUserBasicInfo | null>;
 
 }
@@ -29,7 +33,7 @@ class UserBasicInfoService implements IUserBasicInfoService {
         if (key === '_id') {
             return UserBasicInfo.findById(value).exec()
         }
-        return UserBasicInfo.findOne({ [key]: value }).exec();
+        return UserBasicInfo.findOne({[key]: value}).exec();
     }
 
     findUserBasicInfos(): Promise<IUserBasicInfo[]> {
@@ -40,13 +44,12 @@ class UserBasicInfoService implements IUserBasicInfoService {
         let schema = {
             ...data
         }
-        return UserBasicInfo.findByIdAndUpdate(id, { ...schema }, { new: true });
+        return UserBasicInfo.findByIdAndUpdate(id, {...schema}, {new: true});
     }
 
     deleteUserBasicInfo(id: string): Promise<IUserBasicInfo | null> {
         return UserBasicInfo.findByIdAndDelete(id).exec();
     }
-
 
 
 }

@@ -1,8 +1,6 @@
 import UserDocumentService from "../services/UserDocumentService";
 import {NextFunction, Response} from "express";
-import {handleFileDelete,  handleFileUpload} from "../utils/FileUpload";
-
-
+import {handleFileDelete} from "../utils/FileUpload";
 
 
 interface IUserDocumentController {

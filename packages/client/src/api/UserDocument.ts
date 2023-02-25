@@ -25,7 +25,7 @@ export const UserDocumentApi: IUserDocumentApi = {
 
     },
     userDocumentCreate: async (payload: IUserDocument) => {
-        const response = await PrivateApiInstance.post('/user-document', payload,{
+        const response = await PrivateApiInstance.post('/user-document', payload, {
             headers: {
                 'Content-Type': 'multipart/form-data'
             }

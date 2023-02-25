@@ -9,22 +9,22 @@ interface COMMON_CARD_PROPS {
 
 }
 
-const CommonCard: React.FC<COMMON_CARD_PROPS> = ({cardTitle,CardMain,children}) => {
+const CommonCard: React.FC<COMMON_CARD_PROPS> = ({cardTitle, CardMain, children}) => {
     return (
         <>
-       <CommonCardLayout>
-           {cardTitle && (
-              <>
-                  <CommonCardHeader title={cardTitle}/>
-                  <Divider/>
-              </>
-           )}
-           <CommonCardContent>
-                {CardMain}
-               {children}
-           </CommonCardContent>
+            <CommonCardLayout>
+                {cardTitle && (
+                    <>
+                        <CommonCardHeader title={cardTitle}/>
+                        <Divider/>
+                    </>
+                )}
+                <CommonCardContent>
+                    {CardMain}
+                    {children}
+                </CommonCardContent>
 
-       </CommonCardLayout>
+            </CommonCardLayout>
 
 
         </>

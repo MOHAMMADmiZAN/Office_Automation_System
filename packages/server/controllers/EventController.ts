@@ -81,7 +81,7 @@ class EventController extends EventService implements IEventController {
                     message: 'Event not found'
                 })
             }
-            const { userId, status } = req.body;
+            const {userId, status} = req.body;
             const invitation = event.invitation.reduce((acc, cur) => {
                 const objectId = new ObjectId(userId)
 

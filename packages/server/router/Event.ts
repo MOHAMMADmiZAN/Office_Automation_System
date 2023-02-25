@@ -15,5 +15,4 @@ EventRouter.put('/changeInviteStatus/:id', eventController.changeInviteStatus)
 EventRouter.delete('/:id', eventController.eventDelete)
 
 
-
 export default EventRouter

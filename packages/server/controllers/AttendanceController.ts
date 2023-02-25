@@ -8,6 +8,7 @@ interface IAttendanceController {
     attendanceList: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     attendanceDelete: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     attendanceUpdate: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    attendanceFindByUser: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 
 class AttendanceController extends AttendanceService implements IAttendanceController {
@@ -66,6 +67,17 @@ class AttendanceController extends AttendanceService implements IAttendanceContr
             const data = await this.deleteAttendance(req.params.id);
             res.status(200).json({
                 message: 'Attendance deleted successfully',
+                data
+            })
+        } catch (error: any) {
+            next(error)
+        }
+    }
+    public attendanceFindByUser = async (req, res, next) => {
+        try {
+            const data = await this.findAttendanceByUser(req.params.id);
+            res.status(200).json({
+                message: 'Attendance found successfully',
                 data
             })
         } catch (error: any) {

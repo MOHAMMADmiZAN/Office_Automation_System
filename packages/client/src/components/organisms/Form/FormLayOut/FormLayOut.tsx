@@ -28,7 +28,7 @@ const FormLayOut: React.FC<FORM_LAY_OUT_PROPS> = ({
                                                       FormInputFields,
                                                       btnText
                                                   }): JSX.Element => {
-    const {control, handleSubmit, reset,setValue} = useForm<typeof defaultValues>({
+    const {control, handleSubmit, reset, setValue} = useForm<typeof defaultValues>({
         defaultValues: {...defaultValues},
         resolver: yupResolver(validationRules),
     });
