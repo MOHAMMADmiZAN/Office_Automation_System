@@ -3,6 +3,7 @@
 * [Reference](#reference)
 * [Plugin Used](#plugin-used)
 * [Tools](#tools)
+* [Testing](#testing)
 
 ### Case Study 
 
@@ -75,6 +76,9 @@
 ### Tools
 - [Diagrams.net](https://www.diagrams.net/) - Using for diagrams
 - [Lucid Chart](https://www.lucidchart.com/pages/)
+
+### Testing
+- [Vitest](https://vitest.dev/guide/)
 
 ### Project Details
 - Project link `https://github.com/MOHAMMADmiZAN/Office_Automation_System`
