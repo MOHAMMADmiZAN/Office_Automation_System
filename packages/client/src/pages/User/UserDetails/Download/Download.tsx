@@ -1,5 +1,5 @@
 import React from 'react';
-import {Document, Page, StyleSheet, Text, View} from '@react-pdf/renderer';
+import { Document, Page, StyleSheet, Text, View } from '@react-pdf/renderer';
 
 
 // Create styles
@@ -16,12 +16,11 @@ const styles = StyleSheet.create({
 });
 
 interface USER_DETAILS_PROPS {
-
 }
 
 
 // Create Document Component
-const Download: React.FC<USER_DETAILS_PROPS> = (): JSX.Element => {
+const Download: React.FC<USER_DETAILS_PROPS> = (props): JSX.Element => {
     return (
         <Document>
             <Page size="A4" style={styles.page}>

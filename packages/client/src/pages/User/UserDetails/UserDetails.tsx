@@ -1,26 +1,27 @@
-import {useParams} from "react-router-dom";
-import {Box, Container, Divider, Grid, Link, Typography} from "@mui/material";
-import CommonCard from "../../../components/molecules/CommonCard/CommonCard";
-
 import React from "react";
-import {headerTypography, userAvatarStyle} from "./UserDetails.style";
+import { useParams } from "react-router-dom";
+import { Box, Container, Divider, Grid, Link, Typography } from "@mui/material";
+import CommonCard from "../../../components/molecules/CommonCard/CommonCard";
+import { headerTypography, userAvatarStyle } from "./UserDetails.style";
 import moment from "moment";
-import {Downloading, Edit} from "@mui/icons-material";
+import { Downloading, Edit } from "@mui/icons-material";
 import CustomModal from "../../../components/organisms/CustomModal/CustomModal";
-import {Btn} from "../../../components/molecules/Form/Btn/Btn";
+import { Btn } from "../../../components/molecules/Form/Btn/Btn";
 import EditUserDetails from "./EditUserDetails/EditUserDetails";
 import useUser from "../../../hooks/useUser";
+// import Download from "./Download/Download";
+import { saveAs } from 'file-saver';
+import { PDFDownloadLink, Document, Page, Text } from '@react-pdf/renderer';
+
+
 
 
 interface USER_DETAILS_PROPS {
-
 }
 
 const UserDetails: React.FC<USER_DETAILS_PROPS> = (props): JSX.Element => {
-    const {id} = useParams();
-    const {user, userInfo, userDocument, userRole, onBoard} = useUser(id as string)
-
-    const backEndUrl = `${import.meta.env.VITE_REACT_APP_BACKEND_BASE_URL}/`
+    const { id } = useParams();
+    const { user, userInfo, userDocument, userRole, onBoard } = useUser(id as string)
 
 
     let age = moment.duration(moment().diff(userInfo?.dateOfBirth));
@@ -29,14 +30,33 @@ const UserDetails: React.FC<USER_DETAILS_PROPS> = (props): JSX.Element => {
     let ageInDays = age.days();
 
 
+    const handleDownload = async () => {
+        console.log('clicked')
+        const blob = await (<PDFDownloadLink
+            document={
+                <Document>
+                    <Page>
+                        <Text>Hello, world!</Text>
+                    </Page>
+                </Document>
+            }
+            fileName={'my-pdf.pdf'}
+        >
+            {({ blob }: any) => blob}
+        </PDFDownloadLink>);
+
+        saveAs(blob, 'my-pdf.pdf');
+    }
+
+
     return (
         <>
             <Container>
                 <CommonCard cardTitle={`${user?.firstName}'s Full Information`}>
                     <Grid container={true} justifyContent={`space-between`} alignItems={`center`}>
                         <Grid item={true} xs={12} md={3} alignItems={`center`}>
-                            <Box sx={{...userAvatarStyle}}>
-                                <img src={user?.avatar} alt={user?.avatar}/>
+                            <Box sx={{ ...userAvatarStyle }}>
+                                <img src={user?.avatar} alt={user?.avatar} />
                             </Box>
                         </Grid>
                         <Grid item={true} xs={12} md={8}>
@@ -55,17 +75,14 @@ const UserDetails: React.FC<USER_DETAILS_PROPS> = (props): JSX.Element => {
                             </Grid>
                         </Grid>
                         <Grid item={true} xs={12} md={4}>
-                            <CustomModal modalId={"edit-user-data"}
-                                         modalContent={<EditUserDetails userId={id as string}/>}
-                                         modalBtnText={`Edit User`} ModalBtnIcon={<Edit/>} modalBtnVariant={`outlined`}
-                                         modalTitle={`edit-user-data`}/>
-                            <Btn BtnStartIcon={<Downloading/>} BtnText={`Download `} variant={`contained`}/>
+                            <CustomModal modalId={"edit-user-data"} modalContent={<EditUserDetails userId={id as string} />} modalBtnText={`Edit User`} ModalBtnIcon={<Edit />} modalBtnVariant={`outlined`} modalTitle={`edit-user-data`} />
+                            <Btn onClick={handleDownload} BtnStartIcon={<Downloading />} BtnText={`Download `} variant={`contained`} />
                         </Grid>
                     </Grid>
-                    <Divider/>
+                    <Divider />
                     <Grid container={true} justifyContent={`space-between`} alignItems={`center`}>
                         <Grid item={true} xs={12} md={8}>
-                            <Typography variant={`h3`} sx={{...headerTypography}}>Contact Information</Typography>
+                            <Typography variant={`h3`} sx={{ ...headerTypography }}>Contact Information</Typography>
                         </Grid>
                         <Grid item={true} xs={12} md={8} my={`5px`}>
                             <Typography variant={`h5`}> Email : {user?.email}</Typography>
@@ -86,7 +103,7 @@ const UserDetails: React.FC<USER_DETAILS_PROPS> = (props): JSX.Element => {
                     </Grid>
                     <Grid container={true} justifyContent={`space-between`} alignItems={`center`}>
                         <Grid item={true} xs={12} md={8}>
-                            <Typography variant={`h3`} sx={{...headerTypography}}>On Boarding Data</Typography>
+                            <Typography variant={`h3`} sx={{ ...headerTypography }}>On Boarding Data</Typography>
                         </Grid>
                         <Grid item={true} xs={12} md={8} my={`5px`}>
                             <Typography variant={`h5`}> Joining
@@ -101,14 +118,12 @@ const UserDetails: React.FC<USER_DETAILS_PROPS> = (props): JSX.Element => {
                     </Grid>
                     <Grid container={true} justifyContent={`space-between`} alignItems={`center`}>
                         <Grid item={true} xs={12} md={8}>
-                            <Typography variant={`h3`} sx={{...headerTypography}}> Documents</Typography>
+                            <Typography variant={`h3`} sx={{ ...headerTypography }}>  Documents</Typography>
                         </Grid>
                         {
                             userDocument?.map((doc, i) => (
                                 <Grid item={true} xs={12} md={8} my={`5px`} key={i}>
-                                    <Typography variant={`h5`}> Document Title: <Link
-                                        href={`${backEndUrl + doc?.document}`} download={true}>{doc?.title}
-                                        <Downloading/></Link></Typography>
+                                    <Typography variant={`h5`}> Document Title: <Link href={doc?.document} >{doc?.title} <Downloading /></Link></Typography>
                                 </Grid>
                             ))
 
