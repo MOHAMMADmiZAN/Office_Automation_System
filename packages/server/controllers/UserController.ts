@@ -1,12 +1,14 @@
 import UserService from "../services/UserService";
-import {NextFunction, Response} from "express";
-import {handleCloudFileDelete, handleCloudFileUpload} from "../utils/FileUpload";
+import { NextFunction, Response } from "express";
+import { handleCloudFileDelete, handleCloudFileUpload } from "../utils/FileUpload";
+import * as bcrypt from "bcrypt";
 
 
 interface IUserController {
     userList: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     avatarUpdate: (req: Request, res: Response, next: NextFunction) => Promise<void>;
     userUpdate: (req: Request, res: Response, next: NextFunction) => Promise<void>;
+    passwordChange: (req: Request, res: Response, next: NextFunction) => Promise<void>;
 }
 
 class UserController extends UserService implements IUserController {
@@ -65,6 +67,37 @@ class UserController extends UserService implements IUserController {
                 data: data
             })
         } catch (error: any) {
+            next(error)
+        }
+    }
+
+    public passwordChange = async (req, res, next) => {
+        try {
+            const userId = req.user._id;
+            const { oldPassword, password, confirmPassword } = req.body
+
+            if (password !== confirmPassword) {
+                throw new Error("Confirm password doesn't match!")
+            }
+
+            const user = await this.findUser("_id", userId);
+
+            if (!user) {
+                throw new Error("User not found!");
+            }
+
+            const match = await bcrypt.compare(oldPassword, user.password);
+            if (!match) {
+                throw new Error("Current password doesn't match!");
+            }
+
+            const data = await this.changePasswordService(userId, password);
+            res.status(200).json({
+                message: 'Password has been changed successfully',
+                data
+            })
+        } catch (error: any) {
+            console.log('error',error)
             next(error)
         }
     }

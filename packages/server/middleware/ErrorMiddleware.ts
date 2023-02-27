@@ -9,6 +9,7 @@ const errorMiddleware = (err: Error, req: Request, res: Response, next: NextFunc
         success: false,
         message: message,
     };
+    console.log('global error=', err)
     res.status(status).json(errorResponse);
     next()
 };
