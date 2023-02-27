@@ -19,6 +19,7 @@ const TodayAttendance: React.FC<ACTIVE_ATTENDANCE_PROPS> = (props): JSX.Element 
 
     const isTimeUP = moment(TodayAttendance?.createdAt).add(TodayAttendance?.timeLimit, 'minutes').isBefore(moment())
 
+
     const handleCheckIn = async (id: string) => {
         const CheckInPayload = {
             user: userId,
@@ -28,7 +29,7 @@ const TodayAttendance: React.FC<ACTIVE_ATTENDANCE_PROPS> = (props): JSX.Element 
 
 
         }
-        await checkIn(CheckInPayload as unknown as IAttendancePayload)
+        await checkIn(CheckInPayload  as IAttendancePayload)
     }
     const handleCheckOut = async () => {
 
@@ -54,9 +55,10 @@ const TodayAttendance: React.FC<ACTIVE_ATTENDANCE_PROPS> = (props): JSX.Element 
             user: userId,
             adminAttendance: id,
             checkIn: new Date(),
-            status: 'Late'
+            status: 'Late',
+            comment: 'Late Check In'
         }
-        await checkIn(CheckInPayload as unknown as IAttendancePayload)
+        await checkIn(CheckInPayload  as IAttendancePayload)
     }
 
 

@@ -7,6 +7,7 @@ import BaseLayout from "../layouts/Base.Layout";
 import User from "../pages/User";
 import UserDetails from "../pages/User/UserDetails/UserDetails";
 import Attendance from "../pages/attendance";
+import Leave from "../pages/Leave";
 
 const routes =
     createRoutesFromElements([
@@ -17,6 +18,7 @@ const routes =
             <Route path={'users/:id'} element={<UserDetails/>}/>
             <Route path={"dashboard"} element={<Index/>}/>
             <Route path={`attendance`} element={<Attendance/>}/>
+            <Route path={ `leave`} element={ <Leave/> }/>
         </Route>,
         <Route path="*" element={<NotFound/>}/>
     ])

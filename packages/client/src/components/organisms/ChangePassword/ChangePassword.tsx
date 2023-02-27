@@ -1,13 +1,11 @@
 import React from 'react';
 import FormLayOut from "../Form/FormLayOut/FormLayOut";
-import { FORM_INPUT_PROPS, FormInputType, selectOption } from "../../molecules/Form/FormInput/Form_Input";
-import { changePasswordValidation, eventValidation } from "../../../utils/Validation";
+import {FORM_INPUT_PROPS, FormInputType, selectOption} from "../../molecules/Form/FormInput/Form_Input";
+import {changePasswordValidation} from "../../../utils/Validation";
 import useAuth from "../../../hooks/useAuth";
-import { IEventPayload } from "../../../api/Event.api";
-import { SubmitHandler } from "react-hook-form";
-import { useEvent } from "../../../hooks/useEvent";
+import {SubmitHandler} from "react-hook-form";
 import ChangePasswordModal from '../ChangePasswordModal/ChangePasswordModal';
-import { ChangePasswordPayload } from '../../../store/models/AuthModel'
+import {ChangePasswordPayload} from '../../../store/models/AuthModel'
 
 
 interface CHANGE_PASSWORD_PROPS {

@@ -1,5 +1,5 @@
-import UserService, { IUserService } from "./UserService";
-import { IUser } from "../models/User";
+import UserService, {IUserService} from "./UserService";
+import {IUser} from "../models/User";
 import * as bcrypt from "bcrypt";
 import errorHandler from "../utils/error";
 
