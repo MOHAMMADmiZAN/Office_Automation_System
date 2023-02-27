@@ -34,7 +34,7 @@ const useAttendance = () => {
 
     const RunningAttendance = adminAttendance?.find((item) => item.status === 'RUNNING')
     const TodayAttendance = adminAttendance?.find((item) => moment(item.createdAt).isSame(moment(), 'day'))
-    const TodayUserAttendance = userAttendance?.find((item) => moment(item.checkIn).isSame(moment(), 'day') && item.user === userId)
+    const TodayUserAttendance = userAttendance?.find((item) => moment(item.checkIn).isSame(moment(), 'day') && item.user === userId && item.adminAttendance === TodayAttendance?._id)
 
 
     // if userId is not undefined then fetch attendance by user
