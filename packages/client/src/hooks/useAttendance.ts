@@ -10,6 +10,21 @@ export interface IAttendancePayloadWithAttendanceId {
     payload: IAttendancePayload;
 }
 
+export type StatusType = 'Present' | 'Absent' | 'Leave' | 'HalfDay' | 'Weekend' | 'Late' | 'Holiday';
+
+export interface IUserStatusCount {
+    [status: string]: number;
+    Present: number;
+    Late: number;
+    Absent: number;
+    HalfDay: number;
+    Leave: number;
+    Weekend: number;
+    Holiday: number;
+
+}
+
+
 const useAttendance = () => {
     const {userId} = useAuth()
 
@@ -19,7 +34,7 @@ const useAttendance = () => {
 
     const RunningAttendance = adminAttendance?.find((item) => item.status === 'RUNNING')
     const TodayAttendance = adminAttendance?.find((item) => moment(item.createdAt).isSame(moment(), 'day'))
-    const TodayUserAttendance = userAttendance?.find((item) => moment(item.checkIn).isSame(moment(), 'day'))
+    const TodayUserAttendance = userAttendance?.find((item) => moment(item.checkIn).isSame(moment(), 'day') && item.user === userId && item.adminAttendance === TodayAttendance?._id)
 
 
     // if userId is not undefined then fetch attendance by user
@@ -27,6 +42,20 @@ const useAttendance = () => {
             queryFn: () => AttendanceApi.attendanceFindByUser(userId!)
         }
     )
+     const userCountOnAttendance = (id:string)=>{
+        return userAttendanceByUser?.filter((item)=>item.adminAttendance===id).length
+
+     }
+
+     // now count status of userAttendanceByUser use reduce
+    const userStatusCount = userAttendanceByUser?.reduce((acc: IUserStatusCount, item) => {
+        if (item.status) {
+            acc[item.status] = acc[item.status] + 1
+        }
+        return acc
+    },{Present: 0, Late: 0, Absent: 0, HalfDay: 0, Leave: 0, Weekend: 0, Holiday: 0})
+
+
 
     const {mutateAsync: disableAttendance} = useMutation(AdminAttendanceApi.adminAttendanceDisableWhenCalled, {
         onSuccess: async () => {
@@ -48,7 +77,10 @@ const useAttendance = () => {
 
         }
     })
-
+  //  create  user Attendance filter function  by AttandanceStatus  form userAttendanceByUser  which return  array of IAttendancePayload
+    const userAttendanceByStatus = (status: string) => {
+        return userAttendanceByUser?.filter((item) => item.status === status)
+    }
 
     return {
         adminAttendance,
@@ -59,7 +91,10 @@ const useAttendance = () => {
         checkOut,
         RunningAttendance,
         TodayAttendance,
-        TodayUserAttendance
+        TodayUserAttendance,
+        userStatusCount,
+        userAttendanceByStatus,
+        userCountOnAttendance
 
     }
 

@@ -1,5 +1,5 @@
-import { PrivateApiInstance } from "./api";
-import { User, ChangePasswordPayload } from "../store/models/AuthModel";
+import {PrivateApiInstance} from "./api";
+import {ChangePasswordPayload, User} from "../store/models/AuthModel";
 
 
 export const UserApi = {

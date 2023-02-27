@@ -1,10 +1,9 @@
 import React from 'react';
 import CommonCard from "../../components/molecules/CommonCard/CommonCard";
 import CustomTabs, {TabItem} from "../../components/organisms/CustomTabs/CustomTabs";
-import UpcomingEvent from "../event/UpComingEvent/UpcomingEvent";
-import EventHistory from "../event/EventHistory/EventHistory";
-import EventRequest from "../event/EventRequest/EventRequest";
 import TodayAttendance from "./TodayAttendance/TodayAttendance";
+import AttendanceHistory from "./AttendanceHistory/AttendanceHistory";
+import AttendanceSheet from "./AttendanceSheet/AttendanceSheet";
 
 interface ATTENDANCE_PROPS {
 
@@ -16,17 +15,13 @@ const tabItems: TabItem[] = [
         component: <TodayAttendance/>
     },
     {
-        label: "My Attendance History",
-        component: <UpcomingEvent/>
+        label: "My Attendance History Sheet",
+        component: <AttendanceHistory/>
     },
     {
-        label: "Leave Request",
-        component: <EventHistory/>
-    },
-    {
-        label: "Leave History",
-        component: <EventRequest/>
-    },
+        label: "Attendance Sheet",
+        component: <AttendanceSheet/>
+    }
 
 ]
 

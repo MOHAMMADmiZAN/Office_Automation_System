@@ -1,6 +1,6 @@
-import { Action, action, State, Thunk, thunk } from 'easy-peasy';
-import { AuthApi } from "../../api/Auth.api";
-import { UserApi } from '../../api/User.api';
+import {Action, action, State, Thunk, thunk} from 'easy-peasy';
+import {AuthApi} from "../../api/Auth.api";
+import {UserApi} from '../../api/User.api';
 
 
 export interface AuthType {

@@ -6,7 +6,7 @@ export interface IAttendancePayload {
     adminAttendance: string;
     checkIn: Date;
     checkOut?: Date;
-    status?: string;
+    status: string;
     comment?: string;
 
 }
@@ -40,8 +40,10 @@ const AttendanceApi: IAttendanceApi = {
     attendanceDelete: (id: string) => {
         return PrivateApiInstance.delete(`/attendance/${id}`)
     },
-    attendanceFindByUser: (id: string) => {
-        return PrivateApiInstance.get(`/attendance/user/${id}`)
+    attendanceFindByUser: async (id: string) => {
+        const res = await PrivateApiInstance.get(`/attendance/user/${id}`)
+
+        return res.data.data
     }
 
 

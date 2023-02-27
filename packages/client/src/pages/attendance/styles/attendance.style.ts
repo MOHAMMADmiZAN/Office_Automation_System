@@ -7,7 +7,7 @@ export const AttendanceTypography = styled(Typography)(({theme}) => ({
     fontSize: "1rem",
     fontWeight: 600,
     textAlign: "center",
-    textTransform: "uppercase",
+    textTransform: "capitalize",
     padding: "0.5rem",
 
 })) as typeof Typography;
@@ -20,6 +20,7 @@ export const AttendanceBox = styled(Box)(({theme}) => ({
     alignItems: "center",
     backgroundColor: theme.palette.primary.light,
     borderRadius: "0.5rem",
+    margin: '5px 0'
 
 })) as typeof Box;
 

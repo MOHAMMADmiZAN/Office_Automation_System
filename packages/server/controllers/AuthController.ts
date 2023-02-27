@@ -1,6 +1,6 @@
 import AuthService from "../services/AuthService";
-import { NextFunction } from "express";
-import { handleCloudFileUpload } from "../utils/FileUpload";
+import {NextFunction} from "express";
+import {handleCloudFileUpload} from "../utils/FileUpload";
 
 
 interface AuthControllerInterface {

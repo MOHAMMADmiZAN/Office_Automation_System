@@ -1,18 +1,19 @@
-import React, { useLayoutEffect, useState } from 'react';
-import Header, { AccountMenuItem } from "../components/organisms/Header/Header";
-import Sidebar, { SidebarMenuItem } from "../components/organisms/SideBar/Sidebar";
+import React, {useLayoutEffect, useState} from 'react';
+import Header, {AccountMenuItem} from "../components/organisms/Header/Header";
+import Sidebar, {SidebarMenuItem} from "../components/organisms/SideBar/Sidebar";
 import EventIcon from "@mui/icons-material/Event";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
-import { Box, Grid } from "@mui/material";
+import {Box, Grid} from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import LockIcon from "@mui/icons-material/Lock";
-import { Dashboard, Logout } from "@mui/icons-material";
-import { Actions, useStoreActions } from "easy-peasy";
-import { AuthType } from "../store/models/AuthModel";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import {Dashboard, Logout} from "@mui/icons-material";
+import {Actions, useStoreActions} from "easy-peasy";
+import {AuthType} from "../store/models/AuthModel";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import ChangePassword from '../components/organisms/ChangePassword/ChangePassword';
+import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 
 
 interface BASE_LAYOUT_PROPS {
@@ -40,8 +41,13 @@ const SidebarMenu: SidebarMenuItem[] = [
     {
         icon: <AppRegistrationIcon />,
         text: "Attendance",
-        isDivider: false,
+        isDivider: true,
         id: 'attendance',
+    },{
+        icon: <ExitToAppIcon/>,
+        text: "Leave",
+        isDivider: false,
+        id: 'leave',
     }
 ]
 

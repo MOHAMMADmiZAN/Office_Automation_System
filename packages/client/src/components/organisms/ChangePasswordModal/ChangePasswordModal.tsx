@@ -1,7 +1,6 @@
-import React, { memo, useState } from 'react';
-import { BtnVariant } from "../../molecules/Form/Btn/Btn";
+import React, {memo} from 'react';
 import CustomModalTitle from "../../molecules/CustomModalTitle/CustomModalTitle";
-import { Box, Button, Container, DialogContent, Tooltip } from '@mui/material';
+import {Box, Container, DialogContent} from '@mui/material';
 import CommonCard from "../../molecules/CommonCard/CommonCard";
 import useStyles from "./styles/CustomModal.style";
 
