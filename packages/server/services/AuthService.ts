@@ -1,5 +1,5 @@
-import UserService, {IUserService} from "./UserService";
-import {IUser} from "../models/User";
+import UserService, { IUserService } from "./UserService";
+import { IUser, IChangePassword } from "../models/User";
 import * as bcrypt from "bcrypt";
 import errorHandler from "../utils/error";
 
@@ -11,9 +11,10 @@ interface ILogin {
 
 interface IAuthService extends IUserService {
     register(data: IUser): Promise<IUser | null>;
-
     login(email: string, password: string): Promise<ILogin>;
+    changePassword(data: IChangePassword): Promise<IUser | null>;
 }
+
 
 class AuthService extends UserService implements IAuthService {
 
@@ -50,9 +51,23 @@ class AuthService extends UserService implements IAuthService {
         return {
             token: this.tokenGenerator(user),
             user
-
         }
+    };
 
+
+    public changePassword = async (data: IChangePassword): Promise<IUser | null> => {
+        const { userId, oldPassword, password } = data
+
+        const user = await this.findUser("_id", userId);
+
+        if (!user) {
+            throw errorHandler("User not found!", 400);
+        }
+        const match = await bcrypt.compare(oldPassword, user.password);
+        if (!match) {
+            throw errorHandler("Current password doesn't match!", 400);
+        }
+        return this.changePasswordService(userId, password);
     };
 }
 
