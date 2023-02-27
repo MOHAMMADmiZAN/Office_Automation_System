@@ -1,5 +1,6 @@
-import {Action, action, State, Thunk, thunk} from 'easy-peasy';
-import {AuthApi} from "../../api/Auth.api";
+import { Action, action, State, Thunk, thunk } from 'easy-peasy';
+import { AuthApi } from "../../api/Auth.api";
+import { UserApi } from '../../api/User.api';
 
 
 export interface AuthType {
@@ -9,6 +10,12 @@ export interface AuthType {
 export interface loginPayload {
     email: string;
     password: string;
+}
+
+export interface ChangePasswordPayload {
+    oldPassword: string;
+    password: string;
+    confirmPassword: string;
 }
 
 export interface registerPayload extends User {
@@ -48,6 +55,7 @@ export interface Auth {
     Login: AuthThunk<loginPayload>;
     Register: AuthThunk<registerPayload>;
     Logout: AuthThunk<void>;
+    ChangePassword: AuthThunk<ChangePasswordPayload>;
 
 }
 
@@ -65,7 +73,7 @@ const AuthUserDefault: User = {
 const AuthModel: Auth = {
     isAuth: false,
     AuthToken: " ",
-    AuthUser: {...AuthUserDefault},
+    AuthUser: { ...AuthUserDefault },
     AuthSet: action((state: AuthState, payload) => {
         state.AuthToken = payload.token;
         state.AuthUser = payload.user;
@@ -75,26 +83,22 @@ const AuthModel: Auth = {
     }),
     AuthClear: action((state: AuthState) => {
         state.AuthToken = " ";
-        state.AuthUser = {...AuthUserDefault};
+        state.AuthUser = { ...AuthUserDefault };
         state.isAuth = false;
-
     }),
     Login: thunk(async (actions, payload) => {
         const data = await AuthApi.login(payload);
         actions.AuthSet(data)
         return !!data
-
     }),
-    Register: thunk(async (actions, payload) => {
+    ChangePassword: thunk(async (_actions, payload) => {
+        const data = await UserApi.changePassword(payload);
+        return data
+    }),
+    Register: thunk(async (_actions, payload) => {
         console.log(payload)
-
-
         const data = await AuthApi.register(payload);
-
-
         return !!data
-
-
     }),
     Logout: thunk(async (actions, payload) => {
         actions.AuthClear()

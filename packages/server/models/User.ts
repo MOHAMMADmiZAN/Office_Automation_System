@@ -10,11 +10,6 @@ export interface IUser {
     avatar?: string;
 }
 
-export interface IChangePassword {
-    userId: string;
-    oldPassword: string;
-    password: string;
-}
 
 const UserSchema = new Schema({
     firstName: {

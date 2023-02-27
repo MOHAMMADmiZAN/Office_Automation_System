@@ -1,5 +1,5 @@
-import {PrivateApiInstance} from "./api";
-import {User} from "../store/models/AuthModel";
+import { PrivateApiInstance } from "./api";
+import { User, ChangePasswordPayload } from "../store/models/AuthModel";
 
 
 export const UserApi = {
@@ -13,9 +13,9 @@ export const UserApi = {
     },
     updateUser: async (id: string, payload: User) => {
         try {
-            const headers = {'Content-Type': 'multipart/form-data'};
+            const headers = { 'Content-Type': 'multipart/form-data' };
 
-            const response = await PrivateApiInstance.put(`/user/${id}`, payload, {headers});
+            const response = await PrivateApiInstance.put(`/user/${id}`, payload, { headers });
             return response.data;
         } catch (e) {
             console.log(e)
@@ -39,10 +39,19 @@ export const UserApi = {
     },
     updateUserAvatar: async (id: string, payload: Blob) => {
         try {
-            const headers = {'Content-Type': 'multipart/form-data'};
-            const response = await PrivateApiInstance.put(`/user/changeAvatar/${id}`, payload, {headers});
+            const headers = { 'Content-Type': 'multipart/form-data' };
+            const response = await PrivateApiInstance.put(`/user/changeAvatar/${id}`, payload, { headers });
             console.log(response)
             return response.data;
+        } catch (e) {
+            console.log(e)
+        }
+    },
+
+    changePassword: async (payload: ChangePasswordPayload) => {
+        try {
+            const response = await PrivateApiInstance.put('/user/change-password', payload);
+            return response?.data;
         } catch (e) {
             console.log(e)
         }

@@ -45,8 +45,23 @@ export const eventValidation = yup.object().shape({
     description: yup.string().min(2).max(1000),
     startTime: yup.date().required('Start Time is required'),
     endTime: yup.date().min(yup.ref('startTime')),
+});
 
-
+export const changePasswordValidation = yup.object().shape({
+    oldPassword: yup.string().required().min(2).max(20),
+    password: yup
+        .string()
+        .min(8)
+        .max(20)
+        .matches(
+            passwordRegex,
+            'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character'
+        )
+        .required(),
+    confirmPassword: yup.string().required().matches(
+        passwordRegex,
+        'Password must contain at least 8 characters, one uppercase, one lowercase, one number and one special case character'
+    ),
 });
 
 // roleValidation rules with enum
