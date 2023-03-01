@@ -58,6 +58,9 @@
 - Component Tree Design  `Login, Register, Event, Employee, Role, Attendance, Leave Management`
 - Discuss about `Page, UI Component, Hooks, Reusable Component, Auth, Store`
 
+#### Day8 [Feb 11 2023]
+- [Cypress](https://www.cypress.io/) - Discuss about different testing method about Pros & Cons
+
 ### Reference 
 - [Follow Design](https://github.com/MOHAMMADmiZAN/dressmart)
 - [Mui](https://mui.com/), [Mui Github](https://github.com/mui)
@@ -76,9 +79,12 @@
 ### Tools
 - [Diagrams.net](https://www.diagrams.net/) - Using for diagrams
 - [Lucid Chart](https://www.lucidchart.com/pages/)
+- [bugpilot](https://www.bugpilot.io/)
 
 ### Testing
-- [Vitest](https://vitest.dev/guide/)
+- [bugpilot](https://www.bugpilot.io/)
+- [Vitest](https://vitest.dev/guide/), [Github](https://github.com/vitest-dev/vitest)
+- [Vitest Examples and Template](https://codesandbox.io/examples/package/vitest)
 
 ### Project Details
 - Project link `https://github.com/MOHAMMADmiZAN/Office_Automation_System`
