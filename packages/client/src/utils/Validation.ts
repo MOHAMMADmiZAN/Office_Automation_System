@@ -132,6 +132,31 @@ export const editUserValidation = yup.object().shape({
     joiningDate: yup.string().required(),
     status: yup.string().required(),
     farewellDate: yup.string(),
+});
 
 
+
+export const manageAccountValidation = yup.object().shape({
+    avatar: yup
+        .mixed()
+        .test('type', 'Invalid file type', (value) => {
+            const supportedTypes = ['image/jpeg', 'image/png', 'image/gif', 'image/bmp', 'image/webp', 'image/tiff', 'image/svg+xml', 'image/x-icon', 'image/vnd.microsoft.icon', 'image/jp2', 'image/jpx', 'image/jpm', 'image/heif', 'image/heic'];
+            if (value === undefined) return true; // If th// e file is not uploaded, then return true
+            if (typeof value === 'string') return true; // If the file is already uploaded, then return true
+            return supportedTypes.includes(value.type); // Check if the file type is supported
+        }),
+    firstName: yup.string().min(2).max(20).required(),
+    lastName: yup.string().min(2).max(20).required(),
+    email: yup.string().email().required(),
+    contactNumber: yup.string().required().min(11).max(15),
+    eContactNumber: yup.string().min(11).max(15),
+    presentAddress: yup.string().required(),
+    permanentAddress: yup.string().required(),
+    dateOfBirth: yup.date().required(),
+    jobTitle: yup.string().min(2).max(20),
+    role: yup.string(),
+    salary: yup.number().min(3),
+    joiningDate: yup.string(),
+    status: yup.string(),
+    farewellDate: yup.string(),
 });
