@@ -82,7 +82,7 @@
 - [bugpilot](https://www.bugpilot.io/)
 
 ### Testing
-- [bugpilot](https://www.bugpilot.io/)
+- [Vitest Example](https://github.com/vitest-dev/vitest/tree/main/examples)
 - [Vitest](https://vitest.dev/guide/), [Github](https://github.com/vitest-dev/vitest)
 - [Vitest Examples and Template](https://codesandbox.io/examples/package/vitest)
 
