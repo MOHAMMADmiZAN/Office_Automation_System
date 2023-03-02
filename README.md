@@ -60,6 +60,13 @@
 
 #### Day8 [Feb 11 2023]
 - [Cypress](https://www.cypress.io/) - Discuss about different testing method about Pros & Cons
+- Layout like Header and Sidebar Implemented 
+
+#### Day9 [Feb 13 2023]
+- Layout like Header and Sidebar Updated
+- Discuss topic : How to manage routing like Tab wise or Rotuer wise 
+- Discuss topic: How ta store data for Tab. If refresh then how to store data for Tab Also Benefit for Routing
+- Discuss Topic: Auth Updated, Event Updated, Clean Garbaje code
 
 ### Reference 
 - [Follow Design](https://github.com/MOHAMMADmiZAN/dressmart)
