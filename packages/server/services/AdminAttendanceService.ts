@@ -68,8 +68,6 @@ class AdminAttendanceService implements IAdminAttendanceWithIdService {
         if (!running) {
             throw errorHandler('No running attendance', 404)
         }
-        let timeOut = moment(running.createdAt).add(running.timeLimit, 'minutes').isBefore(moment())
-        console.log(timeOut)
         return AdminAttendance.findByIdAndUpdate(running._id, {status: 'COMPLETE'}, {new: true});
 
 
@@ -80,9 +78,7 @@ class AdminAttendanceService implements IAdminAttendanceWithIdService {
         if (!running) {
             throw errorHandler('No running attendance', 404)
         }
-
         let timeOut = moment(running.createdAt).add(running.timeLimit, 'minutes').isBefore(moment())
-        console.log(timeOut)
         if (timeOut) {
             AdminAttendance.findByIdAndUpdate(running._id, {status: 'Complete'}, {new: true});
         }

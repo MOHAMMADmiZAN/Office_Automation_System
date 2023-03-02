@@ -18,13 +18,9 @@ class LeaveService implements ILeaveService {
 
     createLeave(data: ILeave): Promise<ILeave> {
         let schema = new Leave({
-            user: data.user,
-            fromDate: data.fromDate,
-            toDate: data.toDate,
-            manager: data.manager,
-            userNote: data.userNote,
-            managerNote: data.managerNote,
+            ...data
         })
+        console.log('schema', schema)
         return schema.save();
     }
 
@@ -41,12 +37,7 @@ class LeaveService implements ILeaveService {
 
     async updateLeave(data: ILeave, id: string): Promise<ILeave | null> {
         let schema = {
-            fromDate: data.fromDate,
-            toDate: data.toDate,
-            manager: data.manager,
-            status: data.status,
-            userNote: data.userNote,
-            managerNote: data.managerNote,
+            ...data
         }
         return Leave.findByIdAndUpdate(id, {...schema}, {new: true});
     }

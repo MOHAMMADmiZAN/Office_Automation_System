@@ -1,5 +1,5 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
-import {IRoleWithId, RoleApi} from "../api/Role.Api";
+import {IRoleWithId, RoleApi} from "../api/Role.api";
 import {Role as roleNames} from '../utils/Validation'
 import useAuth from "./useAuth";
 
@@ -25,6 +25,7 @@ export const useRole = (singleRoleId?: string) => {
         error: rolesError,
         isLoading: rolesIsLoading
     } = useQuery<IRoleWithId[]>('allRoles', RoleApi.roleList)
+
     const {mutateAsync: createRole} = useMutation(RoleApi.roleCreate, {
         onSuccess: (data) => {
             console.log(data)
@@ -67,7 +68,8 @@ export const useRole = (singleRoleId?: string) => {
         superAdmin,
         createRole,
         editRole,
-        checkUserPermission
+        checkUserPermission,
+        roles
     }
 
 

@@ -5,7 +5,7 @@ import moment from "moment/moment";
 import CheckIcon from '@mui/icons-material/Check';
 import Btn from "../../../components/molecules/Form/Btn";
 import useAuth from "../../../hooks/useAuth";
-import {IAttendancePayload} from "../../../api/Attendance";
+import {IAttendancePayload} from "../../../api/Attendance.api";
 import ExitToAppIcon from '@mui/icons-material/ExitToApp';
 import LockClockIcon from '@mui/icons-material/LockClock';
 
@@ -14,7 +14,14 @@ interface ACTIVE_ATTENDANCE_PROPS {
 }
 
 const TodayAttendance: React.FC<ACTIVE_ATTENDANCE_PROPS> = (props): JSX.Element => {
-    const {TodayAttendance, checkIn, checkOut, TodayUserAttendance, disableAttendance} = useAttendance()
+    const {
+        TodayAttendance,
+        checkIn,
+        checkOut,
+        TodayUserAttendance,
+        disableAttendance,
+        userCountOnAttendance
+    } = useAttendance()
     const {userId} = useAuth()
 
     const isTimeUP = moment(TodayAttendance?.createdAt).add(TodayAttendance?.timeLimit, 'minutes').isBefore(moment())
@@ -29,7 +36,7 @@ const TodayAttendance: React.FC<ACTIVE_ATTENDANCE_PROPS> = (props): JSX.Element 
 
 
         }
-        await checkIn(CheckInPayload  as IAttendancePayload)
+        await checkIn(CheckInPayload as IAttendancePayload)
     }
     const handleCheckOut = async () => {
 
@@ -58,7 +65,7 @@ const TodayAttendance: React.FC<ACTIVE_ATTENDANCE_PROPS> = (props): JSX.Element 
             status: 'Late',
             comment: 'Late Check In'
         }
-        await checkIn(CheckInPayload  as IAttendancePayload)
+        await checkIn(CheckInPayload as IAttendancePayload)
     }
 
 
@@ -73,6 +80,9 @@ const TodayAttendance: React.FC<ACTIVE_ATTENDANCE_PROPS> = (props): JSX.Element 
                         <AttendanceTypography
                             gutterBottom> Date: {moment(TodayAttendance?.createdAt).format('DD-MM-YYYY')}</AttendanceTypography>
                         <AttendanceTypography> Status: {TodayAttendance?.status}</AttendanceTypography>
+                        <AttendanceTypography variant="h6">Attended Users Count
+                            : {userCountOnAttendance(TodayAttendance._id as string) || 0} </AttendanceTypography>
+
                         <AttendanceActionBox>
                             {!TodayUserAttendance?.checkOut && TodayUserAttendance?.checkIn && !isTimeUP && (
                                 <Btn BtnText={`Check Out`} variant={`outlined`} BtnStartIcon={<ExitToAppIcon/>}

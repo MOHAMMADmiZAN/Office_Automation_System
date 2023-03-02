@@ -2,7 +2,7 @@ import {model, Schema} from 'mongoose';
 
 export interface IEvent {
     _id?: string;
-    author: string;
+    author: Schema.Types.ObjectId;
     title: string;
     description?: string;
     startTime: string;
@@ -12,7 +12,7 @@ export interface IEvent {
     type: string
 }
 
-const EventSchema = new Schema({
+const EventSchema = new Schema<IEvent>({
     author: {
         type: Schema.Types.ObjectId,
         ref: 'User',
