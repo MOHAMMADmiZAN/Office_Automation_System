@@ -1,5 +1,5 @@
 import {render, screen} from '@testing-library/react';
-import {describe, expect, it} from 'vitest';
+import {describe, expect, it, vi} from 'vitest';
 import {Btn, BTN_PROPS} from './Btn';
 import React from "react";
 
@@ -8,9 +8,9 @@ import React from "react";
 describe('Btn', () => {
     it('renders a button', () => {
         const btnProps: BTN_PROPS = {
-            BtnText: `Click Me`,
+            BtnText: `Button`,
             type: `button`,
-            onClick: () => jest.fn(),
+            onClick: () => vi.fn(),
             disabled: false,
             className: `btn`,
             variant: `contained`,

@@ -1,7 +1,7 @@
 import {model, Schema} from 'mongoose';
 
 export interface IUserBasicInfo {
-    user: string;
+    user: Schema.Types.ObjectId;
     contactNumber: string;
     presentAddress: string;
     permanentAddress: string;
@@ -9,7 +9,7 @@ export interface IUserBasicInfo {
     eContactNumber?: string;
 }
 
-const UserBasicInfoSchema = new Schema({
+const UserBasicInfoSchema = new Schema<IUserBasicInfo>({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',

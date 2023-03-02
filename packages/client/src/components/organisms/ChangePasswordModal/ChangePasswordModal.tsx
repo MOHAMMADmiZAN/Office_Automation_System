@@ -14,12 +14,12 @@ interface CUSTOM_MODAL_PROPS {
 }
 
 const ChangePasswordModal: React.FC<CUSTOM_MODAL_PROPS> = ({
-    modalTitle,
-    modalId,
-    modalContent,
-    open,
-    handleClose,
-}): JSX.Element => {
+                                                               modalTitle,
+                                                               modalId,
+                                                               modalContent,
+                                                               open,
+                                                               handleClose,
+                                                           }): JSX.Element => {
 
     const classes = useStyles();
 
@@ -30,9 +30,9 @@ const ChangePasswordModal: React.FC<CUSTOM_MODAL_PROPS> = ({
     return (
         <Box className={classes.modalBody}>
             <Container>
-                <CustomModalTitle id={modalId} onClose={handleClose} />
+                <CustomModalTitle id={modalId} onClose={handleClose}/>
                 <DialogContent dividers>
-                    <CommonCard CardMain={modalContent} cardTitle={modalTitle} />
+                    <CommonCard CardMain={modalContent} cardTitle={modalTitle}/>
                 </DialogContent>
             </Container>
         </Box>

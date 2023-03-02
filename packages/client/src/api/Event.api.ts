@@ -76,6 +76,7 @@ export const EventApi: IEventApi = {
     },
     changeInviteStatus: async (id: string, payload: IChangeInvitedEventStatus) => {
         try {
+            console.log(payload)
             const response = await PrivateApiInstance.put(`/event/changeInviteStatus/${id}`, payload);
             return response.data;
         } catch (e) {
