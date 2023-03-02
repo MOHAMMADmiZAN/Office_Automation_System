@@ -160,3 +160,20 @@ export const manageAccountValidation = yup.object().shape({
     status: yup.string(),
     farewellDate: yup.string(),
 });
+
+export const LeaveValidation = yup.object().shape({
+    leaveType: yup.string().required(),
+    leaveReason: yup.string().required(),
+    leaveStartDate: yup.date().required(),
+    leaveEndDate: yup.date().required(),
+    leaveStatus: yup.string().required(),
+    leaveComment: yup.string().required(),
+    leaveAttachment: yup.mixed().notRequired(),
+
+
+})
+
+export const leaveRequestResponseValidation = yup.object().shape({
+    leaveStatus: yup.string().required(),
+    leaveComment: yup.string().required(),
+})

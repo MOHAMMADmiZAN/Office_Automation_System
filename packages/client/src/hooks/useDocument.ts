@@ -1,5 +1,5 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
-import {IUserDocument, UserDocumentApi} from "../api/UserDocument";
+import {IUserDocument, UserDocumentApi} from "../api/UserDocument.api";
 
 
 export const useDocument = () => {

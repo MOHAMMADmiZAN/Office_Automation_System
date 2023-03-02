@@ -9,6 +9,7 @@ interface IAdminAttendanceWithId extends IAdminAttendance {
 
 }
 
+
 interface IAdminAttendanceWithIdService {
     createAdminAttendance(data: IAdminAttendance): Promise<IAdminAttendanceWithId>;
 
@@ -29,15 +30,13 @@ interface IAdminAttendanceWithIdService {
 }
 
 class AdminAttendanceService implements IAdminAttendanceWithIdService {
-    async createAdminAttendance(data: IAdminAttendance): Promise<IAdminAttendanceWithId> {
+    async createAdminAttendance(data: IAdminAttendance): Promise<any> {
 
-        let schema = new AdminAttendance({
-            ...data
-        })
-        return schema.save();
+        const adminAttendance = new AdminAttendance(data);
+        return await adminAttendance.save();
     }
 
-    async findAdminAttendance(key: string, value: any): Promise<IAdminAttendanceWithId | null> {
+    async findAdminAttendance(key: string, value: any): Promise<any> {
 
         if (key === '_id') {
             return AdminAttendance.findById(value).exec()
@@ -46,7 +45,7 @@ class AdminAttendanceService implements IAdminAttendanceWithIdService {
 
     }
 
-    async findAdminAttendances(): Promise<IAdminAttendanceWithId[]> {
+    async findAdminAttendances(): Promise<any[]> {
         return AdminAttendance.find().exec();
     }
 
@@ -55,7 +54,7 @@ class AdminAttendanceService implements IAdminAttendanceWithIdService {
 
     }
 
-    async deleteAdminAttendance(id: string): Promise<IAdminAttendanceWithId | null> {
+    async deleteAdminAttendance(id: string): Promise<any> {
         return AdminAttendance.findByIdAndDelete(id).exec();
     }
 
@@ -68,8 +67,6 @@ class AdminAttendanceService implements IAdminAttendanceWithIdService {
         if (!running) {
             throw errorHandler('No running attendance', 404)
         }
-        let timeOut = moment(running.createdAt).add(running.timeLimit, 'minutes').isBefore(moment())
-        console.log(timeOut)
         return AdminAttendance.findByIdAndUpdate(running._id, {status: 'COMPLETE'}, {new: true});
 
 
@@ -80,9 +77,7 @@ class AdminAttendanceService implements IAdminAttendanceWithIdService {
         if (!running) {
             throw errorHandler('No running attendance', 404)
         }
-
         let timeOut = moment(running.createdAt).add(running.timeLimit, 'minutes').isBefore(moment())
-        console.log(timeOut)
         if (timeOut) {
             AdminAttendance.findByIdAndUpdate(running._id, {status: 'Complete'}, {new: true});
         }

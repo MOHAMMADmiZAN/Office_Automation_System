@@ -54,9 +54,9 @@ export const eventFormFields: eventFormInputField[] = [
     },
 ]
 
-const ChangePassword: React.FC<CHANGE_PASSWORD_PROPS> = ({ open, handleClose }): JSX.Element => {
+const ChangePassword: React.FC<CHANGE_PASSWORD_PROPS> = ({open, handleClose}): JSX.Element => {
 
-    const { ChangePassword } = useAuth();
+    const {ChangePassword} = useAuth();
 
 
     const onSubmit: SubmitHandler<ChangePasswordPayload> = async (data) => {
@@ -67,13 +67,13 @@ const ChangePassword: React.FC<CHANGE_PASSWORD_PROPS> = ({ open, handleClose }):
         <>
             <ChangePasswordModal modalId={`change-password`} modalContent={
                 <FormLayOut FormInputFields={eventFormFields as FORM_INPUT_PROPS[]}
-                    defaultValues={{ ...defaultValues }}
-                    btnText={`Change Password`}
-                    onSubmit={onSubmit} validationRules={changePasswordValidation} />
+                            defaultValues={{...defaultValues}}
+                            btnText={`Change Password`}
+                            onSubmit={onSubmit} validationRules={changePasswordValidation}/>
             }
-                modalTitle={`Change Password`}
-                open={open}
-                handleClose={handleClose}
+                                 modalTitle={`Change Password`}
+                                 open={open}
+                                 handleClose={handleClose}
             />
 
         </>

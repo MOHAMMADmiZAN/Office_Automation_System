@@ -73,7 +73,7 @@ const AuthUserDefault: User = {
 const AuthModel: Auth = {
     isAuth: false,
     AuthToken: " ",
-    AuthUser: { ...AuthUserDefault },
+    AuthUser: {...AuthUserDefault},
     AuthSet: action((state: AuthState, payload) => {
         state.AuthToken = payload.token;
         state.AuthUser = payload.user;
@@ -83,7 +83,7 @@ const AuthModel: Auth = {
     }),
     AuthClear: action((state: AuthState) => {
         state.AuthToken = " ";
-        state.AuthUser = { ...AuthUserDefault };
+        state.AuthUser = {...AuthUserDefault};
         state.isAuth = false;
     }),
     Login: thunk(async (actions, payload) => {

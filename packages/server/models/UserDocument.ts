@@ -1,12 +1,12 @@
 import {model, Schema} from 'mongoose';
 
 export interface IUserDocument {
-    user: string;
+    user: Schema.Types.ObjectId;
     title: string;
     document: string;
 }
 
-const UserDocumentSchema = new Schema({
+const UserDocumentSchema = new Schema<IUserDocument>({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',

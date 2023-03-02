@@ -12,7 +12,7 @@ class AuthController extends AuthService implements AuthControllerInterface {
     public userRegister = async (req, res, next) => {
         try {
             const fileUrl = await handleCloudFileUpload(req.file)
-            const user = await this.register({ ...req.body, avatar: fileUrl });
+            const user = await this.register({...req.body, avatar: fileUrl});
             res.status(201).json({
                 message: 'User created successfully',
                 user: user

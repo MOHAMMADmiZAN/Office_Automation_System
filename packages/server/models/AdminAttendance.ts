@@ -1,12 +1,16 @@
+import {model, Schema} from 'mongoose';
+
 export interface IAdminAttendance {
     status: string;
     timeLimit: number;
 
+
+
+
 }
 
-const {model, Schema} = require('mongoose')
 
-const AdminAttendanceSchema = new Schema({
+const AdminAttendanceSchema = new Schema<IAdminAttendance>({
     status: {
         type: String,
         enum: ['RUNNING', 'COMPLETED'],
@@ -14,12 +18,10 @@ const AdminAttendanceSchema = new Schema({
     },
     timeLimit: {
         type: Number,
-        min: 1,
-        max: 20,
-        default: 5
+        default: 60
 
     }
 
 }, {timestamps: true})
-const AdminAttendance = model('AdminAttendance', AdminAttendanceSchema)
+const AdminAttendance = model<IAdminAttendance>('AdminAttendance', AdminAttendanceSchema)
 export default AdminAttendance

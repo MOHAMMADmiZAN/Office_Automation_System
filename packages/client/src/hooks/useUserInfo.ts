@@ -1,5 +1,5 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
-import UserInfo, {IUserInfoPayload, IUserInfoPayloadWithId} from "../api/UserInfo";
+import UserInfoApi, {IUserInfoPayload, IUserInfoPayloadWithId} from "../api/UserInfo.api";
 
 export interface IUpdateUserInfo {
     id: string;
@@ -12,15 +12,15 @@ export const useUserInfo = () => {
         data: userBasicInfo,
         error: userBasicInfoError,
         isLoading: userBasicInfoIsLoading
-    } = useQuery<IUserInfoPayloadWithId[]>('userBasicInfo', UserInfo.getAllUserInfo)
-    const {mutateAsync: createUserInfo} = useMutation((data: IUserInfoPayload) => UserInfo.createUserInfo(data), {
+    } = useQuery<IUserInfoPayloadWithId[]>('userBasicInfo', UserInfoApi.getAllUserInfo)
+    const {mutateAsync: createUserInfo} = useMutation((data: IUserInfoPayload) => UserInfoApi.createUserInfo(data), {
         onSuccess: async (data) => {
             await queryClient.invalidateQueries("userBasicInfo");
             await queryClient.invalidateQueries("allUsers");
 
         }
     })
-    const {mutateAsync: updateUserInfo} = useMutation((data: IUpdateUserInfo) => UserInfo.updateUserInfo(data.id, data.payload), {
+    const {mutateAsync: updateUserInfo} = useMutation((data: IUpdateUserInfo) => UserInfoApi.updateUserInfo(data.id, data.payload), {
         onSuccess: async (data) => {
             await queryClient.invalidateQueries("userBasicInfo");
             await queryClient.invalidateQueries("allUsers");

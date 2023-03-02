@@ -1,7 +1,7 @@
 import {model, Schema} from 'mongoose';
 
 export interface IOnboard {
-    user: string;
+    user: Schema.Types.ObjectId;
     joiningDate: string;
     jobTitle: string;
     salary: number;

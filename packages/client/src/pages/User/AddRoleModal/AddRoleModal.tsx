@@ -5,7 +5,7 @@ import FormLayOut from "../../../components/organisms/Form/FormLayOut/FormLayOut
 import {FORM_INPUT_PROPS, FormInputType} from "../../../components/molecules/Form/FormInput/Form_Input";
 import {roleValidation} from "../../../utils/Validation";
 import {SubmitHandler} from "react-hook-form";
-import {IRolePayload} from "../../../api/Role.Api";
+import {IRolePayload} from "../../../api/Role.api";
 import {useRole} from "../../../hooks/useRole";
 
 interface ADD_ROLE_MODAL_PROPS {
