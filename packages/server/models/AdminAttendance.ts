@@ -10,7 +10,7 @@ export interface IAdminAttendance {
 }
 
 
-const AdminAttendanceSchema = new Schema({
+const AdminAttendanceSchema = new Schema<IAdminAttendance>({
     status: {
         type: String,
         enum: ['RUNNING', 'COMPLETED'],
