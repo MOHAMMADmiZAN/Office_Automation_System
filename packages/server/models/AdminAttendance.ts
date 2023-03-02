@@ -4,10 +4,13 @@ export interface IAdminAttendance {
     status: string;
     timeLimit: number;
 
+
+
+
 }
 
 
-const AdminAttendanceSchema = new Schema<IAdminAttendance>({
+const AdminAttendanceSchema = new Schema({
     status: {
         type: String,
         enum: ['RUNNING', 'COMPLETED'],
