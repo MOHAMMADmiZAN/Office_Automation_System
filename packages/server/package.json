@@ -6,7 +6,7 @@
     "dev": "ts-node-dev --clear server.ts",
     "build": "tsc",
     "start": "node dist/server.js",
-    "build-and-start": "yarn build && yarn start"
+    "build-and-start": "npm run build && npm run start"
   },
   "dependencies": {
     "-": "^0.0.1",
