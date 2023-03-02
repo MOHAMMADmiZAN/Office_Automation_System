@@ -4,6 +4,9 @@ export interface IAdminAttendance {
     status: string;
     timeLimit: number;
 
+
+
+
 }
 
 
