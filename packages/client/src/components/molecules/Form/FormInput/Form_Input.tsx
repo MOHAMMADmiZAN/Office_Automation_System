@@ -56,8 +56,10 @@ const FormSearchInputType: FormInputType[] = ['search']
 const FormAutocompleteInputType: FormInputType[] = ['autocomplete']
 const FormAvatarInputType: FormInputType[] = ['avatar']
 
-function isDateLocal(value: string): value is "date-local" {
-    return true
+function isDateLocal(value: string): value is "datetime-local" {
+    return value === "datetime-local";
+
+
 }
 
 function isAvatar(value: string): { borderRadius: string; width: string; height: string } {
