@@ -58,6 +58,34 @@
 - Component Tree Design  `Login, Register, Event, Employee, Role, Attendance, Leave Management`
 - Discuss about `Page, UI Component, Hooks, Reusable Component, Auth, Store`
 
+#### Day8 [Feb 11 2023]
+- [Cypress](https://www.cypress.io/) - Discuss about different testing method about Pros & Cons
+- Layout like Header and Sidebar Implemented 
+
+#### Day9 [Feb 13 2023]
+- Layout like Header and Sidebar Updated
+- Discuss topic : How to manage routing like Tab wise or Rotuer wise 
+- Discuss topic: How ta store data for Tab. If refresh then how to store data for Tab Also Benefit for Routing
+- Discuss Topic: Auth Updated, Event Updated, Clean Garbage code
+
+#### Day10 [Feb 17 2023]
+- Discuss Topic: RTK Query issue in Event, Event functionality details session
+
+#### Day11 [Feb 19 2023]
+- Discuss Topic: User Role Management Session Example: Page wise access or Component wise access, How to manage Role the best way 
+- Disscus Topic: Avatar image preview issue 
+- Disscus Topic: Skeleton loading
+
+#### Day12 [Feb 21 2023]
+- Avatar image preview R&D and Preview. 
+- Discuss Topic: Error handling details
+
+#### Day13 [Feb 26 2023]
+- Disscuss about Event Invite issue
+- Session Topic: Attendance System Details, Onboard  
+- Session Topic: File Upload Cloudinary issue. Reference: [Cloudinary](https://cloudinary.com/)
+- Testing R&D sesison in Vitest 
+
 ### Reference 
 - [Follow Design](https://github.com/MOHAMMADmiZAN/dressmart)
 - [Mui](https://mui.com/), [Mui Github](https://github.com/mui)
@@ -76,9 +104,13 @@
 ### Tools
 - [Diagrams.net](https://www.diagrams.net/) - Using for diagrams
 - [Lucid Chart](https://www.lucidchart.com/pages/)
+- [bugpilot](https://www.bugpilot.io/)
+- [Cloudinary](https://cloudinary.com/)
 
 ### Testing
-- [Vitest](https://vitest.dev/guide/)
+- [Vitest Example](https://github.com/vitest-dev/vitest/tree/main/examples), [Github Example](https://github.com/search?q=vitest+example), [Button Example](https://github.com/folows1/vitest-example01/blob/main/src/components/Button/button.test.tsx)
+- [Vitest](https://vitest.dev/guide/), [Github](https://github.com/vitest-dev/vitest)
+- [Vitest Examples and Template](https://codesandbox.io/examples/package/vitest)
 
 ### Project Details
 - Project link `https://github.com/MOHAMMADmiZAN/Office_Automation_System`

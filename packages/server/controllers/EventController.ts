@@ -1,6 +1,6 @@
 import EventService from "../services/EventService";
-import {NextFunction, Response} from "express";
-import {ObjectId} from 'mongodb'
+import { NextFunction, Response } from "express";
+import { ObjectId } from 'mongodb'
 
 
 interface IEventController {
@@ -81,7 +81,7 @@ class EventController extends EventService implements IEventController {
                     message: 'Event not found'
                 })
             }
-            const {userId, status} = req.body;
+            const { userId, status } = req.body;
             const invitation = event.invitation.reduce((acc, cur) => {
                 const objectId = new ObjectId(userId)
 
@@ -91,12 +91,7 @@ class EventController extends EventService implements IEventController {
                 acc.push(cur);
                 return acc;
             }, [])
-            console.log('cu=', invitation)
-            const updateData = {
-                ...event,
-                invitation
-            }
-            const data = await this.updateEvent(updateData, req.params.id);
+            const data = await this.updateEventInvitation(req.params.id, invitation);
             res.status(200).json({
                 message: 'Event invitation status has been changed successfully',
                 data
