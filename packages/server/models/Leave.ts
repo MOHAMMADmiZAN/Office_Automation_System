@@ -1,47 +1,33 @@
 import {model, Schema} from 'mongoose';
 
 export interface ILeave {
-    user: string;
-    fromDate: string;
-    toDate: string;
-    manager: string;
-    status: string;
-    userNote?: string;
-    managerNote?: string;
+    user: Schema.Types.ObjectId;
+    leaveType: string;
+    leaveReason: string;
+    leaveStartDate: Date;
+    leaveEndDate: Date;
+    leaveStatus: string;
+    leaveComment: string;
+    leaveAttachment?: string;
+    requestToResponse: Schema.Types.ObjectId;
+    requestToResponseComment: string;
+
+
 }
 
-const LeaveSchema = new Schema({
-    user: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    fromDate: {
-        type: String,
-        required: [true, 'From date field is required'],
-        trim: true
-    },
-    toDate: {
-        type: String,
-        required: [true, 'To date field is required'],
-        trim: true
-    },
-    manager: {
-        type: Schema.Types.ObjectId,
-        ref: 'User',
-        required: true
-    },
-    userNote: {
-        type: String,
-        trim: true
-    },
-    managerNote: {
-        type: String,
-        trim: true
-    },
-    status: {
-        type: String, enum: ['PENDING', 'ACCEPT', 'REJECT'], default: 'PENDING'
-    },
+const LeaveSchema = new Schema<ILeave>({
+    user: {type: Schema.Types.ObjectId, ref: 'User'},
+    leaveType: {type: String, required: true,},
+    leaveReason: {type: String, required: true},
+    leaveStartDate: {type: Date, required: true},
+    leaveEndDate: {type: Date, required: true},
+    leaveStatus: {type: String, required: true},
+    leaveComment: {type: String, required: true},
+    leaveAttachment: {type: String},
+    requestToResponse: {type: Schema.Types.ObjectId, ref: 'User'},
+    requestToResponseComment: {type: String},
+
+
 }, {timestamps: true});
 
 const Leave = model<ILeave>('Leave', LeaveSchema);

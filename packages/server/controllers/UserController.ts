@@ -74,7 +74,7 @@ class UserController extends UserService implements IUserController {
     public passwordChange = async (req, res, next) => {
         try {
             const userId = req.user._id;
-            const { oldPassword, password, confirmPassword } = req.body
+            const {oldPassword, password, confirmPassword} = req.body
 
             if (password !== confirmPassword) {
                 throw new Error("Confirm password doesn't match!")
@@ -97,7 +97,7 @@ class UserController extends UserService implements IUserController {
                 data
             })
         } catch (error: any) {
-            console.log('error',error)
+            console.log('error', error)
             next(error)
         }
     }

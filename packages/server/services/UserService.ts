@@ -7,18 +7,25 @@ dotenv.config();
 
 export interface IUserService {
     createUser(user: IUser): Promise<IUser>;
+
     findUser(key: string, value: any): Promise<IUser | null>;
+
     findUsers(): Promise<IUser[]>;
+
     userDeleted(id: string): Promise<void>;
+
     updateUser(id: string, data: any): Promise<IUser | null>;
+
     tokenGenerator(user: IUser): string;
+
     updateUserAvatar(id: string, url: string): Promise<IUser | null>;
+
     changePasswordService(id: string, password: string): Promise<IUser | null>;
 }
 
 
 class UserService implements IUserService {
-    async createUser({ firstName, lastName, email, password, role, status, avatar }: IUser): Promise<IUser> {
+    async createUser({firstName, lastName, email, password, role, status, avatar}: IUser): Promise<IUser> {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
         let user = new User({
@@ -37,7 +44,7 @@ class UserService implements IUserService {
         if (key === '_id') {
             return User.findById(value).exec();
         }
-        return User.findOne({ [key]: value }).exec();
+        return User.findOne({[key]: value}).exec();
     }
 
     findUsers(): Promise<IUser[]> {
@@ -49,7 +56,7 @@ class UserService implements IUserService {
     }
 
     updateUser(id: string, data: any): Promise<IUser | null> {
-        return User.findByIdAndUpdate(id, { ...data }, { new: true }).exec();
+        return User.findByIdAndUpdate(id, {...data}, {new: true}).exec();
     }
 
     tokenGenerator(user): string {
@@ -63,17 +70,17 @@ class UserService implements IUserService {
         }
 
         const jwtSecret = process.env.JWT_SECRET || 'SECRET'
-        return jwt.sign(payload, jwtSecret, { expiresIn: '15d' });
+        return jwt.sign(payload, jwtSecret, {expiresIn: '15d'});
     }
 
     updateUserAvatar(id: string, url: string): Promise<IUser | null> {
-        return User.findByIdAndUpdate(id, { avatar: url }, { new: true }).exec();
+        return User.findByIdAndUpdate(id, {avatar: url}, {new: true}).exec();
     }
 
     async changePasswordService(_id: string, password: string): Promise<IUser | null> {
         const salt = await bcrypt.genSalt(10);
         const hashedPassword = await bcrypt.hash(password, salt);
-        return await User.findByIdAndUpdate(_id, { password: hashedPassword });
+        return await User.findByIdAndUpdate(_id, {password: hashedPassword});
     }
 }
 

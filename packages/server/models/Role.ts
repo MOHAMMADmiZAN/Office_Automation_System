@@ -5,7 +5,7 @@ export interface IRole {
 
 }
 
-const RoleSchema = new Schema({
+const RoleSchema = new Schema<IRole>({
     name: {
         type: String,
         required: true,

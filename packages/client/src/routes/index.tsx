@@ -18,7 +18,7 @@ const routes =
             <Route path={'users/:id'} element={<UserDetails/>}/>
             <Route path={"dashboard"} element={<Index/>}/>
             <Route path={`attendance`} element={<Attendance/>}/>
-            <Route path={ `leave`} element={ <Leave/> }/>
+            <Route path={`leave`} element={<Leave/>}/>
         </Route>,
         <Route path="*" element={<NotFound/>}/>
     ])

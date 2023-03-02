@@ -1,6 +1,6 @@
 import {useMutation, useQuery, useQueryClient} from "react-query";
-import AttendanceApi, {IAttendancePayload} from "../api/Attendance";
-import AdminAttendanceApi, {IAdminAttendancePayload} from "../api/AdminAttendance";
+import AttendanceApi, {IAttendancePayload} from "../api/Attendance.api";
+import AdminAttendanceApi, {IAdminAttendancePayload} from "../api/AdminAttendance.api";
 import useAuth from "./useAuth";
 import moment from "moment";
 
@@ -13,7 +13,6 @@ export interface IAttendancePayloadWithAttendanceId {
 export type StatusType = 'Present' | 'Absent' | 'Leave' | 'HalfDay' | 'Weekend' | 'Late' | 'Holiday';
 
 export interface IUserStatusCount {
-    [status: string]: number;
     Present: number;
     Late: number;
     Absent: number;
@@ -21,6 +20,8 @@ export interface IUserStatusCount {
     Leave: number;
     Weekend: number;
     Holiday: number;
+
+    [status: string]: number;
 
 }
 
@@ -36,25 +37,21 @@ const useAttendance = () => {
     const TodayAttendance = adminAttendance?.find((item) => moment(item.createdAt).isSame(moment(), 'day'))
     const TodayUserAttendance = userAttendance?.find((item) => moment(item.checkIn).isSame(moment(), 'day') && item.user === userId && item.adminAttendance === TodayAttendance?._id)
 
-
-    // if userId is not undefined then fetch attendance by user
     const {data: userAttendanceByUser} = useQuery<IAttendancePayload[]>(['allUserAttendanceByUser', userId], {
             queryFn: () => AttendanceApi.attendanceFindByUser(userId!)
         }
     )
-     const userCountOnAttendance = (id:string)=>{
-        return userAttendanceByUser?.filter((item)=>item.adminAttendance===id).length
+    const userCountOnAttendance = (id: string) => {
+        return userAttendance?.filter((item) => item.adminAttendance === id).length
 
-     }
+    }
 
-     // now count status of userAttendanceByUser use reduce
     const userStatusCount = userAttendanceByUser?.reduce((acc: IUserStatusCount, item) => {
         if (item.status) {
             acc[item.status] = acc[item.status] + 1
         }
         return acc
-    },{Present: 0, Late: 0, Absent: 0, HalfDay: 0, Leave: 0, Weekend: 0, Holiday: 0})
-
+    }, {Present: 0, Late: 0, Absent: 0, HalfDay: 0, Leave: 0, Weekend: 0, Holiday: 0})
 
 
     const {mutateAsync: disableAttendance} = useMutation(AdminAttendanceApi.adminAttendanceDisableWhenCalled, {
@@ -77,7 +74,7 @@ const useAttendance = () => {
 
         }
     })
-  //  create  user Attendance filter function  by AttandanceStatus  form userAttendanceByUser  which return  array of IAttendancePayload
+
     const userAttendanceByStatus = (status: string) => {
         return userAttendanceByUser?.filter((item) => item.status === status)
     }

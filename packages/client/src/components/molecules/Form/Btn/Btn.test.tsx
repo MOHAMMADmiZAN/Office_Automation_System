@@ -8,9 +8,9 @@ const buttonTestID = 'button';
 describe('Btn', () => {
     it('renders a button', () => {
         const btnProps: BTN_PROPS = {
-            BtnText: `Click Me`,
+            BtnText: `Button`,
             type: `button`,
-            onClick: () => jest.fn(),
+            onClick: () => vi.fn(),
             disabled: false,
             className: `btn`,
             variant: `contained`,

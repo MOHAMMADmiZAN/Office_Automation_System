@@ -11,6 +11,7 @@ interface ILogin {
 
 interface IAuthService extends IUserService {
     register(data: IUser): Promise<IUser | null>;
+
     login(email: string, password: string): Promise<ILogin>;
 }
 

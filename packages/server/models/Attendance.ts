@@ -2,15 +2,15 @@ import {model, Schema} from 'mongoose';
 
 
 export interface IAttendance {
-    user: string;
-    adminAttendance: string;
+    user: Schema.Types.ObjectId;
+    adminAttendance: Schema.Types.ObjectId;
     checkIn: Date;
     checkOut?: Date;
     status?: string;
     comment?: string;
 }
 
-const AttendanceSchema = new Schema({
+const AttendanceSchema = new Schema<IAttendance>({
     user: {
         type: Schema.Types.ObjectId,
         ref: 'User',

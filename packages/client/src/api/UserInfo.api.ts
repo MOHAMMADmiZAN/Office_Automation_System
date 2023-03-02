@@ -22,7 +22,7 @@ interface IUserInfo {
     createUserInfo: (payload: IUserInfoPayload) => Promise<IUserInfoPayloadWithId>,
 }
 
-const UserInfo: IUserInfo = {
+const UserInfoApi: IUserInfo = {
     getAllUserInfo: async () => {
         const response = await PrivateApiInstance.get('/userbasicinfo')
 
@@ -48,4 +48,4 @@ const UserInfo: IUserInfo = {
 
 }
 
-export default UserInfo
+export default UserInfoApi
