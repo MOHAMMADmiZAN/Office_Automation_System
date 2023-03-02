@@ -1,9 +1,9 @@
 import multer, {Multer} from 'multer';
 import path from 'path';
 import fs from 'fs';
-import {v2 } from 'cloudinary';
+import {v2 as cloudinaryV2} from 'cloudinary';
 
-v2.config({
+cloudinaryV2.config({
     cloud_name: process.env.CLOUDINARY_CLOUD_NAME || 'dzm6hs1r9',
     api_key: process.env.CLOUDINARY_API_KEY || '481179385283988',
     api_secret: process.env.CLOUDINARY_API_SECRET || 'uJA-zI3VW3_izuor_YQPriNHSwo',
@@ -54,7 +54,7 @@ const handleCloudFileUpload = async (file: Express.Multer.File): Promise<string>
     }
 
     try {
-        const result = await v2.uploader.upload(file.path);
+        const result = await cloudinaryV2.uploader.upload(file.path);
         console.log('file upload successfully:', result);
 
         // Delete file from local storage
@@ -72,7 +72,7 @@ const handleCloudFileDelete = async (path: string): Promise<any> => {
         const arr = path.split('/');
         path = arr[arr.length - 1].split('.')[0];
 
-        const result = await v2.uploader.destroy(path);
+        const result = await cloudinaryV2.uploader.destroy(path);
         console.log('file delete successfully:', result);
         return result;
     } catch (error) {
