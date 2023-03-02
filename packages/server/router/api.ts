@@ -26,6 +26,17 @@ router.use('/api/v1/user', AuthMiddleware, UserRouter)
 router.use('/api/v1/user-document', AuthMiddleware, UserDocumentRouter)
 router.use('/api/v1/admin-attendance', AuthMiddleware, AdminAttendanceRouter)
 
+router.get('/', (req, res) => {
+    res.send('Welcome to OAS')
+})
+router.get('/health', (req,res)=>{
+
+    res.status(200).json({
+        status: 'success',
+        message: 'Server is running'
+    })
+
+})
 
 router.use((req, res, next) => {
     const error = new Error("Route not found");
