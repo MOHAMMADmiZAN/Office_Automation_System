@@ -1,15 +1,15 @@
-import React, {useLayoutEffect, useState} from 'react';
-import Header, {AccountMenuItem} from "../components/organisms/Header/Header";
-import Sidebar, {SidebarMenuItem} from "../components/organisms/SideBar/Sidebar";
+import React, { useLayoutEffect, useState } from 'react';
+import Header, { AccountMenuItem } from "../components/organisms/Header/Header";
+import Sidebar, { SidebarMenuItem } from "../components/organisms/SideBar/Sidebar";
 import EventIcon from "@mui/icons-material/Event";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
-import {Box, Grid} from "@mui/material";
+import { Box, Grid } from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import LockIcon from "@mui/icons-material/Lock";
-import {Dashboard, Logout} from "@mui/icons-material";
-import {Actions, useStoreActions} from "easy-peasy";
-import {AuthType} from "../store/models/AuthModel";
-import {Outlet, useLocation, useNavigate} from "react-router-dom";
+import { Dashboard, Logout } from "@mui/icons-material";
+import { Actions, useStoreActions } from "easy-peasy";
+import { AuthType } from "../store/models/AuthModel";
+import { Outlet, useLocation, useNavigate } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import ChangePassword from '../components/organisms/ChangePassword/ChangePassword';
@@ -44,6 +44,7 @@ const SidebarMenu: SidebarMenuItem[] = [
         isDivider: true,
         id: 'attendance',
     }, {
+
         icon: <ExitToAppIcon/>,
         text: "Leave",
         isDivider: false,
@@ -54,7 +55,8 @@ const SidebarMenu: SidebarMenuItem[] = [
 
 const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = (): JSX.Element => {
     const navigation = useNavigate();
-    const {isAuth} = useAuth();
+    const { isAuth, userId } = useAuth();
+
     useLayoutEffect(() => {
         !isAuth && navigation("/login");
     }, [isAuth]);
@@ -66,13 +68,13 @@ const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = (): JSX.Element => {
         setIsChangePass(!isChangePass)
     }
 
+
+
     const [AccountMenu] = useState<AccountMenuItem[]>([
         {
             icon: <ManageAccountsIcon fontSize="small"/>,
             text: "Manage Accounts",
-            onClick: () => {
-                console.log("Manage Accounts");
-            }
+            onClick: () => navigation(`/users/${userId}`)
         },
         {
             icon: <LockIcon fontSize="small"/>,
