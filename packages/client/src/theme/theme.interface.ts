@@ -6,11 +6,12 @@ interface PaletteColor {
     contrastText?: string;
 }
 
-interface TypographyFontStyle {
+ type TypographyFontStyle = {
     fontSize: string;
     fontWeight: number;
     lineHeight: number;
     letterSpacing: string;
+
 
 }
 

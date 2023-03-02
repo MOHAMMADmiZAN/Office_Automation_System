@@ -1,7 +1,7 @@
 import {styled} from "@mui/material/styles";
 import {Card, CardContent, CardHeader, Paper, Table, TablePagination} from "@mui/material";
 
-export const DataTableLayout = styled(Paper)(({theme}) => ({
+ const DataTableLayout = styled(Paper)(({theme}) => ({
     width: "100%",
     height: "100%",
     padding: "1rem",
@@ -15,13 +15,13 @@ export const DataTableLayout = styled(Paper)(({theme}) => ({
 
 })) as typeof Paper;
 
-export const DataTableLayoutCard = styled(Card)(({theme}) => ({
+ const DataTableLayoutCard = styled(Card)(({theme}) => ({
     backgroundColor: theme.palette.primary.light,
 
 
 })) as typeof Card;
 
-export const DataTableLayoutCardHeader = styled(CardHeader)(({theme}) => ({
+ const DataTableLayoutCardHeader = styled(CardHeader)(({theme}) => ({
 
     '& .MuiTypography-root': {
         fontWeight: "600",
@@ -32,16 +32,16 @@ export const DataTableLayoutCardHeader = styled(CardHeader)(({theme}) => ({
 })) as typeof CardHeader;
 
 
-export const DataTableLayoutCardContent = styled(CardContent)(({theme}) => ({
+const DataTableLayoutCardContent = styled(CardContent)(({theme}) => ({
     padding: "0 0 0 0",
     '& .MuiTableContainer-root': {
         maxHeight: "calc(100vh - 300px)",
     }
 
-} as const)) as typeof CardContent;
+})) as typeof CardContent;
 
 
-export const DataTablePagination = styled(TablePagination)(({theme}) => ({
+ const DataTablePagination = styled(TablePagination)(({theme}) => ({
     '& .MuiTablePagination-toolbar': {
         backgroundColor: theme.palette.primary.light,
         textAlign: "center",
@@ -73,7 +73,7 @@ export const DataTablePagination = styled(TablePagination)(({theme}) => ({
 
 })) as typeof TablePagination;
 
-export const DataLayoutTable = styled(Table)(({theme}) => ({
+ const DataLayoutTable = styled(Table)(({theme}) => ({
     border: "1px solid",
     borderColor: theme.palette.primary.main,
     '& .MuiTableHead-root': {
@@ -86,3 +86,14 @@ export const DataLayoutTable = styled(Table)(({theme}) => ({
 
 
 })) as typeof Table;
+
+export {
+    DataTableLayout,
+    DataTableLayoutCard,
+    DataTableLayoutCardHeader,
+    DataTableLayoutCardContent,
+    DataTablePagination,
+    DataLayoutTable
+
+
+}

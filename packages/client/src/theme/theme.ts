@@ -39,6 +39,7 @@ const customTheme: CustomTheme = {
             lineHeight: 1.2,
             letterSpacing: '-0.01562em',
 
+
         },
         h2: {
             fontSize: '2rem',

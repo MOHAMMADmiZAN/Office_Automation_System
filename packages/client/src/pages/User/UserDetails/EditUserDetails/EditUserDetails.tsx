@@ -14,8 +14,8 @@ import useUsers, { IUpdateUserPayload } from "../../../../hooks/useUsers";
 import useUserInfo, { IUpdateUserInfo } from "../../../../hooks/useUserInfo";
 import useOnBoard, { IUpdateOnBoard } from "../../../../hooks/useOnBoard";
 import useAuth from '../../../../hooks/useAuth';
-import { IUserInfoPayload } from '../../../../api/UserInfo';
-import { IUserOnBoardPayload } from '../../../../api/UserOnBoard';
+import { IUserInfoPayload } from '../../../../api/UserInfo.api';
+import { IUserOnBoardPayload } from '../../../../api/UserOnBoard.api';
 
 
 interface EDIT_USER_DETAILS_PROPS {

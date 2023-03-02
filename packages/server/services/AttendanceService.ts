@@ -19,6 +19,7 @@ interface IAttendanceService {
 class AttendanceService implements IAttendanceService {
 
     createAttendance(data: IAttendance): Promise<IAttendance> {
+
         let schema = new Attendance({...data})
         return schema.save();
     }
