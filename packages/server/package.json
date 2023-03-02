@@ -5,7 +5,8 @@
   "scripts": {
     "dev": "ts-node-dev --clear server.ts",
     "build": "tsc",
-    "start": "node dist/server.js"
+    "start": "node dist/server.js",
+    "build-and-start": "tsc && node dist/server.js"
   },
   "dependencies": {
     "-": "^0.0.1",
