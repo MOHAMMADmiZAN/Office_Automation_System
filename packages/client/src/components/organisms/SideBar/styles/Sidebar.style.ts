@@ -5,6 +5,7 @@ export const SidebarBox = styled(Box)(({theme}) => ({
     position: 'absolute',
     backgroundColor: theme.palette.primary.light,
     transform: "translateX(-100%)",
+    minHeight: '100vh',
     height: 'calc(100% - 90px)',
     transition: "transform 0.5s ease-in-out",
     '&.open': {
