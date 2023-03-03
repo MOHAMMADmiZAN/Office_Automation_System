@@ -2,7 +2,7 @@ import {SubmitHandler} from "react-hook-form";
 import {Actions, useStoreActions} from "easy-peasy";
 
 import {useNavigate} from "react-router-dom";
-import React, {useLayoutEffect} from "react";
+import React, {useEffect, useLayoutEffect} from "react";
 import {FORM_INPUT_PROPS, FormInputType} from "../../components/molecules/Form/FormInput/Form_Input";
 import {AuthType} from "../../store/models/AuthModel";
 import FormLayOut from "../../components/organisms/Form/FormLayOut/FormLayOut";
@@ -53,8 +53,8 @@ const Login: React.FC = (): JSX.Element => {
     const LogIn = useStoreActions((actions: Actions<AuthType>) => actions.Auth.Login);
     const {isAuth} = useAuth();
     const navigate = useNavigate();
-    useLayoutEffect(() => {
-        isAuth && navigate(`/`);
+    useEffect(() => {
+        isAuth && navigate(`/`, {replace: true});
     }, [isAuth]);
 
     const onSubmit: SubmitHandler<LoginFromData> = async (data) => {

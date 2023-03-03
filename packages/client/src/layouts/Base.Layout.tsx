@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useState } from 'react';
+import React, {useEffect, useLayoutEffect, useState } from 'react';
 import Header, { AccountMenuItem } from "../components/organisms/Header/Header";
 import Sidebar, { SidebarMenuItem } from "../components/organisms/SideBar/Sidebar";
 import EventIcon from "@mui/icons-material/Event";
@@ -57,8 +57,8 @@ const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = (): JSX.Element => {
     const navigation = useNavigate();
     const { isAuth, userId } = useAuth();
 
-    useLayoutEffect(() => {
-        !isAuth && navigation("/login");
+    useEffect(() => {
+        !isAuth && navigation("/login",{replace: true})
     }, [isAuth]);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [isChangePass, setIsChangePass] = useState(false);
