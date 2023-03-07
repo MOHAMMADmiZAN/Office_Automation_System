@@ -13,10 +13,8 @@ interface ILeaveController {
 class LeaveController extends LeaveService implements ILeaveController {
 
     public leaveCreate = async (req, res, next) => {
-
-
         try {
-            const data = await this.createLeave({...req.body, user: req.user._id});
+            const data = await this.createLeave({...req.body, user: req.user._id,leaveAttachment: req.file?`uploads/${req.file.filename}`:null});
             console.log('data', data);
             res.status(201).json({
                 message: 'Leave created successfully',

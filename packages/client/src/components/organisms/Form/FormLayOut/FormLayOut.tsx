@@ -17,6 +17,7 @@ interface FORM_LAY_OUT_PROPS {
     validationRules: AnyObjectSchema;
     onSubmit: SubmitHandler<any>;
     btnText: string;
+    isReset?: boolean;
 
 
 }
@@ -26,7 +27,8 @@ const FormLayOut: React.FC<FORM_LAY_OUT_PROPS> = ({
                                                       onSubmit,
                                                       validationRules,
                                                       FormInputFields,
-                                                      btnText
+                                                      btnText,
+                                                     isReset = false
                                                   }): JSX.Element => {
     const {control, handleSubmit, reset, setValue} = useForm<typeof defaultValues>({
         defaultValues: {...defaultValues},
@@ -36,7 +38,9 @@ const FormLayOut: React.FC<FORM_LAY_OUT_PROPS> = ({
 
     const onSubmitWithReset: SubmitHandler<any> = async (data, event) => {
         await onSubmit(data, event);
-        reset(defaultValues);
+        if (isReset) {
+            reset(defaultValues);
+        }
 
     };
 

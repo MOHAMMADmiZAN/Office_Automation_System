@@ -41,6 +41,14 @@ export const useEvent = (singleEventId?: string) => {
         }
     })
 
+    const {mutateAsync: inviteUser} = useMutation((data: IEventPayloadWithId) => EventApi.eventUpdate(data, data._id), {
+        onSuccess: async (data) => {
+            await queryClient.invalidateQueries("allEvents");
+            console.log(`data`, data)
+
+        }
+    })
+
 
     return {
         Events,
@@ -49,7 +57,8 @@ export const useEvent = (singleEventId?: string) => {
         eventDelete,
         changeInviteStatusMutate,
         editEvent,
-        createEvent
+        createEvent,
+        inviteUser
     }
 
 }
