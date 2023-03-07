@@ -29,7 +29,11 @@ const LeaveApi: ILeaveApi = {
         return response.data.data;
     },
     leaveCreate: async (payload: ILeavePayload) => {
-        const response = await PrivateApiInstance.post('/leave', payload);
+        const headers = {
+            'Content-Type': 'multipart/form-data'
+
+        }
+        const response = await PrivateApiInstance.post('/leave', payload, {headers});
         return response.data;
     },
     leaveUpdate: async (payload: ILeavePayload, id: string) => {

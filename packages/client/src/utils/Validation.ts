@@ -41,7 +41,7 @@ export const signupValidation = yup.object().shape({
 
 
 export const eventValidation = yup.object().shape({
-    title: yup.string().required().min(2).max(20),
+    title: yup.string().required().min(2).max(100),
     description: yup.string().min(2).max(1000),
     startTime: yup.date().required('Start Time is required'),
     endTime: yup.date().min(yup.ref('startTime')),

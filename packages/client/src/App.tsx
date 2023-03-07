@@ -30,7 +30,6 @@ const App: React.FC = (): JSX.Element => {
                     <QueryClientProvider client={queryClient}>
                         <CssBaseline/>
                         <ToastContainer style={{zIndex: 9999}}/>
-
                         <RouterProvider router={router}/>
                         <ReactQueryDevtools initialIsOpen={false}/>
                     </QueryClientProvider>
