@@ -37,16 +37,6 @@ export const UserApi = {
             console.log(e)
         }
     },
-    updateUserAvatar: async (id: string, payload: Blob) => {
-        try {
-            const headers = {'Content-Type': 'multipart/form-data'};
-            const response = await PrivateApiInstance.put(`/user/changeAvatar/${id}`, payload, {headers});
-            console.log(response)
-            return response.data;
-        } catch (e) {
-            console.log(e)
-        }
-    },
 
     changePassword: async (payload: ChangePasswordPayload) => {
         try {

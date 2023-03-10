@@ -1,24 +1,21 @@
-import { beforeEach, describe, expect, test, vi } from 'vitest'
+import {beforeEach, describe, expect, vi} from 'vitest'
 import {AuthApi} from "../Auth.api";
-import axios,{AxiosResponse,AxiosStatic} from "axios";
-import {BackendBaseURL} from "../api";
+import axios from "axios";
 import login from "../../pages/login";
 
 
-vi.mock('axios',()=>{
-     return {
-         default: {
-             create: vi.fn(() => ({
-                 interceptors: {
-                     request: { use: vi.fn(), eject: vi.fn() },
-                     response: { use: vi.fn(), eject: vi.fn() },
-                 },
-                 post: vi.fn(() => ({
-
-                 })),
-             })),
-         },
-     }
+vi.mock('axios', () => {
+    return {
+        default: {
+            create: vi.fn(() => ({
+                interceptors: {
+                    request: {use: vi.fn(), eject: vi.fn()},
+                    response: {use: vi.fn(), eject: vi.fn()},
+                },
+                post: vi.fn(() => ({})),
+            })),
+        },
+    }
 })
 
 describe('AuthApi', () => {
@@ -29,7 +26,7 @@ describe('AuthApi', () => {
         registerSpy.mockReset()
 
     })
-    describe('login',()=>{
+    describe('login', () => {
         let loginPayload = {
             email: 'email@mail.com',
             password: 'password'
@@ -72,7 +69,7 @@ describe('AuthApi', () => {
 
     })
 
-    describe('register',()=>{
+    describe('register', () => {
         let registerPayload = {
             firstName: 'firstName',
             lastName: 'lastName',
@@ -119,7 +116,6 @@ describe('AuthApi', () => {
         });
 
     })
-
 
 
 })
