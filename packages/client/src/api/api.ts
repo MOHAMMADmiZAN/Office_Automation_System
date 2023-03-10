@@ -1,56 +1,52 @@
 import axios from "axios";
-import {handleErrors, handleSuccess} from "../utils/alertMessage";
+import { handleErrors, handleSuccess } from "../utils/alertMessage";
 
-const BackendBaseURL = `${import.meta.env.VITE_REACT_APP_BACKEND_BASE_URL}/api/v1`;
+export const BackendBaseURL = `${import.meta.env.VITE_REACT_APP_BACKEND_BASE_URL}/api/v1`;
 
-
-export const PublicApiInstance = axios.create({
+const apiConfig = {
     baseURL: BackendBaseURL,
+};
 
-})
+const PublicApiInstance = axios.create(apiConfig);
+
 
 PublicApiInstance.interceptors.response.use(
     (response) => {
         if (response.config.method !== 'get') {
-            // Display success message for non-GET requests
             handleSuccess(response.data.message);
         }
-        return response
-    }
-    ,
+        return response;
+    },
     (error) => {
-        handleErrors(error)
+        handleErrors(error);
     }
-)
+);
 
-
-export const PrivateApiInstance = axios.create({
-    baseURL: BackendBaseURL,
-
-})
+const PrivateApiInstance = axios.create(apiConfig);
 
 PrivateApiInstance.interceptors.request.use(
     (config) => {
-        let jwtToken = JSON.parse(localStorage.getItem('[EasyPeasyStore][0][Auth]') as string).data.AuthToken
+        const jwtToken = JSON.parse(
+            localStorage.getItem('[EasyPeasyStore][0][Auth]') as string
+        )?.data?.AuthToken;
         if (jwtToken) {
             config.headers.Authorization = `Bearer ${jwtToken}`;
         }
         return config;
     },
-    (error) => {
-        return Promise.reject(error);
-    }
-)
+    (error) => Promise.reject(error)
+);
 
 PrivateApiInstance.interceptors.response.use(
     (response) => {
         if (response.config.method !== 'get') {
-            // Display success message for non-GET requests
             handleSuccess(response.data.message);
         }
-        return response
+        return response;
     },
     (error) => {
-        handleErrors(error)
+        handleErrors(error);
     }
-)
+);
+
+export { PublicApiInstance, PrivateApiInstance };
