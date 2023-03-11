@@ -9,7 +9,6 @@ interface IAdminAttendanceWithId extends IAdminAttendance {
 }
 
 
-
 interface IAdminAttendanceWithIdService {
     createAdminAttendance(data: IAdminAttendance): Promise<IAdminAttendanceWithId>;
 
@@ -33,7 +32,7 @@ class AdminAttendanceService implements IAdminAttendanceWithIdService {
     async createAdminAttendance(data: IAdminAttendance): Promise<any> {
 
         const adminAttendance = new AdminAttendance({...data});
-        return  adminAttendance.save();
+        return adminAttendance.save();
     }
 
     async findAdminAttendance(key: string, value: any): Promise<any> {

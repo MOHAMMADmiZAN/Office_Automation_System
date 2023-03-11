@@ -26,7 +26,7 @@ describe('UserApi', () => {
     let getAllUsersSpy = vi.spyOn(UserApi, 'getAllUsers')
     let changePasswordSpy = vi.spyOn(UserApi, 'changePassword')
 
-    const user= {
+    const user = {
         firstName: 'firstName',
         lastName: 'lastName',
         email: 'email',
@@ -44,6 +44,8 @@ describe('UserApi', () => {
         getUserSpy.mockReset()
         updateUserSpy.mockReset()
         deleteUserSpy.mockReset()
+        getAllUsersSpy.mockReset()
+        changePasswordSpy.mockReset()
     })
     describe('getUser', () => {
 
@@ -51,7 +53,7 @@ describe('UserApi', () => {
             let getUserResponse = {
                 data: {
                     message: 'User Found',
-                  ...user
+                    ...user
                 }
             }
 
@@ -67,6 +69,7 @@ describe('UserApi', () => {
         it('fail to fetch user data', function () {
             const expectedError = new Error('Invalid Data')
             const res = getUserSpy.mockRejectedValue(expectedError)
+            expect(res).toBeCalledTimes(0)
             expect(UserApi.getUser('id')).rejects.toThrow(expectedError)
 
 
@@ -78,7 +81,7 @@ describe('UserApi', () => {
         let updateUserResponse = {
             data: {
                 message: 'User Updated',
-            ...user
+                ...user
             }
         }
         let updateUserPayload = {
@@ -86,19 +89,17 @@ describe('UserApi', () => {
             firstName: 'firstName',
             lastName: 'lastName',
         }
-        it('SuccessFull updateUser', function () {
-
-
+        it('SuccessFull updateUser', async function () {
             let res = updateUserSpy.mockResolvedValue({...updateUserResponse})
-            expect(UserApi.updateUser('id', updateUserPayload)).resolves.toEqual(updateUserResponse)
+            await expect(UserApi.updateUser('id', updateUserPayload)).resolves.toEqual(updateUserResponse)
             expect(res.getMockName()).toEqual('updateUser')
             expect(res).toBeCalledTimes(1)
 
         });
         it('fail to update user data', function () {
-
             const expectedError = new Error('Invalid Data')
             const res = updateUserSpy.mockRejectedValue(expectedError)
+            expect(res).toBeCalledTimes(0)
             expect(UserApi.updateUser('id', updateUserPayload)).rejects.toThrow(expectedError)
         });
 
@@ -112,17 +113,19 @@ describe('UserApi', () => {
                 ...user
             }
         }
-        it('SuccessFull deleteUser', function () {
-            deleteUserSpy.mockResolvedValue({...deleteUserResponse})
-            expect(UserApi.deleteUser('id')).resolves.toEqual(deleteUserResponse)
-            expect(deleteUserSpy.getMockName()).toEqual('deleteUser')
-            expect(deleteUserSpy).toBeCalledTimes(1)
+        it('SuccessFull deleteUser', async function () {
+            let res = deleteUserSpy.mockResolvedValue({...deleteUserResponse})
+            await expect(UserApi.deleteUser('id')).resolves.toEqual(deleteUserResponse)
+            expect(res.getMockName()).toEqual('deleteUser')
+            expect(res).toBeCalledTimes(1)
 
 
         });
         it('fail to delete user data', function () {
             const expectedError = new Error('Invalid Data')
             const res = deleteUserSpy.mockRejectedValue(expectedError)
+            expect(res).toBeCalledTimes(0)
+
             expect(UserApi.deleteUser('id')).rejects.toThrow(expectedError)
         });
 
@@ -144,12 +147,19 @@ describe('UserApi', () => {
             }
         }
         it('SuccessFull getUsers', async function () {
-            let res = getAllUsersSpy.mockResolvedValue({...getUsersResponse})
+            let res = getAllUsersSpy.mockResolvedValue(getUsersResponse)
             let getUsersResponseData = await UserApi.getAllUsers()
             expect(getUsersResponseData).toEqual(getUsersResponse)
             expect(res.getMockName()).toEqual('getAllUsers')
             expect(res).toBeCalledTimes(1)
         });
+        it('fail to get users data', async function () {
+            const expectedError = new Error('Invalid Data')
+            let res = getAllUsersSpy.mockRejectedValueOnce(expectedError)
+            expect(res).toBeCalledTimes(0)
+
+            await expect(UserApi.getAllUsers()).rejects.toThrow(expectedError)
+        })
 
 
     })
@@ -157,7 +167,7 @@ describe('UserApi', () => {
     describe('changePassword', () => {
         let changePasswordResponse = {
             data: {
-                message: 'Password Changed',
+                message: 'Password has been changed successfully',
                 ...user
             }
         }
@@ -166,23 +176,22 @@ describe('UserApi', () => {
             password: 'password',
             confirmPassword: 'confirmPassword'
         }
-        it('SuccessFull changePassword', function () {
-            changePasswordSpy.mockResolvedValue({...changePasswordResponse})
-            expect(UserApi.changePassword(changePasswordPayload)).resolves.toEqual(changePasswordResponse)
-            expect(changePasswordSpy.getMockName()).toEqual('changePassword')
-            expect(changePasswordSpy).toBeCalledTimes(1)
+        it('SuccessFull changePassword', async function () {
+            let res = changePasswordSpy.mockResolvedValue(changePasswordResponse)
+            let changePasswordResponseData = await UserApi.changePassword(changePasswordPayload)
+            expect(changePasswordResponseData).toEqual(changePasswordResponse)
+            expect(res.getMockName()).toEqual('changePassword')
+            expect(res).toBeCalledTimes(1)
 
         });
-        it('fail to change password', function () {
+        it('fail to change password', async function () {
             const expectedError = new Error('Invalid Data')
-            const res = changePasswordSpy.mockRejectedValue(expectedError)
-            expect(UserApi.changePassword(changePasswordPayload)).rejects.toThrow(expectedError)
+            let res = changePasswordSpy.mockRejectedValueOnce(expectedError)
+            expect(res).toBeCalledTimes(0)
+            await expect(UserApi.changePassword(changePasswordPayload)).rejects.toThrow(expectedError)
         });
 
     })
-
-
-
 
 
 })

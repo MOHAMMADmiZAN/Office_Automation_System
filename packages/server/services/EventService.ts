@@ -1,7 +1,6 @@
-import Event, { IEvent } from "../models/Event";
+import Event, {IEvent} from "../models/Event";
 import moment from 'moment';
-import { dateTimeFormat } from "../utils/helper";
-import { ObjectId } from "mongoose";
+import {dateTimeFormat} from "../utils/helper";
 
 
 export interface IEventUpdate {
@@ -31,13 +30,13 @@ interface IEventService {
     findEvents(): Promise<IEvent[]>;
 
     updateEvent(data: IEvent, id: string): Promise<IEvent | null>;
+
     updateEventInvitation(id: string, invitation: IInvitation): Promise<IEvent | null>;
 
     deleteEvent(id: string): Promise<IEvent | null>;
 
     checkEventStatus(): Promise<void>;
 }
-
 
 
 class EventService implements IEventService {
@@ -59,7 +58,7 @@ class EventService implements IEventService {
         if (key === '_id') {
             return Event.findById(value).exec()
         }
-        return Event.findOne({ [key]: value }).exec();
+        return Event.findOne({[key]: value}).exec();
     }
 
     findEvents(): Promise<IEvent[]> {
@@ -77,11 +76,11 @@ class EventService implements IEventService {
         if (data.status) {
             event.status = data.status
         }
-        return Event.findByIdAndUpdate(id, { ...event }, { new: true });
+        return Event.findByIdAndUpdate(id, {...event}, {new: true});
     }
 
     async updateEventInvitation(id: string, invitation: IInvitation): Promise<IEvent | null> {
-        return Event.findByIdAndUpdate(id, { invitation }, { new: true });
+        return Event.findByIdAndUpdate(id, {invitation}, {new: true});
     }
 
     deleteEvent(id: string): Promise<IEvent | null> {
@@ -99,9 +98,9 @@ class EventService implements IEventService {
             let nowTime = moment(new Date()).unix();
 
             if (startTime < nowTime && nowTime < endTime) {
-                await Event.findByIdAndUpdate(event._id, { status: 'RUNNING' }, { new: true });
+                await Event.findByIdAndUpdate(event._id, {status: 'RUNNING'}, {new: true});
             } else if (nowTime > endTime) {
-                await Event.findByIdAndUpdate(event._id, { status: 'FINISHED' }, { new: true });
+                await Event.findByIdAndUpdate(event._id, {status: 'FINISHED'}, {new: true});
 
             }
         }

@@ -135,7 +135,6 @@ export const editUserValidation = yup.object().shape({
 });
 
 
-
 export const manageAccountValidation = yup.object().shape({
     avatar: yup
         .mixed()

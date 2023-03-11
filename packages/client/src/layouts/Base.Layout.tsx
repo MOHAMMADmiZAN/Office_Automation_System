@@ -1,15 +1,15 @@
-import React, {useEffect, useLayoutEffect, useState } from 'react';
-import Header, { AccountMenuItem } from "../components/organisms/Header/Header";
-import Sidebar, { SidebarMenuItem } from "../components/organisms/SideBar/Sidebar";
+import React, {useEffect, useState} from 'react';
+import Header, {AccountMenuItem} from "../components/organisms/Header/Header";
+import Sidebar, {SidebarMenuItem} from "../components/organisms/SideBar/Sidebar";
 import EventIcon from "@mui/icons-material/Event";
 import PermContactCalendarIcon from "@mui/icons-material/PermContactCalendar";
-import { Box, Grid } from "@mui/material";
+import {Box, Grid} from "@mui/material";
 import ManageAccountsIcon from "@mui/icons-material/ManageAccounts";
 import LockIcon from "@mui/icons-material/Lock";
-import { Dashboard, Logout } from "@mui/icons-material";
-import { Actions, useStoreActions } from "easy-peasy";
-import { AuthType } from "../store/models/AuthModel";
-import { Outlet, useLocation, useNavigate } from "react-router-dom";
+import {Dashboard, Logout} from "@mui/icons-material";
+import {Actions, useStoreActions} from "easy-peasy";
+import {AuthType} from "../store/models/AuthModel";
+import {Outlet, useLocation, useNavigate} from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 import AppRegistrationIcon from '@mui/icons-material/AppRegistration';
 import ChangePassword from '../components/organisms/ChangePassword/ChangePassword';
@@ -55,10 +55,10 @@ const SidebarMenu: SidebarMenuItem[] = [
 
 const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = (): JSX.Element => {
     const navigation = useNavigate();
-    const { isAuth, userId } = useAuth();
+    const {isAuth, userId} = useAuth();
 
     useEffect(() => {
-        !isAuth && navigation("/login",{replace: true})
+        !isAuth && navigation("/login", {replace: true})
     }, [isAuth]);
     const [isSidebarOpen, setIsSidebarOpen] = useState(true);
     const [isChangePass, setIsChangePass] = useState(false);
@@ -67,7 +67,6 @@ const BaseLayout: React.FC<BASE_LAYOUT_PROPS> = (): JSX.Element => {
     const handleChangePasswordModal = () => {
         setIsChangePass(!isChangePass)
     }
-
 
 
     const [AccountMenu] = useState<AccountMenuItem[]>([

@@ -37,7 +37,8 @@ const LeaveRequest: React.FC<LEAVE_REQUEST_PROPS> = (props): JSX.Element => {
                     {align: 'center', value: moment(leave.leaveEndDate).calendar()},
                     {align: 'center', value: leave.leaveStatus},
                     {align: 'center', value: `${user?.firstName} ${user?.lastName}`},
-                    {align: 'center',
+                    {
+                        align: 'center',
                         value: <Box><CustomModal modalId={'Leave Request Response'}
                                                  modalContent={<LeaveRequestResponse data={leave}/>}
                                                  modalBtnText={`Click To Response`} modalBtnVariant={`contained`}

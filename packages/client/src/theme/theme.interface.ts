@@ -6,7 +6,7 @@ interface PaletteColor {
     contrastText?: string;
 }
 
- type TypographyFontStyle = {
+type TypographyFontStyle = {
     fontSize: string;
     fontWeight: number;
     lineHeight: number;
