@@ -1,4 +1,4 @@
-import {beforeEach, describe, expect, vi} from 'vitest'
+import {beforeEach, describe, expect, vi,it} from 'vitest'
 import {AuthApi} from "../Auth.api";
 import axios from "axios";
 import login from "../../pages/login";
