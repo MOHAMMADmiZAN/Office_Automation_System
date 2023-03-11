@@ -1,21 +1,20 @@
-import React, { useEffect, useState } from 'react';
+import React, {useEffect, useState} from 'react';
 import FormLayOut from "../../../../components/organisms/Form/FormLayOut/FormLayOut";
 import useUser from "../../../../hooks/useUser";
-import { editUserValidation, manageAccountValidation } from "../../../../utils/Validation";
+import {editUserValidation, manageAccountValidation} from "../../../../utils/Validation";
 import {
     FORM_INPUT_PROPS,
     FormInputType,
     selectOption
 } from "../../../../components/molecules/Form/FormInput/Form_Input";
 import useRole from "../../../../hooks/useRole";
-import { SubmitHandler } from "react-hook-form";
-import { onBoardStatus } from "../../AddUserOnbordModal/AddOnBordModal";
-import useUsers, { IUpdateUserPayload } from "../../../../hooks/useUsers";
-import useUserInfo, { IUpdateUserInfo } from "../../../../hooks/useUserInfo";
-import useOnBoard, { IUpdateOnBoard } from "../../../../hooks/useOnBoard";
+import {SubmitHandler} from "react-hook-form";
+import {onBoardStatus} from "../../AddUserOnbordModal/AddOnBordModal";
+import useUsers, {IUpdateUserPayload} from "../../../../hooks/useUsers";
+import useUserInfo, {IUpdateUserInfo} from "../../../../hooks/useUserInfo";
+import useOnBoard, {IUpdateOnBoard} from "../../../../hooks/useOnBoard";
 import useAuth from '../../../../hooks/useAuth';
-import { IUserInfoPayload } from '../../../../api/UserInfo.api';
-import { IUserOnBoardPayload } from '../../../../api/UserOnBoard.api';
+import {IUserInfoPayload} from '../../../../api/UserInfo.api';
 
 
 interface EDIT_USER_DETAILS_PROPS {
@@ -113,13 +112,13 @@ let initFormField: editUserFormInput[] = [
 ];
 
 
-const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({ userId }): JSX.Element => {
-    const { user, userInfo, userDocument, userRole, onBoard } = useUser(userId)
-    const { updateUser, updateUserAvatar } = useUsers()
-    const { updateUserInfo, createUserInfo } = useUserInfo()
-    const { updateOnBoard, createOnBoard } = useOnBoard()
-    const { Roles } = useRole()
-    const { userId: authUserId } = useAuth()
+const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({userId}): JSX.Element => {
+    const {user, userInfo, userDocument, userRole, onBoard} = useUser(userId)
+    const {updateUser, updateUserAvatar} = useUsers()
+    const {updateUserInfo, createUserInfo} = useUserInfo()
+    const {updateOnBoard, createOnBoard} = useOnBoard()
+    const {Roles} = useRole()
+    const {userId: authUserId} = useAuth()
 
     const [editUserFormInputFields, setEditUserFormInputFields] = useState(initFormField)
 
@@ -140,8 +139,6 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({ userId }): JSX.Ele
         farewellDate: onBoard?.farewellDate || '',
         status: onBoard?.status || '',
     }
-
-
 
 
     useEffect(() => {
@@ -247,14 +244,14 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({ userId }): JSX.Ele
         if (userInfoPayload.id) {
             await updateUserInfo(userInfoPayload as IUpdateUserInfo)
         } else {
-            await createUserInfo({ ...userInfoPayload.payload, user: userId } as IUserInfoPayload)
+            await createUserInfo({...userInfoPayload.payload, user: userId} as IUserInfoPayload)
         }
 
 
         if (onBoardPayload.id) {
             await updateOnBoard(onBoardPayload as IUpdateOnBoard)
         } else {
-            await createOnBoard({ ...onBoardPayload.payload, user: userId, joiningDate: new Date().toISOString() })
+            await createOnBoard({...onBoardPayload.payload, user: userId, joiningDate: new Date().toISOString()})
         }
 
 
@@ -268,7 +265,7 @@ const EditUserDetails: React.FC<EDIT_USER_DETAILS_PROPS> = ({ userId }): JSX.Ele
                 FormInputFields={editUserFormInputFields as FORM_INPUT_PROPS[]}
                 // validationRules={manageAccountValidation}
                 validationRules={userId !== authUserId ? manageAccountValidation : editUserValidation}
-                onSubmit={onSubmit} btnText={'Update'} />
+                onSubmit={onSubmit} btnText={'Update'}/>
         </>
     );
 };

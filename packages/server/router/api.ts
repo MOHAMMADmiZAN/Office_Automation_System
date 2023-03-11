@@ -29,7 +29,7 @@ router.use('/api/v1/admin-attendance', AuthMiddleware, AdminAttendanceRouter)
 router.get('/', (req, res) => {
     res.send('Welcome to OAS')
 })
-router.get('/health', (req,res)=>{
+router.get('/health', (req, res) => {
 
     res.status(200).json({
         status: 'success',

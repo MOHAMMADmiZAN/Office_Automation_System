@@ -26,6 +26,21 @@ describe('AuthApi', () => {
         registerSpy.mockReset()
 
     })
+
+    let user= {
+        firstName: 'firstName',
+        lastName: 'lastName',
+        email: 'email@mail.com',
+        password: 'password',
+        role: 'role',
+        status: 'status',
+        avatar: 'avatar',
+        _id: 'id',
+        createdAt: 'createdAt',
+        updatedAt: 'updatedAt',
+        __v: 0
+
+    }
     describe('login', () => {
         let loginPayload = {
             email: 'email@mail.com',
@@ -36,20 +51,7 @@ describe('AuthApi', () => {
                 data: {
                     message: 'Login Successful',
                     token: 'token',
-                    user: {
-                        firstName: 'firstName',
-                        lastName: 'lastName',
-                        email: 'email@mail.com',
-                        password: 'password',
-                        role: 'role',
-                        status: 'status',
-                        avatar: 'avatar',
-                        _id: 'id',
-                        createdAt: 'createdAt',
-                        updatedAt: 'updatedAt',
-                        __v: 0
-
-                    }
+                   user: {...user}
                 }
             }
             let res = loginSpy.mockResolvedValue({...loginResponse})
@@ -62,7 +64,8 @@ describe('AuthApi', () => {
         });
         it('failed login throws an error ', function () {
             const expectedError = new Error('Invalid credentials')
-            loginSpy.mockRejectedValueOnce(expectedError)
+            let res = loginSpy.mockRejectedValueOnce(expectedError)
+            expect(res).toBeCalledTimes(0)
             expect(AuthApi.login(loginPayload)).rejects.toThrow(expectedError)
 
         });
@@ -82,20 +85,7 @@ describe('AuthApi', () => {
             let registerResponse = {
                 data: {
                     message: 'User created successfully',
-                    user: {
-                        firstName: 'firstName',
-                        lastName: 'lastName',
-                        email: 'email@mail.com',
-                        password: 'password',
-                        role: 'role',
-                        status: 'status',
-                        avatar: 'avatar',
-                        _id: 'id',
-                        createdAt: 'createdAt',
-                        updatedAt: 'updatedAt',
-                        __v: 0
-
-                    }
+                    user: {...user}
                 }
 
             }
@@ -108,10 +98,11 @@ describe('AuthApi', () => {
 
 
         });
-        it('failed Register throws an error ', function () {
+        it('failed Register throws an error ', async function () {
             const expectedError = new Error('Invalid Data')
-            loginSpy.mockRejectedValueOnce(expectedError)
-            expect(AuthApi.login(registerPayload)).rejects.toThrow(expectedError)
+            let res = registerSpy.mockRejectedValueOnce(expectedError)
+            expect(res).toBeCalledTimes(0)
+            expect(AuthApi.register(registerPayload)).rejects.toThrow(expectedError)
 
         });
 

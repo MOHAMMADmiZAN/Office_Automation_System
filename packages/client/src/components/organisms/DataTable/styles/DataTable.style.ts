@@ -1,7 +1,7 @@
 import {styled} from "@mui/material/styles";
 import {Card, CardContent, CardHeader, Paper, Table, TablePagination} from "@mui/material";
 
- const DataTableLayout = styled(Paper)(({theme}) => ({
+const DataTableLayout = styled(Paper)(({theme}) => ({
     width: "100%",
     height: "100%",
     padding: "1rem",
@@ -15,13 +15,13 @@ import {Card, CardContent, CardHeader, Paper, Table, TablePagination} from "@mui
 
 })) as typeof Paper;
 
- const DataTableLayoutCard = styled(Card)(({theme}) => ({
+const DataTableLayoutCard = styled(Card)(({theme}) => ({
     backgroundColor: theme.palette.primary.light,
 
 
 })) as typeof Card;
 
- const DataTableLayoutCardHeader = styled(CardHeader)(({theme}) => ({
+const DataTableLayoutCardHeader = styled(CardHeader)(({theme}) => ({
 
     '& .MuiTypography-root': {
         fontWeight: "600",
@@ -41,7 +41,7 @@ const DataTableLayoutCardContent = styled(CardContent)(({theme}) => ({
 })) as typeof CardContent;
 
 
- const DataTablePagination = styled(TablePagination)(({theme}) => ({
+const DataTablePagination = styled(TablePagination)(({theme}) => ({
     '& .MuiTablePagination-toolbar': {
         backgroundColor: theme.palette.primary.light,
         textAlign: "center",
@@ -73,7 +73,7 @@ const DataTableLayoutCardContent = styled(CardContent)(({theme}) => ({
 
 })) as typeof TablePagination;
 
- const DataLayoutTable = styled(Table)(({theme}) => ({
+const DataLayoutTable = styled(Table)(({theme}) => ({
     border: "1px solid",
     borderColor: theme.palette.primary.main,
     '& .MuiTableHead-root': {
