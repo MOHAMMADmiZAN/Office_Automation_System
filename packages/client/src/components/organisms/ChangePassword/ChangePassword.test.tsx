@@ -12,7 +12,7 @@ vi.mock('../../../hooks/useAuth', () => {
     }
 })
 
-describe('CustomSkeleton', () => {
+describe('Change password component', () => {
     afterEach(() => {
         vi.clearAllMocks();
     })

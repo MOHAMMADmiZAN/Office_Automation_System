@@ -1,6 +1,6 @@
-import React, {memo} from 'react';
+import React, { memo } from 'react';
 import CustomModalTitle from "../../molecules/CustomModalTitle/CustomModalTitle";
-import {Box, Container, DialogContent} from '@mui/material';
+import { Box, Container, DialogContent } from '@mui/material';
 import CommonCard from "../../molecules/CommonCard/CommonCard";
 import useStyles from "./styles/CustomModal.style";
 
@@ -14,12 +14,12 @@ interface CUSTOM_MODAL_PROPS {
 }
 
 const ChangePasswordModal: React.FC<CUSTOM_MODAL_PROPS> = ({
-                                                               modalTitle,
-                                                               modalId,
-                                                               modalContent,
-                                                               open,
-                                                               handleClose,
-                                                           }): JSX.Element => {
+    modalTitle,
+    modalId,
+    modalContent,
+    open,
+    handleClose,
+}): JSX.Element => {
 
     const classes = useStyles();
 
@@ -30,9 +30,9 @@ const ChangePasswordModal: React.FC<CUSTOM_MODAL_PROPS> = ({
     return (
         <Box className={classes.modalBody}>
             <Container>
-                <CustomModalTitle id={modalId} onClose={handleClose}/>
+                <CustomModalTitle id={modalId} onClose={handleClose} />
                 <DialogContent dividers>
-                    <CommonCard CardMain={modalContent} cardTitle={modalTitle}/>
+                    <CommonCard CardMain={modalContent} cardTitle={modalTitle} />
                 </DialogContent>
             </Container>
         </Box>
