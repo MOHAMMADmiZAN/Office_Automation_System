@@ -11,7 +11,7 @@ import EventService from "./services/EventService";
 const app = express();
 
 
-app.use([express.json(), cors(), express.urlencoded({extended: true}), express.static('public'), router, morgan('tiny')]);
+app.use([express.json(), cors(), express.urlencoded({ extended: true }), express.static('public'), router, morgan('tiny')]);
 app.use(errorMiddleware);
 
 
@@ -39,6 +39,16 @@ cron.schedule("*/60 * * * * *", async () => {
     const eventService = new EventService();
     await eventService.checkEventStatus()
 })
+
+
+cron.schedule('0 0 09 * * *', async () => {
+    console.log('Running a task every morning at 9AM o clock')
+})
+
+cron.schedule('0 0 10 * * *', async () => {
+    console.log('Running a task every morning at 10AM o clock')
+})
+
 
 // create a jwt token
 //
