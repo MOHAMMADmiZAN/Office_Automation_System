@@ -14,7 +14,7 @@ import {
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
 import {Notifications} from "@mui/icons-material";
-import logo from "../../../assets/vite.svg";
+import logo from "../../../assets/logo.png";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import {HeaderBox} from "./styles/Header.style";
 import useAuth from "../../../hooks/useAuth";
@@ -45,7 +45,7 @@ const Header: React.FC<HEADER_PROPS> = ({controlSidebar, accountMenuItems}) => {
                         <MenuIcon/>
                     </IconButton>
                     <IconButton>
-                        <img src={logo} alt={'logo'}/>
+                        <img src={logo} alt={'logo'} width={50} height={50}/>
                     </IconButton>
                 </Grid>
                 <Grid item={true} xs={3} sm={2} md={2} lg={2} xl={2} textAlign={`right`}>
