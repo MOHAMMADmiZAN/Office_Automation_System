@@ -4,7 +4,13 @@ import {describe, it} from 'vitest';
 import CustomTabs from './CustomTabs';
 
 
-const TestComponent = ({name}) => <div>This is {name} component</div>
+interface TestComponentProps {
+    name: string;
+}
+
+const TestComponent = ({ name }: TestComponentProps) => (
+    <div>This is {name} component</div>
+);
 
 
 const tabs = [

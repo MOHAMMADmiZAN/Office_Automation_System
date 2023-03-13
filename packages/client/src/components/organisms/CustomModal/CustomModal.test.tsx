@@ -21,7 +21,7 @@ describe('Custom modal', () => {
         render(<CustomModal {...propObj} modalContent={<ModalComponent/>}/>)
 
         const buttonElement = screen.queryByText(/change password/i)
-        fireEvent.click(buttonElement)
+        fireEvent.click(buttonElement!);
         const titleElement = screen.queryByText(propObj.modalTitle)
         expect(titleElement).toBeInTheDocument()
     })
