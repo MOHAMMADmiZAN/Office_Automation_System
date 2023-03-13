@@ -4,11 +4,9 @@ import {DialogTitle, IconButton} from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 
 interface DIA_PROPS {
-
     id: string;
     children?: React.ReactNode;
     onClose: () => void;
-
 }
 
 const CustomModalTitle: React.FC<DIA_PROPS> = (props): JSX.Element => {
@@ -20,6 +18,7 @@ const CustomModalTitle: React.FC<DIA_PROPS> = (props): JSX.Element => {
                 {children}
                 {onClose ? (
                     <IconButton
+                    data-testid='close-button'
                         aria-label="close"
                         onClick={onClose}
                         sx={{
@@ -34,7 +33,6 @@ const CustomModalTitle: React.FC<DIA_PROPS> = (props): JSX.Element => {
                     </IconButton>
                 ) : null}
             </DialogTitle>
-
         </>
     );
 };

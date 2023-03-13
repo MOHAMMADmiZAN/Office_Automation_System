@@ -4,7 +4,7 @@ import {AuthType} from "../store/models/AuthModel";
 const useAuth = () => {
     const {AuthUser, AuthToken, isAuth} = useStoreState((state: State<AuthType>) => state.Auth)
     const Login = useStoreActions((actions: Actions<AuthType>) => actions.Auth.Login);
-    const ChangePassword = useStoreActions((actions: Actions<AuthType>) => actions.Auth.ChangePassword);
+    const changePassword = useStoreActions((actions: Actions<AuthType>) => actions.Auth.ChangePassword);
 
     return {
         user: AuthUser,
@@ -12,7 +12,7 @@ const useAuth = () => {
         isAuth,
         userId: AuthUser._id,
         Login,
-        ChangePassword
+        changePassword
     }
 }
 

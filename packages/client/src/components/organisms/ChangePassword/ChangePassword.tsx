@@ -56,11 +56,11 @@ export const eventFormFields: eventFormInputField[] = [
 
 const ChangePassword: React.FC<CHANGE_PASSWORD_PROPS> = ({open, handleClose}): JSX.Element => {
 
-    const {ChangePassword} = useAuth();
+    const {changePassword} = useAuth();
 
 
     const onSubmit: SubmitHandler<ChangePasswordPayload> = async (data) => {
-        const result = await ChangePassword(data);
+        const result = await changePassword(data);
         result && handleClose()
     }
     return (

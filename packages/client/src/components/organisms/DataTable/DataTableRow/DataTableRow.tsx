@@ -15,17 +15,12 @@ export interface CollapseComponent {
 }
 
 export interface RowItem {
-
     tableCell: TableCellInterface[];
     CollapseComponent?: CollapseComponent
-
-
 }
 
 interface DATA_TABLE_ROW_PROPS {
     row: RowItem
-
-
 }
 
 const DataTableRow: React.FC<DATA_TABLE_ROW_PROPS> = (props) => {
