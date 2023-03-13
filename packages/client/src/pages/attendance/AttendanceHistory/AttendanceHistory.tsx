@@ -1,10 +1,11 @@
 import moment from 'moment';
 import React, {useEffect, useState} from 'react';
-import useAttendance from "../../../hooks/useAttendance";
+import useAttendance, { IUserStatusCount } from "../../../hooks/useAttendance";
 import {AttendanceBox, AttendanceTypography} from "../styles/attendance.style";
 import {IAttendancePayload} from "../../../api/Attendance.api";
 import Btn from "../../../components/molecules/Form/Btn";
 import {Box} from "@mui/material";
+
 
 interface ATTENDANCE_HISTORY_PROPS {
 }
@@ -26,16 +27,17 @@ const AttendanceHistory: React.FC<ATTENDANCE_HISTORY_PROPS> = (props): JSX.Eleme
         console.log(status, attendanceHistory)
     };
 
-    // @ts-ignore
+
     return (
         <>
             {
                 userStatusCount && (
                     <Box display={`flex`}>
-                        {Object.keys(userStatusCount).map((status, i) => (
-                            // @ts-ignore
-                            <Btn variant={`outlined`} styles={{margin: '5px'}} BtnText={`${status}: ${userStatusCount?.[status]} Days`} onClick={() => handleAttendanceHistory(status)} key={i}/>
+                        {Object.keys(userStatusCount).map((status: keyof IUserStatusCount, i) => (
+                            <Btn variant={`outlined`} styles={{margin: '5px'}} BtnText={`${status}: ${userStatusCount[status]} Days`} onClick={() => handleAttendanceHistory(status as string)} key={i}/>
+
                         ))}
+
                     </Box>
                 )
             }

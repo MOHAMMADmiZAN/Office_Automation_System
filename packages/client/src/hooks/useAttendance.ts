@@ -13,17 +13,10 @@ export interface IAttendancePayloadWithAttendanceId {
 export type StatusType = 'Present' | 'Absent' | 'Leave' | 'HalfDay' | 'Weekend' | 'Late' | 'Holiday';
 
 export interface IUserStatusCount {
-    Present: number;
-    Late: number;
-    Absent: number;
-    HalfDay: number;
-    Leave: number;
-    Weekend: number;
-    Holiday: number;
-
-    [status: string]: number;
-
+    [key: string]: number;
 }
+
+
 
 
 const useAttendance = () => {
