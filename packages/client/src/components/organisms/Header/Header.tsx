@@ -1,4 +1,4 @@
-import React, {memo, useState} from 'react';
+import React, { memo, useState } from 'react';
 import {
     Badge,
     Divider,
@@ -13,16 +13,15 @@ import {
     Typography,
 } from "@mui/material";
 import MenuIcon from '@mui/icons-material/Menu';
-import {Notifications} from "@mui/icons-material";
+import { Notifications } from "@mui/icons-material";
 import logo from "../../../assets/vite.svg";
 import AccountCircleIcon from '@mui/icons-material/AccountCircle';
-import {HeaderBox} from "./styles/Header.style";
+import { HeaderBox } from "./styles/Header.style";
 import useAuth from "../../../hooks/useAuth";
 
 interface HEADER_PROPS {
     controlSidebar: () => void;
     accountMenuItems: AccountMenuItem[];
-
 }
 
 export interface AccountMenuItem {
@@ -30,13 +29,12 @@ export interface AccountMenuItem {
     text: string;
     onClick?: () => void;
     isDivider?: boolean;
-
 }
 
 
-const Header: React.FC<HEADER_PROPS> = ({controlSidebar, accountMenuItems}) => {
+const Header: React.FC<HEADER_PROPS> = ({ controlSidebar, accountMenuItems }) => {
     const [accountMenu, setAccountMenu] = useState(false);
-    const {user} = useAuth()
+    const { user } = useAuth()
     const accountToggle = () => setAccountMenu((prevOpen) => !prevOpen);
 
     return (
@@ -44,26 +42,26 @@ const Header: React.FC<HEADER_PROPS> = ({controlSidebar, accountMenuItems}) => {
             <Grid container={true} justifyContent={`space-between`}>
                 <Grid item={true} xs={3} sm={2} md={2} lg={2} xl={2} textAlign={`left`}>
                     <IconButton onClick={controlSidebar}>
-                        <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
                     <IconButton>
-                        <img src={logo} alt={logo}/>
+                        <img src={logo} alt={'logo'} />
                     </IconButton>
                 </Grid>
                 <Grid item={true} xs={3} sm={2} md={2} lg={2} xl={2} textAlign={`right`}>
                     <Tooltip title="Notification">
                         <IconButton>
                             <Badge badgeContent={0} color="error" showZero={true}>
-                                <Notifications color="action" sx={{margin: '0'}}/>
+                                <Notifications color="action" sx={{ margin: '0' }} />
                             </Badge>
                         </IconButton>
                     </Tooltip>
-                    <IconButton onClick={accountToggle}>
+                    <IconButton onClick={accountToggle} data-testid='open-dropdown'>
                         <Typography variant={`h6`} component={`h6`} color={`primary.main`}>{user.firstName}</Typography>
-                        <AccountCircleIcon/>
+                        <AccountCircleIcon />
                         {
                             accountMenu && (
-                                <Paper sx={{position: 'fixed', right: '15px', top: '60px'}}>
+                                <Paper sx={{ position: 'fixed', right: '15px', top: '60px' }}>
                                     <MenuList>
                                         {
                                             accountMenuItems.map((item, index) => {
@@ -72,8 +70,8 @@ const Header: React.FC<HEADER_PROPS> = ({controlSidebar, accountMenuItems}) => {
                                                         <ListItemIcon>
                                                             {item.icon}
                                                         </ListItemIcon>
-                                                        <ListItemText>{item.text}</ListItemText>
-                                                        {item.isDivider && <Divider/>}
+                                                        <ListItemText data-testid={item.text}>{item.text}</ListItemText>
+                                                        {item.isDivider && <Divider />}
                                                     </MenuItem>
                                                 )
                                             })
