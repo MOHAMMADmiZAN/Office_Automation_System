@@ -34,7 +34,7 @@ const AttendanceHistory: React.FC<ATTENDANCE_HISTORY_PROPS> = (props): JSX.Eleme
                     <Box display={`flex`}>
                         {Object.keys(userStatusCount).map((status, i) => (
                             // @ts-ignore
-                            <Btn variant={`outlined`} styles={{margin: '5px'}} BtnText={`${status}: ${userStatusCount?.[status]} Days`} nClick={() => handleAttendanceHistory(status)} key={i}/>
+                            <Btn variant={`outlined`} styles={{margin: '5px'}} BtnText={`${status}: ${userStatusCount?.[status]} Days`} onClick={() => handleAttendanceHistory(status)} key={i}/>
                         ))}
                     </Box>
                 )
