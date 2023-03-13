@@ -1,4 +1,4 @@
-import {beforeEach, describe, expect, vi,it} from 'vitest'
+import {beforeEach, describe, expect, it, vi} from 'vitest'
 import {AuthApi} from "../Auth.api";
 import axios from "axios";
 import login from "../../pages/login";
@@ -27,7 +27,7 @@ describe('AuthApi', () => {
 
     })
 
-    let user= {
+    let user = {
         firstName: 'firstName',
         lastName: 'lastName',
         email: 'email@mail.com',
@@ -51,7 +51,7 @@ describe('AuthApi', () => {
                 data: {
                     message: 'Login Successful',
                     token: 'token',
-                   user: {...user}
+                    user: {...user}
                 }
             }
             let res = loginSpy.mockResolvedValue({...loginResponse})

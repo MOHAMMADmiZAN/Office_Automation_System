@@ -1,7 +1,7 @@
-import React, { memo, useState } from 'react';
-import { DataLayoutTable, DataTableLayout, DataTablePagination } from "./styles/DataTable.style";
-import { Container, TableBody, TableHead, Typography } from "@mui/material";
-import DataTableRow, { RowItem } from "./DataTableRow/DataTableRow";
+import React, {memo, useState} from 'react';
+import {DataLayoutTable, DataTableLayout, DataTablePagination} from "./styles/DataTable.style";
+import {Container, TableBody, TableHead, Typography} from "@mui/material";
+import DataTableRow, {RowItem} from "./DataTableRow/DataTableRow";
 
 interface PaginateType {
     rowsPerPage: number[];
@@ -21,7 +21,7 @@ interface DATA_TABLE_PROPS {
 }
 
 
-const DataTable: React.FC<DATA_TABLE_PROPS> = ({ DataTableData, title }) => {
+const DataTable: React.FC<DATA_TABLE_PROPS> = ({DataTableData, title}) => {
     const [page, setPage] = useState<number>(0);
     const [rowsPerPage, setRowsPerPage] = useState<number>(DataTableData.DataTablePagination?.rowsPerPage[0] || 5);
 
@@ -39,13 +39,13 @@ const DataTable: React.FC<DATA_TABLE_PROPS> = ({ DataTableData, title }) => {
                 <DataTableLayout>
                     <DataLayoutTable aria-label={DataTableData.label}>
                         <TableHead>
-                            <DataTableRow row={DataTableData.headerRow} />
+                            <DataTableRow row={DataTableData.headerRow}/>
                         </TableHead>
                         <TableBody>
                             {
                                 DataTableData.bodyRow.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map((item, index) => {
                                     return (
-                                        <DataTableRow key={index} row={item} />
+                                        <DataTableRow key={index} row={item}/>
                                     )
                                 })
                             }
@@ -66,7 +66,7 @@ const DataTable: React.FC<DATA_TABLE_PROPS> = ({ DataTableData, title }) => {
                         />
                     }
                 </DataTableLayout>
-                : <Container sx={{ textAlign: 'center' }}>
+                : <Container sx={{textAlign: 'center'}}>
                     <Typography variant={`h1`}>No Data </Typography>
                 </Container>
 

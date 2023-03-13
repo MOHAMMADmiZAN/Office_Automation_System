@@ -18,7 +18,7 @@ const CustomModalTitle: React.FC<DIA_PROPS> = (props): JSX.Element => {
                 {children}
                 {onClose ? (
                     <IconButton
-                    data-testid='close-button'
+                        data-testid='close-button'
                         aria-label="close"
                         onClick={onClose}
                         sx={{

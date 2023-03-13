@@ -1,5 +1,5 @@
-import React, { memo } from 'react';
-import { Box, Tab, Tabs } from "@mui/material";
+import React, {memo} from 'react';
+import {Box, Tab, Tabs} from "@mui/material";
 import customTabStyle from "./styles/CustomTabs.style";
 
 export interface TabItem {
@@ -12,7 +12,7 @@ interface CUSTOM_TABS_PROPS {
     ariaLabel?: string;
 }
 
-const CustomTabs: React.FC<CUSTOM_TABS_PROPS> = ({ tabs, ariaLabel }) => {
+const CustomTabs: React.FC<CUSTOM_TABS_PROPS> = ({tabs, ariaLabel}) => {
     const [value, setValue] = React.useState(0);
 
     const handleChange = (event: React.SyntheticEvent, newValue: number) => {
@@ -28,15 +28,15 @@ const CustomTabs: React.FC<CUSTOM_TABS_PROPS> = ({ tabs, ariaLabel }) => {
                 scrollButtons
                 allowScrollButtonsMobile
                 aria-label={ariaLabel}
-                sx={{ ...customTabStyle }}
+                sx={{...customTabStyle}}
             >
                 {tabs.map((tab, index) => (
-                    <Tab key={index} label={tab.label} />
+                    <Tab key={index} label={tab.label}/>
                 ))}
             </Tabs>
             {
                 tabs.map((tab, index) => (
-                    <Box key={index} sx={{ p: 3 }} hidden={index !== value}>
+                    <Box key={index} sx={{p: 3}} hidden={index !== value}>
                         {tab.component}
                     </Box>
                 ))
