@@ -1,12 +1,12 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it, vi } from 'vitest';
+import {fireEvent, render, screen} from '@testing-library/react';
+import {describe, it, vi} from 'vitest';
 import Header from './Header';
 
 
-
 const data = {
-    controlSidebar: () => { },
+    controlSidebar: () => {
+    },
     accountMenuItems: [
         {
             icon: <div>Dashboard</div>,
@@ -55,7 +55,7 @@ describe('Header', () => {
 
         const dropdown = screen.getByTestId('open-dropdown')
         fireEvent.click(dropdown)
-        
+
         data.accountMenuItems.map((row) => {
             const element = screen.getByTestId(row.text);
             expect(element).toBeInTheDocument()

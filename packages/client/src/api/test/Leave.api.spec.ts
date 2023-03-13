@@ -1,4 +1,4 @@
-import {beforeEach, describe, expect, vi,it} from 'vitest'
+import {beforeEach, describe, expect, it, vi} from 'vitest'
 import LeaveApi, {ILeavePayload} from "../Leave.api";
 
 
@@ -34,7 +34,7 @@ describe('LeaveApi', () => {
 
     })
 
-    let leaveData :ILeavePayload = {
+    let leaveData: ILeavePayload = {
         _id: 'id',
         user: "user",
         leaveType: "leaveType",
@@ -91,7 +91,7 @@ describe('LeaveApi', () => {
             let expectedError = new Error('Invalid Data')
             let res = updateLeaveSpy.mockRejectedValue(expectedError)
             expect(res).toBeCalledTimes(0)
-            expect(LeaveApi.leaveUpdate(leaveData,'id')).rejects.toThrow(expectedError)
+            expect(LeaveApi.leaveUpdate(leaveData, 'id')).rejects.toThrow(expectedError)
         });
     })
     describe('leaveDelete', () => {
@@ -109,7 +109,6 @@ describe('LeaveApi', () => {
             expect(LeaveApi.leaveDelete('id')).rejects.toThrow(expectedError)
         });
     })
-
 
 
 })

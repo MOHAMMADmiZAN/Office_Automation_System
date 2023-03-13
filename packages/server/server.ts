@@ -7,11 +7,12 @@ import morgan from 'morgan';
 import errorMiddleware from "./middleware/ErrorMiddleware";
 import * as cron from 'node-cron';
 import EventService from "./services/EventService";
+import AdminAttendanceService from "./services/AdminAttendanceService";
 
 const app = express();
 
 
-app.use([express.json(), cors(), express.urlencoded({ extended: true }), express.static('public'), router, morgan('tiny')]);
+app.use([express.json(), cors(), express.urlencoded({extended: true}), express.static('public'), router, morgan('tiny')]);
 app.use(errorMiddleware);
 
 
@@ -39,53 +40,14 @@ cron.schedule("*/60 * * * * *", async () => {
     const eventService = new EventService();
     await eventService.checkEventStatus()
 })
-
-
+const adminAttendance = new AdminAttendanceService()
 cron.schedule('0 0 09 * * *', async () => {
-    console.log('Running a task every morning at 9AM o clock')
+    await adminAttendance.createAdminAttendance({status: 'Running', timeLimit: 60})
+
 })
 
 cron.schedule('0 0 10 * * *', async () => {
-    console.log('Running a task every morning at 10AM o clock')
+    await adminAttendance.disableWhenTimeOut()
 })
-
-
-// create a jwt token
-//
-// const  userService = new UserService();
-//
-//
-//
-//
-//
-//
-// cron.schedule('*/60 * * * * *', async () => {
-//     const tokenUser = await userService.findUser('email', SUPER_ADMIN_EMAIL)
-//     let token  = userService.tokenGenerator(tokenUser)
-//     try{
-//         await axios.post(`${BASE_URL}/api/v1/admin-attendance`, {},{
-//             headers: {
-//                 'Authorization': `Bearer ${token}`
-//             }
-//         })
-//     }catch (e) {
-//         console.log(e)
-//     }
-// });
-// cron.schedule('*/60 * * * * *', async () => {
-//     const tokenUser = await userService.findUser('email', SUPER_ADMIN_EMAIL)
-//     let token  = userService.tokenGenerator(tokenUser)
-//     try{
-//         await axios.post(`${BASE_URL}/api/v1/admin-attendance/disable-timeout`, {},{
-//             headers: {
-//                 'Authorization': `Bearer ${token}`
-//             }
-//         })
-//     }catch (e) {
-//         console.log(e)
-//
-//     }
-//
-// })
 
 

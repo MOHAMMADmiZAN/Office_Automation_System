@@ -1,7 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import {render, screen} from '@testing-library/react';
 import CommonCard from './CommonCard';
-import { describe, it } from 'vitest';
+import {describe, it} from 'vitest';
 
 
 describe('CustomSkeleton', () => {
@@ -9,7 +9,7 @@ describe('CustomSkeleton', () => {
         const cardTitle = 'Card Title';
         const cardMain = 'Card Main';
         const children = <h2>Test Children</h2>
-        render(<CommonCard cardTitle={cardTitle} CardMain={cardMain} children={children} />)
+        render(<CommonCard cardTitle={cardTitle} CardMain={cardMain} children={children}/>)
 
         const titleElement = screen.queryByText(cardTitle)
         expect(titleElement).toBeInTheDocument()

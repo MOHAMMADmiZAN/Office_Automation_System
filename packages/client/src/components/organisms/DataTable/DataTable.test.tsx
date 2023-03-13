@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it } from 'vitest';
+import {render, screen} from '@testing-library/react';
+import {describe, it} from 'vitest';
 import DataTable from './DataTable';
 
 
@@ -14,23 +14,23 @@ const TableHeaderCellInterface = {
 }
 
 const RowItem = {
-    tableCell: [{ ...TableCellInterface }]
+    tableCell: [{...TableCellInterface}]
 }
 
 const RowItemBody = {
-    tableCell: [{ ...TableHeaderCellInterface }]
+    tableCell: [{...TableHeaderCellInterface}]
 }
 
 const data = {
     label: 'Test label',
     headerRow: RowItem,
     bodyRow: [RowItemBody],
-    DataTablePagination: { rowsPerPage: [5] }
+    DataTablePagination: {rowsPerPage: [5]}
 }
 
 describe('DataTable', () => {
     it('should have in the document', () => {
-        render(<DataTable DataTableData={data} />)
+        render(<DataTable DataTableData={data}/>)
 
         data.bodyRow[0].tableCell.map(row => {
             const children = screen.queryByText(row.value)

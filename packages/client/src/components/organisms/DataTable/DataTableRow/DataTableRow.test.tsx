@@ -1,8 +1,7 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
-import { describe, it } from 'vitest';
+import {render, screen} from '@testing-library/react';
+import {describe, it} from 'vitest';
 import DataTableRow from './DataTableRow';
-
 
 
 const data = {
@@ -20,7 +19,7 @@ const data = {
 
 describe('DataTableRow', () => {
     it('should have in the document', () => {
-        render(<DataTableRow row={data} />)
+        render(<DataTableRow row={data}/>)
 
         data.tableCell.map(row => {
             const children = screen.queryByText(row.value)
