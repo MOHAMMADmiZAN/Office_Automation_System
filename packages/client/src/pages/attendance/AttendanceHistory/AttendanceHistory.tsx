@@ -27,7 +27,7 @@ const AttendanceHistory: React.FC<ATTENDANCE_HISTORY_PROPS> = (props): JSX.Eleme
         console.log(status, attendanceHistory)
     };
 
-    // @ts-ignore
+
     return (
         <>
             {
