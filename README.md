@@ -4,6 +4,7 @@
 * [Plugin Used](#plugin-used)
 * [Tools](#tools)
 * [Testing](#testing)
+* [Demo](#demo-url)
 
 ### Case Study 
 
@@ -118,3 +119,6 @@
 - Project link `https://github.com/MOHAMMADmiZAN/Office_Automation_System`
 - Clone the project `git clone https://github.com/MOHAMMADmiZAN/Office_Automation_System`. `npm i` or `yarn install`
 - Run the project `npm run dev` or `yarn dev`
+
+### Demo URL
+- [Demo URL](https://office-g22g.onrender.com/)
