@@ -131,11 +131,6 @@ const EventLayout: React.FC<EVENT_LAYOUT_PROPS> = ({isBodyRowFuncDate, label, is
                     value: (
 
                         <Box display={`flex`} justifyContent={`center`}>
-                            <Tooltip title="View Full Event Details">
-                                <IconButton>
-                                    <ViewAgendaOutlined/>
-                                </IconButton>
-                            </Tooltip>
                             {/* {(author?._id === userId) && */}
                             {checkUserPermission('manageEvent') &&
                                 <>
