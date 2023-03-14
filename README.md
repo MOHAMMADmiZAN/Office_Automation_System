@@ -5,6 +5,7 @@
 * [Tools](#tools)
 * [Testing](#testing)
 * [Demo](#demo-url)
+* [User Info](#user-info)
 
 ### Case Study 
 
@@ -143,4 +144,9 @@
 
 ### Demo URL
 - [Demo URL](https://office-g22g.onrender.com/)
-- Email: `naim@oas.com` Password: `pass: naim@oaS1` 
+
+### User Info
+
+|  | Email/User   |      User Type       |  Password | 
+|----------|:-------------|:------:|:------:|
+| 1 | naim@oas.com | Admin | naim@oaS1 |
