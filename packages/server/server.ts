@@ -23,6 +23,32 @@ const BASE_URL = process.env.BASE_URL || `http://localhost:${PORT}`;
 const SUPER_ADMIN_EMAIL = process.env.SUPER_USER || 'super_admin@oas.com'
 
 
+// corn job
+cron.schedule("*/60 * * * * *", async () => {
+    console.log('running cron job 1')
+    const eventService = new EventService();
+    await eventService.checkEventStatus()
+})
+const adminAttendance = new AdminAttendanceService()
+cron.schedule('0 0 09 * * *', async () => {
+    try{
+        await adminAttendance.createAdminAttendance({status: 'RUNNING', timeLimit: 60})
+    }catch (e) {
+        console.log(e);
+    }
+
+})
+
+cron.schedule('0 0 10 * * *', async () => {
+    try{
+        await adminAttendance.disableWhenTimeOut()
+    }catch (e) {
+        console.log(e);
+
+    }
+})
+
+
 connectDB(DB_URI).then(() => {
     console.log('Connected to DB');
     const server = http.createServer(app);
@@ -35,19 +61,6 @@ connectDB(DB_URI).then(() => {
 });
 
 
-// Call cronjob 120
-cron.schedule("*/60 * * * * *", async () => {
-    const eventService = new EventService();
-    await eventService.checkEventStatus()
-})
-const adminAttendance = new AdminAttendanceService()
-cron.schedule('0 0 09 * * *', async () => {
-    await adminAttendance.createAdminAttendance({status: 'Running', timeLimit: 60})
 
-})
-
-cron.schedule('0 0 10 * * *', async () => {
-    await adminAttendance.disableWhenTimeOut()
-})
 
 
