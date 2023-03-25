@@ -39,9 +39,9 @@ cron.schedule('0 0 09 * * *', async () => {
 
 })
 
-cron.schedule('0 0 10 * * *', async () => {
+cron.schedule('0 0 09 * * *', async () => {
     try{
-        await adminAttendance.disableWhenTimeOut()
+        await adminAttendance.disableWhenCalled();
     }catch (e) {
         console.log(e);
 

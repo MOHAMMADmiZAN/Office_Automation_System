@@ -77,8 +77,9 @@ class AdminAttendanceService implements IAdminAttendanceWithIdService {
             throw errorHandler('No running attendance', 404)
         }
         let timeOut = moment(running.createdAt).add(running.timeLimit, 'minutes').isBefore(moment())
+        console.log(timeOut)
         if (timeOut) {
-            AdminAttendance.findByIdAndUpdate(running._id, {status: 'Complete'}, {new: true});
+           await this.disableWhenCalled()
         }
 
 
