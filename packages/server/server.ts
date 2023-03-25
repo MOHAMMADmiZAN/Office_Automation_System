@@ -31,21 +31,14 @@ cron.schedule("*/60 * * * * *", async () => {
 })
 const adminAttendance = new AdminAttendanceService()
 cron.schedule('0 0 09 * * *', async () => {
-    try{
-        await adminAttendance.createAdminAttendance({status: 'RUNNING', timeLimit: 60})
-    }catch (e) {
-        console.log(e);
-    }
+    await adminAttendance.createAdminAttendance({status: 'RUNNING', timeLimit: 60})
+
 
 })
 
-cron.schedule('0 0 09 * * *', async () => {
-    try{
-        await adminAttendance.disableWhenCalled();
-    }catch (e) {
-        console.log(e);
+cron.schedule('0 0 10 * * *', async () => {
+    await adminAttendance.disableWhenCalled();
 
-    }
 })
 
 
