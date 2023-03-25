@@ -25,7 +25,7 @@ const SUPER_ADMIN_EMAIL = process.env.SUPER_USER || 'super_admin@oas.com'
 
 // corn job
 cron.schedule("*/60 * * * * *", async () => {
-    console.log('running cron job 1')
+
     const eventService = new EventService();
     await eventService.checkEventStatus()
 })
